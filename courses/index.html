@@ -3,60 +3,62 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Course Archive | Timothy Trujillo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,760&display=swap" rel="stylesheet">
+  <title>Past Courses | Timothy Trujillo</title>
+  <meta name="description" content="Past course archive for Timothy Trujillo.">
   <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="nav-wrap">
-      <a class="brand" href="../index.html">Timothy <span>Trujillo</span></a>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="../research/index.html">Research</a>
-        <a href="../teaching/index.html">Teaching</a>
-        <a href="../courses/index.html">Courses</a>
-        <a href="../student-work/index.html">Student Work</a>
-        <a href="../resources/index.html">Resources</a>
+  <div class="page">
+    <header class="masthead">
+      <div>
+        <p class="term">Past Courses</p>
+        <h1>Course Archive</h1>
+        <p class="subtitle">The course materials will be rebuilt one course at a time.</p>
+      </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
         <a href="../cv.html">CV</a>
+        <a href="../teaching/index.html">Teaching</a>
+        <a href="../research/index.html">Research</a>
+        <a aria-current="page" href="index.html">Past Courses</a>
       </nav>
-    </div>
-  </header>
-  <main class="page wide">
-    <header class="page-header course-hero card">
-      <p class="eyebrow">Archive</p>
-      <h1>Course materials, organized as a public teaching archive.</h1>
-      <p class="lede">This archive collects full course systems: notes, objectives, classwork, homework, exams, embedded video materials, and workbook-style documents. Some courses belong in a PreTeXt-style structure; others are still staged as PDF or HTML archives until their source materials can be rebuilt properly.</p>
     </header>
-    <section class="grid two">
-      <article class="card accent-blue">
-        <h2>Precalculus Algebra</h2>
-        <p>MATH 1314, preserved as the PreTeXt course archive with its table of contents, section structure, and embedded lecture videos intact.</p>
-        <p><a href="math-1314/legacy/frontmatter.html">Open MATH 1314</a></p>
-      </article>
-      <article class="card accent-teal">
-        <h2>Calculus II</h2>
-        <p>Coursebook map for series, convergence tests, power series, integration, applications, and integration techniques, with weekly source materials attached.</p>
-        <p><a href="math-1430/index.html">Open MATH 1430</a></p>
-      </article>
-      <article class="card accent-gold">
-        <h2>Calculus III</h2>
-        <p>Coursebook map for parametric motion, vectors, multivariable derivatives, multiple integrals, and vector calculus, with the workbook attached.</p>
-        <p><a href="math-2440/index.html">Open Calculus III</a></p>
-      </article>
-      <article class="card accent-coral">
-        <h2>Differential Equations</h2>
-        <p>Coursebook map for first-order equations, second-order models, Laplace transforms, and systems, with the full workbook attached.</p>
-        <p><a href="differential-equations/index.html">Open Differential Equations</a></p>
-      </article>
-      <article class="card accent-teal">
-        <h2>Mathematical Logic</h2>
-        <p>Coursebook map for syntax, semantics, proof, metatheory, quantifiers, set theory, completeness, and incompleteness.</p>
-        <p><a href="math-6361/index.html">Open Mathematical Logic</a></p>
-      </article>
-    </section>
-  </main>
-  <footer class="site-footer"><div class="footer-wrap"><div>Timothy Trujillo</div><div><a href="mailto:trujillo@shsu.edu">trujillo@shsu.edu</a></div></div></footer>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <h2>Planned</h2>
+        <ul class="plain">
+          <li>MATH 1314 Precalculus Algebra</li>
+          <li>Calculus II</li>
+          <li>Calculus III</li>
+          <li>Differential Equations</li>
+          <li>Mathematical Logic</li>
+        </ul>
+      </aside>
+
+      <section class="content">
+        <h2>Archive Plan</h2>
+        <p>
+          This page will become the public index for past courses. The archive will be
+          rebuilt from the original course files, with each course's own organization
+          respected and with added context only where it helps students and visitors
+          understand what the course was doing.
+        </p>
+
+        <h2>Rebuild Plan</h2>
+        <ul class="link-list">
+          <li>Restore MATH 1314 from the original PreTeXt structure and remove expired outside-professor video links.</li>
+          <li>Add calculus II without reorganizing the mathematical sequence into a different course.</li>
+          <li>Add calculus III and differential equations from the workbook sources and supporting materials.</li>
+          <li>Add mathematical logic modules after the videos are available and the Blackboard HTML can be cleaned for the web.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Timothy Trujillo</p>
+      <p><a href="mailto:trujillo@shsu.edu">trujillo@shsu.edu</a></p>
+    </footer>
+  </div>
 </body>
 </html>

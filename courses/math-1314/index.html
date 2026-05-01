@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,760&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/site.css">
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -22,33 +26,221 @@
       </nav>
     </div>
   </header>
+
   <main class="page wide">
-    <header class="page-header">
+    <header class="page-header course-hero card">
       <p class="eyebrow">Course Archive</p>
       <h1>MATH 1314: Precalculus Algebra.</h1>
-      <p class="lede">This archive preserves my public-facing MATH 1314 materials, including textbook-style pages, sample exams, and video-linked lessons. The older pages are currently preserved in a legacy folder while the course is rebuilt into a cleaner, GitHub Pages-friendly format.</p>
+      <p class="lede">A public archive of a course built to help students move from symbolic manipulation to functional thinking. The polished guide below keeps the focus on my course design, YouTube lecture sequence, examples, and learning objectives; the original PreTeXt export is preserved for full historical detail.</p>
+      <div class="button-row">
+        <a class="button" href="legacy/book1.html">Open Legacy Course</a>
+        <a class="button secondary" href="../../assets/docs/math-1314-section-summary.tex">Download LaTeX Summary</a>
+      </div>
+      <nav class="toc-pills" aria-label="Course sections">
+        <a href="#section-1">Foundations</a>
+        <a href="#section-2">Equations</a>
+        <a href="#section-3">Functions</a>
+        <a href="#section-4">Linear Models</a>
+        <a href="#section-5">Polynomials</a>
+        <a href="#section-6">Exponentials</a>
+        <a href="#exams">Exams</a>
+      </nav>
     </header>
+
     <section class="grid two">
-      <article class="card accent-blue">
-        <h2>Clean Entry Points</h2>
-        <ul class="list-clean">
-          <li><a href="legacy/book1.html">Legacy course home</a></li>
-          <li><a href="legacy/frontmatter.html">Course information and schedule</a></li>
-          <li><a href="legacy/section-1.html">Introduction to Precalculus</a></li>
-          <li><a href="legacy/section-2.html">Equations and Inequalities</a></li>
-          <li><a href="legacy/section-3.html">Functions</a></li>
-          <li><a href="legacy/section-4.html">Linear Functions</a></li>
-          <li><a href="legacy/section-5.html">Polynomials</a></li>
-          <li><a href="legacy/section-6.html">Logarithms and Exponentials</a></li>
-          <li><a href="legacy/exams.html">Sample Exams</a></li>
-        </ul>
+      <article class="card accent-teal">
+        <h2>Design Idea</h2>
+        <p>The course is organized around a simple arc: students first stabilize algebraic habits, then learn to treat functions as objects that can be represented, transformed, composed, inverted, modeled, and interpreted.</p>
       </article>
       <article class="card accent-gold">
-        <h2>Cleanup Notes</h2>
-        <p>The next pass will remove references to expired content from other instructors, normalize filenames for GitHub Pages, and keep the working video links attached to your materials. The goal is an archive that feels deliberate instead of archaeological.</p>
+        <h2>Video Policy</h2>
+        <p>The original pages included some links to material maintained by other instructors. This polished archive points students toward the preserved pages with my YouTube lecture embeds and keeps third-party links out of the main course path.</p>
       </article>
     </section>
+
+    <section id="section-1" class="section">
+      <p class="eyebrow">Section 1</p>
+      <h2>Introduction to Precalculus</h2>
+      <div class="lesson-stack">
+        <article class="lesson-card">
+          <h3>Growth mindset and course architecture</h3>
+          <p>Students begin by treating mathematical ability as something developed through deliberate practice, feedback, and revision. This frames the course as training in habits, not a one-time test of talent.</p>
+          <ul class="objective-list">
+            <li>Identify how practice, feedback, and revision support mathematical learning.</li>
+            <li>Read a course objective and connect it to homework, exams, and class practice.</li>
+            <li>Use the archive as a self-study path rather than a pile of disconnected files.</li>
+          </ul>
+          <div class="math-note">Guiding principle: fluency grows when students move repeatedly among verbal, symbolic, graphical, and numerical representations.</div>
+          <div class="video-links"><a href="legacy/section-1.html#subsection-1">3 videos in legacy page</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="section-2" class="section band">
+      <div class="inner">
+        <p class="eyebrow">Section 2</p>
+        <h2>Equations and Inequalities</h2>
+        <div class="lesson-stack">
+          <article class="lesson-card">
+            <h3>The Coordinate Plane</h3>
+            <p>Students locate points, read geometric information from ordered pairs, and connect algebraic equations to graphical structure.</p>
+            <ul class="objective-list">
+              <li>Plot and interpret points \((x,y)\) in the Cartesian plane.</li>
+              <li>Compute distance and midpoint using \(\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\) and \(\left(\frac{x_1+x_2}{2},\frac{y_1+y_2}{2}\right)\).</li>
+              <li>Recognize when a graph represents a solution set.</li>
+            </ul>
+            <div class="math-note">Example thread: turn two observed data points into a geometric story about change.</div>
+            <div class="video-links"><a href="legacy/section-2.html#subsection-9">Videos 5-6</a></div>
+          </article>
+          <article class="lesson-card">
+            <h3>Linear Equations and Applications</h3>
+            <p>Linear equations become the first setting where symbolic solution methods, graphing, and modeling all meet.</p>
+            <ul class="objective-list">
+              <li>Solve equations equivalent to \(ax+b=cx+d\).</li>
+              <li>Distinguish one-solution, no-solution, and identity cases.</li>
+              <li>Write and solve a linear model from context.</li>
+            </ul>
+            <div class="math-note">Example thread: translate a cost or distance problem into \(mx+b=y\), then interpret the slope and intercept.</div>
+            <div class="video-links"><a href="legacy/section-2.html#subsection-10">Videos 7-8</a><a href="legacy/section-2.html#subsection-11">Video 9</a></div>
+          </article>
+          <article class="lesson-card">
+            <h3>Complex Numbers, Quadratics, and Inequalities</h3>
+            <p>The section closes by broadening what counts as a solution: complex roots, quadratic methods, higher-order equations, and interval descriptions.</p>
+            <ul class="objective-list">
+              <li>Use \(i^2=-1\) to simplify complex expressions.</li>
+              <li>Solve quadratics by factoring, completing the square, and the quadratic formula.</li>
+              <li>Represent inequalities using interval notation and number-line reasoning.</li>
+            </ul>
+            <div class="math-note">Example thread: compare \(x^2-5x+6=0\), \(x^2+4=0\), and \(|x-2|<5\) as different kinds of solution sets.</div>
+            <div class="video-links"><a href="legacy/section-2.html#subsection-12">Videos 10-11</a><a href="legacy/section-2.html#subsection-13">Videos 12-13</a><a href="legacy/section-2.html#subsection-14">Videos 14-15</a><a href="legacy/section-2.html#subsection-15">Videos 16-17</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-3" class="section">
+      <p class="eyebrow">Section 3</p>
+      <h2>Functions</h2>
+      <div class="lesson-stack">
+        <article class="lesson-card">
+          <h3>Notation, Domain, Range, and Rate of Change</h3>
+          <p>Students learn to read function notation as a language for input, output, domain, range, and change.</p>
+          <ul class="objective-list">
+            <li>Evaluate and interpret \(f(a)\), \(f(x+h)\), and \(\frac{f(b)-f(a)}{b-a}\).</li>
+            <li>Find domain restrictions caused by denominators, radicals, and context.</li>
+            <li>Estimate and interpret average rates of change from tables, graphs, and formulas.</li>
+          </ul>
+          <div class="math-note">Example thread: for \(f(x)=\sqrt{x-3}\), explain why the domain is \([3,\infty)\) before doing any calculation.</div>
+          <div class="video-links"><a href="legacy/section-3.html#subsection-16">Videos 18-19</a><a href="legacy/section-3.html#subsection-17">Videos 20-21</a><a href="legacy/section-3.html#subsection-18">Videos 22-23</a></div>
+        </article>
+        <article class="lesson-card">
+          <h3>Composition, Transformations, Absolute Value, and Inverses</h3>
+          <p>This is the central conceptual section: functions become objects students can combine, move, reflect, restrict, and reverse.</p>
+          <ul class="objective-list">
+            <li>Compute and interpret \((f\circ g)(x)=f(g(x))\).</li>
+            <li>Describe transformations such as \(a f(b(x-h))+k\).</li>
+            <li>Find inverse functions by solving \(y=f(x)\) for \(x\), then checking \(f(f^{-1}(x))=x\).</li>
+          </ul>
+          <div class="math-note">Example thread: compare \(f(x)=|x|\), \(g(x)=|x-3|+2\), and \(h(x)=-2|x+1|\) as transformations of one parent function.</div>
+          <div class="video-links"><a href="legacy/section-3.html#subsection-19">Videos 24-25</a><a href="legacy/section-3.html#subsection-20">Videos 26-27</a><a href="legacy/section-3.html#subsection-21">Videos 28-29</a><a href="legacy/section-3.html#subsection-22">Videos 30-31</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="section-4" class="section band">
+      <div class="inner">
+        <p class="eyebrow">Section 4</p>
+        <h2>Linear Functions and Models</h2>
+        <div class="lesson-stack">
+          <article class="lesson-card">
+            <h3>Linear Functions</h3>
+            <p>Students consolidate slope, intercepts, equations of lines, and linear modeling into a single representational system.</p>
+            <ul class="objective-list">
+              <li>Move among slope-intercept, point-slope, and standard forms.</li>
+              <li>Interpret \(m\) and \(b\) in \(f(x)=mx+b\).</li>
+              <li>Use linear models for prediction while naming the limits of extrapolation.</li>
+            </ul>
+            <div class="math-note">Example thread: fit a line through two points and explain what one unit of horizontal change means in context.</div>
+            <div class="video-links"><a href="legacy/section-4.html#subsection-23">Videos 32-33</a><a href="legacy/section-4.html#subsection-24">Video 34</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-5" class="section">
+      <p class="eyebrow">Section 5</p>
+      <h2>Polynomials, Rational Functions, and Radicals</h2>
+      <div class="lesson-stack">
+        <article class="lesson-card">
+          <h3>Quadratics and Polynomial Graphs</h3>
+          <p>Students learn to read algebraic features as graphical features: zeros, multiplicity, end behavior, turning points, and intercepts.</p>
+          <ul class="objective-list">
+            <li>Analyze \(f(x)=ax^2+bx+c\) using vertex, intercepts, and concavity.</li>
+            <li>Use factored form \(a(x-r_1)(x-r_2)\) to locate zeros.</li>
+            <li>Predict end behavior from degree and leading coefficient.</li>
+          </ul>
+          <div class="math-note">Example thread: sketch \(f(x)=-(x-2)^2+5\) and explain every visible feature from the formula.</div>
+          <div class="video-links"><a href="legacy/section-5.html#subsection-25">Videos 35-36</a><a href="legacy/section-5.html#subsection-26">Videos 37-38</a><a href="legacy/section-5.html#subsection-27">Videos 39-40</a></div>
+        </article>
+        <article class="lesson-card">
+          <h3>Division, Zeros, Rational Functions, and Radicals</h3>
+          <p>The algebra becomes more structural: students use division algorithms, factor theorems, asymptotes, and radical domains to understand families of functions.</p>
+          <ul class="objective-list">
+            <li>Divide polynomials using long division or synthetic division.</li>
+            <li>Use the remainder and factor theorems to test candidate zeros.</li>
+            <li>Describe vertical/horizontal asymptotes and holes of rational functions.</li>
+            <li>Solve radical equations while checking for extraneous solutions.</li>
+          </ul>
+          <div class="math-note">Example thread: compare \(\frac{x^2-1}{x-1}\) and \(\frac{1}{x-1}\): both have \(x=1\) excluded, but the graphs behave differently.</div>
+          <div class="video-links"><a href="legacy/section-5.html#subsection-28">Videos 41-42</a><a href="legacy/section-5.html#subsection-29">Videos 43-44</a><a href="legacy/section-5.html#subsection-30">Videos 45-46</a><a href="legacy/section-5.html#subsection-31">Video 47</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="section-6" class="section band">
+      <div class="inner">
+        <p class="eyebrow">Section 6</p>
+        <h2>Exponential and Logarithmic Functions</h2>
+        <div class="lesson-stack">
+          <article class="lesson-card">
+            <h3>Exponential Growth and Logarithmic Inverses</h3>
+            <p>The course ends by connecting growth, inverse functions, graphs, symbolic properties, equations, and models.</p>
+            <ul class="objective-list">
+              <li>Interpret \(f(x)=ab^x\) using initial value \(a\) and growth factor \(b\).</li>
+              <li>Use \(\log_b(x)=y\) exactly when \(b^y=x\).</li>
+              <li>Apply logarithm properties to expand, condense, and solve equations.</li>
+              <li>Model growth and decay with exponential functions.</li>
+            </ul>
+            <div class="math-note">Example thread: solve \(2e^{0.4t}=10\) by isolating the exponential and applying \(\ln\) to both sides.</div>
+            <div class="video-links"><a href="legacy/section-6.html#subsection-32">Videos 48-49</a><a href="legacy/section-6.html#subsection-33">Videos 50-51</a><a href="legacy/section-6.html#subsection-34">Videos 52-53</a><a href="legacy/section-6.html#subsection-35">Videos 54-55</a><a href="legacy/section-6.html#subsection-36">Videos 56-57</a><a href="legacy/section-6.html#subsection-37">Videos 58-59</a><a href="legacy/section-6.html#subsection-38">Videos 60-61</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="exams" class="section">
+      <p class="eyebrow">Assessment</p>
+      <h2>Sample Exams and Review</h2>
+      <div class="grid two">
+        <article class="card accent-blue">
+          <h3>Exam Learning Objectives</h3>
+          <p>The exam archive gives students a way to reverse-engineer preparation: start with objectives, practice representative problems, then use video solutions to diagnose gaps.</p>
+          <p><a href="legacy/exams.html#subsection-39">Open objectives</a></p>
+        </article>
+        <article class="card accent-coral">
+          <h3>Recorded Solutions</h3>
+          <p>The sample midterm and final include recorded solution walkthroughs.</p>
+          <div class="video-links"><a href="legacy/exams.html#subsection-40">Midterm solution video</a><a href="legacy/exams.html#subsection-41">Final solution videos</a></div>
+        </article>
+      </div>
+    </section>
   </main>
-  <footer class="site-footer"><div class="footer-wrap"><div>Timothy Trujillo</div><div><a href="mailto:trujillo@shsu.edu">trujillo@shsu.edu</a></div></div></footer>
+
+  <footer class="site-footer">
+    <div class="footer-wrap">
+      <div>Timothy Trujillo</div>
+      <div><a href="mailto:trujillo@shsu.edu">trujillo@shsu.edu</a></div>
+    </div>
+  </footer>
 </body>
 </html>

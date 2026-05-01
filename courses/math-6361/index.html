@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,760&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/site.css">
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -22,43 +26,178 @@
       </nav>
     </div>
   </header>
+
   <main class="page wide">
-    <header class="page-header">
+    <header class="page-header course-hero card">
       <p class="eyebrow">Course Map</p>
       <h1>MATH 6361: Mathematical Logic.</h1>
-      <p class="lede">A public-facing reconstruction of the Blackboard module sequence. The course moves from atomic sentences and propositional logic into formal proof, soundness, completeness, quantification, axiomatic set theory, and incompleteness.</p>
+      <p class="lede">A graduate-level online course organized as a sequence of modules in proof, semantics, soundness, completeness, quantification, set theory, and incompleteness. This page turns the Blackboard structure into a public map of the course architecture.</p>
+      <div class="button-row">
+        <a class="button" href="../../assets/docs/math-6361-module-summary.tex">Download LaTeX Module Summary</a>
+      </div>
+      <nav class="toc-pills" aria-label="Logic modules">
+        <a href="#propositional">Propositional Logic</a>
+        <a href="#metatheory">Metatheory</a>
+        <a href="#quantifiers">Quantifiers</a>
+        <a href="#set-theory">Set Theory</a>
+        <a href="#finale">Completeness</a>
+      </nav>
     </header>
 
     <section class="grid two">
       <article class="card accent-teal">
-        <h2>Course Design</h2>
-        <p>Each module was built around guiding questions, learning outcomes, reading notes, video notes, homework, discussion, and quiz practice. That structure makes the course inspectable: visitors can see what students are asked to do and why.</p>
+        <h2>How the Course Works</h2>
+        <p>Each module asks students to move through guiding questions, learning outcomes, reading notes, video notes, homework, discussion, and quiz practice. The rhythm is deliberate: read, watch, formalize, prove, reflect.</p>
       </article>
       <article class="card accent-gold">
-        <h2>What Comes Next</h2>
-        <p>The Blackboard export preserved the HTML module materials, but the video links need a second pass because Blackboard packages them as course resources rather than ordinary web links. I have kept this page ready for those links as they are recovered.</p>
+        <h2>Video Ready</h2>
+        <p>The Blackboard export preserved the module descriptions and activities. Once your YouTube links are available, each placeholder below can become a direct embedded lecture or playlist.</p>
       </article>
     </section>
 
-    <section class="section">
-      <p class="eyebrow">Module Sequence</p>
-      <div class="module-list">
-        <article class="module"><h3>Module 0: Atomic Sentences</h3><p>Constants, predicates, function symbols, terms, and translation between English and first-order atomic sentences.</p></article>
-        <article class="module"><h3>Module 1: Propositional Logic</h3><p>Arguments, validity, soundness, counterexamples, and early formal proof in Fitch style.</p></article>
-        <article class="module"><h3>Module 2: Boolean Connectives</h3><p>Truth-functional connectives, complex sentences, truth tables, and translation.</p></article>
-        <article class="module"><h3>Module 3: The Logic of Boolean Connectives</h3><p>Tautologies, logical truths, logical consequence, equivalence, and truth-table methods.</p></article>
-        <article class="module"><h3>Module 4: Formal Proof Methods for Boolean Logic</h3><p>Introduction and elimination rules, proof by contradiction, proof by cases, and subproofs.</p></article>
-        <article class="module"><h3>Module 5: The Logic of Conditionals</h3><p>Material conditionals, biconditionals, English translation, and proof rules for arrows.</p></article>
-        <article class="module"><h3>Module 6: Soundness and Completeness</h3><p>The relationship between proof systems and semantic consequence in propositional logic.</p></article>
-        <article class="module"><h3>Module 7: Midterm Review</h3><p>Review and synthesis of propositional and predicate-logic foundations before the midterm.</p></article>
-        <article class="module"><h3>Module 9: The Logic of Quantification</h3><p>Well-formed formulas, free and bound variables, quantified sentences, and truth in first-order structures.</p></article>
-        <article class="module"><h3>Module 10: Proof Methods for Quantifiers</h3><p>Universal and existential reasoning, prenex form, informal quantified proof, and the axiomatic method.</p></article>
-        <article class="module"><h3>Module 11: Formal Proof Methods for Quantifiers</h3><p>Fitch proofs using quantifier introduction and elimination rules, including identity.</p></article>
-        <article class="module"><h3>Module 12: Axiomatic Set Theory and Mathematical Structures</h3><p>Extension, separation, power sets, unions, intersections, relations, functions, and mathematical structures.</p></article>
-        <article class="module"><h3>Modules 13/14: Completeness and Incompleteness</h3><p>Soundness, completeness, incompleteness, and the boundary between formal proof and mathematical truth.</p></article>
+    <section id="propositional" class="section">
+      <p class="eyebrow">Modules 0-5</p>
+      <h2>From atomic sentences to Boolean proof.</h2>
+      <div class="lesson-stack">
+        <article class="lesson-card">
+          <h3>Module 0: Atomic Sentences</h3>
+          <p>Students begin with constants, predicates, function symbols, terms, and the discipline of translating ordinary language into a first-order language.</p>
+          <ul class="objective-list">
+            <li>Identify terms, complex terms, predicates, and atomic sentences.</li>
+            <li>Translate between colloquial English and first-order atomic sentences.</li>
+            <li>Compare the roles of constants, variables, predicates, and function symbols.</li>
+          </ul>
+          <div class="math-note">Core schema: an atomic sentence has the form \(P(t_1,\ldots,t_n)\), where each \(t_i\) is a term.</div>
+          <div class="placeholder-video">YouTube lecture slot: Atomic Sentences</div>
+        </article>
+        <article class="lesson-card">
+          <h3>Modules 1-3: Propositional Logic and Boolean Connectives</h3>
+          <p>The course then stabilizes validity, soundness, tautology, logical consequence, and truth-table reasoning.</p>
+          <ul class="objective-list">
+            <li>Classify arguments as valid/invalid and sound/unsound.</li>
+            <li>Construct and interpret truth tables for \(\neg\), \(\wedge\), \(\vee\), \(\to\), and \(\leftrightarrow\).</li>
+            <li>Distinguish logical truth, tautology, logical equivalence, and tautological equivalence.</li>
+          </ul>
+          <div class="math-note">Example question: when does \(\Gamma \models \varphi\) agree with truth-table consequence?</div>
+          <div class="placeholder-video">YouTube lecture slots: Propositional Logic, Boolean Connectives, Tautologies</div>
+        </article>
+        <article class="lesson-card">
+          <h3>Modules 4-5: Formal Proof Methods</h3>
+          <p>Students move from semantic tests to formal derivations, including subproofs, contradiction, cases, conditionals, and biconditionals.</p>
+          <ul class="objective-list">
+            <li>Use introduction and elimination rules in Fitch-style proof.</li>
+            <li>Formalize proof by contradiction and proof by cases.</li>
+            <li>Translate English conditionals into standard logical form.</li>
+          </ul>
+          <div class="math-note">Core habit: every line in a proof should be justified by a rule, a premise, or the scope of a subproof.</div>
+          <div class="placeholder-video">YouTube lecture slots: Boolean Proofs and Conditionals</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="metatheory" class="section band">
+      <div class="inner">
+        <p class="eyebrow">Modules 6-7</p>
+        <h2>Soundness, completeness, and review.</h2>
+        <div class="lesson-stack">
+          <article class="lesson-card">
+            <h3>Module 6: Soundness and Completeness</h3>
+            <p>This module makes the central bridge explicit: syntactic derivability and semantic consequence are different ideas, but a well-behaved proof system relates them.</p>
+            <ul class="objective-list">
+              <li>State soundness: if \(\Gamma \vdash \varphi\), then \(\Gamma \models \varphi\).</li>
+              <li>State completeness: if \(\Gamma \models \varphi\), then \(\Gamma \vdash \varphi\).</li>
+              <li>Use induction as a proof method in metatheoretic arguments.</li>
+            </ul>
+            <div class="math-note">The module asks students to see proof systems as mathematical objects rather than just procedures.</div>
+            <div class="placeholder-video">YouTube lecture slot: Soundness and Completeness</div>
+          </article>
+          <article class="lesson-card">
+            <h3>Module 7: Midterm Review</h3>
+            <p>The review module helps students reorganize the first half of the course around concepts, not just homework problem numbers.</p>
+            <ul class="objective-list">
+              <li>Review syntax, semantics, translation, truth tables, and proof rules.</li>
+              <li>Identify which technique is appropriate for a given kind of logic problem.</li>
+              <li>Prepare for proof-writing under exam conditions.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="quantifiers" class="section">
+      <p class="eyebrow">Modules 9-11</p>
+      <h2>Quantification and first-order proof.</h2>
+      <div class="lesson-stack">
+        <article class="lesson-card">
+          <h3>Module 9: The Logic of Quantification</h3>
+          <p>Students extend the propositional toolkit to variables, quantifiers, free and bound occurrence, and truth in first-order structures.</p>
+          <ul class="objective-list">
+            <li>Recognize well-formed formulas and sentences.</li>
+            <li>Identify free and bound variables.</li>
+            <li>Determine truth values of quantified sentences in a structure.</li>
+          </ul>
+          <div class="math-note">Core contrast: \(\forall x\,P(x)\) asserts universal coverage, while \(\exists x\,P(x)\) asserts witness existence.</div>
+          <div class="placeholder-video">YouTube lecture slot: Introduction to Quantification</div>
+        </article>
+        <article class="lesson-card">
+          <h3>Modules 10-11: Proof Methods for Quantifiers</h3>
+          <p>Students learn both informal and formal proof methods for quantified statements, including universal and existential introduction/elimination.</p>
+          <ul class="objective-list">
+            <li>Translate English sentences containing multiple quantifiers.</li>
+            <li>Recognize how quantifier order changes meaning.</li>
+            <li>Construct Fitch proofs using quantifier rules and identity.</li>
+          </ul>
+          <div class="math-note">Example contrast: \(\forall x\exists y\,R(x,y)\) and \(\exists y\forall x\,R(x,y)\) usually say very different things.</div>
+          <div class="placeholder-video">YouTube lecture slots: Quantifier Proofs</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="set-theory" class="section band">
+      <div class="inner">
+        <p class="eyebrow">Module 12</p>
+        <h2>Axiomatic set theory and mathematical structures.</h2>
+        <div class="lesson-stack">
+          <article class="lesson-card">
+            <h3>Module 12: Sets, Relations, and Structures</h3>
+            <p>The course uses set theory as a natural setting for first-order reasoning: extension, separation, power sets, unions, intersections, relations, functions, and structures.</p>
+            <ul class="objective-list">
+              <li>Apply the axiom of extension and the schema of separation.</li>
+              <li>Work with \(\mathcal{P}(A)\), \(\bigcup A\), intersections, relations, and functions.</li>
+              <li>Describe mathematical structures using sets, relations, functions, and constants.</li>
+            </ul>
+            <div class="math-note">Set theory becomes a language for saying what mathematical worlds are made of.</div>
+            <div class="placeholder-video">YouTube lecture slot: Axiomatic Set Theory</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="finale" class="section">
+      <p class="eyebrow">Modules 13-14</p>
+      <h2>Completeness and incompleteness.</h2>
+      <div class="lesson-stack">
+        <article class="lesson-card">
+          <h3>Final Modules</h3>
+          <p>The course ends by placing first-order completeness beside incompleteness, so students can see both the power and the limits of formal systems.</p>
+          <ul class="objective-list">
+            <li>State the soundness theorem for first-order logic.</li>
+            <li>State the completeness theorem for first-order logic.</li>
+            <li>State the incompleteness theorem for Peano Arithmetic.</li>
+            <li>Explain why formal proof and mathematical truth do not collapse into the same concept in sufficiently expressive systems.</li>
+          </ul>
+          <div class="math-note">Final tension: first-order logic is complete, but arithmetic powerful enough to encode syntax is not complete in the same way.</div>
+          <div class="placeholder-video">YouTube lecture slots: Completeness and Incompleteness</div>
+        </article>
       </div>
     </section>
   </main>
-  <footer class="site-footer"><div class="footer-wrap"><div>Timothy Trujillo</div><div><a href="mailto:trujillo@shsu.edu">trujillo@shsu.edu</a></div></div></footer>
+
+  <footer class="site-footer">
+    <div class="footer-wrap">
+      <div>Timothy Trujillo</div>
+      <div><a href="mailto:trujillo@shsu.edu">trujillo@shsu.edu</a></div>
+    </div>
+  </footer>
 </body>
 </html>

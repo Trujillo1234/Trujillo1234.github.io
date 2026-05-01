@@ -3,12 +3,90 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Academic Website</title>
+  <title>Timothy Trujillo | Mathematics</title>
+  <meta name="description" content="Academic website for Timothy Trujillo, mathematician and teacher.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,760&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">Timothy <span>Trujillo</span></a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="research/index.html">Research</a>
+        <a href="teaching/index.html">Teaching</a>
+        <a href="student-work/index.html">Student Work</a>
+        <a href="resources/index.html">Resources</a>
+        <a href="cv.html">CV</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
-    <h1>Academic Website</h1>
-    <p>This site is being rebuilt for GitHub Pages.</p>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Mathematics, teaching, logic, and carefully built courses</p>
+        <h1>Mathematics as a place students can enter.</h1>
+        <p class="lede">I am a mathematician whose work connects Ramsey theory, ultrafilters, logic, and the foundations of mathematics with a sustained commitment to undergraduate and graduate teaching.</p>
+        <div class="hero-actions">
+          <a class="button" href="teaching/index.html">Explore Teaching</a>
+          <a class="button secondary" href="research/index.html">Read Research</a>
+        </div>
+      </div>
+      <div class="portrait-frame">
+        <img src="assets/img/timothy-trujillo-portrait.png" alt="Illustrated portrait of Timothy Trujillo surrounded by mathematical notes">
+        <div class="caption-strip">Academic work, course design, student research, and a growing public archive.</div>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="inner grid three">
+        <article class="card accent-teal">
+          <p class="meta">Research</p>
+          <h2>Ramsey theory and foundations</h2>
+          <p>My research centers on topological Ramsey spaces, ultrafilters, nonstandard models of arithmetic, and related questions in combinatorics and logic.</p>
+          <p><a href="research/index.html">Research overview</a></p>
+        </article>
+        <article class="card accent-gold">
+          <p class="meta">Teaching</p>
+          <h2>Courses as systems</h2>
+          <p>I design courses around clear objectives, structured practice, active learning, and public-facing resources that help students see the shape of the subject.</p>
+          <p><a href="teaching/index.html">Teaching profile</a></p>
+        </article>
+        <article class="card accent-coral">
+          <p class="meta">Archive</p>
+          <h2>Materials that keep working</h2>
+          <p>This site is becoming a durable archive for past courses, lecture materials, student projects, and independent resources.</p>
+          <p><a href="resources/index.html">Resource archive</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="eyebrow">Featured course archives</p>
+      <h2>Teaching materials with the doors open</h2>
+      <div class="course-grid">
+        <article class="card accent-blue">
+          <h3>MATH 1314: Precalculus Algebra</h3>
+          <p>A pandemic-era public course archive with notes, sample exams, and linked lecture videos. This archive is being cleaned so expired third-party material falls away while my materials remain usable.</p>
+          <p><a href="courses/math-1314/index.html">Open the MATH 1314 archive</a></p>
+        </article>
+        <article class="card accent-teal">
+          <h3>MATH 6361: Mathematical Logic</h3>
+          <p>A website-facing version of the Blackboard course structure: modules, learning outcomes, readings, proof practice, and exam preparation for mathematical logic.</p>
+          <p><a href="courses/math-6361/index.html">Open the logic course map</a></p>
+        </article>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-wrap">
+      <div>Timothy Trujillo</div>
+      <div><a href="mailto:trujillo@shsu.edu">trujillo@shsu.edu</a></div>
+    </div>
+  </footer>
 </body>
 </html>

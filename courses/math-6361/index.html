@@ -8,12 +8,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,760&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/site.css">
-  <script>
-    window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
-  </script>
+  <link rel="stylesheet" href="../../assets/coursebook.css">
+  <script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };</script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body>
+<body class="coursebook">
   <header class="site-header">
     <div class="nav-wrap">
       <a class="brand" href="../../index.html">Timothy <span>Trujillo</span></a>
@@ -28,177 +27,101 @@
     </div>
   </header>
 
-  <main class="page wide">
-    <header class="page-header course-hero card">
-      <p class="eyebrow">Course Map</p>
-      <h1>MATH 6361: Mathematical Logic.</h1>
-      <p class="lede">A graduate-level online course organized as a sequence of modules in proof, semantics, soundness, completeness, quantification, set theory, and incompleteness. This page turns the Blackboard structure into a public map of the course architecture.</p>
-      <div class="button-row">
-        <a class="button" href="../../assets/docs/math-6361-module-summary.tex">Download LaTeX Module Summary</a>
-      </div>
-      <nav class="toc-pills" aria-label="Logic modules">
-        <a href="#propositional">Propositional Logic</a>
-        <a href="#metatheory">Metatheory</a>
-        <a href="#quantifiers">Quantifiers</a>
-        <a href="#set-theory">Set Theory</a>
-        <a href="#finale">Completeness</a>
-      </nav>
-    </header>
+  <div class="coursebook-shell">
+    <aside class="coursebook-toc" aria-label="Course contents">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#syntax">Syntax</a></li>
+        <li><a href="#truth">Truth and Consequence</a></li>
+        <li><a href="#proof">Formal Proof</a></li>
+        <li><a href="#metatheory">Metatheory</a></li>
+        <li><a href="#quantifiers">Quantifiers</a></li>
+        <li><a href="#sets">Set Theory</a></li>
+        <li><a href="#limits">Completeness and Incompleteness</a></li>
+      </ol>
+    </aside>
 
-    <section class="grid two">
-      <article class="card accent-teal">
-        <h2>How the Course Works</h2>
-        <p>Each module asks students to move through guiding questions, learning outcomes, reading notes, video notes, homework, discussion, and quiz practice. The rhythm is deliberate: read, watch, formalize, prove, reflect.</p>
-      </article>
-      <article class="card accent-gold">
-        <h2>Video Ready</h2>
-        <p>The Blackboard export preserved the module descriptions and activities. Once your YouTube links are available, each placeholder below can become a direct embedded lecture or playlist.</p>
-      </article>
-    </section>
-
-    <section id="propositional" class="section">
-      <p class="eyebrow">Modules 0-5</p>
-      <h2>From atomic sentences to Boolean proof.</h2>
-      <div class="lesson-stack">
-        <article class="lesson-card">
-          <h3>Module 0: Atomic Sentences</h3>
-          <p>Students begin with constants, predicates, function symbols, terms, and the discipline of translating ordinary language into a first-order language.</p>
-          <ul class="objective-list">
-            <li>Identify terms, complex terms, predicates, and atomic sentences.</li>
-            <li>Translate between colloquial English and first-order atomic sentences.</li>
-            <li>Compare the roles of constants, variables, predicates, and function symbols.</li>
-          </ul>
-          <div class="math-note">Core schema: an atomic sentence has the form \(P(t_1,\ldots,t_n)\), where each \(t_i\) is a term.</div>
-          <div class="placeholder-video">YouTube lecture slot: Atomic Sentences</div>
-        </article>
-        <article class="lesson-card">
-          <h3>Modules 1-3: Propositional Logic and Boolean Connectives</h3>
-          <p>The course then stabilizes validity, soundness, tautology, logical consequence, and truth-table reasoning.</p>
-          <ul class="objective-list">
-            <li>Classify arguments as valid/invalid and sound/unsound.</li>
-            <li>Construct and interpret truth tables for \(\neg\), \(\wedge\), \(\vee\), \(\to\), and \(\leftrightarrow\).</li>
-            <li>Distinguish logical truth, tautology, logical equivalence, and tautological equivalence.</li>
-          </ul>
-          <div class="math-note">Example question: when does \(\Gamma \models \varphi\) agree with truth-table consequence?</div>
-          <div class="placeholder-video">YouTube lecture slots: Propositional Logic, Boolean Connectives, Tautologies</div>
-        </article>
-        <article class="lesson-card">
-          <h3>Modules 4-5: Formal Proof Methods</h3>
-          <p>Students move from semantic tests to formal derivations, including subproofs, contradiction, cases, conditionals, and biconditionals.</p>
-          <ul class="objective-list">
-            <li>Use introduction and elimination rules in Fitch-style proof.</li>
-            <li>Formalize proof by contradiction and proof by cases.</li>
-            <li>Translate English conditionals into standard logical form.</li>
-          </ul>
-          <div class="math-note">Core habit: every line in a proof should be justified by a rule, a premise, or the scope of a subproof.</div>
-          <div class="placeholder-video">YouTube lecture slots: Boolean Proofs and Conditionals</div>
-        </article>
-      </div>
-    </section>
-
-    <section id="metatheory" class="section band">
-      <div class="inner">
-        <p class="eyebrow">Modules 6-7</p>
-        <h2>Soundness, completeness, and review.</h2>
-        <div class="lesson-stack">
-          <article class="lesson-card">
-            <h3>Module 6: Soundness and Completeness</h3>
-            <p>This module makes the central bridge explicit: syntactic derivability and semantic consequence are different ideas, but a well-behaved proof system relates them.</p>
-            <ul class="objective-list">
-              <li>State soundness: if \(\Gamma \vdash \varphi\), then \(\Gamma \models \varphi\).</li>
-              <li>State completeness: if \(\Gamma \models \varphi\), then \(\Gamma \vdash \varphi\).</li>
-              <li>Use induction as a proof method in metatheoretic arguments.</li>
-            </ul>
-            <div class="math-note">The module asks students to see proof systems as mathematical objects rather than just procedures.</div>
-            <div class="placeholder-video">YouTube lecture slot: Soundness and Completeness</div>
-          </article>
-          <article class="lesson-card">
-            <h3>Module 7: Midterm Review</h3>
-            <p>The review module helps students reorganize the first half of the course around concepts, not just homework problem numbers.</p>
-            <ul class="objective-list">
-              <li>Review syntax, semantics, translation, truth tables, and proof rules.</li>
-              <li>Identify which technique is appropriate for a given kind of logic problem.</li>
-              <li>Prepare for proof-writing under exam conditions.</li>
-            </ul>
-          </article>
+    <main class="coursebook-content">
+      <header class="coursebook-front">
+        <p class="eyebrow">Coursebook</p>
+        <h1>MATH 6361: Mathematical Logic</h1>
+        <p class="lede">A graduate-level online course in formal languages, proof, semantics, soundness, completeness, quantification, set theory, and incompleteness. This page presents the Blackboard module sequence as a public course map.</p>
+        <div class="coursebook-actions">
+          <a href="../index.html">All Courses</a>
+          <a href="../../assets/docs/math-6361-module-summary.tex">LaTeX Module Summary</a>
         </div>
-      </div>
-    </section>
+      </header>
 
-    <section id="quantifiers" class="section">
-      <p class="eyebrow">Modules 9-11</p>
-      <h2>Quantification and first-order proof.</h2>
-      <div class="lesson-stack">
-        <article class="lesson-card">
-          <h3>Module 9: The Logic of Quantification</h3>
-          <p>Students extend the propositional toolkit to variables, quantifiers, free and bound occurrence, and truth in first-order structures.</p>
-          <ul class="objective-list">
-            <li>Recognize well-formed formulas and sentences.</li>
-            <li>Identify free and bound variables.</li>
-            <li>Determine truth values of quantified sentences in a structure.</li>
-          </ul>
-          <div class="math-note">Core contrast: \(\forall x\,P(x)\) asserts universal coverage, while \(\exists x\,P(x)\) asserts witness existence.</div>
-          <div class="placeholder-video">YouTube lecture slot: Introduction to Quantification</div>
-        </article>
-        <article class="lesson-card">
-          <h3>Modules 10-11: Proof Methods for Quantifiers</h3>
-          <p>Students learn both informal and formal proof methods for quantified statements, including universal and existential introduction/elimination.</p>
-          <ul class="objective-list">
-            <li>Translate English sentences containing multiple quantifiers.</li>
-            <li>Recognize how quantifier order changes meaning.</li>
-            <li>Construct Fitch proofs using quantifier rules and identity.</li>
-          </ul>
-          <div class="math-note">Example contrast: \(\forall x\exists y\,R(x,y)\) and \(\exists y\forall x\,R(x,y)\) usually say very different things.</div>
-          <div class="placeholder-video">YouTube lecture slots: Quantifier Proofs</div>
-        </article>
-      </div>
-    </section>
-
-    <section id="set-theory" class="section band">
-      <div class="inner">
-        <p class="eyebrow">Module 12</p>
-        <h2>Axiomatic set theory and mathematical structures.</h2>
-        <div class="lesson-stack">
-          <article class="lesson-card">
-            <h3>Module 12: Sets, Relations, and Structures</h3>
-            <p>The course uses set theory as a natural setting for first-order reasoning: extension, separation, power sets, unions, intersections, relations, functions, and structures.</p>
-            <ul class="objective-list">
-              <li>Apply the axiom of extension and the schema of separation.</li>
-              <li>Work with \(\mathcal{P}(A)\), \(\bigcup A\), intersections, relations, and functions.</li>
-              <li>Describe mathematical structures using sets, relations, functions, and constants.</li>
-            </ul>
-            <div class="math-note">Set theory becomes a language for saying what mathematical worlds are made of.</div>
-            <div class="placeholder-video">YouTube lecture slot: Axiomatic Set Theory</div>
-          </article>
+      <section id="syntax" class="coursebook-section">
+        <h2>1. Syntax and Atomic Sentences</h2>
+        <p>The course begins by building a formal language from constants, variables, function symbols, predicate symbols, terms, and atomic sentences. Students learn that formal notation is a designed language with grammar.</p>
+        <div class="coursebook-grid">
+          <div class="coursebook-note"><h3>Objectives</h3><ul><li>Identify terms and well-formed atomic sentences.</li><li>Translate simple English statements into first-order notation.</li><li>Distinguish constants, variables, predicates, and functions.</li></ul></div>
+          <div class="coursebook-note gold"><h3>Module</h3><p>Module 0 introduces atomic sentences and the basic syntax of first-order languages.</p></div>
         </div>
-      </div>
-    </section>
+        <p class="coursebook-example"><strong>Representative example:</strong> decide whether \(P(f(a),x)\) is a term, formula, or sentence, then explain what each symbol is doing.</p>
+      </section>
 
-    <section id="finale" class="section">
-      <p class="eyebrow">Modules 13-14</p>
-      <h2>Completeness and incompleteness.</h2>
-      <div class="lesson-stack">
-        <article class="lesson-card">
-          <h3>Final Modules</h3>
-          <p>The course ends by placing first-order completeness beside incompleteness, so students can see both the power and the limits of formal systems.</p>
-          <ul class="objective-list">
-            <li>State the soundness theorem for first-order logic.</li>
-            <li>State the completeness theorem for first-order logic.</li>
-            <li>State the incompleteness theorem for Peano Arithmetic.</li>
-            <li>Explain why formal proof and mathematical truth do not collapse into the same concept in sufficiently expressive systems.</li>
-          </ul>
-          <div class="math-note">Final tension: first-order logic is complete, but arithmetic powerful enough to encode syntax is not complete in the same way.</div>
-          <div class="placeholder-video">YouTube lecture slots: Completeness and Incompleteness</div>
-        </article>
-      </div>
-    </section>
-  </main>
+      <section id="truth" class="coursebook-section">
+        <h2>2. Truth Tables, Validity, and Logical Consequence</h2>
+        <p>Students next study propositional connectives, truth tables, tautologies, logical equivalence, validity, soundness of arguments, and semantic consequence.</p>
+        <div class="coursebook-grid">
+          <div class="coursebook-note"><h3>Objectives</h3><ul><li>Classify arguments as valid or invalid.</li><li>Build truth tables for Boolean connectives.</li><li>Distinguish truth, tautology, equivalence, and consequence.</li></ul></div>
+          <div class="coursebook-note gold"><h3>Modules</h3><p>Modules 1-3 develop propositional logic, Boolean connectives, tautologies, and semantic tests.</p></div>
+        </div>
+        <p class="coursebook-example"><strong>Representative example:</strong> use a truth table to test whether \((P\to Q)\) and \((\neg P\vee Q)\) are equivalent.</p>
+      </section>
 
-  <footer class="site-footer">
-    <div class="footer-wrap">
-      <div>Timothy Trujillo</div>
-      <div><a href="mailto:trujillo@shsu.edu">trujillo@shsu.edu</a></div>
-    </div>
-  </footer>
+      <section id="proof" class="coursebook-section">
+        <h2>3. Formal Proof Methods</h2>
+        <p>The course then shifts from semantics to derivations. Students learn introduction and elimination rules, subproofs, conditionals, biconditionals, contradiction, and proof by cases.</p>
+        <div class="coursebook-grid">
+          <div class="coursebook-note"><h3>Objectives</h3><ul><li>Construct Fitch-style formal proofs.</li><li>Use subproof scope correctly.</li><li>Choose rules that match the main connective of the target formula.</li></ul></div>
+          <div class="coursebook-note gold"><h3>Modules</h3><p>Modules 4-5 focus on Boolean proof and conditional proof methods.</p></div>
+        </div>
+        <p class="coursebook-example"><strong>Representative example:</strong> prove \(P\to R\) from \(P\to Q\) and \(Q\to R\) using conditional proof.</p>
+      </section>
+
+      <section id="metatheory" class="coursebook-section">
+        <h2>4. Soundness, Completeness, and Review</h2>
+        <p>Students step back from doing proofs to proving facts about proof systems. Soundness connects derivability to truth preservation; completeness connects semantic consequence back to derivability.</p>
+        <div class="coursebook-grid">
+          <div class="coursebook-note"><h3>Objectives</h3><ul><li>State soundness and completeness precisely.</li><li>Explain the difference between \(\Gamma\vdash\varphi\) and \(\Gamma\models\varphi\).</li><li>Use induction in metatheoretic arguments.</li></ul></div>
+          <div class="coursebook-note gold"><h3>Modules</h3><p>Modules 6-7 consolidate the first half of the course and introduce metatheoretic proof.</p></div>
+        </div>
+        <p class="coursebook-example"><strong>Representative example:</strong> explain why soundness says no formal proof system should prove a false conclusion from true premises.</p>
+      </section>
+
+      <section id="quantifiers" class="coursebook-section">
+        <h2>5. Quantification and First-Order Proof</h2>
+        <p>Variables and quantifiers bring the language closer to ordinary mathematics. Students study free and bound variables, truth in structures, universal and existential statements, and proof rules for quantifiers.</p>
+        <div class="coursebook-grid">
+          <div class="coursebook-note"><h3>Objectives</h3><ul><li>Recognize free and bound variables.</li><li>Translate statements with nested quantifiers.</li><li>Construct proofs using quantifier introduction and elimination rules.</li></ul></div>
+          <div class="coursebook-note gold"><h3>Modules</h3><p>Modules 9-11 develop the logic of quantification and formal proof methods for quantified statements.</p></div>
+        </div>
+        <p class="coursebook-example"><strong>Representative example:</strong> compare \(\forall x\exists y\,R(x,y)\) and \(\exists y\forall x\,R(x,y)\) by giving an interpretation where one is true and the other false.</p>
+      </section>
+
+      <section id="sets" class="coursebook-section">
+        <h2>6. Set Theory, Relations, Functions, and Structures</h2>
+        <p>Set theory gives the course a natural mathematical universe. Students use extension, separation, power sets, unions, intersections, relations, functions, and structures to formalize mathematical objects.</p>
+        <div class="coursebook-grid">
+          <div class="coursebook-note"><h3>Objectives</h3><ul><li>Apply basic axioms and constructions of set theory.</li><li>Work with relations and functions as sets.</li><li>Describe structures in a first-order language.</li></ul></div>
+          <div class="coursebook-note gold"><h3>Module</h3><p>Module 12 uses set theory as a setting for first-order reasoning.</p></div>
+        </div>
+        <p class="coursebook-example"><strong>Representative example:</strong> describe a graph as a structure with a domain and a binary relation.</p>
+      </section>
+
+      <section id="limits" class="coursebook-section">
+        <h2>7. Completeness and Incompleteness</h2>
+        <p>The final modules place first-order completeness beside incompleteness. Students see both the power of formal proof and the limits of formal systems expressive enough to encode arithmetic.</p>
+        <div class="coursebook-grid">
+          <div class="coursebook-note"><h3>Objectives</h3><ul><li>State first-order soundness and completeness.</li><li>State the incompleteness theorem for Peano Arithmetic.</li><li>Explain why truth and provability diverge in sufficiently expressive systems.</li></ul></div>
+          <div class="coursebook-note gold"><h3>Modules</h3><p>Modules 13-14 close with completeness, incompleteness, and the philosophical consequences for foundations.</p></div>
+        </div>
+        <p class="coursebook-example"><strong>Representative example:</strong> explain how first-order logic can be complete while arithmetic is incomplete.</p>
+      </section>
+    </main>
+  </div>
 </body>
 </html>

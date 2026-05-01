@@ -291,6 +291,43 @@ main.main {
   background: #f7f2e6;
 }
 
+.course-context,
+.course-video-note {
+  margin: 14px 0 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--tt-line);
+  border-left: 4px solid var(--tt-teal);
+  border-radius: 6px;
+  background: var(--tt-panel);
+}
+
+.course-context h3 {
+  margin: 0 0 8px;
+  color: var(--tt-ink);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.2rem;
+}
+
+.course-context p,
+.course-context li,
+.course-video-note {
+  color: #30383d;
+}
+
+.course-context ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.course-context li + li {
+  margin-top: 5px;
+}
+
+.course-video-note {
+  border-left-color: var(--tt-coral);
+  background: #f8f0ec;
+}
+
 @media (max-width: 900px) {
   .pretext-content {
     padding: 22px 18px 42px;

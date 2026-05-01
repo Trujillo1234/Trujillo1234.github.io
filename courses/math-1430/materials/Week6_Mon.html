@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 - Week 6 Monday Notes</title>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX CONFIGURATION -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-paper: #F9F5EB;
+            --text-main: #111827;
+            --primary: #2563eb;
+            --secondary: #059669;
+            --border-color: #cbd5e1;
+            --font-serif: 'Crimson Pro', serif;
+            --font-sans: 'Space Grotesk', sans-serif;
+            --sol-bg: #eff6ff;
+            --danger: #be123c;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            line-height: 1.65;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .page-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            min-height: 1100px;
+        }
+
+        header {
+            border-bottom: 2px solid var(--text-main);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-family: var(--font-sans);
+            font-size: 2.5rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .sub-header {
+            font-family: var(--font-sans);
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        h2 {
+            font-family: var(--font-sans);
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            margin-top: 40px;
+        }
+
+        .objectives-box {
+            border: 2px solid var(--secondary);
+            background-color: #f0fdf4;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .objectives-title {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .box-def {
+            border: 2px solid var(--text-main);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-color: #fff;
+        }
+
+        .box-title {
+            font-family: var(--font-sans);
+            font-size: 1.15rem;
+            margin: 0 0 10px 0;
+            color: var(--text-main);
+        }
+
+        .solution-box {
+            background-color: var(--sol-bg);
+            border-left: 4px solid var(--primary);
+            padding: 20px 30px;
+            margin-top: 15px;
+            border-radius: 0 6px 6px 0;
+            font-size: 1.05rem;
+            color: #1e293b;
+        }
+
+        .problem-text {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .mini-note {
+            color: #475569;
+            font-size: 1.0rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .handwritten-style {
+            font-family: 'Crimson Pro', serif;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+<div class="page-container">
+
+    <header>
+        <h1>Week 6 Monday Notes</h1>
+        <div class="sub-header">
+            Calculus 2 &bull; The Interval of Convergence
+        </div>
+    </header>
+
+    <div class="objectives-box">
+        <div class="objectives-title">Objective</div>
+        Find the interval of convergence of a power series.
+    </div>
+
+    <!-- SECTION 1 -->
+    <section>
+        <h2>1. The Interval of Convergence</h2>
+
+        <div class="box-def">
+            <h3 class="box-title">Power Series</h3>
+            A power series centered at $x=a$ is given by:
+            $$ f(x)=\sum_{n=0}^{\infty} a_n (x-a)^n $$
+            
+            <div style="margin-top: 15px; border-top: 1px dashed #ccc; padding-top:10px;">
+                <strong>Q:</strong> What is the domain of $f(x)$?<br>
+                <strong>A:</strong> All values of $x$ where the series converges.
+            </div>
+        </div>
+
+        <div class="box-def">
+            <h3 class="box-title">Center of Convergence: $x=a$</h3>
+            $$ f(a) = a_0 + a_1 \cdot 0 + a_2 \cdot 0 + a_3 \cdot 0 + \dots = a_0 $$
+            
+            <h3 class="box-title" style="margin-top: 20px;">Radius of Convergence ($R$)</h3>
+            <p>
+                Visualizing the interval on a number line:
+            </p>
+            <p style="text-align: center; font-family: monospace;">
+                div &nbsp;&nbsp; ? &nbsp; [abs. conv.] &nbsp; ? &nbsp;&nbsp; div<br>
+                <---(|)//////////////////(|)---><br>
+                &nbsp; a-R &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; a &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a+R
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section>
+        <h2>2. Finding the Radius $R$</h2>
+
+        <div class="box-def">
+            Calculate the limit $L$ using the Ratio or Root test:
+            $$ \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|=L \quad \text{or} \quad \lim_{n\to\infty}\sqrt[n]{|a_n|}=L $$
+            
+            <ul style="list-style: none; padding-left: 0;">
+                <li><strong>1.</strong> $L=0 \longrightarrow R=\infty \longrightarrow$ Interval: $(-\infty, \infty)$</li>
+                <li><strong>2.</strong> $L=\infty \longrightarrow R=0 \longrightarrow$ Interval: $[a,a]$</li>
+                <li><strong>3.</strong> $0 < L < \infty \longrightarrow R=1/L$</li>
+            </ul>
+            
+            <div style="margin-top: 15px;">
+                <strong>Check Endpoints (Four Outcomes):</strong>
+                $$ (a-R, a+R) $$
+                $$ [a-R, a+R) $$
+                $$ (a-R, a+R] $$
+                $$ [a-R, a+R] $$
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section>
+        <h2>3. Example 1</h2>
+
+        <div class="problem-text">
+            Ex: Find the interval of convergence of
+            $$ f(x)=\sum_{n=1}^{\infty} \frac{10^n}{n^2}(x-10)^n $$
+        </div>
+
+        <div class="solution-box">
+            <div style="margin-bottom: 20px;">
+                <strong>Center:</strong> $a=10$ <br>
+                <strong>Coefficient:</strong> $a_n = \dfrac{10^n}{n^2}$
+            </div>
+
+            <strong>Ratio Test:</strong>
+            $$ \begin{aligned}
+            \lim_{n\to\infty} \left| \frac{10^{n+1}}{(n+1)^2} \cdot \frac{n^2}{10^n} \right| &= \lim_{n\to\infty} \left| \frac{10n^2}{(n+1)^2} \right| \\
+            &= \lim_{n\to\infty} \frac{10n^2}{(n+1)^2} \\
+            &\overset{L.H.}{=} \lim_{n\to\infty} \frac{20n}{2(n+1)} \\
+            &\overset{L.H.}{=} \lim_{n\to\infty} \frac{20}{2} = 10
+            \end{aligned} $$
+            
+            $$ \implies L=10 \implies R = \frac{1}{10} $$
+            
+            <p><strong>Endpoints:</strong></p>
+            <ul style="list-style: none; padding-left: 0;">
+                <li>$x = a + R = 10 + 1/10 = 10.1$</li>
+                <li>$x = a - R = 10 - 1/10 = 9.9$</li>
+            </ul>
+            
+            <hr style="border-top: 1px solid #cbd5e1; margin: 20px 0;">
+
+            <strong>When $x=10.1$:</strong>
+            $$ \begin{aligned}
+            f(10.1) &= \sum_{n=1}^{\infty} \frac{10^n}{n^2}(10.1 - 10)^n \\
+            &= \sum_{n=1}^{\infty} \frac{10^n}{n^2}\left(\frac{1}{10}\right)^n \\
+            &= \sum_{n=1}^{\infty} \frac{1}{n^2}
+            \end{aligned} $$
+            This is a p-series with $p=2$. By p-series test, it <strong>converges</strong>.
+
+            <br><br>
+
+            <strong>When $x=9.9$:</strong>
+            $$ \begin{aligned}
+            f(9.9) &= \sum_{n=1}^{\infty} \frac{10^n}{n^2}(9.9 - 10)^n \\
+            &= \sum_{n=1}^{\infty} \frac{10^n}{n^2}\left(-\frac{1}{10}\right)^n \\
+            &= \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2}
+            \end{aligned} $$
+            
+            Alt. Series Test with $b_n = \frac{1}{n^2}$:
+            <ol type="a" style="margin-top: 5px;">
+                <li>$b_n > 0$ for all $n \ge 1$.</li>
+                <li>For all $n \ge 1$, $b_{n+1} = \frac{1}{(n+1)^2} \le \frac{1}{n^2} = b_n$.</li>
+                <li>$\lim_{n\to\infty} \frac{1}{n^2} = 0$.</li>
+            </ol>
+            Since (a), (b), and (c) are all true, the alt. series test shows that $\sum \frac{(-1)^n}{n^2}$ <strong>converges</strong>.
+
+            <div style="margin-top: 20px; padding: 10px; border: 2px solid #2563eb; border-radius: 50px; text-align: center; width: fit-content;">
+               Interval of convergence: $[9.9, 10.1]$
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section>
+        <h2>4. Example 2</h2>
+
+        <div class="problem-text">
+            Ex: Find the interval of convergence of
+            $$ f(x)=\sum_{n=1}^{\infty} \frac{x^n}{n+1} $$
+        </div>
+
+        <div class="solution-box">
+            <div style="margin-bottom: 20px;">
+                <strong>Center:</strong> $a=0$ <br>
+                <strong>Coefficient:</strong> $a_n = \dfrac{1}{n+1}$
+            </div>
+
+            <strong>Ratio Test:</strong>
+            $$ \lim_{n\to\infty} \left| \frac{1}{n+2} \cdot \frac{n+1}{1} \right| = \lim_{n\to\infty} \frac{n+1}{n+2} \overset{L.H.}{=} \lim_{n\to\infty} \frac{1}{1} = 1 $$
+            
+            Radius of conv. $R=1$.
+
+            <p><strong>Endpoints:</strong></p>
+            <ul style="list-style: none; padding-left: 0;">
+                <li>$x = a + R = 0 + 1 = 1$</li>
+                <li>$x = a - R = 0 - 1 = -1$</li>
+            </ul>
+
+            <hr style="border-top: 1px solid #cbd5e1; margin: 20px 0;">
+
+            <strong>When $x=1$:</strong>
+            $$ f(1) = \sum_{n=1}^{\infty} \frac{1^n}{n+1} = \sum_{n=1}^{\infty} \frac{1}{n+1} $$
+            Compare to the series $\sum_{n=1}^{\infty} \frac{1}{n}$, a p-series with $p=1$. Since $p \le 1$, it diverges.<br>
+            Using Limit Comparison Test:
+            $$ \lim_{n\to\infty} \frac{\frac{1}{n+1}}{\frac{1}{n}} = \lim_{n\to\infty} \frac{n}{n+1} \overset{L.H.}{=} \lim_{n\to\infty} \frac{1}{1} = 1. $$
+            By the limit comp. test, $\sum \frac{1}{n+1}$ must also <strong>diverge</strong>.
+
+            <br><br>
+
+            <strong>When $x=-1$:</strong>
+            $$ f(-1) = \sum_{n=1}^{\infty} \frac{(-1)^n}{n+1} $$
+            Alt. Series Test with $b_n = \frac{1}{n+1}$:
+            <ol type="a" style="margin-top: 5px;">
+                <li>For all $n \ge 1$, $b_n > 0$.</li>
+                <li>For all $n \ge 1$, $b_{n+1} = \frac{1}{n+2} \le \frac{1}{n+1} = b_n$.</li>
+                <li>$\lim_{n\to\infty} \frac{1}{n+1} = 0$.</li>
+            </ol>
+            Since (a), (b), and (c) are all true, the alt. series test implies that $\sum \frac{(-1)^n}{n+1}$ <strong>converges</strong>.
+
+            <p>The interval of conv. includes $x=-1$ and excludes $x=1$.</p>
+
+            <div style="margin-top: 20px; padding: 10px; border: 2px solid #2563eb; border-radius: 50px; text-align: center; width: fit-content;">
+               Interval of conv: $[-1, 1)$
+            </div>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

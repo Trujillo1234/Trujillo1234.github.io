@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 - Homework 5</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX CONFIGURATION -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-paper: #F9F5EB;
+            --text-main: #111827;
+            --primary: #2563eb;
+            --border-color: #cbd5e1;
+            --font-serif: 'Crimson Pro', serif;
+            --font-sans: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            line-height: 1.5;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .page-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        header { border-bottom: 2px solid var(--text-main); margin-bottom: 40px; padding-bottom: 20px; }
+        h1 { font-family: var(--font-sans); font-size: 2.5rem; margin: 0; }
+        .sub-header { font-family: var(--font-sans); color: #64748b; font-size: 1.1rem; margin-top: 10px; }
+
+        .problem-section { margin-bottom: 55px; page-break-inside: avoid; }
+        h2 {
+            font-family: var(--font-sans);
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        ol.problem-list {
+            list-style-type: none;
+            counter-reset: problem-counter;
+            padding: 0;
+        }
+        ol.problem-list > li {
+            position: relative;
+            margin-bottom: 35px;
+            padding-left: 40px;
+        }
+        ol.problem-list > li::before {
+            counter-increment: problem-counter;
+            content: counter(problem-counter, lower-alpha) ")";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-family: var(--font-sans);
+            color: #444;
+        }
+
+        .instruction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            display: block;
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+        .divider {
+            border: none;
+            border-top: 2px solid #e2e8f0;
+            margin: 50px 0 35px;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .page-container { box-shadow: none; padding: 0; margin: 0; max-width: 100%; }
+            h2 { color: black !important; border-bottom: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-container">
+<header>
+    <h1>Homework 5</h1>
+    <div class="sub-header">Calculus 2 &bull; Series Convergence, Power Series, & Taylor Series</div>
+</header>
+
+<!-- SECTION 1 -->
+<section class="problem-section">
+<h2>1. Series Convergence</h2>
+<span class="instruction">
+Determine if the series converges or diverges. Use any test.
+</span>
+
+<ol class="problem-list two-col">
+    <li>$$ \sum_{n=1}^{\infty} \frac{2^n}{3^n+n} $$</li>
+    <li>$$ \sum_{n=1}^{\infty} \frac{2}{n^2+n} $$</li>
+    <li>$$ \sum_{n=2}^{\infty} \frac{\sqrt{n}}{n^2+n} $$</li>
+    <li>$$ \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2+n} $$</li>
+    <li>$$ \sum_{n=1}^{\infty} \frac{n+1}{3n+2} $$</li>
+    <li>$$ \sum_{n=3}^{\infty} \frac{n+1}{n^2-2n} $$</li>
+    <li>$$ \sum_{n=1}^{\infty} \cos\left(\frac{1}{n}\right) $$</li>
+    <li>$$ \sum_{n=1}^{\infty} \frac{1}{\sqrt[5]{n}} $$</li>
+    <li>$$ \sum_{n=1}^{\infty} \frac{n^5}{n^6+5n} $$</li>
+    <li>$$ \sum_{n=1}^{\infty} n^2 $$</li>
+    <li>$$ \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{2n+1} $$</li>
+    <li>$$ \sum_{n=2}^{\infty} \frac{5n^2+3n}{7n^2-n} $$</li>
+</ol>
+</section>
+
+<!-- SECTION 2 -->
+<section class="problem-section">
+<h2>2. Power Series</h2>
+<span class="instruction">
+Find the <strong>radius</strong> and <strong>center</strong> of convergence for each series.
+</span>
+
+<ol class="problem-list two-col">
+    <li>$$ \sum_{n=0}^{\infty} n! (x-10)^n $$</li>
+    <li>$$ \sum_{n=1}^{\infty} \frac{2^n}{n} (x-5)^n $$</li>
+    <li>$$ \sum_{n=1}^{\infty} \frac{x^n}{n^2} $$</li>
+</ol>
+</section>
+
+<hr class="divider">
+
+<!-- SECTION 3 -->
+<section class="problem-section">
+<h2>3. Taylor Series</h2>
+<span class="instruction">Find the Taylor series at $x=0$ (Maclaurin series) for each function.</span>
+
+<ol class="problem-list two-col">
+    <li>$$ f(x) = e^{-x} $$</li>
+    <li>$$ g(x) = \frac{1}{1-5x} $$</li>
+    <li>$$ h(x) = \sin(-x) $$</li>
+    <li>$$ k(x) = \frac{1}{1-x^2} $$</li>
+    <li>$$ l(x) = \cos(x^3) $$</li>
+</ol>
+</section>
+
+<!-- SECTION 4 -->
+<section class="problem-section">
+<h2>4. Taylor Polynomials</h2>
+<span class="instruction">Find the Taylor polynomials as indicated below.</span>
+
+<ol class="problem-list two-col">
+    <li>
+        <strong>Find $P_2(x)$ and $P_1(x)$ for::</strong><br>
+        $$ f(x)=5^x \quad \text{at } x=0 $$
+    </li>
+    <li>
+        <strong>Find $P_2(x)$ and $P_1(x)$ for::</strong><br>
+        $$ f(x)=x^5 \quad \text{at } x=1 $$
+    </li>
+    <li>
+        <strong>Find $P_2(x)$ and $P_1(x)$ for:</strong><br>
+        $$ f(x)=\tan(x) \quad \text{at } x=\frac{\pi}{4} $$
+    </li>
+</ol>
+</section>
+
+</div>
+</body>
+</html>

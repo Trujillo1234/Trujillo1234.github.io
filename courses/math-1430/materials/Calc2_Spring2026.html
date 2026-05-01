@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculus II | Spring 2026</title>
+
+<!-- Fonts: Anton & Space Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+    /* --- THEME VARIABLES --- */
+    :root {
+        --c-shsu-orange: #F78E1E;
+        --c-shsu-blue: #002D62;
+        --transition-speed: 0.3s;
+        --font-display: 'Anton', sans-serif;
+        --font-mono: 'Space Mono', monospace;
+    }
+
+    [data-theme="dark"] {
+        --c-bg: #050505;
+        --c-text: #ffffff;
+        --c-subtle: #888888;
+        --glass-bg: rgba(0, 0, 0, 0.70);
+        --glass-border: rgba(255, 255, 255, 0.15);
+        --glass-blur: 12px;
+        --img-filter: grayscale(100%) contrast(1.2) brightness(0.35);
+        --row-hover: rgba(255,255,255,0.05);
+        --btn-hover: #ffffff;
+        --btn-text-hover: #000000;
+    }
+
+    [data-theme="light"] {
+        --c-bg: #e6e6e6;
+        --c-text: #111111;
+        --c-subtle: #555555;
+        --glass-bg: rgba(255, 255, 255, 0.65);
+        --glass-border: rgba(0, 0, 0, 0.1);
+        --glass-blur: 20px;
+        --img-filter: grayscale(100%) contrast(0.9) brightness(1.2) opacity(0.3);
+        --row-hover: rgba(0,0,0,0.05);
+        --btn-hover: #000000;
+        --btn-text-hover: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 0; background-color: var(--c-bg); color: var(--c-text); font-family: var(--font-mono); overflow-x: hidden; transition: 0.3s; }
+
+    /* BACKGROUND */
+    .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background-image: url('https://image-static.collegedunia.com/public/college_data/images/studyabroad/appImage/college_1441_02-11:45_Sam_Houston_State_University.jpeg'); background-size: cover; background-position: center; filter: var(--img-filter); }
+    .noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.08; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
+
+    /* LAYOUT */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    nav { padding: 2rem 0; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase; color: var(--c-text); text-decoration: none; }
+    .theme-toggle { background: transparent; border: 1px solid var(--c-text); color: var(--c-text); font-family: var(--font-mono); padding: 5px 10px; cursor: pointer; text-transform: uppercase; }
+
+    /* HERO */
+    .course-header { padding: 4rem 0 2rem 0; border-bottom: 1px solid var(--glass-border); margin-bottom: 3rem; }
+    .course-title { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6rem); line-height: 0.9; margin: 0; text-transform: uppercase; color: var(--c-shsu-orange); }
+    .course-meta { font-family: var(--font-mono); color: var(--c-subtle); margin-top: 1rem; font-size: 1.1rem; }
+
+    /* WEEK CARDS */
+    .week-container { display: flex; flex-direction: column; gap: 3rem; padding-bottom: 5rem; }
+    
+    .week-card {
+        background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur));
+        border: 1px solid var(--glass-border); border-radius: 4px; overflow: hidden;
+    }
+    
+    .week-header {
+        padding: 1.5rem; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--glass-border);
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .week-title { font-family: var(--font-display); font-size: 1.5rem; margin: 0; }
+    .week-date { color: var(--c-subtle); font-size: 0.9rem; font-weight: bold; }
+
+    /* LECTURE ROWS (M/W/F) */
+    .lecture-list { list-style: none; padding: 0; margin: 0; }
+    
+    .lecture-row {
+        display: flex; align-items: center; padding: 1.5rem;
+        border-bottom: 1px solid var(--glass-border);
+        transition: background 0.2s;
+    }
+    .lecture-row:last-child { border-bottom: none; }
+    .lecture-row:hover { background: var(--row-hover); }
+
+    .day-badge {
+        font-family: var(--font-display); font-size: 1.5rem; width: 60px;
+        color: var(--c-subtle); opacity: 0.5;
+    }
+    .lecture-details { flex: 1; padding: 0 1.5rem; }
+    .lecture-topic { display: block; font-weight: bold; font-size: 1.1rem; margin-bottom: 4px; color: var(--c-text); }
+    .lecture-desc { display: block; font-size: 0.85rem; color: var(--c-subtle); }
+
+    /* SLIDE BUTTONS */
+    .btn-slide {
+        padding: 8px 16px; border: 1px solid var(--c-shsu-orange); color: var(--c-shsu-orange);
+        text-decoration: none; text-transform: uppercase; font-weight: bold; font-size: 0.8rem;
+        transition: 0.3s; white-space: nowrap;
+    }
+    .btn-slide:hover { background: var(--c-shsu-orange); color: black; }
+    .btn-slide.disabled { border-color: var(--c-subtle); color: var(--c-subtle); opacity: 0.3; pointer-events: none; }
+    .btn-slide.disabled::after { content: " HIDDEN"; font-size: 0.8em; margin-left: 5px; }
+
+    /* HOMEWORK & SOLUTIONS BUTTONS */
+    .week-footer {
+        padding: 1.5rem 2rem; background: rgba(255,255,255,0.03); border-top: 1px solid var(--glass-border);
+        display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn-action {
+        flex: 1; padding: 1rem; text-align: center; text-decoration: none; text-transform: uppercase;
+        font-weight: bold; border: 1px solid var(--c-text); color: var(--c-text);
+        transition: 0.3s; background: transparent; display: flex; justify-content: center; gap: 10px; align-items: center;
+    }
+    .btn-action:hover { background: var(--btn-hover); color: var(--btn-text-hover); }
+    
+    /* Primary Action (Homework) */
+    .btn-primary { border-color: var(--c-shsu-orange); color: var(--c-shsu-orange); }
+    .btn-primary:hover { background: var(--c-shsu-orange); color: black; }
+
+    /* Disabled State for Action Buttons */
+    .btn-action.disabled { opacity: 0.4; pointer-events: none; border-color: var(--c-subtle); color: var(--c-subtle); filter: grayscale(100%); }
+
+</style>
+</head>
+<body>
+
+    <div class="bg-fixed"></div>
+    <div class="noise-overlay"></div>
+
+    <div class="container">
+        <nav>
+            <a href="CurrentCourses.html" class="brand">← Back</a>
+            <button class="theme-toggle" onclick="toggleTheme()">Theme</button>
+        </nav>
+
+        <header class="course-header">
+            <h1 class="course-title">Calculus II</h1>
+            <div class="course-meta">MATH 1430.04 // SPRING 2026 // TRUJILLO</div>
+        </header>
+
+        <div class="week-container">
+
+            <!-- ============================================ -->
+            <!-- WEEK 1: TAYLOR POLYNOMIALS & SERIES          -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 01</h2>
+                    <span class="week-date">JAN 12 - JAN 16</span>
+                </div>
+
+                <div class="lecture-list">
+                    <!-- MONDAY -->
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Taylor Polynomials</span>
+                            <span class="lecture-desc">Linear & quadratic approximations, the general formula, and Lagrange error bounds.</span>
+                        </div>
+                        <a href="Week1_Mon.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- WEDNESDAY -->
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Taylor Series</span>
+                            <span class="lecture-desc">Maclaurin series for sine, cosine, and exponential functions.</span>
+                        </div>
+                        <a href="Week1_Wed.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- FRIDAY -->
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Power Series</span>
+                            <span class="lecture-desc">Substitution methods and calculus on series (differentiation/integration).</span>
+                        </div>
+                        <a href="Week1_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <a href="Week1_HW.html" class="btn-action btn-primary">Assignment 01 ↗</a>
+                    <a href="Week1_Sol.html" class="btn-action">Solutions ↗</a>
+                </div>
+            </article>
+
+            <!-- ============================================ -->
+            <!-- WEEK 2: CONVERGENCE TESTS & CALCULUS         -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 02</h2>
+                    <span class="week-date">JAN 19 - JAN 23</span>
+                </div>
+
+                <div class="lecture-list">
+                    <!-- MONDAY: MLK HOLIDAY -->
+                    <div class="lecture-row">
+                        <div class="day-badge" style="color: var(--c-shsu-orange);">MON</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Martin Luther King Jr. Day</span>
+                            <span class="lecture-desc">University Holiday - No Class Meeting.</span>
+                        </div>
+                        <a href="https://nmaahc.si.edu/explore/stories/15-year-battle-martin-luther-king-jr-day" target="_blank" class="btn-slide">Info</a>
+                    </div>
+
+                    <!-- WEDNESDAY -->
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Radius of Convergence</span>
+                            <span class="lecture-desc">The Ratio and Root tests, finding the radius (R), and determining the interval of convergence.</span>
+                        </div>
+                        <a href="Week2_Wed.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- FRIDAY -->
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Endpoint Behavior</span>
+                            <span class="lecture-desc">Testing boundary points for convergence and term-by-term differentiation/integration.</span>
+                        </div>
+                        <a href="Week2_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <a href="Week2_HW.html" class="btn-action btn-primary">Assignment 02 ↗</a>
+                    <a href="Week2_Sol.html" class="btn-action">Solutions ↗</a>
+                </div>
+            </article>
+
+            <!-- ============================================ -->
+            <!-- WEEK 3: PARTIAL SUMS & ENDPOINTS             -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 03</h2>
+                    <span class="week-date">JAN 26 - JAN 30</span>
+                </div>
+
+                <div class="lecture-list">
+                    <!-- MONDAY: ICE STORM -->
+                    <div class="lecture-row">
+                        <div class="day-badge" style="color: var(--c-shsu-orange);">MON</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Class Cancelled (Ice Storm)</span>
+                            <span class="lecture-desc">Campus closed due to severe weather. Please stay safe.</span>
+                        </div>
+                        <a href="https://www.shsu.edu/katsafe/" target="_blank" class="btn-slide">Alert</a>
+                    </div>
+
+                    <!-- WEDNESDAY: CATCH UP -->
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Endpoint Behavior (Makeup)</span>
+                            <span class="lecture-desc">Covering content originally planned for Jan 23/26.</span>
+                        </div>
+                        <a href="Week2_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- FRIDAY: NEW CONTENT -->
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Series Functions & Partial Sums</span>
+                            <span class="lecture-desc">Rigorous setup of function domains and explicitly writing partial sum sequences.</span>
+                        </div>
+                        <a href="Week3_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <a href="Week3_HW.html" class="btn-action btn-primary">Assignment 03 ↗</a>
+                    <a href="Week3_Sol.html" class="btn-action">Solutions ↗</a>
+                </div>
+            </article>
+
+            <!-- ============================================ -->
+            <!-- WEEK 4: DIVERGENCE, ALTERNATING & P-SERIES   -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 04</h2>
+                    <span class="week-date">FEB 02 - FEB 06</span>
+                </div>
+
+                <div class="lecture-list">
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">The Divergence Test</span>
+                            <span class="lecture-desc">Using the limit of the nth term to determine divergence, and understanding the inconclusive case.</span>
+                        </div>
+                        <a href="Week4_Mon.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Alternating Series Test</span>
+                            <span class="lecture-desc">Convergence of series with alternating signs and estimating sums using the Alternating Series Estimation Theorem.</span>
+                        </div>
+                        <a href="Week4_Wed.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">The P-Series Test</span>
+                            <span class="lecture-desc">Determining convergence based on the exponent p, including the Harmonic Series.</span>
+                        </div>
+                        <a href="Week4_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <a href="Week4_HW.html" class="btn-action btn-primary">Assignment 04 ↗</a>
+                    <a href="Week4_Sol.html" class="btn-action">Solutions ↗</a>
+                </div>
+            </article>
+            
+            <!-- ============================================ -->
+            <!-- WEEK 5: COMPARISON TESTS & ABSOLUTE CONVERGENCE -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 05</h2>
+                    <span class="week-date">FEB 09 - FEB 13</span>
+                </div>
+
+                <div class="lecture-list">
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">The Direct Comparison Test</span>
+                            <span class="lecture-desc">Establishing convergence and divergence by comparison with known series and understanding the logic behind comparison arguments.</span>
+                        </div>
+                        <a href="Week5_Mon.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">The Limit Comparison Test</span>
+                            <span class="lecture-desc">Comparing asymptotic behavior of series using limits and understanding why series with similar long-term behavior converge or diverge together.</span>
+                        </div>
+                        <a href="Week5_Wed.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Absolute Convergence</span>
+                            <span class="lecture-desc">Using absolute convergence and comparison tests to establish convergence of alternating and signed series.</span>
+                        </div>
+                        <a href="Week5_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <a href="Week5_HW.html" class="btn-action btn-primary">Assignment 05 ↗</a>
+                    <a href="Week5_Sol.html" class="btn-action">Solutions ↗</a>
+                </div>
+            </article>
+
+            <!-- ============================================ -->
+            <!-- WEEK 6: POWER SERIES & CONVERGENCE MODES -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 06</h2>
+                    <span class="week-date">FEB 16 - FEB 20</span>
+                </div>
+
+                <div class="lecture-list">
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Power Series & Intervals of Convergence</span>
+                            <span class="lecture-desc">Introduction to power series, determining the radius of convergence using the Ratio Test, and testing endpoint behavior.</span>
+                        </div>
+                        <a href="Week6_Mon.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Classwork Session</span>
+                            <span class="lecture-desc">In-class problem solving session focused on power series and convergence tests; no new material introduced.</span>
+                        </div>
+                        <a href="Week6_Wed.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Conditional vs. Absolute Convergence</span>
+                            <span class="lecture-desc">Distinguishing between absolute and conditional convergence using the Alternating Series Test and rearranging terms in infinite series.</span>
+                        </div>
+                        <a href="Week6_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <a href="Week6_HW.html" class="btn-action btn-primary">Assignment 06 ↗</a>
+                    <a href="Week6_Sol.html" class="btn-action">Solutions ↗</a>
+                </div>
+            </article>
+
+            <!-- ============================================ -->
+            <!-- WEEK 7: CALCULUS I INTEGRATION REVIEW -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 07</h2>
+                    <span class="week-date">FEB 23 - FEB 27</span>
+                </div>
+
+                <div class="lecture-list">
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Indefinite Integrals &amp; U-Substitution (Review)</span>
+                            <span class="lecture-desc">Calculus I integration review: antiderivatives, core integral rules, and change of variables (u-substitution).</span>
+                        </div>
+                        <a href="Week7_Mon.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Definite Integrals, Riemann Sums, &amp; FTC (Review)</span>
+                            <span class="lecture-desc">Review of the definite integral as signed area, Riemann sums, the Fundamental Theorem of Calculus, and evaluating definite integrals.</span>
+                        </div>
+                        <a href="Week7_Wed.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Net Change Theorem &amp; Integration Applications (Review)</span>
+                            <span class="lecture-desc">Review of the Net Change Theorem and applications of integration, with additional practice on foundational formulas.</span>
+                        </div>
+                        <a href="Week7_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <a href="https://openstax.org/books/calculus-volume-2/pages/1-introduction"
+                       class="btn-action btn-primary"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        OpenStax Ch. 1 Review ↗
+                    </a>
+
+                    <a href="#"
+                       class="btn-action"
+                       onclick="return false;"
+                       aria-disabled="true"
+                       title="See Blackboard for details">
+                        See Blackboard for more information
+                    </a>
+                </div>
+            </article>
+
+            <!-- ============================================ -->
+            <!-- WEEK 8: EXAM 1 + FRIDAY NOTES + HOMEWORK -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 08</h2>
+                    <span class="week-date">MAR 02 - MAR 06</span>
+                </div>
+
+                <div class="lecture-list">
+                    <!-- MONDAY: EXAM REVIEW -->
+                    <div class="lecture-row">
+                        <div class="day-badge" style="color: var(--c-shsu-orange);">MON</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Exam 1 Review Day</span>
+                            <span class="lecture-desc">Targeted review, practice problems, and logistics. See Blackboard for more information.</span>
+                        </div>
+                        <a href="#" class="btn-slide" onclick="return false;" aria-disabled="true">No Notes</a>
+                    </div>
+
+                    <!-- WEDNESDAY: EXAM 1 -->
+                    <div class="lecture-row">
+                        <div class="day-badge" style="color: var(--c-shsu-orange);">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Exam 1</span>
+                            <span class="lecture-desc">In-class exam. See Blackboard for allowed materials, timing, and any announcements.</span>
+                        </div>
+                        <a href="#" class="btn-slide" onclick="return false;" aria-disabled="true">No Notes</a>
+                    </div>
+
+                    <!-- FRIDAY: WEEK 8 NOTES -->
+                   <div class="lecture-row">
+  <div class="day-badge">FRI</div>
+  <div class="lecture-details">
+    <span class="lecture-topic">Area Between Curves • Disk/Washer • Shell Method</span>
+    <span class="lecture-desc">
+      Setting up integrals for area between curves and volumes of revolution; choosing between disk/washer and shell
+      based on the region and the axis of rotation, and identifying the correct bounds.
+    </span>
+  </div>
+  <a href="Week8_Fri.html" class="btn-slide">Notes</a>
+</div>
+                </div>
+
+                <div class="week-footer">
+                    <!-- HW: ACTIVE -->
+                    <a href="Week8_HW.html" class="btn-action btn-primary">
+                        Assignment 07 ↗
+                    </a>
+
+                    <!-- SOLUTIONS: DISABLED (toggle later) -->
+                    <a href="Week8_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
+                        Solutions 
+                    </a>
+                </div>
+            </article>
+            <!-- ============================================ -->
+            <!-- WEEK 9: ARC LENGTH + WORK                    -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 09</h2>
+                    <span class="week-date">MAR 16 - MAR 20</span>
+                </div>
+
+                <div class="lecture-list">
+                    <!-- MONDAY: ARC LENGTH & SURFACE AREA -->
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Arc Length and Surface Area</span>
+                            <span class="lecture-desc">Finding the length of a curve and the surface area obtained by rotating a curve about the x-axis or y-axis.</span>
+                        </div>
+                        <a href="Week9_Mon.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- WEDNESDAY: ARC LENGTH & SURFACE AREA (Cont.) -->
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Arc Length and Surface Area (Continued)</span>
+                            <span class="lecture-desc">Finding the length of a curve and the surface area obtained by rotating a curve about the x-axis or y-axis.</span>
+                        </div>
+                        <a href="Week9_Mon.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- FRIDAY: WORK AND ENERGY -->
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Work and Energy</span>
+                            <span class="lecture-desc">Physics definition of work, computing total work under a variable force, Hooke's Law for springs, and lifting chains.</span>
+                        </div>
+                        <a href="Week9_Wed.html" class="btn-slide">Notes</a>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <!-- HW: ACTIVE -->
+                    <a href="Week9_HW.html" class="btn-action btn-primary">
+                        Assignment 08 ↗
+                    </a>
+
+                    <!-- SOLUTIONS: ACTIVE -->
+                   
+                    <!-- SOLUTIONS: DISABLED (toggle later) -->
+                    <a href="Week9_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
+                        Solutions 
+                    </a>
+                </div>
+            </article>
+            
+            <!-- ============================================ -->
+            <!-- WEEK 10: WORK + CENTROIDS + INT. BY PARTS    -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 10</h2>
+                    <span class="week-date">MAR 23 - MAR 27</span>
+                </div>
+
+                <div class="lecture-list">
+                    <!-- MONDAY: WORK AND ENERGY -->
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                         <div class="lecture-details">
+                            <span class="lecture-topic">Pumping & Work</span>
+                            <span class="lecture-desc">Computing the work required to pump liquid out of various tanks (cylindrical, conical, and parabolic) using horizontal slabs and integration.</span>
+                        </div>
+                        <a href="Week9_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- WEDNESDAY: CENTER OF MASS & CENTROIDS -->
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Center of Mass & Centroids</span>
+                            <span class="lecture-desc">Determine the center of mass for discrete point masses in 1D and 2D. Set up and evaluate integrals to find the centroid of a continuous region.</span>
+                        </div>
+                        <a href="Week10_Wed.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- FRIDAY: INTEGRATION BY PARTS -->
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Integration by Parts</span>
+                            <span class="lecture-desc">Use integration by parts to find an antiderivative when standard substitution fails, and evaluate both indefinite and definite integrals.</span>
+                        </div>
+                        <a href="Week10_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <!-- HW: ACTIVE -->
+                    <a href="Week10_HW.html" class="btn-action btn-primary">
+                        Assignment 09 ↗
+                    </a>
+
+                    <!-- SOLUTIONS: DISABLED (toggle later) -->
+                    <a href="Week10_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
+                        Solutions 
+                    </a>
+                </div>
+            </article>
+            
+            <!-- ============================================ -->
+            <!-- WEEK 11: INT. BY PARTS + READING DAY         -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 11</h2>
+                    <span class="week-date">MAR 30 - APR 03</span>
+                </div>
+
+                <div class="lecture-list">
+                    <!-- MONDAY: INTEGRATION BY PARTS (CONT.) -->
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                         <div class="lecture-details">
+                            <span class="lecture-topic">Integration by Parts (Cont.)</span>
+                            <span class="lecture-desc"> Selecting u and dv and the tabular method for algebraic functions.</span>
+                        </div>
+                        <a href="Week11_Mon.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- WEDNESDAY: INTEGRATION BY PARTS (CONT.) -->
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Integration by Parts (Cont.)</span>
+                            <span class="lecture-desc">Apply the LIATE strategy to solve complex integrals involving logarithms, inverse trigonometric functions, and "looping" integrals with exponentials and trig functions.</span>
+                        </div>
+                        <a href="Week11_Wed.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- FRIDAY: READING DAY -->
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">University Reading Day</span>
+                            <span class="lecture-desc">No lecture today. Use this time to study and prepare for upcoming exams.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <!-- HW: ACTIVE -->
+                    <a href="Week11_HW.html" class="btn-action btn-primary">
+                        Assignment 10 ↗
+                    </a>
+
+                    <!-- SOLUTIONS: DISABLED (toggle later) -->
+                    <a href="Week11_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
+                        Solutions 
+                    </a>
+                </div>
+            </article>
+            <!-- ============================================ -->
+            <!-- WEEK 12: TRIG INTEGRALS & TRIG SUBSTITUTION  -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 12</h2>
+                    <span class="week-date">APR 06 - APR 10</span>
+                </div>
+
+                <div class="lecture-list">
+                    <!-- MONDAY: TRIGONOMETRIC INTEGRALS -->
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                         <div class="lecture-details">
+                            <span class="lecture-topic">Trigonometric Integrals</span>
+                            <span class="lecture-desc">Evaluate integrals involving powers of sine and cosine. Strategies for separating powers and using u-substitution.</span>
+                        </div>
+                        <a href="Week12_Mon.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- WEDNESDAY: TRIGONOMETRIC INTEGRALS (CONT.) -->
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Trigonometric Integrals (Cont.)</span>
+                            <span class="lecture-desc">Evaluate integrals involving powers of secant and tangent using trigonometric identities and substitution.</span>
+                        </div>
+                        <a href="Week12_Wed.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- FRIDAY: TRIGONOMETRIC SUBSTITUTIONS -->
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Trigonometric Substitutions</span>
+                            <span class="lecture-desc">Apply trigonometric substitutions (tangent, secant, and sine) to evaluate integrals involving quadratic expressions.</span>
+                        </div>
+                        <a href="Week12_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <!-- NO HOMEWORK -->
+                    <span class="btn-action disabled" aria-disabled="true">
+                        No Homework This Week
+                    </span>
+                </div>
+            </article>
+            
+            <!-- ============================================ -->
+            <!-- WEEK 13: EXAM REVIEW, EXAM, & RATIONAL FUNC. -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 13</h2>
+                    <span class="week-date">APR 13 - APR 17</span>
+                </div>
+
+                <div class="lecture-list">
+                    <!-- MONDAY: EXAM REVIEW -->
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                         <div class="lecture-details">
+                            <span class="lecture-topic">Exam Review</span>
+                            <span class="lecture-desc">Comprehensive review session to prepare for Wednesday's exam. Bring your questions!</span>
+                        </div>
+                    </div>
+
+                    <!-- WEDNESDAY: EXAM -->
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Exam 2</span>
+                            <span class="lecture-desc"> See Blackboard for more information.</span>
+                        </div>
+                    </div>
+
+                    <!-- FRIDAY: RATIONAL FUNCTIONS -->
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Rational Functions</span>
+                            <span class="lecture-desc">Use polynomial long division and partial fractions to evaluate integrals of rational functions.</span>
+                        </div>
+                        <a href="Week13_Fri.html" class="btn-slide">Notes</a>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <!-- HW 11: MOVED FROM WEEK 12 -->
+                    <a href="Week12_HW.html" class="btn-action btn-primary">
+                        Assignment 11 ↗
+                    </a>
+
+                    <!-- SOLUTIONS 11 -->
+                    <a href="Week12_Sol.html" class="btn-action">
+                        Solutions 
+                    </a>
+                </div>
+            </article>
+
+            <!-- ============================================ -->
+            <!-- WEEK 14: RATIONAL FUNCTIONS (CONT.)          -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 14</h2>
+                    <span class="week-date">APR 20 - APR 24</span>
+                </div>
+
+                <div class="lecture-list">
+                    <!-- MONDAY: RATIONAL FUNCTIONS (CONT.) -->
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                         <div class="lecture-details">
+                            <span class="lecture-topic">Rational Functions (Cont.)</span>
+                            <span class="lecture-desc">Evaluate integrals of rational functions where the denominator has degree two (irreducible or repeated roots).</span>
+                        </div>
+                        <a href="Week14_Mon.html" class="btn-slide">Notes</a>
+                    </div>
+
+                    <!-- WEDNESDAY: NEXT TOPIC PLACEHOLDER -->
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Final Exam Review</span>
+                            <span class="lecture-desc">Classwork related to rational functions.</span></div>
+                    </div>
+
+                    <!-- FRIDAY: NEXT TOPIC PLACEHOLDER -->
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Final Exam Review</span>
+                            <span class="lecture-desc">Classwork related to rational functions.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <!-- HW 12: MOVED FROM WEEK 13 -->
+                    <a href="Week13_HW.html" class="btn-action btn-primary">
+                        Assignment 12 ↗
+                    </a>
+
+                    <!-- SOLUTIONS 12 -->
+                    <a href="Week13_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
+                        Solutions 
+                    </a>
+                </div>
+            </article>
+
+            <!-- ============================================ -->
+            <!-- WEEK 15: FINAL EXAM REVIEW & READING DAY     -->
+            <!-- ============================================ -->
+            <article class="week-card">
+                <div class="week-header">
+                    <h2 class="week-title">Week 15</h2>
+                    <span class="week-date">APR 27 - MAY 01</span>
+                </div>
+
+                <div class="lecture-list">
+                    <!-- MONDAY: FINAL EXAM REVIEW -->
+                    <div class="lecture-row">
+                        <div class="day-badge">MON</div>
+                         <div class="lecture-details">
+                            <span class="lecture-topic">Final Exam Review</span>
+                            <span class="lecture-desc">Comprehensive review session to prepare for the final exam.</span>
+                        </div>
+                    </div>
+
+                    <!-- WEDNESDAY: FINAL EXAM REVIEW (CONT.) -->
+                    <div class="lecture-row">
+                        <div class="day-badge">WED</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Final Exam Review</span>
+                            <span class="lecture-desc">Continued review and Q&A session for the final exam.</span>
+                        </div>
+                    </div>
+
+                    <!-- FRIDAY: READING DAY -->
+                    <div class="lecture-row">
+                        <div class="day-badge">FRI</div>
+                        <div class="lecture-details">
+                            <span class="lecture-topic">Reading Day</span>
+                            <span class="lecture-desc">No classes today. Use this day to study and prepare for final exams.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="week-footer">
+                    <!-- NO HOMEWORK -->
+                    <span class="btn-action disabled" aria-disabled="true">
+                        No Homework
+                    </span>
+                </div>
+            </article>
+            
+            
+            
+            
+        </div>
+
+        <footer>&copy; 2026 TIMOTHY TRUJILLO</footer>
+
+        <script>
+            function toggleTheme() {
+                const html = document.documentElement;
+                const current = html.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+            }
+            const saved = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        </script>
+    </div>
+</body>
+</html>

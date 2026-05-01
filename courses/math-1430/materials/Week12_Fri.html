@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculus 2 - Trigonometric Substitutions</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'],['\\(', '\\)']],
+        displayMath: [['$$', '$$'],['\\[', '\\]']],
+        packages: {'[+]': ['cancel']}
+      },
+      loader: {load: ['[tex]/cancel']},
+      svg: { fontCache: 'global' }
+    };
+  </script>
+
+  <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg-paper: #F9F5EB;
+      --text-main: #111827;
+      --primary: #2563eb;
+      --secondary: #059669;
+      --font-serif: 'Crimson Pro', serif;
+      --font-sans: 'Space Grotesk', sans-serif;
+      --sol-bg: #eff6ff;
+      --muted: #64748b;
+      --card-bg: #f8fbff;
+      --card-border: #dbeafe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-paper);
+      color: var(--text-main);
+      font-family: var(--font-serif);
+      line-height: 1.65;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .page-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 60px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      min-height: 1100px;
+    }
+
+    header {
+      border-bottom: 2px solid var(--text-main);
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-sans);
+      font-size: 2.5rem;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .sub-header {
+      font-family: var(--font-sans);
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    h2 {
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      color: var(--primary);
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+      margin-top: 40px;
+    }
+
+    h3 { font-family: var(--font-sans); }
+
+    .objectives-box {
+      border: 3px solid var(--primary);
+      background-color: #eff6ff;
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+    }
+
+    .objectives-title {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .box-def {
+      border: 2px solid var(--text-main);
+      padding: 20px 30px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      background-color: #fff;
+    }
+
+    .box-title {
+      font-family: var(--font-sans);
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.25rem;
+      color: var(--text-main);
+    }
+
+    .solution-box {
+      background-color: var(--sol-bg);
+      border-left: 4px solid var(--primary);
+      padding: 20px 30px;
+      margin-top: 15px;
+      margin-bottom: 30px;
+      border-radius: 0 6px 6px 0;
+      font-size: 1.1rem;
+      color: #1e293b;
+      overflow-x: auto;
+    }
+
+    .problem-text {
+      font-size: 1.15rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: #111;
+      text-decoration: underline;
+    }
+
+    .example-block {
+      margin-bottom: 40px;
+    }
+    
+    .side-work-box {
+      border: 1px solid var(--text-main);
+      padding: 15px 25px;
+      border-radius: 6px;
+      background-color: #fff;
+      display: inline-block;
+      margin: 10px 0;
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+    }
+
+    .circled-result-box {
+      border: 2px solid var(--text-main);
+      border-radius: 50px;
+      padding: 15px 40px;
+      display: inline-block;
+      margin: 15px 0;
+      background-color: transparent;
+      font-size: 1.15rem;
+    }
+
+    .integral-steps {
+      margin-left: 20px;
+      line-height: 2.2;
+    }
+
+    /* Table styles for Algorithm */
+    .algo-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+    .algo-table th {
+      text-align: left;
+      padding: 15px;
+      border-bottom: 2px solid var(--primary);
+      color: var(--primary);
+      font-family: var(--font-sans);
+    }
+    .algo-table td {
+      padding: 15px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+    .algo-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+      }
+      .page-container {
+        box-shadow: none;
+        max-width: 100%;
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-container">
+
+  <header>
+    <h1>Trigonometric Substitutions</h1>
+    <div class="sub-header">
+      Calculus 2 &bull; Friday Notes
+    </div>
+  </header>
+
+  <!-- Emphasized Learning Objectives -->
+  <div class="objectives-box">
+    <div class="objectives-title">Key Learning Objective</div>
+    <p style="font-size: 1.15rem; font-weight: 600; margin: 10px 0 0 0;">
+      Apply trigonometric substitution to evaluate an antiderivative.
+    </p>
+    <ul style="font-size: 1.15rem; margin-top: 10px; font-weight: 500;">
+      <li>Tangent</li>
+      <li>Secant</li>
+      <li>Sine</li>
+    </ul>
+  </div>
+
+  <section>
+    <h2>1. The Core Idea & Algorithm</h2>
+
+    <div class="box-def" style="background-color: #fff8f1; border-color: #f97316;">
+      <h3 class="box-title" style="text-decoration: underline; color: #c2410c;">IDEA:</h3>
+      <p style="font-size: 1.15rem; font-weight: bold; margin-bottom: 0;">
+        Anything that has a quadratic expression $$ f(x) = Ax^2 + Bx + C $$ is a potential trigonometric substitution.
+      </p>
+    </div>
+
+    <div class="box-def" style="background-color: #fafafa; padding: 10px 20px;">
+      <h3 class="box-title" style="text-decoration: underline; margin-top: 10px; margin-left: 10px;">Algorithm</h3>
+      
+      <table class="algo-table">
+        <thead>
+          <tr>
+            <th style="width: 15%;">Step</th>
+            <th style="width: 35%;">Action</th>
+            <th style="width: 50%;">Details / Formulas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td><strong>Complete the square</strong></td>
+            <td>
+              $$ f(x) = A(x-h)^2 + k $$
+              where $(h,k)$ is the vertex:<br>
+              $$ h = \frac{-B}{2A}, \quad k = f\left(\frac{-B}{2A}\right) $$
+            </td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td><strong>Determine the trigonometric substitution</strong></td>
+            <td>
+              <ol type="a" style="margin-top: 0; padding-left: 20px;">
+                <li style="margin-bottom: 10px;">
+                  $A$ and $k$ have the same sign.<br>
+                  $$ x - h = \sqrt{\frac{|k|}{|A|}} \tan(\theta) $$
+                </li>
+                <li style="margin-bottom: 10px;">
+                  $A$ is positive and $k$ is negative.<br>
+                  $$ x - h = \sqrt{\frac{|k|}{|A|}} \sec(\theta) $$
+                </li>
+                <li>
+                  $A$ is negative and $k$ is positive.<br>
+                  $$ x - h = \sqrt{\frac{|k|}{|A|}} \sin(\theta) $$
+                </li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td><strong>Apply the trigonometric substitution and simplify</strong></td>
+            <td>
+              Using trigonometric identities:
+              <ol type="a" style="margin-top: 5px; padding-left: 20px;">
+                <li>$ \tan^2(\theta) + 1 = \sec^2(\theta) $</li>
+                <li>$ \sec^2(\theta) - 1 = \tan^2(\theta) $</li>
+                <li>$ 1 - \sin^2(\theta) = \cos^2(\theta) $</li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td><strong>Find antiderivative</strong></td>
+            <td>
+              Find the antiderivative with respect to $\theta$.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td><strong>Convert back to $x$</strong></td>
+            <td>
+              Draw a right triangle for $\theta$ to convert everything back to $x$.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Worked Examples</h2>
+
+    <!-- EXAMPLE 1 -->
+    <div class="example-block">
+      <div class="problem-text">Example</div>
+      
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+          $$ \int \frac{1}{\sqrt{x^2+2x+5}} \, dx $$
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+          <div class="side-work-box" style="flex: 1; min-width: 250px;">
+            <strong style="text-decoration: underline;">Solution (Completing the square):</strong><br><br>
+            $h = \frac{-B}{2A} = \frac{-2}{2(1)} = -1$<br>
+            $k = f(-1) = (-1)^2 + 2(-1) + 5 = 4$<br><br>
+            So, $x^2+2x+5 = (x+1)^2 + 4$
+          </div>
+
+          <div class="side-work-box" style="flex: 1; min-width: 250px;">
+            <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+            $x + 1 = \sqrt{\frac{4}{1}} \tan(\theta)$<br>
+            $x + 1 = 2\tan(\theta)$<br>
+            $dx = 2\sec^2(\theta) \, d\theta$
+          </div>
+        </div>
+
+        <div class="integral-steps">
+          $$ \int \frac{1}{\sqrt{x^2+2x+5}} \, dx = \int \frac{1}{\sqrt{(x+1)^2+4}} \, dx $$
+          $$ = \int \frac{1}{\sqrt{4\tan^2(\theta)+4}} \, 2\sec^2(\theta) \, d\theta $$
+          $$ = \int \frac{1}{\sqrt{4\sec^2(\theta)}} \, 2\sec^2(\theta) \, d\theta $$
+          $$ = \int \frac{1}{2\sec(\theta)} \, 2\sec^2(\theta) \, d\theta $$
+          $$ = \int \sec(\theta) \, d\theta $$
+          $$ = \ln|\sec(\theta) + \tan(\theta)| + C $$
+        </div>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+          <div style="flex: 1; min-width: 250px;">
+            <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+            
+            <div style="margin-bottom: 10px;">
+              $x + 1 = 2\tan(\theta)$<br>
+              $\frac{x+1}{2} = \tan(\theta) = \frac{\text{opposite}}{\text{adjacent}}$
+            </div>
+
+          <!-- Right Triangle SVG Container -->
+            <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+              <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+                <!-- Triangle paths -->
+                <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+                <!-- Right angle square -->
+                <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+                <!-- Theta arc -->
+                <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              </svg>
+              <!-- MathJax Labels Overlaid -->
+              <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+              <div style="position: absolute; left: 90px; top: 122px; font-size: 1.1rem;">$2$</div>
+              <div style="position: absolute; left: 190px; top: 60px; font-size: 1.1rem;">$x+1$</div>
+              <!-- Hypotenuse text slightly rotated -->
+              <div style="position: absolute; left: 10px; top: 30px; transform: rotate(-30.5deg); transform-origin: center; font-size: 1rem;">
+                $\sqrt{(x+1)^2+4}$
+              </div>
+            </div>
+            
+            <div style="margin-top: 10px;">
+              $\sec(\theta) = \frac{\sqrt{(x+1)^2+4}}{2}$
+            </div>
+          </div>
+
+          <div style="flex: 1.5; min-width: 300px; text-align: center;">
+            <div class="circled-result-box" style="padding: 25px 50px;">
+              $$ = \ln\left| \frac{\sqrt{(x+1)^2+4}}{2} + \frac{x+1}{2} \right| + C $$
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EXAMPLE 2 -->
+    <div class="example-block">
+      <div class="problem-text">Example</div>
+      
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+          $$ \int \frac{x^2}{\sqrt{x^2-1}} \, dx $$
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+          <div class="side-work-box" style="flex: 1; min-width: 250px;">
+            <strong style="text-decoration: underline;">Note:</strong><br><br>
+            $x^2 - 1 = (x-0)^2 - 1$<br><br>
+            i.e. $h=0, \; k=-1, \; A=1$
+          </div>
+
+          <div class="side-work-box" style="flex: 1; min-width: 250px;">
+            <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+            $x = \sqrt{\frac{|-1|}{1}} \sec(\theta)$<br>
+            $x = \sec(\theta)$<br>
+            $dx = \sec(\theta)\tan(\theta) \, d\theta$
+          </div>
+        </div>
+
+        <div class="integral-steps">
+          $$ \int \frac{x^2}{\sqrt{x^2-1}} \, dx = \int \frac{\sec^2(\theta)}{\sqrt{\sec^2(\theta)-1}} \, \sec(\theta)\tan(\theta) \, d\theta $$
+          $$ = \int \frac{\sec^2(\theta)}{\tan(\theta)} \, \sec(\theta)\tan(\theta) \, d\theta $$
+          $$ = \int \sec^3(\theta) \, d\theta $$
+          $$ = \frac{1}{2} \left( \sec(\theta)\tan(\theta) + \ln|\sec(\theta) + \tan(\theta)| \right) + C $$
+        </div>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+          <div style="flex: 1; min-width: 250px;">
+            <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+            
+            <div style="margin-bottom: 10px;">
+              $\frac{x}{1} = \sec(\theta) = \frac{\text{hypotenuse}}{\text{adjacent}}$
+            </div>
+
+       <!-- Right Triangle SVG Container -->
+            <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+              <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+                <!-- Triangle paths -->
+                <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+                <!-- Right angle square -->
+                <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+                <!-- Theta arc -->
+                <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              </svg>
+              <!-- MathJax Labels Overlaid -->
+              <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+              <div style="position: absolute; left: 90px; top: 122px; font-size: 1.1rem;">$1$</div>
+              <div style="position: absolute; left: 190px; top: 60px; font-size: 1rem;">$\sqrt{x^2-1}$</div>
+              <!-- Hypotenuse text -->
+              <div style="position: absolute; left: 80px; top: 45px; font-size: 1.1rem;">$x$</div>
+            </div>
+            
+            <div style="margin-top: 10px;">
+              $\tan(\theta) = \frac{\text{opposite}}{\text{adjacent}} = \sqrt{x^2 - 1}$
+            </div>
+          </div>
+
+          <div style="flex: 1.5; min-width: 300px; text-align: center;">
+            <div class="circled-result-box" style="padding: 25px 50px;">
+              $$ = \frac{1}{2} \left( x\sqrt{x^2-1} + \ln\left| x + \sqrt{x^2-1} \right| \right) + C $$
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EXAMPLE 3 -->
+    <div class="example-block">
+      <div class="problem-text">Example</div>
+      
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+          $$ \int \frac{x}{\sqrt{18-2x^2}} \, dx $$
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+          <div class="side-work-box" style="flex: 1; min-width: 250px;">
+            <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+            $18 - 2x^2 = -2(x-0)^2 + 18$<br><br>
+            i.e. $h=0, \; A=-2, \; k=18$
+          </div>
+
+          <div class="side-work-box" style="flex: 1; min-width: 250px;">
+            <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+            $x = \sqrt{\frac{|18|}{|-2|}} \sin(\theta)$<br>
+            $x = \sqrt{9} \sin(\theta)$<br>
+            $x = 3\sin(\theta)$<br>
+            $dx = 3\cos(\theta) \, d\theta$
+          </div>
+        </div>
+
+        <div class="integral-steps">
+          $$ \int \frac{x}{\sqrt{18-2x^2}} \, dx = \int \frac{3\sin(\theta)}{\sqrt{18 - 18\sin^2(\theta)}} \, 3\cos(\theta) \, d\theta $$
+          $$ = \int \frac{3\sin(\theta)}{\sqrt{18 \cos^2(\theta)}} \, 3\cos(\theta) \, d\theta $$
+          $$ = \int \frac{9\sin(\theta)}{\sqrt{18} \cos(\theta)} \, \cos(\theta) \, d\theta $$
+          $$ = \int \frac{9}{\sqrt{18}} \sin(\theta) \, d\theta $$
+          $$ = -\frac{9}{\sqrt{18}}\cos(\theta) + C $$
+        </div>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+          <div style="flex: 1; min-width: 250px;">
+            <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw a Picture</div>
+            
+            <div style="margin-bottom: 10px;">
+              $\sin(\theta) = \frac{x}{3} = \frac{\text{opposite}}{\text{hypotenuse}}$
+            </div>
+
+            <!-- Right Triangle SVG Container -->
+            <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+              <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+                <!-- Triangle paths -->
+                <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+                <!-- Right angle square -->
+                <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+                <!-- Theta arc -->
+                <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              </svg>
+              <!-- MathJax Labels Overlaid -->
+              <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+              <div style="position: absolute; left: 65px; top: 122px; font-size: 1rem;">$\sqrt{9-x^2}$</div>
+              <div style="position: absolute; left: 190px; top: 60px; font-size: 1.1rem;">$x$</div>
+              <!-- Hypotenuse text -->
+              <div style="position: absolute; left: 80px; top: 45px; font-size: 1.1rem;">$3$</div>
+            </div>
+            
+            <div style="margin-top: 10px;">
+              $\cos(\theta) = \frac{\text{adjacent}}{\text{hypotenuse}} = \frac{\sqrt{9-x^2}}{3}$
+            </div>
+          </div>
+
+          <div style="flex: 1.5; min-width: 300px; text-align: center;">
+            <div style="font-size: 1.25rem; margin-bottom: 15px;">
+              $$ = -\frac{9}{\sqrt{18}} \left( \frac{\sqrt{9-x^2}}{3} \right) + C $$
+            </div>
+            <div class="circled-result-box" style="padding: 25px 50px;">
+              $$ = -\frac{3}{\sqrt{18}}\sqrt{9-x^2} + C $$
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+</div>
+</body>
+</html>

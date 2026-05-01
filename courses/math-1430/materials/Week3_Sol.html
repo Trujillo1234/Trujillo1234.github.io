@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 - Homework 3 Solutions</title>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX CONFIGURATION -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-paper: #F9F5EB;
+            --text-main: #111827;
+            --primary: #2563eb;
+            --secondary: #059669;
+            --border-color: #cbd5e1;
+            --font-serif: 'Crimson Pro', serif;
+            --font-sans: 'Space Grotesk', sans-serif;
+            --sol-bg: #eff6ff;
+            --sol-border: #bfdbfe;
+            --note-bg: rgba(5,150,105,0.08);
+            --danger: #be123c;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            line-height: 1.65;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .page-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            min-height: 1100px;
+        }
+
+        header {
+            border-bottom: 2px solid var(--text-main);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-family: var(--font-sans);
+            font-size: 2.5rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .sub-header {
+            font-family: var(--font-sans);
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .problem-section {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+
+        h2 {
+            font-family: var(--font-sans);
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        ol.problem-list {
+            list-style-type: none;
+            counter-reset: problem-counter;
+            padding: 0;
+        }
+
+        ol.problem-list > li {
+            position: relative;
+            margin-bottom: 60px;
+            padding-left: 40px;
+        }
+
+        ol.problem-list > li::before {
+            counter-increment: problem-counter;
+            content: counter(problem-counter, lower-alpha) ")";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-family: var(--font-sans);
+            color: #444;
+            top: 0;
+            font-size: 1.1rem;
+        }
+
+        .problem-text {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .solution-box {
+            background-color: var(--sol-bg);
+            border-left: 4px solid var(--primary);
+            padding: 20px 30px;
+            margin-top: 15px;
+            border-radius: 0 6px 6px 0;
+            font-size: 1rem;
+            color: #1e293b;
+            page-break-inside: avoid;
+        }
+
+        .solution-step { margin-bottom: 25px; }
+        .solution-step:last-child { margin-bottom: 0; }
+
+        .step-label {
+            display: block;
+            font-family: var(--font-sans);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        .lh-rule {
+            color: var(--danger);
+            font-weight: 800;
+            font-family: var(--font-sans);
+            font-size: 0.92em;
+        }
+
+        .endpoint-box {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: var(--note-bg);
+            border-left: 4px solid var(--secondary);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .term-block {
+            margin-top: 12px;
+            padding: 14px 16px;
+            border: 1px solid #dbeafe;
+            border-radius: 12px;
+            background: rgba(37,99,235,0.04);
+        }
+
+        .term-block strong {
+            font-family: var(--font-sans);
+            font-weight: 800;
+        }
+
+        .tiny-note {
+            font-size: 0.98rem;
+            color: #334155;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="page-container">
+
+    <header>
+        <h1>Homework 3 Solutions</h1>
+        <div class="sub-header">
+            Calculus 2 &bull; Taylor Polynomials & Endpoint Terms
+        </div>
+    </header>
+
+    <!-- QUESTION 1 -->
+    <section class="problem-section">
+        <h2>1. Taylor Polynomials (Chain Rule Required)</h2>
+
+        <p>
+            We use the Taylor Polynomial definition (centered at $a$):
+            $$ \displaystyle
+            P_n(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\cdots+\frac{f^{(n)}(a)}{n!}(x-a)^n
+            $$
+        </p>
+
+        <ol class="problem-list">
+
+            <!-- 1a -->
+            <li>
+                <div class="problem-text">$P_2(x)$ for $f(x)=\sqrt{1+4x},\ a=0$</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 1: Derivatives (Chain Rule)</span>
+                        Rewrite:
+                        $$ f(x)=(1+4x)^{1/2} $$
+                        Let $u(x)=1+4x$ so $f(x)=u(x)^{1/2}$ and $u'(x)=4$.<br><br>
+
+                        First derivative:
+                        $$ f'(x)=\frac{1}{2}u(x)^{-1/2}\cdot u'(x)
+                        =\frac{1}{2}(1+4x)^{-1/2}\cdot 4
+                        =2(1+4x)^{-1/2} $$
+
+                        Second derivative:
+                        $$ f''(x)=2\left(-\frac{1}{2}\right)(1+4x)^{-3/2}\cdot 4
+                        =-4(1+4x)^{-3/2} $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 2: Evaluate at a = 0</span>
+                        $$ f(0)=(1)^{1/2}=1 $$
+                        $$ f'(0)=2(1)^{-1/2}=2 $$
+                        $$ f''(0)=-4(1)^{-3/2}=-4 $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 3: Plug into the Taylor polynomial template</span>
+                        Since this is $P_2$, we use:
+                        $$ P_2(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2 $$
+                        Plug in $a=0$:
+                        $$ P_2(x)=f(0)+f'(0)(x-0)+\frac{f''(0)}{2!}(x-0)^2 $$
+                        Substitute values:
+                        $$ P_2(x)=1+2x+\frac{-4}{2}x^2=1+2x-2x^2 $$
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 1b -->
+            <li>
+                <div class="problem-text">$P_3(x)$ for $f(x)=\ln(1-3x),\ a=0$</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 1: Derivatives (Chain Rule)</span>
+                        Let $u(x)=1-3x$. Then $f(x)=\ln(u(x))$ and $u'(x)=-3$.<br><br>
+
+                        First derivative:
+                        $$ f'(x)=\frac{1}{u(x)}\cdot u'(x)
+                        =\frac{1}{1-3x}\cdot (-3)
+                        =-3(1-3x)^{-1} $$
+
+                        Second derivative:
+                        $$ f''(x)=-3\cdot (-1)(1-3x)^{-2}\cdot (-3)
+                        =-9(1-3x)^{-2} $$
+
+                        Third derivative:
+                        $$ f'''(x)=-9\cdot (-2)(1-3x)^{-3}\cdot (-3)
+                        =-54(1-3x)^{-3} $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 2: Evaluate at a = 0</span>
+                        $$ f(0)=\ln(1)=0 $$
+                        $$ f'(0)=-3(1)^{-1}=-3 $$
+                        $$ f''(0)=-9(1)^{-2}=-9 $$
+                        $$ f'''(0)=-54(1)^{-3}=-54 $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 3: Plug into the Taylor polynomial template</span>
+                        Since this is $P_3$, we use:
+                        $$ P_3(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\frac{f^{(3)}(a)}{3!}(x-a)^3 $$
+                        Plug in $a=0$:
+                        $$ P_3(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\frac{f'''(0)}{3!}x^3 $$
+                        Substitute values:
+                        $$ P_3(x)=0-3x+\frac{-9}{2}x^2+\frac{-54}{6}x^3
+                        =-3x-\frac{9}{2}x^2-9x^3 $$
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 1c -->
+            <li>
+                <div class="problem-text">$P_2(x)$ for $f(x)=\cos(2x),\ a=\frac{\pi}{2}$</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 1: Derivatives (Chain Rule)</span>
+                        $$ f(x)=\cos(2x) $$
+
+                        First derivative (inside is $u(x)=2x$, so $u'(x)=2$):
+                        $$ f'(x)=-\sin(2x)\cdot 2=-2\sin(2x) $$
+
+                        Second derivative:
+                        $$ f''(x)=-2\cos(2x)\cdot 2=-4\cos(2x) $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 2: Evaluate at a = π/2</span>
+                        $$ 2\left(\frac{\pi}{2}\right)=\pi $$
+                        $$ f\!\left(\frac{\pi}{2}\right)=\cos(\pi)=-1 $$
+                        $$ f'\!\left(\frac{\pi}{2}\right)=-2\sin(\pi)=0 $$
+                        $$ f''\!\left(\frac{\pi}{2}\right)=-4\cos(\pi)=4 $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 3: Plug into the Taylor polynomial template</span>
+                        $$ P_2(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2 $$
+                        Plug in $a=\frac{\pi}{2}$:
+                        $$ P_2(x)=f\!\left(\frac{\pi}{2}\right)+f'\!\left(\frac{\pi}{2}\right)\left(x-\frac{\pi}{2}\right)
+                        +\frac{f''\!\left(\frac{\pi}{2}\right)}{2!}\left(x-\frac{\pi}{2}\right)^2 $$
+                        Substitute values:
+                        $$ P_2(x)=-1+0\left(x-\frac{\pi}{2}\right)+\frac{4}{2}\left(x-\frac{\pi}{2}\right)^2
+                        =-1+2\left(x-\frac{\pi}{2}\right)^2 $$
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 1d -->
+            <li>
+                <div class="problem-text">$P_3(x)$ for $f(x)=e^{x/2},\ a=0$</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 1: Derivatives (Chain Rule)</span>
+                        $$ f(x)=e^{x/2} $$
+                        Inside is $u(x)=x/2$, so $u'(x)=1/2$.<br><br>
+
+                        First derivative:
+                        $$ f'(x)=e^{x/2}\cdot \frac{1}{2}=\frac{1}{2}e^{x/2} $$
+
+                        Second derivative:
+                        $$ f''(x)=\frac{1}{2}\left(e^{x/2}\cdot \frac{1}{2}\right)=\frac{1}{4}e^{x/2} $$
+
+                        Third derivative:
+                        $$ f'''(x)=\frac{1}{4}\left(e^{x/2}\cdot \frac{1}{2}\right)=\frac{1}{8}e^{x/2} $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 2: Evaluate at a = 0</span>
+                        $$ f(0)=e^0=1 $$
+                        $$ f'(0)=\frac{1}{2}e^0=\frac{1}{2} $$
+                        $$ f''(0)=\frac{1}{4}e^0=\frac{1}{4} $$
+                        $$ f'''(0)=\frac{1}{8}e^0=\frac{1}{8} $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 3: Plug into the Taylor polynomial template</span>
+                        $$ P_3(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\frac{f^{(3)}(a)}{3!}(x-a)^3 $$
+                        Plug in $a=0$:
+                        $$ P_3(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\frac{f'''(0)}{3!}x^3 $$
+                        Substitute values:
+                        $$ P_3(x)=1+\frac{1}{2}x+\frac{1/4}{2}x^2+\frac{1/8}{6}x^3
+                        =1+\frac{1}{2}x+\frac{1}{8}x^2+\frac{1}{48}x^3 $$
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 1e -->
+            <li>
+                <div class="problem-text">$P_2(x)$ for $f(x)=\dfrac{1}{(1-2x)^2},\ a=0$</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 1: Derivatives (Chain Rule)</span>
+                        Rewrite:
+                        $$ f(x)=(1-2x)^{-2} $$
+                        Let $u(x)=1-2x$, so $u'(x)=-2$.<br><br>
+
+                        First derivative:
+                        $$ f'(x)=-2u^{-3}\cdot u'
+                        =-2(1-2x)^{-3}\cdot (-2)
+                        =4(1-2x)^{-3} $$
+
+                        Second derivative:
+                        $$ f''(x)=4\cdot(-3)(1-2x)^{-4}\cdot (-2)
+                        =24(1-2x)^{-4} $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 2: Evaluate at a = 0</span>
+                        $$ f(0)=(1)^{-2}=1 $$
+                        $$ f'(0)=4(1)^{-3}=4 $$
+                        $$ f''(0)=24(1)^{-4}=24 $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 3: Plug into the Taylor polynomial template</span>
+                        $$ P_2(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2 $$
+                        Plug in $a=0$:
+                        $$ P_2(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2 $$
+                        Substitute values:
+                        $$ P_2(x)=1+4x+\frac{24}{2}x^2=1+4x+12x^2 $$
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 1f -->
+            <li>
+                <div class="problem-text">$P_2(x)$ for $f(x)=\sin(\pi x),\ a=1$</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 1: Derivatives (Chain Rule)</span>
+                        $$ f(x)=\sin(\pi x) $$
+                        Inside is $u(x)=\pi x$, so $u'(x)=\pi$.<br><br>
+
+                        First derivative:
+                        $$ f'(x)=\cos(\pi x)\cdot \pi=\pi\cos(\pi x) $$
+
+                        Second derivative:
+                        $$ f''(x)=\pi\left(-\sin(\pi x)\cdot \pi\right)=-\pi^2\sin(\pi x) $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 2: Evaluate at a = 1</span>
+                        $$ f(1)=\sin(\pi)=0 $$
+                        $$ f'(1)=\pi\cos(\pi)=\pi(-1)=-\pi $$
+                        $$ f''(1)=-\pi^2\sin(\pi)=0 $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Step 3: Plug into the Taylor polynomial template</span>
+                        $$ P_2(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2 $$
+                        Plug in $a=1$:
+                        $$ P_2(x)=f(1)+f'(1)(x-1)+\frac{f''(1)}{2!}(x-1)^2 $$
+                        Substitute values:
+                        $$ P_2(x)=0-\pi(x-1)+0=-\pi(x-1) $$
+                    </div>
+
+                </div>
+            </li>
+
+        </ol>
+    </section>
+
+    <!-- QUESTION 2 -->
+    <section class="problem-section">
+        <h2>2. Radius & Endpoint Terms</h2>
+
+        <p class="tiny-note">
+            For each series below:
+            <br>• Identify the center $a$
+            <br>• Use the Ratio Test on the coefficient $a_n$ to compute $L$
+            <br>• Compute the radius $R=\dfrac{1}{L}$
+            <br>• Compute the two endpoints $a-R$ and $a+R$
+            <br>• Plug in both endpoints and write the first 4 terms (and the partial sum $S_4$)
+        </p>
+
+        <p>
+            Ratio Test setup:
+            $$ \displaystyle L=\lim_{n\to\infty}\left|a_{n+1}\cdot \frac{1}{a_n}\right|,\qquad R=\frac{1}{L}. $$
+        </p>
+
+        <ol class="problem-list">
+
+            <!-- 2a -->
+            <li>
+                <div class="problem-text">$ \displaystyle \sum_{n=1}^{\infty} \frac{(x-2)^n}{n} $</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">1. Center and Coefficient</span>
+                        Center is $a=2$. The coefficient is:
+                        $$ a_n=\frac{1}{n},\qquad a_{n+1}=\frac{1}{n+1}. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">2. Ratio Test (keep the limit the whole time)</span>
+                        $$ L=\lim_{n\to\infty}\left|a_{n+1}\cdot \frac{1}{a_n}\right|
+                        =\lim_{n\to\infty}\left|\frac{1}{n+1}\cdot n\right|
+                        =\lim_{n\to\infty}\frac{n}{n+1}. $$
+
+                        This is $\infty/\infty$, so apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ L=\lim_{n\to\infty}\frac{\frac{d}{dn}(n)}{\frac{d}{dn}(n+1)}
+                        =\lim_{n\to\infty}\frac{1}{1}=1. $$
+
+                        $$ R=\frac{1}{L}=\frac{1}{1}=1. $$
+                    </div>
+
+                    <div class="endpoint-box">
+                        <strong>Endpoints:</strong>
+                        $$ x=a-R=2-1=1,\qquad x=a+R=2+1=3. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">3. Plug in endpoints: first 4 terms + partial sum S4</span>
+
+                        <div class="term-block">
+                            <strong>At $x=3$:</strong> $(x-2)=1$
+                            $$ \sum_{n=1}^{\infty}\frac{(1)^n}{n}=\sum_{n=1}^{\infty}\frac{1}{n}. $$
+                            $$ n=1:\ 1,\quad n=2:\ \frac{1}{2},\quad n=3:\ \frac{1}{3},\quad n=4:\ \frac{1}{4}. $$
+                            $$ S_4=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}. $$
+                        </div>
+
+                        <div class="term-block">
+                            <strong>At $x=1$:</strong> $(x-2)=-1$
+                            $$ \sum_{n=1}^{\infty}\frac{(-1)^n}{n}. $$
+                            $$ n=1:\ -1,\quad n=2:\ \frac{1}{2},\quad n=3:\ -\frac{1}{3},\quad n=4:\ \frac{1}{4}. $$
+                            $$ S_4=-1+\frac{1}{2}-\frac{1}{3}+\frac{1}{4}. $$
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 2b -->
+            <li>
+                <div class="problem-text">$ \displaystyle \sum_{n=1}^{\infty} \frac{(-1)^n (x+1)^n}{n \cdot 4^n} $</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">1. Center and Coefficient</span>
+                        Center is $a=-1$. The coefficient is:
+                        $$ a_n=\frac{(-1)^n}{n\cdot 4^n},\qquad a_{n+1}=\frac{(-1)^{n+1}}{(n+1)\cdot 4^{n+1}}. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">2. Ratio Test (keep the limit the whole time)</span>
+                        $$ L=\lim_{n\to\infty}\left|a_{n+1}\cdot \frac{1}{a_n}\right|
+                        =\lim_{n\to\infty}\left|\frac{(-1)^{n+1}}{(n+1)4^{n+1}}\cdot \frac{n4^n}{(-1)^n}\right|. $$
+
+                        $$ L=\lim_{n\to\infty}\left|\frac{(-1)^{n+1}}{(-1)^n}\right|\cdot \frac{n}{n+1}\cdot \frac{4^n}{4^{n+1}}
+                        =\lim_{n\to\infty}1\cdot \frac{n}{n+1}\cdot \frac{1}{4}. $$
+
+                        $$ L=\frac{1}{4}\lim_{n\to\infty}\frac{n}{n+1}. $$
+
+                        This is $\infty/\infty$, so apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ \lim_{n\to\infty}\frac{n}{n+1}
+                        =\lim_{n\to\infty}\frac{\frac{d}{dn}(n)}{\frac{d}{dn}(n+1)}
+                        =\lim_{n\to\infty}\frac{1}{1}=1. $$
+
+                        $$ L=\frac{1}{4}\cdot 1=\frac{1}{4},\qquad R=\frac{1}{L}=4. $$
+                    </div>
+
+                    <div class="endpoint-box">
+                        <strong>Endpoints:</strong>
+                        $$ x=a-R=-1-4=-5,\qquad x=a+R=-1+4=3. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">3. Plug in endpoints: first 4 terms + partial sum S4</span>
+
+                        <div class="term-block">
+                            <strong>At $x=3$:</strong> $(x+1)=4$
+                            $$ \sum_{n=1}^{\infty}\frac{(-1)^n(4)^n}{n4^n}
+                            =\sum_{n=1}^{\infty}\frac{(-1)^n}{n}. $$
+                            $$ n=1:\ -1,\quad n=2:\ \frac{1}{2},\quad n=3:\ -\frac{1}{3},\quad n=4:\ \frac{1}{4}. $$
+                            $$ S_4=-1+\frac{1}{2}-\frac{1}{3}+\frac{1}{4}. $$
+                        </div>
+
+                        <div class="term-block">
+                            <strong>At $x=-5$:</strong> $(x+1)=-4$
+                            $$ \sum_{n=1}^{\infty}\frac{(-1)^n(-4)^n}{n4^n}
+                            =\sum_{n=1}^{\infty}\frac{(-1)^n(-1)^n4^n}{n4^n}
+                            =\sum_{n=1}^{\infty}\frac{1}{n}. $$
+                            $$ n=1:\ 1,\quad n=2:\ \frac{1}{2},\quad n=3:\ \frac{1}{3},\quad n=4:\ \frac{1}{4}. $$
+                            $$ S_4=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}. $$
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 2c -->
+            <li>
+                <div class="problem-text">$ \displaystyle \sum_{n=0}^{\infty} n! (x-5)^n $</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">1. Center and Coefficient</span>
+                        Center is $a=5$. The coefficient is:
+                        $$ a_n=n!,\qquad a_{n+1}=(n+1)!. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">2. Ratio Test (keep the limit the whole time)</span>
+                        $$ L=\lim_{n\to\infty}\left|a_{n+1}\cdot \frac{1}{a_n}\right|
+                        =\lim_{n\to\infty}\left|(n+1)!\cdot \frac{1}{n!}\right|
+                        =\lim_{n\to\infty}(n+1)=\infty. $$
+
+                        $$ R=\frac{1}{L}=\frac{1}{\infty}=0. $$
+                    </div>
+
+                    <div class="endpoint-box">
+                        <strong>Only endpoint to plug in:</strong> $$ x=5. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">3. Plug in endpoint: first 4 terms + partial sum S4</span>
+
+                        <div class="term-block">
+                            <strong>At $x=5$:</strong> $(x-5)=0$
+                            $$ \sum_{n=0}^{\infty} n!\,0^n $$
+                            $$ n=0:\ 0!\cdot 0^0=1,\quad n=1:\ 1!\cdot 0^1=0,\quad n=2:\ 2!\cdot 0^2=0,\quad n=3:\ 3!\cdot 0^3=0. $$
+                            $$ S_4=1+0+0+0=1. $$
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 2d -->
+            <li>
+                <div class="problem-text">$ \displaystyle \sum_{n=1}^{\infty} \frac{2^n (x-3)^n}{n^2} $</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">1. Center and Coefficient</span>
+                        Center is $a=3$. The coefficient is:
+                        $$ a_n=\frac{2^n}{n^2},\qquad a_{n+1}=\frac{2^{n+1}}{(n+1)^2}. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">2. Ratio Test (keep the limit the whole time)</span>
+                        $$ L=\lim_{n\to\infty}\left|a_{n+1}\cdot \frac{1}{a_n}\right|
+                        =\lim_{n\to\infty}\left|\frac{2^{n+1}}{(n+1)^2}\cdot \frac{n^2}{2^n}\right|. $$
+
+                        $$ L=\lim_{n\to\infty}\left|\frac{2^{n+1}}{2^n}\right|\cdot\left(\frac{n}{n+1}\right)^2
+                        =\lim_{n\to\infty}2\left(\frac{n}{n+1}\right)^2. $$
+
+                        $$ L=2\left(\lim_{n\to\infty}\frac{n}{n+1}\right)^2. $$
+
+                        This is $\infty/\infty$, so apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ \lim_{n\to\infty}\frac{n}{n+1}
+                        =\lim_{n\to\infty}\frac{\frac{d}{dn}(n)}{\frac{d}{dn}(n+1)}
+                        =\lim_{n\to\infty}\frac{1}{1}=1. $$
+
+                        $$ L=2(1)^2=2,\qquad R=\frac{1}{L}=\frac{1}{2}. $$
+                    </div>
+
+                    <div class="endpoint-box">
+                        <strong>Endpoints:</strong>
+                        $$ x=a-R=3-\frac{1}{2}=2.5,\qquad x=a+R=3+\frac{1}{2}=3.5. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">3. Plug in endpoints: first 4 terms + partial sum S4</span>
+
+                        <div class="term-block">
+                            <strong>At $x=3.5$:</strong> $(x-3)=0.5$
+                            $$ \sum_{n=1}^{\infty}\frac{2^n(0.5)^n}{n^2}
+                            =\sum_{n=1}^{\infty}\frac{(2\cdot 0.5)^n}{n^2}
+                            =\sum_{n=1}^{\infty}\frac{1^n}{n^2}. $$
+                            $$ n=1:\ 1,\quad n=2:\ \frac{1}{4},\quad n=3:\ \frac{1}{9},\quad n=4:\ \frac{1}{16}. $$
+                            $$ S_4=1+\frac{1}{4}+\frac{1}{9}+\frac{1}{16}. $$
+                        </div>
+
+                        <div class="term-block">
+                            <strong>At $x=2.5$:</strong> $(x-3)=-0.5$
+                            $$ \sum_{n=1}^{\infty}\frac{2^n(-0.5)^n}{n^2}
+                            =\sum_{n=1}^{\infty}\frac{(2\cdot -0.5)^n}{n^2}
+                            =\sum_{n=1}^{\infty}\frac{(-1)^n}{n^2}. $$
+                            $$ n=1:\ -1,\quad n=2:\ \frac{1}{4},\quad n=3:\ -\frac{1}{9},\quad n=4:\ \frac{1}{16}. $$
+                            $$ S_4=-1+\frac{1}{4}-\frac{1}{9}+\frac{1}{16}. $$
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 2e -->
+            <li>
+                <div class="problem-text">$ \displaystyle \sum_{n=1}^{\infty} \frac{(x+4)^n}{n \cdot 3^n} $</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">1. Center and Coefficient</span>
+                        Center is $a=-4$. The coefficient is:
+                        $$ a_n=\frac{1}{n3^n},\qquad a_{n+1}=\frac{1}{(n+1)3^{n+1}}. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">2. Ratio Test (keep the limit the whole time)</span>
+                        $$ L=\lim_{n\to\infty}\left|a_{n+1}\cdot \frac{1}{a_n}\right|
+                        =\lim_{n\to\infty}\left|\frac{1}{(n+1)3^{n+1}}\cdot (n3^n)\right|. $$
+
+                        $$ L=\lim_{n\to\infty}\frac{n}{n+1}\cdot \frac{3^n}{3^{n+1}}
+                        =\lim_{n\to\infty}\frac{n}{n+1}\cdot \frac{1}{3}. $$
+
+                        $$ L=\frac{1}{3}\lim_{n\to\infty}\frac{n}{n+1}. $$
+
+                        This is $\infty/\infty$, so apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ \lim_{n\to\infty}\frac{n}{n+1}
+                        =\lim_{n\to\infty}\frac{\frac{d}{dn}(n)}{\frac{d}{dn}(n+1)}
+                        =\lim_{n\to\infty}\frac{1}{1}=1. $$
+
+                        $$ L=\frac{1}{3}\cdot 1=\frac{1}{3},\qquad R=\frac{1}{L}=3. $$
+                    </div>
+
+                    <div class="endpoint-box">
+                        <strong>Endpoints:</strong>
+                        $$ x=a-R=-4-3=-7,\qquad x=a+R=-4+3=-1. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">3. Plug in endpoints: first 4 terms + partial sum S4</span>
+
+                        <div class="term-block">
+                            <strong>At $x=-1$:</strong> $(x+4)=3$
+                            $$ \sum_{n=1}^{\infty}\frac{3^n}{n3^n}=\sum_{n=1}^{\infty}\frac{1}{n}. $$
+                            $$ n=1:\ 1,\quad n=2:\ \frac{1}{2},\quad n=3:\ \frac{1}{3},\quad n=4:\ \frac{1}{4}. $$
+                            $$ S_4=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}. $$
+                        </div>
+
+                        <div class="term-block">
+                            <strong>At $x=-7$:</strong> $(x+4)=-3$
+                            $$ \sum_{n=1}^{\infty}\frac{(-3)^n}{n3^n}=\sum_{n=1}^{\infty}\frac{(-1)^n}{n}. $$
+                            $$ n=1:\ -1,\quad n=2:\ \frac{1}{2},\quad n=3:\ -\frac{1}{3},\quad n=4:\ \frac{1}{4}. $$
+                            $$ S_4=-1+\frac{1}{2}-\frac{1}{3}+\frac{1}{4}. $$
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 2f -->
+            <li>
+                <div class="problem-text">$ \displaystyle \sum_{n=0}^{\infty} \frac{x^n}{2n+1} $</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">1. Center and Coefficient</span>
+                        Center is $a=0$. The coefficient is:
+                        $$ a_n=\frac{1}{2n+1},\qquad a_{n+1}=\frac{1}{2(n+1)+1}=\frac{1}{2n+3}. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">2. Ratio Test (keep the limit the whole time)</span>
+                        $$ L=\lim_{n\to\infty}\left|a_{n+1}\cdot \frac{1}{a_n}\right|
+                        =\lim_{n\to\infty}\left|\frac{1}{2n+3}\cdot (2n+1)\right|
+                        =\lim_{n\to\infty}\frac{2n+1}{2n+3}. $$
+
+                        This is $\infty/\infty$, so apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ L=\lim_{n\to\infty}\frac{\frac{d}{dn}(2n+1)}{\frac{d}{dn}(2n+3)}
+                        =\lim_{n\to\infty}\frac{2}{2}=1. $$
+
+                        $$ R=\frac{1}{L}=\frac{1}{1}=1. $$
+                    </div>
+
+                    <div class="endpoint-box">
+                        <strong>Endpoints:</strong>
+                        $$ x=a-R=0-1=-1,\qquad x=a+R=0+1=1. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">3. Plug in endpoints: first 4 terms + partial sum S4</span>
+
+                        <div class="term-block">
+                            <strong>At $x=1$:</strong>
+                            $$ \sum_{n=0}^{\infty}\frac{1^n}{2n+1}=\sum_{n=0}^{\infty}\frac{1}{2n+1}. $$
+                            $$ n=0:\ 1,\quad n=1:\ \frac{1}{3},\quad n=2:\ \frac{1}{5},\quad n=3:\ \frac{1}{7}. $$
+                            $$ S_4=1+\frac{1}{3}+\frac{1}{5}+\frac{1}{7}. $$
+                        </div>
+
+                        <div class="term-block">
+                            <strong>At $x=-1$:</strong>
+                            $$ \sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}. $$
+                            $$ n=0:\ 1,\quad n=1:\ -\frac{1}{3},\quad n=2:\ \frac{1}{5},\quad n=3:\ -\frac{1}{7}. $$
+                            $$ S_4=1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}. $$
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 2g -->
+            <li>
+                <div class="problem-text">$ \displaystyle \sum_{n=1}^{\infty} \frac{n(x-1)^n}{5^{n+1}} $</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">1. Center and Coefficient</span>
+                        Center is $a=1$. The coefficient is:
+                        $$ a_n=\frac{n}{5^{n+1}},\qquad a_{n+1}=\frac{n+1}{5^{(n+1)+1}}=\frac{n+1}{5^{n+2}}. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">2. Ratio Test (keep the limit the whole time)</span>
+                        $$ L=\lim_{n\to\infty}\left|a_{n+1}\cdot \frac{1}{a_n}\right|
+                        =\lim_{n\to\infty}\left|\frac{n+1}{5^{n+2}}\cdot \frac{5^{n+1}}{n}\right|. $$
+
+                        $$ L=\lim_{n\to\infty}\frac{n+1}{n}\cdot \frac{5^{n+1}}{5^{n+2}}
+                        =\lim_{n\to\infty}\frac{n+1}{n}\cdot \frac{1}{5}. $$
+
+                        $$ L=\frac{1}{5}\lim_{n\to\infty}\frac{n+1}{n}. $$
+
+                        This is $\infty/\infty$, so apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ \lim_{n\to\infty}\frac{n+1}{n}
+                        =\lim_{n\to\infty}\frac{\frac{d}{dn}(n+1)}{\frac{d}{dn}(n)}
+                        =\lim_{n\to\infty}\frac{1}{1}=1. $$
+
+                        $$ L=\frac{1}{5}\cdot 1=\frac{1}{5},\qquad R=\frac{1}{L}=5. $$
+                    </div>
+
+                    <div class="endpoint-box">
+                        <strong>Endpoints:</strong>
+                        $$ x=a-R=1-5=-4,\qquad x=a+R=1+5=6. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">3. Plug in endpoints: first 4 terms + partial sum S4</span>
+
+                        <div class="term-block">
+                            <strong>At $x=6$:</strong> $(x-1)=5$
+                            $$ \sum_{n=1}^{\infty}\frac{n5^n}{5^{n+1}}
+                            =\sum_{n=1}^{\infty}\frac{n}{5}. $$
+                            $$ n=1:\ \frac{1}{5},\quad n=2:\ \frac{2}{5},\quad n=3:\ \frac{3}{5},\quad n=4:\ \frac{4}{5}. $$
+                            $$ S_4=\frac{1}{5}+\frac{2}{5}+\frac{3}{5}+\frac{4}{5}. $$
+                        </div>
+
+                        <div class="term-block">
+                            <strong>At $x=-4$:</strong> $(x-1)=-5$
+                            $$ \sum_{n=1}^{\infty}\frac{n(-5)^n}{5^{n+1}}
+                            =\sum_{n=1}^{\infty}\frac{n(-1)^n5^n}{5^{n+1}}
+                            =\sum_{n=1}^{\infty}\frac{(-1)^n n}{5}. $$
+                            $$ n=1:\ -\frac{1}{5},\quad n=2:\ \frac{2}{5},\quad n=3:\ -\frac{3}{5},\quad n=4:\ \frac{4}{5}. $$
+                            $$ S_4=-\frac{1}{5}+\frac{2}{5}-\frac{3}{5}+\frac{4}{5}. $$
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 2h -->
+            <li>
+                <div class="problem-text">$ \displaystyle \sum_{n=1}^{\infty} \frac{(x-2)^n}{\sqrt{n}} $</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">1. Center and Coefficient</span>
+                        Center is $a=2$. The coefficient is:
+                        $$ a_n=\frac{1}{\sqrt{n}},\qquad a_{n+1}=\frac{1}{\sqrt{n+1}}. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">2. Ratio Test (keep the limit the whole time)</span>
+                        $$ L=\lim_{n\to\infty}\left|a_{n+1}\cdot \frac{1}{a_n}\right|
+                        =\lim_{n\to\infty}\left|\frac{1}{\sqrt{n+1}}\cdot \sqrt{n}\right|
+                        =\lim_{n\to\infty}\sqrt{\frac{n}{n+1}}. $$
+
+                        $$ L=\sqrt{\lim_{n\to\infty}\frac{n}{n+1}}. $$
+
+                        This is $\infty/\infty$, so apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ \lim_{n\to\infty}\frac{n}{n+1}
+                        =\lim_{n\to\infty}\frac{\frac{d}{dn}(n)}{\frac{d}{dn}(n+1)}
+                        =\lim_{n\to\infty}\frac{1}{1}=1. $$
+
+                        $$ L=\sqrt{1}=1,\qquad R=\frac{1}{L}=\frac{1}{1}=1. $$
+                    </div>
+
+                    <div class="endpoint-box">
+                        <strong>Endpoints:</strong>
+                        $$ x=a-R=2-1=1,\qquad x=a+R=2+1=3. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">3. Plug in endpoints: first 4 terms + partial sum S4</span>
+
+                        <div class="term-block">
+                            <strong>At $x=3$:</strong> $(x-2)=1$
+                            $$ \sum_{n=1}^{\infty}\frac{1^n}{\sqrt{n}}=\sum_{n=1}^{\infty}\frac{1}{\sqrt{n}}. $$
+                            $$ n=1:\ 1,\quad n=2:\ \frac{1}{\sqrt2},\quad n=3:\ \frac{1}{\sqrt3},\quad n=4:\ \frac{1}{2}. $$
+                            $$ S_4=1+\frac{1}{\sqrt2}+\frac{1}{\sqrt3}+\frac{1}{2}. $$
+                        </div>
+
+                        <div class="term-block">
+                            <strong>At $x=1$:</strong> $(x-2)=-1$
+                            $$ \sum_{n=1}^{\infty}\frac{(-1)^n}{\sqrt{n}}. $$
+                            $$ n=1:\ -1,\quad n=2:\ \frac{1}{\sqrt2},\quad n=3:\ -\frac{1}{\sqrt3},\quad n=4:\ \frac{1}{2}. $$
+                            $$ S_4=-1+\frac{1}{\sqrt2}-\frac{1}{\sqrt3}+\frac{1}{2}. $$
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 2i -->
+            <li>
+                <div class="problem-text">$ \displaystyle \sum_{n=1}^{\infty} \frac{(2x)^n}{n} $</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">1. Center and Coefficient</span>
+                        Center is $a=0$.
+                        Rewrite each term:
+                        $$ \frac{(2x)^n}{n}=\frac{2^n}{n}\,x^n. $$
+                        So the coefficient is:
+                        $$ a_n=\frac{2^n}{n},\qquad a_{n+1}=\frac{2^{n+1}}{n+1}. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">2. Ratio Test (keep the limit the whole time)</span>
+                        $$ L=\lim_{n\to\infty}\left|a_{n+1}\cdot \frac{1}{a_n}\right|
+                        =\lim_{n\to\infty}\left|\frac{2^{n+1}}{n+1}\cdot \frac{n}{2^n}\right|. $$
+
+                        $$ L=\lim_{n\to\infty}\left|\frac{2^{n+1}}{2^n}\right|\cdot \frac{n}{n+1}
+                        =\lim_{n\to\infty}2\cdot \frac{n}{n+1}. $$
+
+                        $$ L=2\lim_{n\to\infty}\frac{n}{n+1}. $$
+
+                        This is $\infty/\infty$, so apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ \lim_{n\to\infty}\frac{n}{n+1}
+                        =\lim_{n\to\infty}\frac{\frac{d}{dn}(n)}{\frac{d}{dn}(n+1)}
+                        =\lim_{n\to\infty}\frac{1}{1}=1. $$
+
+                        $$ L=2\cdot 1=2,\qquad R=\frac{1}{L}=\frac{1}{2}. $$
+                    </div>
+
+                    <div class="endpoint-box">
+                        <strong>Endpoints:</strong>
+                        $$ x=a-R=0-\frac{1}{2}=-0.5,\qquad x=a+R=0+\frac{1}{2}=0.5. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">3. Plug in endpoints: first 4 terms + partial sum S4</span>
+
+                        <div class="term-block">
+                            <strong>At $x=0.5$:</strong> $(2x)=1$
+                            $$ \sum_{n=1}^{\infty}\frac{1^n}{n}=\sum_{n=1}^{\infty}\frac{1}{n}. $$
+                            $$ n=1:\ 1,\quad n=2:\ \frac{1}{2},\quad n=3:\ \frac{1}{3},\quad n=4:\ \frac{1}{4}. $$
+                            $$ S_4=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}. $$
+                        </div>
+
+                        <div class="term-block">
+                            <strong>At $x=-0.5$:</strong> $(2x)=-1$
+                            $$ \sum_{n=1}^{\infty}\frac{(-1)^n}{n}. $$
+                            $$ n=1:\ -1,\quad n=2:\ \frac{1}{2},\quad n=3:\ -\frac{1}{3},\quad n=4:\ \frac{1}{4}. $$
+                            $$ S_4=-1+\frac{1}{2}-\frac{1}{3}+\frac{1}{4}. $$
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+
+            <!-- 2j -->
+            <li>
+                <div class="problem-text">$ \displaystyle \sum_{n=0}^{\infty} (-1)^n \frac{(x+3)^n}{2^n} $</div>
+                <div class="solution-box">
+
+                    <div class="solution-step">
+                        <span class="step-label">1. Center and Coefficient</span>
+                        Center is $a=-3$. The coefficient is:
+                        $$ a_n=\frac{(-1)^n}{2^n},\qquad a_{n+1}=\frac{(-1)^{n+1}}{2^{n+1}}. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">2. Ratio Test (keep the limit the whole time)</span>
+                        $$ L=\lim_{n\to\infty}\left|a_{n+1}\cdot \frac{1}{a_n}\right|
+                        =\lim_{n\to\infty}\left|\frac{(-1)^{n+1}}{2^{n+1}}\cdot \frac{2^n}{(-1)^n}\right|. $$
+
+                        $$ L=\lim_{n\to\infty}\left|\frac{(-1)^{n+1}}{(-1)^n}\right|\cdot \frac{2^n}{2^{n+1}}
+                        =\lim_{n\to\infty}1\cdot \frac{1}{2}
+                        =\frac{1}{2}. $$
+
+                        $$ R=\frac{1}{L}=\frac{1}{1/2}=2. $$
+                    </div>
+
+                    <div class="endpoint-box">
+                        <strong>Endpoints:</strong>
+                        $$ x=a-R=-3-2=-5,\qquad x=a+R=-3+2=-1. $$
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">3. Plug in endpoints: first 4 terms + partial sum S4</span>
+
+                        <div class="term-block">
+                            <strong>At $x=-1$:</strong> $(x+3)=2$
+                            $$ \sum_{n=0}^{\infty}(-1)^n\frac{2^n}{2^n}=\sum_{n=0}^{\infty}(-1)^n. $$
+                            $$ n=0:\ 1,\quad n=1:\ -1,\quad n=2:\ 1,\quad n=3:\ -1. $$
+                            $$ S_4=1-1+1-1. $$
+                        </div>
+
+                        <div class="term-block">
+                            <strong>At $x=-5$:</strong> $(x+3)=-2$
+                            $$ \sum_{n=0}^{\infty}(-1)^n\frac{(-2)^n}{2^n}
+                            =\sum_{n=0}^{\infty}(-1)^n(-1)^n
+                            =\sum_{n=0}^{\infty}1. $$
+                            $$ n=0:\ 1,\quad n=1:\ 1,\quad n=2:\ 1,\quad n=3:\ 1. $$
+                            $$ S_4=1+1+1+1=4. $$
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+
+        </ol>
+    </section>
+
+</div>
+</body>
+</html>

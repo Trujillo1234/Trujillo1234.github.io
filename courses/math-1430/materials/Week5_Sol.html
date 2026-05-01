@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 - Homework 5 Solutions</title>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX CONFIGURATION -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-paper: #F9F5EB;
+            --text-main: #111827;
+            --primary: #2563eb;
+            --secondary: #059669;
+            --border-color: #cbd5e1;
+            --font-serif: 'Crimson Pro', serif;
+            --font-sans: 'Space Grotesk', sans-serif;
+            --sol-bg: #eff6ff;
+            --danger: #be123c;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            line-height: 1.65;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .page-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            min-height: 1100px;
+        }
+
+        header {
+            border-bottom: 2px solid var(--text-main);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-family: var(--font-sans);
+            font-size: 2.5rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .sub-header {
+            font-family: var(--font-sans);
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .problem-section {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+
+        h2 {
+            font-family: var(--font-sans);
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        ol.problem-list {
+            list-style-type: none;
+            counter-reset: problem-counter;
+            padding: 0;
+        }
+
+        ol.problem-list > li {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 40px;
+        }
+
+        ol.problem-list > li::before {
+            counter-increment: problem-counter;
+            content: counter(problem-counter, lower-alpha) ")";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-family: var(--font-sans);
+            color: #444;
+            top: 0;
+            font-size: 1.1rem;
+        }
+
+        .problem-text {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .solution-box {
+            background-color: var(--sol-bg);
+            border-left: 4px solid var(--primary);
+            padding: 20px 30px;
+            margin-top: 15px;
+            border-radius: 0 6px 6px 0;
+            font-size: 1.05rem;
+            color: #1e293b;
+            page-break-inside: avoid;
+        }
+
+        .solution-step {
+            margin-bottom: 20px;
+        }
+
+        .step-label {
+            display: block;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .instruction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            display: block;
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .lh-rule {
+            color: var(--danger);
+            font-weight: 700;
+            font-family: var(--font-sans);
+            font-size: 0.9em;
+        }
+
+        .divergence-note {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #dbeafe;
+            font-size: 0.95em;
+            color: var(--danger);
+            font-style: italic;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .page-container { box-shadow: none; padding: 0; margin: 0; max-width: 100%; }
+            h2 { color: black !important; border-bottom: 1px solid #000; }
+        }
+    </style>
+</head>
+
+<body>
+<div class="page-container">
+
+    <header>
+        <h1>Homework 5 Solutions</h1>
+        <div class="sub-header">
+            Calculus 2 &bull; Series Convergence, Power Series, &amp; Taylor Series
+        </div>
+    </header>
+
+    <!-- SECTION 1 -->
+    <section class="problem-section">
+        <h2>1. Series Convergence</h2>
+        <span class="instruction">
+            Determine if the series converges or diverges. Use any test.
+        </span>
+
+        <ol class="problem-list">
+
+            <!-- Problem 1a -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{2^n}{3^n+n} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Solution 1: Direct Comparison Test</span>
+                        For all $n&gt;0$,
+                        $$ 0&lt;\frac{2^n}{3^n+n}\le \frac{2^n}{3^n}=\left(\frac{2}{3}\right)^n. $$
+                        The geometric series $\sum_{n=1}^{\infty}\left(\frac{2}{3}\right)^n$ converges since $r=\frac{2}{3}$ and $|r|&lt;1$.
+                        <br><br>
+                        By the direct comparison test, $\displaystyle\sum_{n=1}^{\infty}\frac{2^n}{3^n+n}$ must also converge.
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Solution 2: Limit Comparison Test</span>
+                        Compare to the geometric series $\displaystyle\sum_{n=1}^{\infty}\left(\frac{2}{3}\right)^n$.
+                        $$ \lim_{n\to\infty}\frac{\frac{2^n}{3^n+n}}{\left(\frac{2}{3}\right)^n}
+                        =\lim_{n\to\infty}\frac{\frac{2^n}{3^n+n}}{\frac{2^n}{3^n}}
+                        =\lim_{n\to\infty}\frac{3^n}{3^n+n}. $$
+                        Using <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ \lim_{n\to\infty}\frac{3^n}{3^n+n}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{\ln(3)\,3^n}{\ln(3)\,3^n+1}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{\ln(3)\ln(3)\,3^n}{\ln(3)\ln(3)\,3^n}=1. $$
+                        Since $0&lt;1&lt;\infty$, the limit comparison test implies that
+                        $\displaystyle\sum_{n=1}^{\infty}\frac{2^n}{3^n+n}$ must also converge.
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 1b -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{2}{n^2+n} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Solution 1: Direct Comparison Test</span>
+                        For all $n\ge 1$,
+                        $$ 0&lt;\frac{2}{n^2+n}\le \frac{2}{n^2}=2\cdot\frac{1}{n^2}. $$
+                        The series $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$ is a $p$-series with $p=2$ and $p\ge 1$, so it converges.
+                        <br><br>
+                        By the direct comparison test, $\displaystyle\sum_{n=1}^{\infty}\frac{2}{n^2+n}$ must also converge.
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Solution 2: Limit Comparison Test</span>
+                        Compare to $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$.
+                        $$ \lim_{n\to\infty}\frac{\frac{2}{n^2+n}}{\frac{1}{n^2}}
+                        =\lim_{n\to\infty}\frac{2}{n^2+n}\cdot n^2
+                        =\lim_{n\to\infty}\frac{2n^2}{n^2+n}. $$
+                        Using <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ \lim_{n\to\infty}\frac{2n^2}{n^2+n}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{4n}{2n+1}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{4}{2}=2. $$
+                        Since $0&lt;2&lt;\infty$, the limit comparison test shows that
+                        $\displaystyle\sum_{n=1}^{\infty}\frac{2}{n^2+n}$ must also converge.
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 1c -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=2}^{\infty} \frac{\sqrt{n}}{n^2+n} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Solution 1: Direct Comparison Test</span>
+                        For all $n&gt;0$,
+                        $$ 0&lt;\frac{\sqrt{n}}{n^2+n}\le \frac{\sqrt{n}}{n^2}=\frac{1}{n^{1.5}}. $$
+                        The series $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{1.5}}$ is a $p$-series with $p=1.5$, and since $p=1.5&gt;1$ it converges.
+                        <br><br>
+                        By the direct comparison test, $\displaystyle\sum_{n=2}^{\infty}\frac{\sqrt{n}}{n^2+n}$ must also converge.
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Solution 2: Limit Comparison Test</span>
+                        Compare to $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{1.5}}$.
+                        $$ \lim_{n\to\infty}\frac{\frac{\sqrt{n}}{n^2+n}}{\frac{1}{n^{1.5}}}
+                        =\lim_{n\to\infty}\frac{\sqrt{n}}{n^2+n}\cdot n^{1.5}
+                        =\lim_{n\to\infty}\frac{n^2}{n^2+n}. $$
+                        Using <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ \lim_{n\to\infty}\frac{n^2}{n^2+n}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{2n}{2n+1}=1. $$
+                        Since $0&lt;1&lt;\infty$, the limit comparison test implies that
+                        $\displaystyle\sum_{n=2}^{\infty}\frac{\sqrt{n}}{n^2+n}$ must also converge.
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 1d -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2+n} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Alternating Series Test</span>
+                        Let $b_n=\dfrac{1}{n^2+n}$.
+                        <ol style="margin-top: 8px;">
+                            <li>For all $n&gt;0$, $b_n=\dfrac{1}{n^2+n}&gt;0$.</li>
+                            <li>For all $n&gt;0$,
+                                $$ b_{n+1}=\frac{1}{(n+1)^2+(n+1)}\le \frac{1}{n^2+n}=b_n. $$
+                            </li>
+                            <li>
+                                $$ \lim_{n\to\infty} b_n=\lim_{n\to\infty}\frac{1}{n^2+n}=0. $$
+                            </li>
+                        </ol>
+                        Since (1), (2), and (3) are all true, the alternating series test implies that the series converges.
+                    </div>
+                    <div class="divergence-note">
+                        Also possible to use absolute convergence with a comparison test.
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 1e -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{n+1}{3n+2} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Divergence Test</span>
+                        $$ \lim_{n\to\infty}\frac{n+1}{3n+2}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{1}{3}=\frac{1}{3}\ne 0. $$
+                        Since the limit of the terms is not $0$, the divergence test implies that
+                        $\displaystyle\sum_{n=1}^{\infty}\frac{n+1}{3n+2}$ diverges.
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 1f -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=3}^{\infty} \frac{n+1}{n^2-2n} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Solution 1: Limit Comparison Test</span>
+                        Compare to the $p$-series $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}$. This series diverges since $p=1$ and $p\le 1$.
+                        $$ \lim_{n\to\infty}\frac{\frac{n+1}{n^2-2n}}{\frac{1}{n}}
+                        =\lim_{n\to\infty}\frac{n+1}{n^2-2n}\cdot n
+                        =\lim_{n\to\infty}\frac{n^2+n}{n^2-2n}. $$
+                        Using <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ \lim_{n\to\infty}\frac{n^2+n}{n^2-2n}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{2n+1}{2n-2}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{2}{2}=1. $$
+                        Since $0&lt;1&lt;\infty$, the limit comparison test implies that
+                        $\displaystyle\sum_{n=3}^{\infty}\frac{n+1}{n^2-2n}$ must also diverge.
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Solution 2: Direct Comparison Test</span>
+                        For all $n&gt;3$,
+                        $$ 0&lt;\frac{1}{n}=\frac{n}{n^2}\le \frac{n+1}{n^2-2n}. $$
+                        The series $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}$ diverges (it is a $p$-series with $p=1$ and $p\le 1$).
+                        <br><br>
+                        By the direct comparison test, $\displaystyle\sum_{n=3}^{\infty}\frac{n+1}{n^2-2n}$ must also diverge.
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 1g -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \cos\left(\frac{1}{n}\right) $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Divergence Test</span>
+                        $$ \lim_{n\to\infty}\cos\left(\frac{1}{n}\right)
+                        =\cos\left(\lim_{n\to\infty}\frac{1}{n}\right)
+                        =\cos(0)=1\ne 0. $$
+                        Since $1\ne 0$, the divergence test implies that $\displaystyle\sum_{n=1}^{\infty}\cos\!\left(\frac{1}{n}\right)$ diverges.
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 1h -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{1}{\sqrt[5]{n}} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">p-Series Test</span>
+                        Note that
+                        $$ \frac{1}{\sqrt[5]{n}}=\frac{1}{n^{1/5}}. $$
+                        So the series is a $p$-series with $p=\frac{1}{5}$. Since $\frac{1}{5}\le 1$, the series diverges by the $p$-series test.
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 1i -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{n^5}{n^6+5n} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Solution 1: Direct Comparison Test</span>
+                        For all $n&gt;5$,
+                        $$ 0&lt;\frac{n^5}{n^6+5n}\le \frac{n^5}{n^6}=\frac{1}{n}. $$
+                        The series $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}$ is a constant multiple of a $p$-series with $p=1$, and since $p\le 1$, it diverges.
+                        <br><br>
+                        By the direct comparison test, $\displaystyle\sum_{n=1}^{\infty}\frac{n^5}{n^6+5n}$ must also diverge.
+                    </div>
+
+                    <div class="solution-step">
+                        <span class="step-label">Solution 2: Limit Comparison Test</span>
+                        Compare to the $p$-series $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}$ (divergent since $p=1\le 1$).
+                        $$ \lim_{n\to\infty}\frac{\frac{n^5}{n^6+5n}}{\frac{1}{n}}
+                        =\lim_{n\to\infty}\frac{n^5}{n^6+5n}\cdot n
+                        =\lim_{n\to\infty}\frac{n^6}{n^6+5n}. $$
+                        Using <span class="lh-rule">L'Hôpital's Rule</span>:
+                        $$ \lim_{n\to\infty}\frac{n^6}{n^6+5n}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{6n^5}{6n^5+5}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{30n^4}{30n^4}=1. $$
+                        Since $0&lt;1&lt;\infty$, the limit comparison test implies that
+                        $\displaystyle\sum_{n=1}^{\infty}\frac{n^5}{n^6+5n}$ must also diverge.
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 1j -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} n^2 $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Divergence Test</span>
+                        $$ \lim_{n\to\infty} n^2=\infty\ne 0. $$
+                        Since the limit is not $0$, the divergence test implies that $\displaystyle\sum_{n=1}^{\infty}n^2$ diverges.
+                    </div>
+                    <div class="divergence-note">
+                        Note: This is also a $p$-series with $p=-2$. Thus, the $p$-series test also shows the series diverges since $p\le 1$.
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 1k -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{2n+1} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Alternating Series Test</span>
+                        Let $b_n=\dfrac{1}{2n+1}$.
+                        <ol style="margin-top: 8px;">
+                            <li>For all $n&gt;0$, $b_n=\dfrac{1}{2n+1}&gt;0$.</li>
+                            <li>For all $n&gt;0$,
+                                $$ b_{n+1}=\frac{1}{2n+3}\le \frac{1}{2n+1}=b_n. $$
+                            </li>
+                            <li>
+                                $$ \lim_{n\to\infty} b_n=\lim_{n\to\infty}\frac{1}{2n+1}=0. $$
+                            </li>
+                        </ol>
+                        Since (1), (2), and (3) are all true, the alternating series test shows that
+                        $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{2n+1}$ converges.
+                    </div>
+                    <div class="divergence-note">
+                        Note: It is also possible to do this using absolute convergence with a comparison test.
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 1l -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=2}^{\infty} \frac{5n^2+3n}{7n^2-n} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Divergence Test</span>
+                        $$ \lim_{n\to\infty}\frac{5n^2+3n}{7n^2-n}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{10n+3}{14n-1}
+                        \xrightarrow{L'H}\lim_{n\to\infty}\frac{10}{14}=\frac{5}{7}\ne 0. $$
+                        Since $\frac{5}{7}\ne 0$, the divergence test shows that
+                        $\displaystyle\sum_{n=2}^{\infty}\frac{5n^2+3n}{7n^2-n}$ diverges.
+                    </div>
+                </div>
+            </li>
+
+        </ol>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section class="problem-section">
+        <h2>2. Power Series</h2>
+        <span class="instruction">
+            Find the <strong>radius</strong> and <strong>center</strong> of convergence for each series.
+        </span>
+
+        <ol class="problem-list">
+            <!-- Problem 2a -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=0}^{\infty} n! (x-10)^n $$</div>
+                <div class="solution-box">
+                    <strong>Center:</strong> $a=10$.<br><br>
+                    Let $a_n=n!$. (So the series is $\sum a_n (x-10)^n$.)<br><br>
+                    <strong>Ratio Test (on coefficients):</strong>
+                    $$ \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+                    =\lim_{n\to\infty}\frac{(n+1)!}{n!}
+                    =\lim_{n\to\infty}(n+1)=\infty. $$
+                    Therefore the radius of convergence is $\boxed{R=0}$.
+                </div>
+            </li>
+
+            <!-- Problem 2b -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{2^n}{n} (x-5)^n $$</div>
+                <div class="solution-box">
+                    <strong>Center:</strong> $a=5$.<br><br>
+                    Let $a_n=\dfrac{2^n}{n}$.<br><br>
+                    <strong>Ratio Test (on coefficients):</strong>
+                    $$ \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+                    =\lim_{n\to\infty}\frac{\frac{2^{n+1}}{n+1}}{\frac{2^n}{n}}
+                    =\lim_{n\to\infty}\frac{2^{n+1}}{n+1}\cdot\frac{n}{2^n}
+                    =\lim_{n\to\infty}\frac{2n}{n+1}=2. $$
+                    Therefore the radius of convergence is $\boxed{R=\frac{1}{2}}$.
+                </div>
+            </li>
+
+            <!-- Problem 2c -->
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{x^n}{n^2} $$</div>
+                <div class="solution-box">
+                    <strong>Center:</strong> $a=0$.<br><br>
+                    Let $a_n=\dfrac{1}{n^2}$.<br><br>
+                    <strong>Ratio Test (on coefficients):</strong>
+                    $$ \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+                    =\lim_{n\to\infty}\frac{\frac{1}{(n+1)^2}}{\frac{1}{n^2}}
+                    =\lim_{n\to\infty}\frac{n^2}{(n+1)^2}. $$
+                    Using <span class="lh-rule">L'Hôpital's Rule</span>:
+                    $$ \lim_{n\to\infty}\frac{n^2}{(n+1)^2}
+                    \xrightarrow{L'H}\lim_{n\to\infty}\frac{2n}{2(n+1)}
+                    \xrightarrow{L'H}\lim_{n\to\infty}\frac{2}{2}=1. $$
+                    Therefore the radius of convergence is $\boxed{R=1}$.
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="problem-section">
+        <h2>3. Taylor Series</h2>
+        <span class="instruction">Find the Taylor series at $x=0$ (Maclaurin series) for each function.</span>
+
+        <ol class="problem-list">
+            <!-- Problem 3a -->
+            <li>
+                <div class="problem-text">$$ f(x) = e^{-x} $$</div>
+                <div class="solution-box">
+                    $$ e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}
+                    \quad\Longrightarrow\quad
+                    e^{-x}=\sum_{n=0}^{\infty}\frac{(-x)^n}{n!}
+                    =\sum_{n=0}^{\infty}\frac{(-1)^n x^n}{n!}. $$
+                </div>
+            </li>
+
+            <!-- Problem 3b -->
+            <li>
+                <div class="problem-text">$$ g(x) = \frac{1}{1-5x} $$</div>
+                <div class="solution-box">
+                    $$ \frac{1}{1-5x}=\sum_{n=0}^{\infty}(5x)^n
+                    =\sum_{n=0}^{\infty}5^n x^n. $$
+                </div>
+            </li>
+
+            <!-- Problem 3c -->
+            <li>
+                <div class="problem-text">$$ h(x) = \sin(-x) $$</div>
+                <div class="solution-box">
+                    $$ \sin(-x)=\sum_{n=0}^{\infty}\frac{(-1)^n(-x)^{2n+1}}{(2n+1)!}
+                    =\sum_{n=0}^{\infty}\frac{(-1)^n(-1)\,x^{2n+1}}{(2n+1)!}
+                    =\sum_{n=0}^{\infty}\frac{(-1)^{n+1}x^{2n+1}}{(2n+1)!}. $$
+                    <div style="margin-top:10px; font-size:0.95em;">
+                        (Here we used $(-1)^{2n+1}=-1$.)
+                    </div>
+                </div>
+            </li>
+
+            <!-- Problem 3d -->
+            <li>
+                <div class="problem-text">$$ k(x) = \frac{1}{1-x^2} $$</div>
+                <div class="solution-box">
+                    $$ \frac{1}{1-x^2}=\sum_{n=0}^{\infty}(x^2)^n=\sum_{n=0}^{\infty}x^{2n}. $$
+                </div>
+            </li>
+
+            <!-- Problem 3e -->
+            <li>
+                <div class="problem-text">$$ l(x) = \cos(x^3) $$</div>
+                <div class="solution-box">
+                    $$ \cos(x^3)=\sum_{n=0}^{\infty}\frac{(-1)^n(x^3)^{2n}}{(2n)!}
+                    =\sum_{n=0}^{\infty}\frac{(-1)^n x^{6n}}{(2n)!}. $$
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section class="problem-section">
+        <h2>4. Taylor Polynomials</h2>
+        <span class="instruction">Find the Taylor polynomials as indicated below.</span>
+
+        <ol class="problem-list">
+            <!-- Problem 4a -->
+            <li>
+                <div class="problem-text">$$ f(x)=5^x \quad \text{at } x=0 $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        $f(x)=5^x \qquad\Rightarrow\qquad f(0)=5^0=1$<br>
+                        $f'(x)=\ln(5)\,5^x \qquad\Rightarrow\qquad f'(0)=\ln(5)\,5^0=\ln(5)$<br>
+                        $f''(x)=\ln(5)\ln(5)\,5^x \qquad\Rightarrow\qquad f''(0)=\ln(5)\ln(5)\,5^0=(\ln 5)^2$
+                    </div>
+                    $$ P_1(x)=1+\ln(5)\,x $$
+                    $$ P_2(x)=1+\ln(5)\,x+\frac{(\ln 5)^2}{2}\,x^2 $$
+                </div>
+            </li>
+
+            <!-- Problem 4b -->
+            <li>
+                <div class="problem-text">$$ f(x)=x^5 \quad \text{at } x=1 $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        $f(x)=x^5 \qquad\Rightarrow\qquad f(1)=1^5=1$<br>
+                        $f'(x)=5x^4 \qquad\Rightarrow\qquad f'(1)=5\cdot 1^4=5$<br>
+                        $f''(x)=20x^3 \qquad\Rightarrow\qquad f''(1)=20\cdot 1^3=20$
+                    </div>
+                    $$ P_1(x)=1+5(x-1) $$
+                    $$ P_2(x)=1+5(x-1)+\frac{20}{2}(x-1)^2 $$
+                </div>
+            </li>
+
+            <!-- Problem 4c -->
+            <li>
+                <div class="problem-text">$$ f(x)=\tan(x) \quad \text{at } x=\frac{\pi}{4} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        $f\!\left(\frac{\pi}{4}\right)=\tan\!\left(\frac{\pi}{4}\right)=1$<br>
+                        $f'(x)=\sec^2(x)\qquad\Rightarrow\qquad f'\!\left(\frac{\pi}{4}\right)=\sec^2\!\left(\frac{\pi}{4}\right)=(\sqrt{2})^2=2$<br>
+                        $f''(x)=2\sec(x)\cdot \sec(x)\tan(x)=2\sec^2(x)\tan(x)$<br>
+                        $f''\!\left(\frac{\pi}{4}\right)=2\sec^2\!\left(\frac{\pi}{4}\right)\tan\!\left(\frac{\pi}{4}\right)=2(2)(1)=4$
+                    </div>
+                    $$ P_1(x)=1+2\left(x-\frac{\pi}{4}\right) $$
+                    $$ P_2(x)=1+2\left(x-\frac{\pi}{4}\right)+\frac{4}{2}\left(x-\frac{\pi}{4}\right)^2 $$
+                </div>
+            </li>
+        </ol>
+    </section>
+
+</div>
+</body>
+</html>

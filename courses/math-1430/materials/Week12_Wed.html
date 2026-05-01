@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculus 2 - Trigonometric Integrals</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'],['\\(', '\\)']],
+        displayMath: [['$$', '$$'],['\\[', '\\]']],
+        packages: {'[+]': ['cancel']}
+      },
+      loader: {load: ['[tex]/cancel']},
+      svg: { fontCache: 'global' }
+    };
+  </script>
+
+  <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg-paper: #F9F5EB;
+      --text-main: #111827;
+      --primary: #2563eb;
+      --secondary: #059669;
+      --font-serif: 'Crimson Pro', serif;
+      --font-sans: 'Space Grotesk', sans-serif;
+      --sol-bg: #eff6ff;
+      --muted: #64748b;
+      --card-bg: #f8fbff;
+      --card-border: #dbeafe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-paper);
+      color: var(--text-main);
+      font-family: var(--font-serif);
+      line-height: 1.65;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .page-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 60px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      min-height: 1100px;
+    }
+
+    header {
+      border-bottom: 2px solid var(--text-main);
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-sans);
+      font-size: 2.5rem;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .sub-header {
+      font-family: var(--font-sans);
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    h2 {
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      color: var(--primary);
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+      margin-top: 40px;
+    }
+
+    h3 { font-family: var(--font-sans); }
+
+    .objectives-box {
+      border: 3px solid var(--primary);
+      background-color: #eff6ff;
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+    }
+
+    .objectives-title {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .box-def {
+      border: 2px solid var(--text-main);
+      padding: 20px 30px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      background-color: #fff;
+    }
+
+    .box-title {
+      font-family: var(--font-sans);
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.25rem;
+      color: var(--text-main);
+    }
+
+    .solution-box {
+      background-color: var(--sol-bg);
+      border-left: 4px solid var(--primary);
+      padding: 20px 30px;
+      margin-top: 15px;
+      margin-bottom: 30px;
+      border-radius: 0 6px 6px 0;
+      font-size: 1.1rem;
+      color: #1e293b;
+      overflow-x: auto;
+    }
+
+    .problem-text {
+      font-size: 1.15rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: #111;
+      text-decoration: underline;
+    }
+
+    .example-block {
+      margin-bottom: 40px;
+    }
+    
+    .side-work-box {
+      border: 1px solid var(--text-main);
+      padding: 15px 25px;
+      border-radius: 6px;
+      background-color: #fff;
+      display: inline-block;
+      margin: 10px 0;
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+    }
+
+    .circled-result-box {
+      border: 2px solid var(--text-main);
+      border-radius: 50px;
+      padding: 15px 40px;
+      display: inline-block;
+      margin: 15px 0;
+      background-color: transparent;
+      font-size: 1.15rem;
+    }
+
+    .integral-steps {
+      margin-left: 20px;
+      line-height: 2.2;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+      }
+      .page-container {
+        box-shadow: none;
+        max-width: 100%;
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-container">
+
+  <header>
+    <h1>Trigonometric Integrals</h1>
+    <div class="sub-header">
+      Calculus 2 &bull; Wednesday Notes
+    </div>
+  </header>
+
+  <!-- Emphasized Learning Objectives -->
+  <div class="objectives-box">
+    <div class="objectives-title">Key Learning Objectives</div>
+    <p style="font-size: 1.15rem; font-weight: 600; margin: 10px 0 0 0;">
+      Finish remaining trigonometric cases and evaluate integrals of the form:
+      <span style="display: block; text-align: center; margin: 15px 0; font-size: 1.4rem;">
+        $$ \int \sec^n(x) \tan^m(x) \, dx $$
+      </span>
+      where $n$ and $m$ are non-negative integers.
+    </p>
+  </div>
+
+  <section>
+    <h2>1. Finishing Powers of Sine and Cosine</h2>
+<div class="box-def" style="background-color: #f8fafc; border-color: #cbd5e1; padding: 30px;">
+      <h3 class="box-title" style="text-decoration: underline; color: var(--primary); font-size: 1.4rem; text-align: center; margin-bottom: 30px;">
+        Recap: Evaluating $\displaystyle \int \sin^n(x) \cos^m(x) \, dx$
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 35px;">
+        <!-- CASE 1 -->
+        <div style="flex: 1; min-width: 280px; background: white; padding: 25px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+          <h4 style="margin-top: 0; color: var(--text-main); font-family: var(--font-sans); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; font-size: 1.2rem;">
+            Case 1 <br><span style="font-weight: normal; color: var(--muted); font-size: 1.05rem;">(Power of cosine is odd)</span>
+          </h4>
+          <ol style="font-size: 1.1rem; line-height: 1.7; padding-left: 20px; margin-bottom: 0;">
+            <li style="margin-bottom: 12px;">Keep one $\cos(x)$ next to the $dx$.</li>
+            <li style="margin-bottom: 12px;">
+              Convert all other cosines to sines using the Pythagorean identity:
+              <div style="text-align: center; margin: 8px 0; padding: 5px; background: #fafafa; border-radius: 4px;">
+                $\cos^2(x) = 1 - \sin^2(x)$
+              </div>
+            </li>
+            <li>
+              Make the substitution:<br> 
+              <strong style="font-size: 1.2rem;">$u = \sin(x)$</strong>
+            </li>
+          </ol>
+        </div>
+
+        <!-- CASE 2 -->
+        <div style="flex: 1; min-width: 280px; background: white; padding: 25px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+          <h4 style="margin-top: 0; color: var(--text-main); font-family: var(--font-sans); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; font-size: 1.2rem;">
+            Case 2 <br><span style="font-weight: normal; color: var(--muted); font-size: 1.05rem;">(Power of sine is odd)</span>
+          </h4>
+          <ol style="font-size: 1.1rem; line-height: 1.7; padding-left: 20px; margin-bottom: 0;">
+            <li style="margin-bottom: 12px;">Keep one $\sin(x)$ next to the $dx$.</li>
+            <li style="margin-bottom: 12px;">
+              Convert all other sines to cosines using the Pythagorean identity:
+              <div style="text-align: center; margin: 8px 0; padding: 5px; background: #fafafa; border-radius: 4px;">
+                $\sin^2(x) = 1 - \cos^2(x)$
+              </div>
+            </li>
+            <li>
+              Make the substitution:<br> 
+              <strong style="font-size: 1.2rem;">$u = \cos(x)$</strong>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- CASE 3 -->
+      <div style="background: #eff6ff; padding: 25px; border-radius: 8px; border: 1px solid #bfdbfe;">
+        <h4 style="margin-top: 0; color: var(--primary); font-family: var(--font-sans); border-bottom: 2px solid #bfdbfe; padding-bottom: 10px; font-size: 1.2rem;">
+          Case 3 <span style="font-weight: normal; font-size: 1.05rem;">($n$ and $m$ are both even)</span>
+        </h4>
+        <p style="font-size: 1.15rem; margin-top: 15px; margin-bottom: 20px;">
+          Use trigonometric identities <strong>(Power Reducing Formulas)</strong> to lower the degree of the expression:
+        </p>
+        <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap; gap: 20px; font-size: 1.25rem;">
+          <div style="background: white; padding: 15px 30px; border-radius: 6px; border: 1px dashed var(--primary); flex: 1; min-width: 250px; text-align: center;">
+            $$ \sin^2(x) = \frac{1}{2}(1 - \cos(2x)) $$
+          </div>
+          <div style="background: white; padding: 15px 30px; border-radius: 6px; border: 1px dashed var(--primary); flex: 1; min-width: 250px; text-align: center;">
+            $$ \cos^2(x) = \frac{1}{2}(1 + \cos(2x)) $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Example</div>
+      
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ \int \sin^2(x) \, dx = \int \frac{1}{2}(1 - \cos(2x)) \, dx $$
+          $$ = \frac{1}{2}\left(x - \frac{\sin(2x)}{2}\right) + C $$
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+          <div class="circled-result-box">
+            $$ = \frac{x}{2} - \frac{\sin(2x)}{4} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Powers of Secant and Tangent</h2>
+
+    <div class="box-def" style="background-color: #fff; margin-bottom: 40px;">
+      <h3 class="box-title" style="text-decoration: underline;">Important Facts / Recall</h3>
+      <div style="font-size: 1.25rem; line-height: 2.2; margin-left: 10px;">
+        $$ (\tan(x))' = \sec^2(x) $$
+        $$ (\sec(x))' = \sec(x)\tan(x) $$
+        $$ \int \sec^2(x) \, dx = \tan(x) + C $$
+        $$ \int \tan(x) \, dx = \ln|\sec(x)| + C $$
+      </div>
+    </div>
+
+    <div class="box-def" style="background-color: #fafafa; border-color: var(--muted);">
+      <h3 class="box-title" style="text-decoration: underline; color: var(--primary);">Historical Context</h3>
+      <p style="font-size: 1.15rem;">
+        <strong>$$ \int \sec(x) \, dx = \, ?? $$</strong>
+      </p>
+      <ul style="font-size: 1.15rem; line-height: 1.8;">
+        <li><strong>Mercator Map (1569):</strong> To map rhumb lines as straight lines, cartographers needed the area under $\sec(x)$ to construct accurate maps.</li>
+        <li><strong>Edward Wright (1599):</strong> Evaluated the integrals by numerical methods, i.e., Riemann sums:
+        $$ \int_a^b \sec(x) \, dx \approx \sum_{i=1}^n \sec(x_i) \Delta x \quad \text{where } \Delta x = \frac{b-a}{n}, \, x_1 = a + \Delta x, \, \dots, \, x_n = b $$
+        Wright asked, <em>"Is there a formula?"</em></li>
+        <li><strong>Henry Bond (1640):</strong> Conjectured from logarithm tables that $\int_0^{\phi} \sec(x) \, dx = \ln|\sec(\phi) + \tan(\phi)|$ in his book <em>"Epitome of Navigation"</em>.</li>
+        <li><strong>James Gregory (1668):</strong> Provided the first proof that $\int \sec(x) \, dx = \ln|\sec(x) + \tan(x)| + C$, which was also the first use of partial fractions.</li>
+      </ul>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Why? (Proof by differentiation)</div>
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ \left( \ln|\sec(x) + \tan(x)| \right)' = \frac{\sec(x)\tan(x) + \sec^2(x)}{\sec(x) + \tan(x)} $$
+          $$ = \frac{\sec(x)(\tan(x) + \sec(x))}{\sec(x) + \tan(x)} = \sec(x) $$
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+          <span style="font-size: 1.25rem;">Thus, &nbsp;</span>
+          <div style="display: inline-block;">
+            $$ \int \sec(x) \, dx = \ln|\sec(x) + \tan(x)| + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">One more for the list:</div>
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ I = \int \sec^3(x) \, dx = \int \sec(x)\sec^2(x) \, dx $$
+        </div>
+        
+        <div style="margin: 20px 20px;">
+          <div class="side-work-box">
+            $u = \sec(x)$ <span style="margin: 0 15px;">$\longrightarrow$</span> $du = \sec(x)\tan(x) \, dx$<br>
+            $dv = \sec^2(x) \, dx$ <span style="margin: 0 15px;">$\longrightarrow$</span> $v = \tan(x)$
+          </div>
+        </div>
+
+        <div class="integral-steps">
+          $$ I = \sec(x)\tan(x) - \int \sec(x)\tan^2(x) \, dx $$
+          <div style="margin: 10px 0; border: 1px solid var(--text-main); display: inline-block; padding: 5px 15px;">
+            $\tan^2(x) = \sec^2(x) - 1$
+          </div><br>
+          $$ I = \sec(x)\tan(x) - \int \sec(x)(\sec^2(x) - 1) \, dx $$
+          $$ I = \sec(x)\tan(x) - \int \sec^3(x) - \sec(x) \, dx $$
+          $$ I = \sec(x)\tan(x) - I + \ln|\sec(x) + \tan(x)| $$
+        </div>
+        
+        <div style="text-align: center; margin-top: 15px;">
+          <div class="circled-result-box" style="padding: 20px 40px; border-radius: 60px;">
+            $$ I = \frac{1}{2}\left( \sec(x)\tan(x) + \ln|\sec(x) + \tan(x)| \right) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <div class="box-def" style="margin-top: 40px; background-color: #fafafa;">
+      <h3 class="box-title" style="text-decoration: underline; color: #b91c1c;">Memorize This List for Final Exam </h3>
+      <div style="font-size: 1.25rem; margin-left: 20px;">
+        $$ 
+        \left\{
+        \begin{aligned}
+        \int \sec(x) \, dx &= \ln|\sec(x) + \tan(x)| + C \\[1.5ex]
+        \int \sec^2(x) \, dx &= \tan(x) + C \\[1.5ex]
+        \int \sec^3(x) \, dx &= \frac{1}{2}\left( \sec(x)\tan(x) + \ln|\sec(x) + \tan(x)| \right) + C \\[1.5ex]
+        \int \tan(x) \, dx &= \ln|\sec(x)| + C
+        \end{aligned}
+        \right.
+        $$
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Strategies for $\int \sec^n(x)\tan^m(x) \, dx$</h2>
+
+    <!-- CASE 1 -->
+    <div class="box-def" style="background-color: #fafafa;">
+      <h3 class="box-title" style="text-decoration: underline;">Case 1 (The power of $\sec(x)$ is even, $n$ is even)</h3>
+      <ol style="font-size: 1.15rem; line-height: 1.8; margin-left: 10px;">
+        <li style="margin-bottom: 15px;">
+          Move two secants ($\sec^2(x)$) next to the $dx$:
+          $$ \int \sec^{n-2}(x)\tan^m(x) \sec^2(x) \, dx $$
+        </li>
+        <li style="margin-bottom: 15px;">
+          Rewrite $\sec^{n-2}(x)$ in terms of $\tan(x)$ using:
+          $$ \sec^2(x) = \tan^2(x) + 1 $$
+        </li>
+        <li>
+          Make the $u$-sub  $u = \tan(x)$, $du = \sec^2(x) \, dx$  to find the antiderivative.
+        </li>
+      </ol>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Example</div>
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ \int \sec^4(x)\tan^4(x) \, dx = \int \sec^2(x)\tan^4(x)\sec^2(x) \, dx $$
+          $$ = \int (\tan^2(x) + 1)\tan^4(x)\sec^2(x) \, dx $$
+        </div>
+
+        <div style="margin: 20px 20px;">
+          <div class="side-work-box">
+            $u = \tan(x)$<br>
+            $du = \sec^2(x) \, dx$
+          </div>
+        </div>
+
+        <div class="integral-steps">
+          $$ = \int (u^2 + 1)u^4 \, du $$
+          $$ = \int (u^6 + u^4) \, du $$
+          $$ = \frac{u^7}{7} + \frac{u^5}{5} + C $$
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+          <div class="circled-result-box" style="padding: 15px 40px; border-radius: 60px;">
+            $$ = \frac{\tan^7(x)}{7} + \frac{\tan^5(x)}{5} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Example</div>
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ \int \sec^6(x)\tan^4(x) \, dx = \int \sec^4(x)\tan^4(x)\sec^2(x) \, dx $$
+          $$ = \int (1+\tan^2(x))(1+\tan^2(x))\tan^4(x)\sec^2(x) \, dx $$
+        </div>
+
+        <div style="margin: 20px 20px;">
+          <div class="side-work-box">
+            $u = \tan(x)$<br>
+            $du = \sec^2(x) \, dx$
+          </div>
+        </div>
+
+        <div class="integral-steps">
+          $$ = \int (1+u^2)(1+u^2)u^4 \, du $$
+          $$ = \int (1+2u^2+u^4)u^4 \, du $$
+          $$ = \int (u^4 + 2u^6 + u^8) \, du $$
+          $$ = \frac{u^5}{5} + \frac{2u^7}{7} + \frac{u^9}{9} + C $$
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+          <div class="circled-result-box" style="padding: 20px 40px; border-radius: 60px;">
+            $$ = \frac{\tan^5(x)}{5} + \frac{2\tan^7(x)}{7} + \frac{\tan^9(x)}{9} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 2 -->
+    <div class="box-def" style="margin-top: 60px; background-color: #fafafa;">
+      <h3 class="box-title" style="text-decoration: underline;">Case 2 (Power of tangent is odd, $m$ is odd &amp; $n > 0$)</h3>
+      <ol style="font-size: 1.15rem; line-height: 1.8; margin-left: 10px;">
+        <li style="margin-bottom: 15px;">
+          Move $\sec(x)\tan(x)$ next to $dx$:
+          $$ \int \sec^{n-1}(x)\tan^{m-1}(x) \sec(x)\tan(x) \, dx $$
+        </li>
+        <li style="margin-bottom: 15px;">
+          Rewrite $\tan^{m-1}(x)$ in terms of $\sec(x)$ using:
+          $$ \tan^2(x) = \sec^2(x) - 1 $$
+        </li>
+        <li>
+          Apply the $u$-sub &nbsp; ${u = \sec(x)}$, ${du = \sec(x)\tan(x) \, dx}$ &nbsp; to find the antiderivative.
+        </li>
+      </ol>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Example</div>
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ \int \sec^3(x)\tan^3(x) \, dx = \int \sec^2(x)\tan^2(x)\sec(x)\tan(x) \, dx $$
+          $$ = \int \sec^2(x)(\sec^2(x) - 1)\sec(x)\tan(x) \, dx $$
+        </div>
+
+        <div style="margin: 20px 20px;">
+          <div class="side-work-box">
+            $u = \sec(x)$<br>
+            $du = \sec(x)\tan(x) \, dx$
+          </div>
+        </div>
+
+        <div class="integral-steps">
+          $$ = \int u^2(u^2 - 1) \, du $$
+          $$ = \int (u^4 - u^2) \, du $$
+          $$ = \frac{u^5}{5} - \frac{u^3}{3} + C $$
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+          <div class="circled-result-box" style="padding: 15px 40px; border-radius: 60px;">
+            $$ = \frac{\sec^5(x)}{5} - \frac{\sec^3(x)}{3} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Example</div>
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ \int \sec^5(x)\tan^3(x) \, dx = \int \sec^4(x)\tan^2(x)\sec(x)\tan(x) \, dx $$
+          $$ = \int \sec^4(x)(\sec^2(x) - 1)\sec(x)\tan(x) \, dx $$
+        </div>
+
+        <div style="margin: 20px 20px;">
+          <div class="side-work-box">
+            $u = \sec(x)$<br>
+            $du = \sec(x)\tan(x) \, dx$
+          </div>
+        </div>
+
+        <div class="integral-steps">
+          $$ = \int u^4(u^2 - 1) \, du $$
+          $$ = \int (u^6 - u^4) \, du $$
+          $$ = \frac{u^7}{7} - \frac{u^5}{5} + C $$
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+          <div class="circled-result-box" style="padding: 20px 40px; border-radius: 60px;">
+            $$ = \frac{\sec^7(x)}{7} - \frac{\sec^5(x)}{5} + C $$
+          </div><br>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 3 -->
+    <div class="box-def" style="margin-top: 60px; background-color: #fafafa;">
+      <h3 class="box-title" style="text-decoration: underline;">Case 3 (Otherwise)</h3>
+      <p style="font-size: 1.15rem; margin-top: 0;">
+        <strong>Power of $\sec(x)$ is odd and power of $\tan(x)$ is even, OR power of secant is zero.</strong>
+      </p>
+      <ul style="font-size: 1.15rem; line-height: 1.8; margin-left: 10px;">
+        <li>Convert everything to secant using $\tan^2(x) = \sec^2(x) - 1$.</li>
+        <li>Use the memorized formulas for $\int \sec(x) \, dx$, $\int \sec^2(x) \, dx$, $\int \sec^3(x) \, dx$.</li>
+        <li>Use integration by parts for higher powers.</li>
+      </ul>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Example</div>
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ \int \sec(x)\tan^2(x) \, dx = \int \sec(x)(\sec^2(x) - 1) \, dx $$
+          $$ = \int \left( \sec^3(x) - \sec(x) \right) \, dx $$
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+          <div class="circled-result-box" style="padding: 15px 40px; border-radius: 60px;">
+            $$ = \frac{1}{2}\left( \sec(x)\tan(x) + \ln|\sec(x) + \tan(x)| \right) - \ln|\sec(x) + \tan(x)| + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Example</div>
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ \int \tan^2(x) \, dx = \int (\sec^2(x) - 1) \, dx $$
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+          <div class="circled-result-box" style="padding: 15px 40px; border-radius: 60px;">
+            $$ = \tan(x) - x + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+<div class="box-def" style="background-color: #f8fafc; border-color: #cbd5e1; padding: 30px; margin-top: 60px;">
+      <h3 class="box-title" style="text-decoration: underline; color: var(--primary); font-size: 1.4rem; text-align: center; margin-bottom: 30px;">
+        Summary: Evaluating $\displaystyle \int \sec^n(x) \tan^m(x) \, dx$
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 35px;">
+        <!-- CASE 1 -->
+        <div style="flex: 1; min-width: 280px; background: white; padding: 25px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+          <h4 style="margin-top: 0; color: var(--text-main); font-family: var(--font-sans); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; font-size: 1.2rem;">
+            Case 1 <br><span style="font-weight: normal; color: var(--muted); font-size: 1.05rem;">(Power of secant is even)</span>
+          </h4>
+          <ol style="font-size: 1.1rem; line-height: 1.7; padding-left: 20px; margin-bottom: 0;">
+            <li style="margin-bottom: 12px;">Move two secants, $\sec^2(x)$, next to the $dx$.</li>
+            <li style="margin-bottom: 12px;">
+              Convert remaining secants to tangents using the identity:
+              <div style="text-align: center; margin: 8px 0; padding: 5px; background: #fafafa; border-radius: 4px;">
+                $\sec^2(x) = \tan^2(x) + 1$
+              </div>
+            </li>
+            <li>
+              Make the substitution:<br> 
+              <strong style="font-size: 1.2rem;">$u = \tan(x)$</strong>
+            </li>
+          </ol>
+        </div>
+
+        <!-- CASE 2 -->
+        <div style="flex: 1; min-width: 280px; background: white; padding: 25px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+          <h4 style="margin-top: 0; color: var(--text-main); font-family: var(--font-sans); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; font-size: 1.2rem;">
+            Case 2 <br><span style="font-weight: normal; color: var(--muted); font-size: 1.05rem;">(Power of tangent is odd &amp; $n > 0$)</span>
+          </h4>
+          <ol style="font-size: 1.1rem; line-height: 1.7; padding-left: 20px; margin-bottom: 0;">
+            <li style="margin-bottom: 12px;">Move $\sec(x)\tan(x)$ next to the $dx$.</li>
+            <li style="margin-bottom: 12px;">
+              Convert remaining tangents to secants using the identity:
+              <div style="text-align: center; margin: 8px 0; padding: 5px; background: #fafafa; border-radius: 4px;">
+                $\tan^2(x) = \sec^2(x) - 1$
+              </div>
+            </li>
+            <li>
+              Make the substitution:<br> 
+              <strong style="font-size: 1.2rem;">$u = \sec(x)$</strong>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- CASE 3 -->
+      <div style="background: #eff6ff; padding: 25px; border-radius: 8px; border: 1px solid #bfdbfe;">
+        <h4 style="margin-top: 0; color: var(--primary); font-family: var(--font-sans); border-bottom: 2px solid #bfdbfe; padding-bottom: 10px; font-size: 1.2rem;">
+          Case 3 <span style="font-weight: normal; font-size: 1.05rem;">(Otherwise)</span>
+        </h4>
+        <p style="font-size: 1.1rem; margin-top: 15px; margin-bottom: 15px;">
+          <em>Applies when the power of $\sec(x)$ is odd and power of $\tan(x)$ is even, OR power of secant is zero.</em>
+        </p>
+        <ul style="font-size: 1.1rem; line-height: 1.8; margin-left: 10px; margin-bottom: 0;">
+          <li>Convert everything to secants using $\tan^2(x) = \sec^2(x) - 1$.</li>
+          <li>Use the memorized formulas for $\int \sec(x) \, dx$, $\int \sec^2(x) \, dx$, and $\int \sec^3(x) \, dx$.</li>
+          <li>Use <strong>Integration by Parts</strong> for higher powers.</li>
+        </ul>
+      </div>
+    </div>
+
+</div>
+</body>
+</html>

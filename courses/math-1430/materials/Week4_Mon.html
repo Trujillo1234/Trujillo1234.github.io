@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 - The Divergence Test</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX CONFIGURATION -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-paper: #F9F5EB;
+            --text-main: #111827;
+            --primary: #2563eb; /* Blue */
+            --secondary: #059669; /* Green */
+            --highlight: #eff6ff;
+            --font-serif: 'Crimson Pro', serif;
+            --font-sans: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .page-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            min-height: 1100px;
+        }
+
+        h1, h2, h3 { font-family: var(--font-sans); margin-top: 0; }
+        h1 { font-size: 2.2rem; border-bottom: 4px solid var(--text-main); padding-bottom: 10px; margin-bottom: 5px; }
+        h2 { font-size: 1.4rem; color: var(--primary); border-bottom: 1px solid #e2e8f0; margin-top: 30px; padding-bottom: 5px; }
+        .header-meta { font-family: var(--font-sans); color: #64748b; font-size: 0.9rem; margin-bottom: 20px; display: flex; justify-content: space-between; }
+
+        .objectives-container {
+            border: 2px solid var(--secondary);
+            background-color: #ecfdf5;
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .objectives-title {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .objectives-list { margin: 0; padding-left: 20px; font-family: var(--font-sans); font-size: 1rem; }
+        .objectives-list li { margin-bottom: 5px; }
+
+        .box {
+            border: 2px solid var(--text-main);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            page-break-inside: avoid;
+        }
+        .example-box {
+            background-color: var(--highlight);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        .box-title {
+            display: block;
+            font-family: var(--font-sans);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .handwritten {
+            font-family: 'Crimson Pro', serif;
+            font-style: italic;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .qa-section { font-family: var(--font-sans); background: #fffbeb; padding: 15px; border-left: 4px solid #fcd34d; margin-bottom: 20px; }
+
+        .test-steps {
+            font-family: var(--font-sans);
+            background: #f1f5f9;
+            border-left: 4px solid #0f172a;
+            padding: 15px 18px;
+            margin: 0 0 35px 0;
+            border-radius: 8px;
+        }
+        .test-steps ul { margin: 8px 0 0 18px; }
+        .test-steps li { margin-bottom: 6px; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .page-container { box-shadow: none; padding: 0; margin: 0; max-width: 100%; }
+            .box { background-color: white !important; border: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>The Divergence Test</h1>
+            <div class="header-meta">
+                <span>Calculus 2</span>
+                <span>Monday, Feb 2</span>
+                <span>Instructor Notes</span>
+            </div>
+        </header>
+
+        <!-- LEARNING OBJECTIVES -->
+        <section class="objectives-container">
+            <span class="objectives-title">Learning Objectives</span>
+            <ul class="objectives-list">
+                <li><strong>Apply</strong> the divergence test to show that a series diverges.</li>
+                <li><strong>Recognize</strong> when the divergence test is inconclusive.</li>
+            </ul>
+        </section>
+
+        <!-- HOW TO USE A TEST (ARGUMENT TEMPLATE) -->
+        <section class="test-steps">
+            <div style="font-weight:700; letter-spacing:0.02em;">How to apply a convergence/divergence test (you are making an argument)</div>
+            <ul>
+                <li><strong>State the test</strong> you are using (by name) and what it will let you conclude.</li>
+                <li><strong>Verify the hypotheses</strong> of that test using clear sentences (or bullets): check each condition the test requires.</li>
+                <li><strong>Conclude about a specific series</strong> by writing the series explicitly (avoid vague pronouns like “this series”).</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 1 -->
+        <section>
+            <h2>1. Review: Domain of Power Series</h2>
+            <div class="qa-section">
+                <p><strong>Q:</strong> What is the domain of a power series?<br>
+                <strong>A:</strong> An interval with center $x=a$ and radius $R$.</p>
+                <p><strong>Q:</strong> Do we include the endpoints $x=a+R$ or $x=a-R$ in the domain?<br>
+                <strong>A:</strong> Sometimes yes and sometimes no; we must test the endpoints separately.</p>
+            </div>
+
+            <h2>2. Definition of Infinite Series</h2>
+            <div class="box">
+                <span class="box-title">Definition</span>
+                <p>An infinite series is an expression of the form:</p>
+                $$ \displaystyle \sum_{n=0}^{\infty} b_n = b_0 + b_1 + b_2 + \dots $$
+                <p>We say that the series <strong>converges</strong> if the following limit exists:</p>
+                $$ \displaystyle \lim_{n \to \infty} (b_0 + b_1 + b_2 + \dots + b_n) $$
+                <p>If the limit does not exist, we say the series <strong>diverges</strong>.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section>
+            <h2>3. The Divergence Test</h2>
+
+            <div class="box" style="border-color: #ef4444; background-color: #fef2f2;">
+                <span class="box-title" style="color: #b91c1c;">Theorem: The Divergence Test</span>
+                <p>If $\displaystyle \lim_{n \to \infty} b_n \neq 0$, then $\displaystyle \sum_{n=0}^{\infty} b_n$ <strong>diverges</strong>.</p>
+                <p>If $\displaystyle \lim_{n \to \infty} b_n = 0$, then the test is <strong>inconclusive</strong>.</p>
+                <span class="handwritten">Warning: “Inconclusive” means the Divergence Test cannot decide; you must use a different test.</span>
+            </div>
+
+            <div class="box">
+                <span class="box-title">Proof Sketch</span>
+                <p>Suppose that $\sum b_n$ converges to a sum $L$. Let $S_n = b_0 + \dots + b_n$.</p>
+                <p>Note that $b_n = S_n - S_{n-1}$. Taking the limit:</p>
+                $$ \displaystyle \lim_{n \to \infty} b_n = \lim_{n \to \infty} (S_n - S_{n-1}) = L - L = 0 $$
+                <p>Thus, if the series converges, the term limit must be 0. Logically, this implies: if the term limit is <strong>not</strong> 0, then the series <strong>cannot</strong> converge.</p>
+            </div>
+
+            <h3>Worked Examples</h3>
+            
+            <div class="example-box">
+                <span class="box-title">Example A</span>
+                <p><strong>Question:</strong> Determine whether $\displaystyle \sum_{n=0}^{\infty} \frac{3n+1}{4n-2}$ converges or diverges.</p>
+
+                <p><strong>Test Used:</strong> Divergence Test.</p>
+
+                <p><strong>Hypotheses to check:</strong> We must compute $\displaystyle \lim_{n\to\infty} b_n$ where $b_n=\frac{3n+1}{4n-2}$.</p>
+
+                <p><strong>Limit computation:</strong> Substituting $n\to\infty$ gives an indeterminate form $\frac{\infty}{\infty}$, so L'Hôpital's Rule applies.</p>
+                $$ \displaystyle \lim_{n \to \infty} \frac{3n+1}{4n-2}
+                \overset{L'H}{=} \lim_{n \to \infty} \frac{\frac{d}{dn}(3n+1)}{\frac{d}{dn}(4n-2)}
+                = \lim_{n \to \infty} \frac{3}{4}
+                = \frac{3}{4}. $$
+                <p><strong>Conclusion:</strong> Since $\displaystyle \lim_{n\to\infty}\frac{3n+1}{4n-2}=\frac{3}{4}\neq 0$, the Divergence Test implies that
+                $\displaystyle \sum_{n=0}^{\infty} \frac{3n+1}{4n-2}$ <strong>diverges</strong>.</p>
+            </div>
+
+            <div class="example-box">
+                <span class="box-title">Example B</span>
+                <p><strong>Question:</strong> Determine whether $\displaystyle \sum_{n=1}^{\infty} \frac{n^2}{3n^2-1}$ converges or diverges.</p>
+
+                <p><strong>Test Used:</strong> Divergence Test.</p>
+
+                <p><strong>Hypotheses to check:</strong> We must compute $\displaystyle \lim_{n\to\infty} b_n$ where $b_n=\frac{n^2}{3n^2-1}$.</p>
+
+                <p><strong>Limit computation:</strong> Substituting $n\to\infty$ gives an indeterminate form $\frac{\infty}{\infty}$, so L'Hôpital's Rule applies.</p>
+                $$ \displaystyle \lim_{n \to \infty} \frac{n^2}{3n^2-1}
+                \overset{L'H}{=} \lim_{n \to \infty} \frac{2n}{6n}. $$
+                <p>At this stage the expression $\frac{2n}{6n}$ is still of the form $\frac{\infty}{\infty}$, but we can simplify by canceling the common factor $n$ (valid for $n\neq 0$):</p>
+                $$ \displaystyle \lim_{n \to \infty} \frac{2n}{6n}
+                = \lim_{n \to \infty} \frac{2}{6}
+                = \frac{1}{3}. $$
+                <p><strong>Conclusion:</strong> Since $\displaystyle \lim_{n\to\infty}\frac{n^2}{3n^2-1}=\frac{1}{3}\neq 0$, the Divergence Test implies that
+                $\displaystyle \sum_{n=1}^{\infty} \frac{n^2}{3n^2-1}$ <strong>diverges</strong>.</p>
+            </div>
+
+            <div class="example-box">
+                <span class="box-title">Example C</span>
+                <p><strong>Question:</strong> Determine whether $\displaystyle \sum_{n=1}^{\infty} \frac{1}{n^3}$ converges or diverges.</p>
+
+                <p><strong>Test Used:</strong> Divergence Test (attempt).</p>
+
+                <p><strong>Hypotheses to check:</strong> We compute $\displaystyle \lim_{n\to\infty} b_n$ where $b_n=\frac{1}{n^3}$.</p>
+
+                <p><strong>Limit computation:</strong> As $n\to\infty$, we have $n^3\to\infty$, so $\frac{1}{n^3}$ has the form $\frac{1}{\infty}$ (not an indeterminate form). Since the denominator grows without bound while the numerator stays fixed, the fraction must go to 0:</p>
+                $$ \displaystyle \lim_{n \to \infty} \frac{1}{n^3} = 0. $$
+
+                <p><strong>Conclusion:</strong> Because $\displaystyle \lim_{n\to\infty}\frac{1}{n^3}=0$, the Divergence Test is <strong>inconclusive</strong> for
+                $\displaystyle \sum_{n=1}^{\infty} \frac{1}{n^3}$. The Divergence Test cannot decide whether $\displaystyle \sum_{n=1}^{\infty} \frac{1}{n^3}$ converges or diverges.</p>
+            </div>
+
+            <div class="example-box">
+                <span class="box-title">Example D</span>
+                <p><strong>Question:</strong> Determine whether $\displaystyle \sum_{n=1}^{\infty} \cos\!\left(\frac{1}{n^2}\right)$ converges or diverges.</p>
+
+                <p><strong>Test Used:</strong> Divergence Test.</p>
+
+                <p><strong>Hypotheses to check:</strong> We compute $\displaystyle \lim_{n\to\infty} b_n$ where $b_n=\cos\!\left(\frac{1}{n^2}\right)$.</p>
+
+                <p><strong>Limit computation:</strong> First note that $\frac{1}{n^2}\to 0$ as $n\to\infty$ (again this is of the form $\frac{1}{\infty}$, so the limit is 0).</p>
+                <p>Next use continuity: if $f$ is continuous, then $\lim f(x_n)=f(\lim x_n)$ (when the inside limit exists). Since $\cos(x)$ is continuous everywhere,</p>
+                $$ \displaystyle \lim_{n \to \infty} \cos\!\left(\frac{1}{n^2}\right)
+                = \cos\!\left(\lim_{n\to\infty}\frac{1}{n^2}\right)
+                = \cos(0)
+                = 1. $$
+
+                <p><strong>Conclusion:</strong> Since $\displaystyle \lim_{n\to\infty}\cos\!\left(\frac{1}{n^2}\right)=1\neq 0$, the Divergence Test implies that
+                $\displaystyle \sum_{n=1}^{\infty} \cos\!\left(\frac{1}{n^2}\right)$ <strong>diverges</strong>.</p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

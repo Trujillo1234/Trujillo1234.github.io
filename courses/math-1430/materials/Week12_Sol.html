@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculus 2 - Homework 11 Solutions</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'],['\\(', '\\)']],
+        displayMath: [['$$', '$$'],['\\[', '\\]']],
+        packages: {'[+]': ['cancel']}
+      },
+      loader: {load: ['[tex]/cancel']},
+      svg: { fontCache: 'global' }
+    };
+  </script>
+
+  <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg-paper: #F9F5EB;
+      --text-main: #111827;
+      --primary: #2563eb;
+      --secondary: #059669;
+      --font-serif: 'Crimson Pro', serif;
+      --font-sans: 'Space Grotesk', sans-serif;
+      --sol-bg: #eff6ff;
+      --muted: #64748b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-paper);
+      color: var(--text-main);
+      font-family: var(--font-serif);
+      line-height: 1.65;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .page-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 60px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      min-height: 1100px;
+    }
+
+    header {
+      border-bottom: 2px solid var(--text-main);
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-sans);
+      font-size: 2.5rem;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .sub-header {
+      font-family: var(--font-sans);
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    h2 {
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      color: var(--primary);
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+      margin-top: 40px;
+    }
+
+    .problem-block {
+      margin-bottom: 50px;
+    }
+
+    .problem-text {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: #111;
+      text-decoration: underline;
+    }
+
+    .solution-box {
+      background-color: var(--sol-bg);
+      border-left: 4px solid var(--primary);
+      padding: 20px 30px;
+      margin-top: 15px;
+      margin-bottom: 30px;
+      border-radius: 0 6px 6px 0;
+      font-size: 1.1rem;
+      color: #1e293b;
+      overflow-x: auto;
+    }
+
+    .side-work-box {
+      border: 1px solid var(--text-main);
+      padding: 15px 25px;
+      border-radius: 6px;
+      background-color: #fff;
+      display: inline-block;
+      margin: 10px 0;
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+    }
+
+    .circled-result-box {
+      border: 2px solid var(--text-main);
+      border-radius: 50px;
+      padding: 15px 40px;
+      display: inline-block;
+      margin: 15px 0;
+      background-color: transparent;
+      font-size: 1.15rem;
+      background-color: white;
+    }
+
+    .integral-steps {
+      margin-left: 20px;
+      line-height: 2.2;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+      }
+      .page-container {
+        box-shadow: none;
+        max-width: 100%;
+        padding: 28px;
+      }
+      .problem-block {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-container">
+
+  <header>
+    <h1>Homework 11 Solutions</h1>
+    <div class="sub-header">
+      Calculus 2 &bull; Trigonometric Integrals, Trig Substitution, Area, Centroids, and Arc Length
+    </div>
+  </header>
+
+  <h2>Evaluate the Following Integrals</h2>
+
+  <!-- PROBLEM 1 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 1</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \frac{1}{1+4x^2} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = 4x^2 + 1$<br>
+          $A = 4$<br>
+          $h = \frac{-B}{2A} = \frac{0}{2(4)} = 0$<br>
+          $k = f(0) = 4(0)^2 + 1 = 1$<br><br>
+          $f(x) = 4(x-0)^2 + 1$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ and $k$ have the same sign (both positive), we use tangent.<br><br>
+          $x - 0 = \sqrt{\frac{1}{4}} \tan(\theta)$<br>
+          $x = \frac{1}{2}\tan(\theta)$<br>
+          $dx = \frac{1}{2}\sec^2(\theta) \, d\theta$<br>
+          $2x = \tan(\theta) \implies \theta = \tan^{-1}(2x)$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \frac{1}{1+4x^2} \, dx $$
+        $$ = \int \frac{1}{1+4\left(\frac{1}{2}\tan(\theta)\right)^2} \, \frac{1}{2}\sec^2(\theta) \, d\theta $$
+        $$ = \int \frac{1}{1+\tan^2(\theta)} \, \frac{1}{2}\sec^2(\theta) \, d\theta $$
+        $$ = \frac{1}{2} \int \frac{1}{\sec^2(\theta)} \sec^2(\theta) \, d\theta $$
+        $$ = \frac{1}{2} \int \, d\theta $$
+        $$ = \frac{1}{2}\theta + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = \frac{1}{2}\tan^{-1}(2x) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 2 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 2</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \frac{1}{3+x^2} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = x^2 + 3$<br>
+          $A = 1$<br>
+          $h = \frac{-B}{2A} = \frac{0}{2(1)} = 0$<br>
+          $k = f(0) = (0)^2 + 3 = 3$<br><br>
+          $f(x) = (x-0)^2 + 3$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ and $k$ have the same sign (both positive), we use tangent.<br><br>
+          $x - 0 = \sqrt{\frac{3}{1}} \tan(\theta)$<br>
+          $x = \sqrt{3}\tan(\theta)$<br>
+          $dx = \sqrt{3}\sec^2(\theta) \, d\theta$<br>
+          $\frac{x}{\sqrt{3}} = \tan(\theta) \implies \theta = \tan^{-1}\left(\frac{x}{\sqrt{3}}\right)$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \frac{1}{3+x^2} \, dx $$
+        $$ = \int \frac{1}{3+3\tan^2(\theta)} \sqrt{3}\sec^2(\theta) \, d\theta $$
+        $$ = \int \frac{1}{3\sec^2(\theta)} \sqrt{3}\sec^2(\theta) \, d\theta $$
+        $$ = \int \frac{\sqrt{3}}{3} \, d\theta $$
+        $$ = \frac{\sqrt{3}}{3}\theta + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = \frac{\sqrt{3}}{3}\tan^{-1}\left(\frac{x}{\sqrt{3}}\right) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 3 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 3</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \frac{5}{\sqrt{x^2-1}} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = x^2 - 1$<br>
+          $A = 1$<br>
+          $h = \frac{-B}{2A} = \frac{0}{2(1)} = 0$<br>
+          $k = f(0) = (0)^2 - 1 = -1$<br><br>
+          $f(x) = (x-0)^2 - 1$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ is positive and $k$ is negative, we use secant.<br><br>
+          $x - 0 = \sqrt{\frac{|-1|}{|1|}} \sec(\theta)$<br>
+          $x = \sec(\theta)$<br>
+          $dx = \sec(\theta)\tan(\theta) \, d\theta$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \frac{5}{\sqrt{x^2-1}} \, dx $$
+        $$ = \int \frac{5}{\sqrt{\sec^2(\theta)-1}} \sec(\theta)\tan(\theta) \, d\theta $$
+        $$ = \int \frac{5}{\sqrt{\tan^2(\theta)}} \sec(\theta)\tan(\theta) \, d\theta $$
+        $$ = \int \frac{5}{\tan(\theta)} \sec(\theta)\tan(\theta) \, d\theta $$
+        $$ = 5 \int \sec(\theta) \, d\theta $$
+        $$ = 5\ln|\sec(\theta) + \tan(\theta)| + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+          <div style="margin-bottom: 10px;">
+            $\frac{x}{1} = \sec(\theta) = \frac{\text{hypotenuse}}{\text{adjacent}}$
+          </div>
+          <!-- Right Triangle SVG -->
+          <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+            <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+              <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+              <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+            </svg>
+            <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+            <div style="position: absolute; left: 90px; top: 122px; font-size: 1.1rem;">$1$</div>
+            <div style="position: absolute; left: 190px; top: 60px; font-size: 1rem;">$\sqrt{x^2-1}$</div>
+            <div style="position: absolute; left: 80px; top: 45px; font-size: 1.1rem;">$x$</div>
+          </div>
+          <div style="margin-top: 10px;">
+            $\tan(\theta) = \frac{\text{opposite}}{\text{adjacent}} = \sqrt{x^2-1}$
+          </div>
+        </div>
+
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = 5\ln\left| x + \sqrt{x^2-1} \right| + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 4 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 4</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \frac{1}{\sqrt{x^2+6x+1}} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = x^2 + 6x + 1$<br>
+          $A = 1, B = 6$<br>
+          $h = \frac{-B}{2A} = \frac{-6}{2(1)} = -3$<br>
+          $k = f(-3) = (-3)^2 + 6(-3) + 1 = 9 - 18 + 1 = -8$<br><br>
+          $f(x) = (x-(-3))^2 - 8 = (x+3)^2 - 8$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ is positive and $k$ is negative, we use secant.<br><br>
+          $x - (-3) = \sqrt{\frac{|-8|}{|1|}} \sec(\theta)$<br>
+          $x + 3 = \sqrt{8}\sec(\theta)$<br>
+          $dx = \sqrt{8}\sec(\theta)\tan(\theta) \, d\theta$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \frac{1}{\sqrt{x^2+6x+1}} \, dx $$
+        $$ = \int \frac{1}{\sqrt{(x+3)^2-8}} \, dx $$
+        $$ = \int \frac{1}{\sqrt{8\sec^2(\theta)-8}} \sqrt{8}\sec(\theta)\tan(\theta) \, d\theta $$
+        $$ = \int \frac{1}{\sqrt{8\tan^2(\theta)}} \sqrt{8}\sec(\theta)\tan(\theta) \, d\theta $$
+        $$ = \int \frac{1}{\sqrt{8}\tan(\theta)} \sqrt{8}\sec(\theta)\tan(\theta) \, d\theta $$
+        $$ = \int \sec(\theta) \, d\theta $$
+        $$ = \ln|\sec(\theta) + \tan(\theta)| + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+          <div style="margin-bottom: 10px;">
+            $\frac{x+3}{\sqrt{8}} = \sec(\theta) = \frac{\text{hypotenuse}}{\text{adjacent}}$
+          </div>
+          <!-- Right Triangle SVG -->
+          <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+            <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+              <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+              <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+            </svg>
+            <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+            <div style="position: absolute; left: 90px; top: 122px; font-size: 1.1rem;">$\sqrt{8}$</div>
+            <div style="position: absolute; left: 190px; top: 60px; font-size: 1rem;">$\sqrt{(x+3)^2-8}$</div>
+            <div style="position: absolute; left: 60px; top: 40px; font-size: 1.1rem; transform: rotate(-30.5deg);">x+3</div>
+          </div>
+          <div style="margin-top: 10px;">
+            $\tan(\theta) = \frac{\text{opposite}}{\text{adjacent}} = \frac{\sqrt{(x+3)^2-8}}{\sqrt{8}}$
+          </div>
+        </div>
+
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = \ln\left| \frac{x+3}{\sqrt{8}} + \frac{\sqrt{(x+3)^2-8}}{\sqrt{8}} \right| + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 5 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 5</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \frac{5x}{\sqrt{x^2-1}} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = x^2 - 1$<br>
+          $A = 1$<br>
+          $h = \frac{-B}{2A} = \frac{0}{2(1)} = 0$<br>
+          $k = f(0) = (0)^2 - 1 = -1$<br><br>
+          $f(x) = (x-0)^2 - 1$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ is positive and $k$ is negative, we use secant.<br><br>
+          $x - 0 = \sqrt{\frac{|-1|}{|1|}} \sec(\theta)$<br>
+          $x = \sec(\theta)$<br>
+          $dx = \sec(\theta)\tan(\theta) \, d\theta$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \frac{5x}{\sqrt{x^2-1}} \, dx $$
+        $$ = \int \frac{5\sec(\theta)}{\sqrt{\sec^2(\theta)-1}} \sec(\theta)\tan(\theta) \, d\theta $$
+        $$ = \int \frac{5\sec(\theta)}{\tan(\theta)} \sec(\theta)\tan(\theta) \, d\theta $$
+        $$ = \int 5\sec^2(\theta) \, d\theta $$
+        $$ = 5\tan(\theta) + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+          <div style="margin-bottom: 10px;">
+            $\frac{x}{1} = \sec(\theta) = \frac{\text{hypotenuse}}{\text{adjacent}}$
+          </div>
+          <!-- Right Triangle SVG -->
+          <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+            <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+              <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+              <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+            </svg>
+            <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+            <div style="position: absolute; left: 90px; top: 122px; font-size: 1.1rem;">$1$</div>
+            <div style="position: absolute; left: 190px; top: 60px; font-size: 1rem;">$\sqrt{x^2-1}$</div>
+            <div style="position: absolute; left: 80px; top: 45px; font-size: 1.1rem;">$x$</div>
+          </div>
+          <div style="margin-top: 10px;">
+            $\tan(\theta) = \frac{\text{opposite}}{\text{adjacent}} = \sqrt{x^2-1}$
+          </div>
+        </div>
+
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = 5\sqrt{x^2-1} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 6 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 6</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \frac{1}{x^2-7} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = x^2 - 7$<br>
+          $A = 1$<br>
+          $h = \frac{-B}{2A} = \frac{0}{2(1)} = 0$<br>
+          $k = f(0) = (0)^2 - 7 = -7$<br><br>
+          $f(x) = (x-0)^2 - 7$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ is positive and $k$ is negative, we use secant.<br><br>
+          $x - 0 = \sqrt{\frac{|-7|}{|1|}} \sec(\theta)$<br>
+          $x = \sqrt{7}\sec(\theta)$<br>
+          $dx = \sqrt{7}\sec(\theta)\tan(\theta) \, d\theta$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \frac{1}{x^2-7} \, dx $$
+        $$ = \int \frac{1}{7\sec^2(\theta)-7} \sqrt{7}\sec(\theta)\tan(\theta) \, d\theta $$
+        $$ = \int \frac{1}{7\tan^2(\theta)} \sqrt{7}\sec(\theta)\tan(\theta) \, d\theta $$
+        $$ = \int \frac{\sqrt{7}}{7} \frac{\sec(\theta)}{\tan(\theta)} \, d\theta $$
+        $$ = \int \frac{\sqrt{7}}{7} \frac{1/\cos(\theta)}{\sin(\theta)/\cos(\theta)} \, d\theta $$
+        $$ = \int \frac{\sqrt{7}}{7} \csc(\theta) \, d\theta $$
+        $$ = -\frac{\sqrt{7}}{7}\ln|\csc(\theta) + \cot(\theta)| + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+          <div style="margin-bottom: 10px;">
+            $\frac{x}{\sqrt{7}} = \sec(\theta) = \frac{\text{hypotenuse}}{\text{adjacent}}$
+          </div>
+          <!-- Right Triangle SVG -->
+          <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+            <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+              <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+              <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+            </svg>
+            <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+            <div style="position: absolute; left: 90px; top: 122px; font-size: 1.1rem;">$\sqrt{7}$</div>
+            <div style="position: absolute; left: 190px; top: 60px; font-size: 1rem;">$\sqrt{x^2-7}$</div>
+            <div style="position: absolute; left: 80px; top: 45px; font-size: 1.1rem;">$x$</div>
+          </div>
+          <div style="margin-top: 10px;">
+            $\csc(\theta) = \frac{\text{hypotenuse}}{\text{opposite}} = \frac{x}{\sqrt{x^2-7}}$<br>
+            $\cot(\theta) = \frac{\text{adjacent}}{\text{opposite}} = \frac{\sqrt{7}}{\sqrt{x^2-7}}$
+          </div>
+        </div>
+
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = -\frac{\sqrt{7}}{7}\ln\left| \frac{x}{\sqrt{x^2-7}} + \frac{\sqrt{7}}{\sqrt{x^2-7}} \right| + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 7 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 7</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \sqrt{5+10x-x^2} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = -x^2 + 10x + 5$<br>
+          $A = -1, B = 10$<br>
+          $h = \frac{-B}{2A} = \frac{-10}{2(-1)} = 5$<br>
+          $k = f(5) = -(5)^2 + 10(5) + 5 = -25 + 50 + 5 = 30$<br><br>
+          $f(x) = -(x-5)^2 + 30$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ is negative and $k$ is positive, we use sine.<br><br>
+          $x - 5 = \sqrt{\frac{|30|}{|-1|}} \sin(\theta)$<br>
+          $x - 5 = \sqrt{30}\sin(\theta)$<br>
+          $dx = \sqrt{30}\cos(\theta) \, d\theta$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \sqrt{5+10x-x^2} \, dx $$
+        $$ = \int \sqrt{-(x-5)^2+30} \, dx $$
+        $$ = \int \sqrt{-30\sin^2(\theta)+30} \sqrt{30}\cos(\theta) \, d\theta $$
+        $$ = \int \sqrt{30\cos^2(\theta)} \sqrt{30}\cos(\theta) \, d\theta $$
+        $$ = \int \sqrt{30}\cos(\theta) \sqrt{30}\cos(\theta) \, d\theta $$
+        $$ = \int 30\cos^2(\theta) \, d\theta $$
+        $$ = \int \frac{30}{2}(1+\cos(2\theta)) \, d\theta $$
+        $$ = 15 \left( \theta + \frac{\sin(2\theta)}{2} \right) + C $$
+        $$ = 15 ( \theta + \sin(\theta)\cos(\theta) ) + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+          <div style="margin-bottom: 10px;">
+            $\frac{x-5}{\sqrt{30}} = \sin(\theta) = \frac{\text{opposite}}{\text{hypotenuse}}$
+          </div>
+          <!-- Right Triangle SVG -->
+          <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+            <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+              <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+              <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+            </svg>
+            <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+            <div style="position: absolute; left: 45px; top: 125px; font-size: 0.95rem;">$\sqrt{30-(x-5)^2}$</div>
+            <div style="position: absolute; left: 190px; top: 60px; font-size: 1.1rem;">$x-5$</div>
+            <div style="position: absolute; left: 70px; top: 35px; font-size: 1.1rem; transform: rotate(-30.5deg);">$\sqrt{30}$</div>
+          </div>
+          <div style="margin-top: 10px;">
+            $\cos(\theta) = \frac{\text{adjacent}}{\text{hypotenuse}} = \frac{\sqrt{30-(x-5)^2}}{\sqrt{30}}$<br>
+            $\theta = \sin^{-1}\left(\frac{x-5}{\sqrt{30}}\right)$
+          </div>
+        </div>
+
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 30px;">
+            $$ = 15 \left( \sin^{-1}\left(\frac{x-5}{\sqrt{30}}\right) + \frac{x-5}{\sqrt{30}} \cdot \frac{\sqrt{30-(x-5)^2}}{\sqrt{30}} \right) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 8 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 8</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \frac{1}{\sqrt{9-4x^2}} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = -4x^2 + 9$<br>
+          $A = -4$<br>
+          $h = \frac{-B}{2A} = \frac{0}{2(-4)} = 0$<br>
+          $k = f(0) = -4(0)^2 + 9 = 9$<br><br>
+          $f(x) = -4(x-0)^2 + 9$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ is negative and $k$ is positive, we use sine.<br><br>
+          $x - 0 = \sqrt{\frac{|9|}{|-4|}} \sin(\theta)$<br>
+          $x = \frac{3}{2}\sin(\theta)$<br>
+          $dx = \frac{3}{2}\cos(\theta) \, d\theta$<br>
+          $\frac{2x}{3} = \sin(\theta) \implies \theta = \sin^{-1}\left(\frac{2x}{3}\right)$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \frac{1}{\sqrt{9-4x^2}} \, dx $$
+        $$ = \int \frac{1}{\sqrt{9-9\sin^2(\theta)}} \frac{3}{2}\cos(\theta) \, d\theta $$
+        $$ = \int \frac{1}{\sqrt{9\cos^2(\theta)}} \frac{3}{2}\cos(\theta) \, d\theta $$
+        $$ = \int \frac{1}{3\cos(\theta)} \frac{3}{2}\cos(\theta) \, d\theta $$
+        $$ = \int \frac{1}{2} \, d\theta $$
+        $$ = \frac{1}{2}\theta + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = \frac{1}{2}\sin^{-1}\left(\frac{2x}{3}\right) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 9 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 9</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \frac{x^2}{\sqrt{x^2+4}} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = x^2 + 4$<br>
+          $A = 1$<br>
+          $h = \frac{-B}{2A} = \frac{0}{2(1)} = 0$<br>
+          $k = f(0) = (0)^2 + 4 = 4$<br><br>
+          $f(x) = (x-0)^2 + 4$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ and $k$ have the same sign (both positive), we use tangent.<br><br>
+          $x - 0 = \sqrt{\frac{4}{1}} \tan(\theta)$<br>
+          $x = 2\tan(\theta)$<br>
+          $dx = 2\sec^2(\theta) \, d\theta$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \frac{x^2}{\sqrt{x^2+4}} \, dx $$
+        $$ = \int \frac{4\tan^2(\theta)}{\sqrt{4\tan^2(\theta)+4}} 2\sec^2(\theta) \, d\theta $$
+        $$ = \int \frac{4\tan^2(\theta)}{2\sec(\theta)} 2\sec^2(\theta) \, d\theta $$
+        $$ = \int 4\tan^2(\theta)\sec(\theta) \, d\theta $$
+        $$ = \int 4(\sec^2(\theta)-1)\sec(\theta) \, d\theta $$
+        $$ = \int 4(\sec^3(\theta)-\sec(\theta)) \, d\theta $$
+        $$ = 4 \left( \frac{1}{2}(\sec(\theta)\tan(\theta) + \ln|\sec(\theta) + \tan(\theta)|) \right) - 4\ln|\sec(\theta) + \tan(\theta)| + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+          <div style="margin-bottom: 10px;">
+            $\frac{x}{2} = \tan(\theta) = \frac{\text{opposite}}{\text{adjacent}}$
+          </div>
+          <!-- Right Triangle SVG -->
+          <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+            <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+              <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+              <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+            </svg>
+            <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+            <div style="position: absolute; left: 90px; top: 122px; font-size: 1.1rem;">$2$</div>
+            <div style="position: absolute; left: 190px; top: 60px; font-size: 1.1rem;">$x$</div>
+            <div style="position: absolute; left: 60px; top: 35px; font-size: 1rem; transform: rotate(-30.5deg);">$\sqrt{x^2+4}$</div>
+          </div>
+          <div style="margin-top: 10px;">
+            $\sec(\theta) = \frac{\text{hypotenuse}}{\text{adjacent}} = \frac{\sqrt{x^2+4}}{2}$
+          </div>
+        </div>
+
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 30px;">
+            $$ = 2 \left( \frac{\sqrt{x^2+4}}{2} \cdot \frac{x}{2} + \ln\left|\frac{\sqrt{x^2+4}}{2} + \frac{x}{2}\right| \right) - 4\ln\left|\frac{\sqrt{x^2+4}}{2} + \frac{x}{2}\right| + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 10 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 10</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \frac{1}{x\sqrt{x^2-16}} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = x^2 - 16$<br>
+          $A = 1$<br>
+          $h = \frac{-B}{2A} = \frac{0}{2(1)} = 0$<br>
+          $k = f(0) = (0)^2 - 16 = -16$<br><br>
+          $f(x) = (x-0)^2 - 16$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ is positive and $k$ is negative, we use secant.<br><br>
+          $x - 0 = \sqrt{\frac{|-16|}{|1|}} \sec(\theta)$<br>
+          $x = 4\sec(\theta)$<br>
+          $dx = 4\sec(\theta)\tan(\theta) \, d\theta$<br>
+          $\frac{x}{4} = \sec(\theta) \implies \theta = \sec^{-1}\left(\frac{x}{4}\right)$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \frac{1}{x\sqrt{x^2-16}} \, dx $$
+        $$ = \int \frac{1}{4\sec(\theta)\sqrt{16\sec^2(\theta)-16}} 4\sec(\theta)\tan(\theta) \, d\theta $$
+        $$ = \int \frac{1}{\sqrt{16\tan^2(\theta)}} \tan(\theta) \, d\theta $$
+        $$ = \int \frac{1}{4\tan(\theta)} \tan(\theta) \, d\theta $$
+        $$ = \int \frac{1}{4} \, d\theta $$
+        $$ = \frac{1}{4}\theta + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = \frac{1}{4}\sec^{-1}\left(\frac{x}{4}\right) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 11 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 11</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \frac{1}{9+x^2} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = x^2 + 9$<br>
+          $A = 1$<br>
+          $h = \frac{-B}{2A} = \frac{0}{2(1)} = 0$<br>
+          $k = f(0) = (0)^2 + 9 = 9$<br><br>
+          $f(x) = (x-0)^2 + 9$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ and $k$ have the same sign (both positive), we use tangent.<br><br>
+          $x - 0 = \sqrt{\frac{9}{1}} \tan(\theta)$<br>
+          $x = 3\tan(\theta)$<br>
+          $dx = 3\sec^2(\theta) \, d\theta$<br>
+          $\frac{x}{3} = \tan(\theta) \implies \theta = \tan^{-1}\left(\frac{x}{3}\right)$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \frac{1}{9+x^2} \, dx $$
+        $$ = \int \frac{1}{9+9\tan^2(\theta)} 3\sec^2(\theta) \, d\theta $$
+        $$ = \int \frac{1}{9\sec^2(\theta)} 3\sec^2(\theta) \, d\theta $$
+        $$ = \int \frac{3}{9} \, d\theta $$
+        $$ = \int \frac{1}{3} \, d\theta $$
+        $$ = \frac{1}{3}\theta + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = \frac{1}{3}\tan^{-1}\left(\frac{x}{3}\right) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 12 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 12</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \frac{1}{\sqrt{25+36x^2}} \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = 36x^2 + 25$<br>
+          $A = 36$<br>
+          $h = \frac{-B}{2A} = \frac{0}{2(36)} = 0$<br>
+          $k = f(0) = 36(0)^2 + 25 = 25$<br><br>
+          $f(x) = 36(x-0)^2 + 25$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ and $k$ have the same sign (both positive), we use tangent.<br><br>
+          $x - 0 = \sqrt{\frac{25}{36}} \tan(\theta)$<br>
+          $x = \frac{5}{6}\tan(\theta)$<br>
+          $dx = \frac{5}{6}\sec^2(\theta) \, d\theta$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \frac{1}{\sqrt{25+36x^2}} \, dx $$
+        $$ = \int \frac{1}{\sqrt{25+25\tan^2(\theta)}} \frac{5}{6}\sec^2(\theta) \, d\theta $$
+        $$ = \int \frac{1}{\sqrt{25\sec^2(\theta)}} \frac{5}{6}\sec^2(\theta) \, d\theta $$
+        $$ = \int \frac{1}{5\sec(\theta)} \frac{5}{6}\sec^2(\theta) \, d\theta $$
+        $$ = \int \frac{1}{6}\sec(\theta) \, d\theta $$
+        $$ = \frac{1}{6}\ln|\sec(\theta) + \tan(\theta)| + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+          <div style="margin-bottom: 10px;">
+            $\frac{6x}{5} = \tan(\theta) = \frac{\text{opposite}}{\text{adjacent}}$
+          </div>
+          <!-- Right Triangle SVG -->
+          <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+            <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+              <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+              <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+            </svg>
+            <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+            <div style="position: absolute; left: 90px; top: 122px; font-size: 1.1rem;">$5$</div>
+            <div style="position: absolute; left: 190px; top: 60px; font-size: 1.1rem;">$6x$</div>
+            <div style="position: absolute; left: 60px; top: 35px; font-size: 0.9rem; transform: rotate(-30.5deg);">$\sqrt{36x^2+25}$</div>
+          </div>
+          <div style="margin-top: 10px;">
+            $\sec(\theta) = \frac{\text{hypotenuse}}{\text{adjacent}} = \frac{\sqrt{36x^2+25}}{5}$
+          </div>
+        </div>
+
+        <div style="flex: 1.5; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = \frac{1}{6}\ln\left| \frac{\sqrt{36x^2+25}}{5} + \frac{6x}{5} \right| + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 13 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 13</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \sin^3(x)\cos^2(x) \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Substitution:</strong><br><br>
+          $u = \cos(x)$<br>
+          $du = -\sin(x) \, dx$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \sin^3(x)\cos^2(x) \, dx $$
+        $$ = \int \sin^2(x)\cos^2(x)\sin(x) \, dx $$
+        $$ = \int (1-\cos^2(x))\cos^2(x)\sin(x) \, dx $$
+        $$ = -\int (1-u^2)u^2 \, du $$
+        $$ = -\int (u^2-u^4) \, du $$
+        $$ = -\left(\frac{u^3}{3} - \frac{u^5}{5}\right) + C $$
+        $$ = -\frac{u^3}{3} + \frac{u^5}{5} + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = -\frac{\cos^3(x)}{3} + \frac{\cos^5(x)}{5} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 14 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 14</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \sin^2(x)\cos^5(x) \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Substitution:</strong><br><br>
+          $u = \sin(x)$<br>
+          $du = \cos(x) \, dx$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \sin^2(x)\cos^5(x) \, dx $$
+        $$ = \int \sin^2(x)\cos^4(x)\cos(x) \, dx $$
+        $$ = \int \sin^2(x)(1-\sin^2(x))^2\cos(x) \, dx $$
+        $$ = \int u^2(1-u^2)^2 \, du $$
+        $$ = \int u^2(1-2u^2+u^4) \, du $$
+        $$ = \int (u^2-2u^4+u^6) \, du $$
+        $$ = \frac{u^3}{3} - \frac{2u^5}{5} + \frac{u^7}{7} + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = \frac{\sin^3(x)}{3} - \frac{2\sin^5(x)}{5} + \frac{\sin^7(x)}{7} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 15 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 15</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \pi \sin(x)\cos^5(x) \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Substitution:</strong><br><br>
+          $u = \cos(x)$<br>
+          $du = -\sin(x) \, dx$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \pi \sin(x)\cos^5(x) \, dx $$
+        $$ = \pi \int \cos^5(x)\sin(x) \, dx $$
+        $$ = -\pi \int u^5 \, du $$
+        $$ = -\frac{\pi u^6}{6} + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = -\frac{\pi \cos^6(x)}{6} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 16 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 16</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \sec^2(x)\tan^3(x) \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Substitution:</strong><br><br>
+          $u = \tan(x)$<br>
+          $du = \sec^2(x) \, dx$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \sec^2(x)\tan^3(x) \, dx $$
+        $$ = \int \tan^3(x)\sec^2(x) \, dx $$
+        $$ = \int u^3 \, du $$
+        $$ = \frac{u^4}{4} + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = \frac{\tan^4(x)}{4} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 17 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 17</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \pi \sec^3(x)\tan(x) \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Substitution:</strong><br><br>
+          $u = \sec(x)$<br>
+          $du = \sec(x)\tan(x) \, dx$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \pi \sec^3(x)\tan(x) \, dx $$
+        $$ = \pi \int \sec^2(x)\sec(x)\tan(x) \, dx $$
+        $$ = \pi \int u^2 \, du $$
+        $$ = \frac{\pi u^3}{3} + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = \frac{\pi\sec^3(x)}{3} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 18 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 18</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int 7\tan^2(x)\sec(x) \, dx $$
+      </div>
+
+      <div class="integral-steps">
+        $$ \int 7\tan^2(x)\sec(x) \, dx $$
+        $$ = \int 7(\sec^2(x)-1)\sec(x) \, dx $$
+        $$ = \int 7(\sec^3(x)-\sec(x)) \, dx $$
+        $$ = 7 \left( \frac{1}{2}(\sec(x)\tan(x) + \ln|\sec(x)+\tan(x)|) - \ln|\sec(x)+\tan(x)| \right) + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 30px;">
+            $$ = 7 \left( \frac{1}{2}(\sec(x)\tan(x) + \ln|\sec(x)+\tan(x)|) - \ln|\sec(x)+\tan(x)| \right) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 19 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 19</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int 8\tan^5(x)\sec^2(x) \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Substitution:</strong><br><br>
+          $u = \tan(x)$<br>
+          $du = \sec^2(x) \, dx$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int 8\tan^5(x)\sec^2(x) \, dx $$
+        $$ = \int 8u^5 \, du $$
+        $$ = \frac{8u^6}{6} + C $$
+        $$ = \frac{4}{3}u^6 + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = \frac{4}{3}\tan^6(x) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 20 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 20</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 20px; text-align: center;">
+        $$ \int \sin(x)\cos^5(x) \, dx $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Substitution:</strong><br><br>
+          $u = \cos(x)$<br>
+          $du = -\sin(x) \, dx$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        $$ \int \sin(x)\cos^5(x) \, dx $$
+        $$ = \int \cos^5(x)\sin(x) \, dx $$
+        $$ = -\int u^5 \, du $$
+        $$ = -\frac{u^6}{6} + C $$
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+          <div class="circled-result-box" style="padding: 25px 50px;">
+            $$ = -\frac{\cos^6(x)}{6} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Applications</h2>
+
+  <!-- PROBLEM 21 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 21</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.15rem; font-weight: bold; margin-bottom: 20px;">
+        Let $R$ be the region bounded above by the semicircle $y=\sqrt{9-x^2}$ and below by the $x$-axis over the interval $[-3,3]$.<br>
+        a) Find the area of the region.<br>
+        b) Compute the coordinates of the centroid $(\bar{x},\bar{y})$.
+      </div>
+
+      <h3 style="color: var(--primary); margin-left: 20px;">(a) Area</h3>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = -x^2 + 9$<br>
+          $A = -1$<br>
+          $h = \frac{-B}{2A} = \frac{0}{2(-1)} = 0$<br>
+          $k = f(0) = -(0)^2 + 9 = 9$<br><br>
+          $f(x) = -(x-0)^2 + 9$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ is negative and $k$ is positive, we use sine.<br><br>
+          $x - 0 = \sqrt{\frac{9}{1}} \sin(\theta)$<br>
+          $x = 3\sin(\theta)$<br>
+          $dx = 3\cos(\theta) \, d\theta$<br>
+          $\frac{x}{3} = \sin(\theta) \implies \theta = \sin^{-1}\left(\frac{x}{3}\right)$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        <p>First, find the antiderivative:</p>
+        $$ \int \sqrt{9-x^2} \, dx $$
+        $$ = \int \sqrt{9-9\sin^2(\theta)} 3\cos(\theta) \, d\theta $$
+        $$ = \int \sqrt{9\cos^2(\theta)} 3\cos(\theta) \, d\theta $$
+        $$ = \int 3\cos(\theta) 3\cos(\theta) \, d\theta $$
+        $$ = 9 \int \cos^2(\theta) \, d\theta $$
+        $$ = 9 \int \frac{1}{2}(1+\cos(2\theta)) \, d\theta $$
+        $$ = \frac{9}{2} \left( \theta + \frac{\sin(2\theta)}{2} \right) + C $$
+        $$ = \frac{9}{2} ( \theta + \sin(\theta)\cos(\theta) ) + C $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+          <div style="margin-bottom: 10px;">
+            $\frac{x}{3} = \sin(\theta) = \frac{\text{opposite}}{\text{hypotenuse}}$
+          </div>
+          <!-- Right Triangle SVG -->
+          <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+            <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+              <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+              <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+            </svg>
+            <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+            <div style="position: absolute; left: 65px; top: 122px; font-size: 1rem;">$\sqrt{9-x^2}$</div>
+            <div style="position: absolute; left: 190px; top: 60px; font-size: 1.1rem;">$x$</div>
+            <div style="position: absolute; left: 80px; top: 45px; font-size: 1.1rem;">$3$</div>
+          </div>
+          <div style="margin-top: 10px;">
+            $\cos(\theta) = \frac{\text{adjacent}}{\text{hypotenuse}} = \frac{\sqrt{9-x^2}}{3}$
+          </div>
+        </div>
+
+        <div style="flex: 1.5; min-width: 300px;">
+          $$ = \frac{9}{2} \left( \sin^{-1}\left(\frac{x}{3}\right) + \frac{x}{3} \cdot \frac{\sqrt{9-x^2}}{3} \right) + C $$
+          <p style="font-weight: bold; margin-top: 20px;">Evaluating the Definite Integral:</p>
+          $$ \text{Area} = \left. \frac{9}{2} \left( \sin^{-1}\left(\frac{x}{3}\right) + \frac{x\sqrt{9-x^2}}{9} \right) \right|_{-3}^3 $$
+          $$ = \frac{9}{2} ( \sin^{-1}(1) - 0 ) - \frac{9}{2} ( \sin^{-1}(-1) - 0 ) $$
+          $$ = \frac{9}{2} \left( \frac{\pi}{2} \right) - \frac{9}{2} \left( -\frac{\pi}{2} \right) $$
+          $$ = \frac{9\pi}{4} + \frac{9\pi}{4} = \frac{18\pi}{4} = \frac{9\pi}{2} $$
+        </div>
+      </div>
+
+      <hr style="border: 0; border-top: 1px dashed var(--border-color); margin: 30px 0;">
+
+      <h3 style="color: var(--primary); margin-left: 20px;">(b) Centroid</h3>
+      
+      <div class="integral-steps">
+        <p><strong>For $\bar{x}$:</strong></p>
+        $$ \int_{-3}^3 x\sqrt{9-x^2} \, dx $$
+        <div class="side-work-box" style="margin: 10px 0;">
+          <strong style="text-decoration: underline;">Substitution:</strong><br>
+          $u = 9-x^2$<br>
+          $du = -2x \, dx \implies -\frac{1}{2}du = x \, dx$<br>
+          $u(-3) = 9-(-3)^2 = 0$<br>
+          $u(3) = 9-(3)^2 = 0$
+        </div>
+        $$ = -\frac{1}{2} \int_0^0 \sqrt{u} \, du $$
+        $$ = -\frac{1}{2} \left. \frac{u^{3/2}}{3/2} \right|_0^0 = 0 $$
+        $$ \bar{x} = \frac{0}{9\pi/2} = 0 $$
+
+        <p><strong>For $\bar{y}$:</strong></p>
+        $$ \int_{-3}^3 \frac{(\sqrt{9-x^2})^2}{2} \, dx $$
+        $$ = \frac{1}{2} \int_{-3}^3 (9-x^2) \, dx $$
+        $$ = \left. \frac{1}{2} \left( 9x - \frac{x^3}{3} \right) \right|_{-3}^3 $$
+        $$ = \frac{1}{2} \left( 9(3) - \frac{(3)^3}{3} \right) - \frac{1}{2} \left( 9(-3) - \frac{(-3)^3}{3} \right) $$
+        $$ = \frac{1}{2} (27 - 9) - \frac{1}{2} (-27 + 9) $$
+        $$ = \frac{1}{2}(18) - \frac{1}{2}(-18) $$
+        $$ = 9 - (-9) = 18 $$
+        $$ \bar{y} = \frac{18}{9\pi/2} = 18 \cdot \frac{2}{9\pi} = \frac{4}{\pi} $$
+      </div>
+
+      <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <div class="circled-result-box" style="padding: 25px 50px;">
+          $$ \text{Centroid: } \left(0, \frac{4}{\pi}\right) $$
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROBLEM 22 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 22</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.15rem; font-weight: bold; margin-bottom: 20px;">
+        Let $R$ be the region under the graph of $y=\frac{1}{x^2+4x+5}$, from $x=-2$ to $x=0$.<br>
+        a) Compute the area of the region.<br>
+        b) Find the coordinates of the centroid $(\bar{x},\bar{y})$.
+      </div>
+
+      <h3 style="color: var(--primary); margin-left: 20px;">(a) Area</h3>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $f(x) = x^2 + 4x + 5$<br>
+          $A = 1, B = 4$<br>
+          $h = \frac{-B}{2A} = \frac{-4}{2(1)} = -2$<br>
+          $k = f(-2) = (-2)^2 + 4(-2) + 5 = 4 - 8 + 5 = 1$<br><br>
+          $f(x) = (x-(-2))^2 + 1 = (x+2)^2 + 1$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ and $k$ have the same sign (both positive), we use tangent.<br><br>
+          $x - (-2) = \sqrt{\frac{1}{1}} \tan(\theta)$<br>
+          $x + 2 = \tan(\theta)$<br>
+          $dx = \sec^2(\theta) \, d\theta$<br>
+          $\theta = \tan^{-1}(x+2)$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        <p>First, find the antiderivative:</p>
+        $$ \int \frac{1}{x^2+4x+5} \, dx $$
+        $$ = \int \frac{1}{(x+2)^2+1} \, dx $$
+        $$ = \int \frac{1}{\tan^2(\theta)+1} \sec^2(\theta) \, d\theta $$
+        $$ = \int \frac{1}{\sec^2(\theta)} \sec^2(\theta) \, d\theta $$
+        $$ = \int 1 \, d\theta $$
+        $$ = \theta + C $$
+        $$ = \tan^{-1}(x+2) + C $$
+        
+        <p><strong>Evaluating the Definite Integral:</strong></p>
+        $$ \text{Area} = \left. \tan^{-1}(x+2) \right|_{-2}^0 $$
+        $$ = \tan^{-1}(0+2) - \tan^{-1}(-2+2) $$
+        $$ = \tan^{-1}(2) - \tan^{-1}(0) $$
+        $$ = \tan^{-1}(2) $$
+      </div>
+
+      <hr style="border: 0; border-top: 1px dashed var(--border-color); margin: 30px 0;">
+
+      <h3 style="color: var(--primary); margin-left: 20px;">(b) Centroid</h3>
+      
+      <div class="integral-steps">
+        <p><strong>For $\bar{x}$:</strong></p>
+        $$ \int_{-2}^0 x \left( \frac{1}{x^2+4x+5} \right) \, dx $$
+        $$ = \int \frac{x}{(x+2)^2+1} \, dx $$
+        <p>Using the same substitution $x+2 = \tan(\theta) \implies x = \tan(\theta)-2$:</p>
+        $$ = \int \frac{\tan(\theta)-2}{\tan^2(\theta)+1} \sec^2(\theta) \, d\theta $$
+        $$ = \int \frac{\tan(\theta)-2}{\sec^2(\theta)} \sec^2(\theta) \, d\theta $$
+        $$ = \int (\tan(\theta)-2) \, d\theta $$
+        $$ = \ln|\sec(\theta)| - 2\theta + C $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 20px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+          <div style="margin-bottom: 10px;">
+            $\frac{x+2}{1} = \tan(\theta) = \frac{\text{opposite}}{\text{adjacent}}$
+          </div>
+          <!-- Right Triangle SVG -->
+          <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+            <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+              <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+              <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+            </svg>
+            <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+            <div style="position: absolute; left: 90px; top: 122px; font-size: 1.1rem;">$1$</div>
+            <div style="position: absolute; left: 190px; top: 60px; font-size: 1.1rem;">$x+2$</div>
+            <div style="position: absolute; left: 50px; top: 35px; font-size: 0.95rem; transform: rotate(-30.5deg);">$\sqrt{(x+2)^2+1}$</div>
+          </div>
+          <div style="margin-top: 10px;">
+            $\sec(\theta) = \sqrt{(x+2)^2+1}$
+          </div>
+        </div>
+
+        <div style="flex: 1.5; min-width: 300px;">
+          $$ = \ln\left|\sqrt{(x+2)^2+1}\right| - 2\tan^{-1}(x+2) + C $$
+          <p>Evaluating from -2 to 0:</p>
+          $$ = \left( \ln\sqrt{5} - 2\tan^{-1}(2) \right) - (0 - 0) $$
+          $$ = \ln\sqrt{5} - 2\tan^{-1}(2) $$
+          $$ \bar{x} = \frac{\ln\sqrt{5} - 2\tan^{-1}(2)}{\tan^{-1}(2)} $$
+        </div>
+      </div>
+
+      <div class="integral-steps" style="margin-top: 40px;">
+        <p><strong>For $\bar{y}$:</strong></p>
+        $$ \int_{-2}^0 \frac{1}{2} \left( \frac{1}{x^2+4x+5} \right)^2 \, dx $$
+        $$ = \frac{1}{2} \int \frac{1}{((x+2)^2+1)^2} \, dx $$
+        $$ = \frac{1}{2} \int \frac{1}{(\tan^2(\theta)+1)^2} \sec^2(\theta) \, d\theta $$
+        $$ = \frac{1}{2} \int \frac{1}{\sec^4(\theta)} \sec^2(\theta) \, d\theta $$
+        $$ = \frac{1}{2} \int \frac{1}{\sec^2(\theta)} \, d\theta $$
+        $$ = \frac{1}{2} \int \cos^2(\theta) \, d\theta $$
+        $$ = \frac{1}{2} \int \frac{1}{2}(1+\cos(2\theta)) \, d\theta $$
+        $$ = \frac{1}{4} \left( \theta + \frac{\sin(2\theta)}{2} \right) + C $$
+        $$ = \frac{1}{4} ( \theta + \sin(\theta)\cos(\theta) ) + C $$
+        <p>Using the triangle above to find $\sin(\theta)$ and $\cos(\theta)$:</p>
+        $$ = \frac{1}{4} \left( \tan^{-1}(x+2) + \frac{x+2}{\sqrt{(x+2)^2+1}} \cdot \frac{1}{\sqrt{(x+2)^2+1}} \right) + C $$
+        $$ = \frac{1}{4} \left( \tan^{-1}(x+2) + \frac{x+2}{(x+2)^2+1} \right) + C $$
+        <p>Evaluating from -2 to 0:</p>
+        $$ = \frac{1}{4} \left( \tan^{-1}(2) + \frac{2}{5} \right) - \frac{1}{4} (0 + 0) $$
+        $$ = \frac{1}{4}\tan^{-1}(2) + \frac{1}{10} $$
+        $$ \bar{y} = \frac{\frac{1}{4}\tan^{-1}(2) + \frac{1}{10}}{\tan^{-1}(2)} $$
+      </div>
+
+      <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <div class="circled-result-box" style="padding: 25px 40px;">
+          $$ \text{Centroid: } \left( \frac{\ln\sqrt{5} - 2\tan^{-1}(2)}{\tan^{-1}(2)}, \frac{\frac{1}{4}\tan^{-1}(2) + \frac{1}{10}}{\tan^{-1}(2)} \right) $$
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROBLEM 23 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 23</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.15rem; font-weight: bold; margin-bottom: 20px;">
+        Find the arc length of the curve $y=x^2+4x+5$ on $[0,2]$.
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Setting up Arc Length:</strong><br><br>
+          $y' = 2x + 4$<br>
+          $L = \int_0^2 \sqrt{1 + (y')^2} \, dx$<br>
+          $L = \int_0^2 \sqrt{1 + (2x+4)^2} \, dx$<br>
+          Inside root: $1 + 4x^2 + 16x + 16$<br>
+          $f(x) = 4x^2 + 16x + 17$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $A = 4, B = 16$<br>
+          $h = \frac{-B}{2A} = \frac{-16}{2(4)} = -2$<br>
+          $k = f(-2) = 4(-2)^2 + 16(-2) + 17 = 16 - 32 + 17 = 1$<br><br>
+          $f(x) = 4(x-(-2))^2 + 1 = 4(x+2)^2 + 1$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ and $k$ have the same sign (positive), we use tangent.<br><br>
+          $x - (-2) = \sqrt{\frac{1}{4}} \tan(\theta)$<br>
+          $x + 2 = \frac{1}{2}\tan(\theta)$<br>
+          $dx = \frac{1}{2}\sec^2(\theta) \, d\theta$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        <p>First, find the antiderivative:</p>
+        $$ \int \sqrt{4x^2+16x+17} \, dx $$
+        $$ = \int \sqrt{4(x+2)^2+1} \, dx $$
+        $$ = \int \sqrt{4\left(\frac{1}{2}\tan(\theta)\right)^2+1} \, \frac{1}{2}\sec^2(\theta) \, d\theta $$
+        $$ = \int \sqrt{\tan^2(\theta)+1} \, \frac{1}{2}\sec^2(\theta) \, d\theta $$
+        $$ = \frac{1}{2} \int \sqrt{\sec^2(\theta)} \sec^2(\theta) \, d\theta $$
+        $$ = \frac{1}{2} \int \sec^3(\theta) \, d\theta $$
+        $$ = \frac{1}{4} ( \sec(\theta)\tan(\theta) + \ln|\sec(\theta)+\tan(\theta)| ) + C $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+          <div style="margin-bottom: 10px;">
+            $2(x+2) = \tan(\theta) = \frac{\text{opposite}}{\text{adjacent}}$
+          </div>
+          <!-- Right Triangle SVG -->
+          <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+            <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+              <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+              <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+            </svg>
+            <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+            <div style="position: absolute; left: 90px; top: 122px; font-size: 1.1rem;">$1$</div>
+            <div style="position: absolute; left: 190px; top: 60px; font-size: 1.1rem;">$2(x+2)$</div>
+            <div style="position: absolute; left: 35px; top: 35px; font-size: 0.95rem; transform: rotate(-30.5deg);">$\sqrt{4(x+2)^2+1}$</div>
+          </div>
+          <div style="margin-top: 10px;">
+            $\sec(\theta) = \sqrt{4(x+2)^2+1}$
+          </div>
+        </div>
+
+        <div style="flex: 1.5; min-width: 300px;">
+          $$ = \frac{1}{4} \left( \sqrt{4(x+2)^2+1} \cdot (2x+4) + \ln\left|\sqrt{4(x+2)^2+1} + 2x+4\right| \right) + C $$
+          <p style="font-weight: bold; margin-top: 20px;">Evaluating from 0 to 2:</p>
+          $$ L = \frac{1}{4} \left[ \sqrt{4(x+2)^2+1} (2x+4) + \ln\left|\sqrt{4(x+2)^2+1} + 2x+4\right| \right]_0^2 $$
+          $$ = \frac{1}{4} \left( \sqrt{65}(8) + \ln|\sqrt{65}+8| \right) - \frac{1}{4} \left( \sqrt{17}(4) + \ln|\sqrt{17}+4| \right) $$
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <div class="circled-result-box" style="padding: 25px 40px;">
+          $$ = 2\sqrt{65} + \frac{1}{4}\ln|\sqrt{65}+8| - \sqrt{17} - \frac{1}{4}\ln|\sqrt{17}+4| $$
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROBLEM 24 -->
+  <div class="problem-block">
+    <div class="problem-text">Problem 24</div>
+    <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+      <div style="font-size: 1.15rem; font-weight: bold; margin-bottom: 20px;">
+        Find the arc length of the curve $y=-x^2+6x-5$ on $[2,4]$.
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 20px; margin-left: 20px;">
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Setting up Arc Length:</strong><br><br>
+          $y' = -2x + 6$<br>
+          $L = \int_2^4 \sqrt{1 + (y')^2} \, dx$<br>
+          $L = \int_2^4 \sqrt{1 + (-2x+6)^2} \, dx$<br>
+          Inside root: $1 + 4x^2 - 24x + 36$<br>
+          $f(x) = 4x^2 - 24x + 37$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Completing the square:</strong><br><br>
+          $A = 4, B = -24$<br>
+          $h = \frac{-B}{2A} = \frac{-(-24)}{2(4)} = 3$<br>
+          $k = f(3) = 4(3)^2 - 24(3) + 37 = 36 - 72 + 37 = 1$<br><br>
+          $f(x) = 4(x-3)^2 + 1$
+        </div>
+
+        <div class="side-work-box" style="flex: 1; min-width: 250px;">
+          <strong style="text-decoration: underline;">Trigonometric Substitution:</strong><br><br>
+          Since $A$ and $k$ have the same sign (positive), we use tangent.<br><br>
+          $x - 3 = \sqrt{\frac{1}{4}} \tan(\theta)$<br>
+          $x - 3 = \frac{1}{2}\tan(\theta)$<br>
+          $dx = \frac{1}{2}\sec^2(\theta) \, d\theta$
+        </div>
+      </div>
+
+      <div class="integral-steps">
+        <p>First, find the antiderivative:</p>
+        $$ \int \sqrt{4x^2-24x+37} \, dx $$
+        $$ = \int \sqrt{4(x-3)^2+1} \, dx $$
+        $$ = \int \sqrt{4\left(\frac{1}{2}\tan(\theta)\right)^2+1} \, \frac{1}{2}\sec^2(\theta) \, d\theta $$
+        $$ = \int \sqrt{\tan^2(\theta)+1} \, \frac{1}{2}\sec^2(\theta) \, d\theta $$
+        $$ = \frac{1}{2} \int \sqrt{\sec^2(\theta)} \sec^2(\theta) \, d\theta $$
+        $$ = \frac{1}{2} \int \sec^3(\theta) \, d\theta $$
+        $$ = \frac{1}{4} ( \sec(\theta)\tan(\theta) + \ln|\sec(\theta)+\tan(\theta)| ) + C $$
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-top: 40px; margin-left: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.15rem; text-decoration: underline;">Draw Triangle</div>
+          <div style="margin-bottom: 10px;">
+            $2(x-3) = \tan(\theta) = \frac{\text{opposite}}{\text{adjacent}}$
+          </div>
+          <!-- Right Triangle SVG -->
+          <div style="position: relative; width: 220px; height: 140px; margin: 10px 0;">
+            <svg width="220" height="140" viewBox="0 0 220 140" style="position: absolute; top: 0; left: 0;">
+              <polygon points="10,120 180,120 180,20" fill="none" stroke="var(--text-main)" stroke-width="2.5" stroke-linejoin="round"/>
+              <polyline points="165,120 165,105 180,105" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+              <path d="M 50,120 A 40,40 0 0,0 45,99" fill="none" stroke="var(--text-main)" stroke-width="2"/>
+            </svg>
+            <div style="position: absolute; left: 28px; top: 98px; font-size: 1.1rem;">$\theta$</div>
+            <div style="position: absolute; left: 90px; top: 122px; font-size: 1.1rem;">$1$</div>
+            <div style="position: absolute; left: 190px; top: 60px; font-size: 1.1rem;">$2(x-3)$</div>
+            <div style="position: absolute; left: 35px; top: 35px; font-size: 0.95rem; transform: rotate(-30.5deg);">$\sqrt{4(x-3)^2+1}$</div>
+          </div>
+          <div style="margin-top: 10px;">
+            $\sec(\theta) = \sqrt{4(x-3)^2+1}$
+          </div>
+        </div>
+
+        <div style="flex: 1.5; min-width: 300px;">
+          $$ = \frac{1}{4} \left( \sqrt{4(x-3)^2+1} \cdot 2(x-3) + \ln\left|\sqrt{4(x-3)^2+1} + 2(x-3)\right| \right) + C $$
+          <p style="font-weight: bold; margin-top: 20px;">Evaluating from 2 to 4:</p>
+          $$ L = \frac{1}{4} \left[ \sqrt{4(x-3)^2+1} \cdot 2(x-3) + \ln\left|\sqrt{4(x-3)^2+1} + 2(x-3)\right| \right]_2^4 $$
+          $$ = \frac{1}{4} \left( \sqrt{5}(2) + \ln|\sqrt{5}+2| \right) - \frac{1}{4} \left( \sqrt{5}(-2) + \ln|\sqrt{5}-2| \right) $$
+          $$ = \frac{\sqrt{5}}{2} + \frac{1}{4}\ln|\sqrt{5}+2| + \frac{\sqrt{5}}{2} - \frac{1}{4}\ln|\sqrt{5}-2| $$
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <div class="circled-result-box" style="padding: 25px 40px;">
+          $$ = \sqrt{5} + \frac{1}{4}\ln|\sqrt{5}+2| - \frac{1}{4}\ln|\sqrt{5}-2| $$
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

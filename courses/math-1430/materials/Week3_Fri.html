@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 - Endpoints & Series Functions</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX CONFIGURATION -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-paper: #F9F5EB;
+            --text-main: #111827;
+            --primary: #2563eb;
+            --secondary: #059669; /* Green for Objectives */
+            --highlight: #eff6ff;
+            --font-serif: 'Crimson Pro', serif;
+            --font-sans: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+        }
+
+        /* Simulating an A4/Letter page on screen */
+        .page-container {
+            max-width: 800px; /* Approx 8.5in */
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            min-height: 1100px;
+        }
+
+        /* HEADINGS */
+        h1, h2, h3 { font-family: var(--font-sans); margin-top: 0; }
+        h1 { font-size: 2.2rem; border-bottom: 4px solid var(--text-main); padding-bottom: 10px; margin-bottom: 5px; }
+        h2 { font-size: 1.4rem; color: var(--primary); border-bottom: 1px solid #e2e8f0; margin-top: 30px; padding-bottom: 5px; }
+        .header-meta { font-family: var(--font-sans); color: #64748b; font-size: 0.9rem; margin-bottom: 20px; display: flex; justify-content: space-between; }
+
+        /* OBJECTIVES BOX */
+        .objectives-container {
+            border: 2px solid var(--secondary);
+            background-color: #ecfdf5;
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        .objectives-title {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .objectives-list {
+            margin: 0;
+            padding-left: 20px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+        }
+        .objectives-list li { margin-bottom: 5px; }
+
+        /* CONTENT BOXES */
+        .box {
+            border: 2px solid var(--text-main);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            page-break-inside: avoid;
+        }
+        .example-box {
+            background-color: var(--highlight);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        .box-title {
+            display: block;
+            font-family: var(--font-sans);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* SIDEBAR / NOTE */
+        .sidebar {
+            float: right;
+            width: 200px;
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            padding: 15px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+        }
+
+        /* HANDWRITTEN STYLE NOTE */
+        .handwritten {
+            font-family: 'Crimson Pro', serif;
+            font-style: italic;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* TABLES */
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        td, th { border-bottom: 1px solid #e2e8f0; padding: 10px; text-align: left; }
+        th { font-family: var(--font-sans); color: var(--primary); font-size: 0.9rem; }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: white; padding: 0; }
+            .page-container { box-shadow: none; padding: 0; margin: 0; max-width: 100%; }
+            .objectives-container { background-color: white !important; border: 1px solid var(--secondary); }
+            .box { background-color: white !important; border: 1px solid #000; }
+            h2 { color: black !important; border-bottom: 1px solid #000; }
+            .box-title { color: black !important; }
+            .sidebar { border: 1px solid #ccc; }
+            .example-box { background-color: white !important; border-left: 1px solid black; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>Functions Defined by Power Series</h1>
+            <div class="header-meta">
+                <span>Calculus 2</span>
+                <span>Friday, Jan 30</span>
+                <span>Instructor Notes</span>
+            </div>
+        </header>
+
+        <!-- LEARNING OBJECTIVES -->
+        <section class="objectives-container">
+            <span class="objectives-title">Learning Objectives</span>
+            <ul class="objectives-list">
+                <li><strong>Identify</strong> the center $a$ and the endpoints of the interval of convergence.</li>
+                <li><strong>Write out</strong> the sequence of partial sums for the series at the endpoints.</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 1 -->
+        <section>
+            <h2>1. The Domain of f(x)</h2>
+            <p>We are analyzing functions defined by power series of the form:</p>
+            $$ \displaystyle f(x) = \sum_{n=0}^{\infty} a_n (x-a)^n $$
+            
+            <p>Finding the domain involves a strict three-step procedure.</p>
+
+            <div class="box">
+                <span class="box-title">Step 1: Identify Center & Coefficient</span>
+                <p>Before applying any tests, you must identify two things:</p>
+                <ol>
+                    <li>The <strong>center</strong> $a$: Look at the term $(x-a)^n$.</li>
+                    <li>The <strong>coefficient</strong> $a_n$: This is everything in the series <strong>except</strong> the $(x-a)^n$ part.</li>
+                </ol>
+                <p><strong>Crucial:</strong> The Ratio and Root tests must be performed on the coefficient $a_n$ alone. Do not include $x$ in your limit calculations.</p>
+            </div>
+
+            <div class="box">
+                <span class="box-title">Step 2: Find Radius (R) using Coefficients</span>
+                <p>Calculate the limit $L$ using either the Ratio Test <strong>OR</strong> the Root Test on the coefficients $a_n$:</p>
+                $$ \displaystyle L = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| \quad \text{OR} \quad \displaystyle L = \lim_{n \to \infty} \sqrt[n]{|a_n|} $$
+                <p>The Radius of Convergence is determined by $L$:</p>
+                <ul>
+                    <li>If $L$ is finite and positive, then $R = \frac{1}{L}$.</li>
+                    <li>If $L = 0$, then $R = \infty$ (Converges everywhere).</li>
+                    <li>If $L = \infty$, then $R = 0$ (Converges only at the center).</li>
+                </ul>
+            </div>
+
+            <!-- ALGEBRA REVIEW BOX -->
+            <div class="box" style="background-color: #fff7ed; border-color: #f97316;">
+                <span class="box-title" style="color: #ea580c;">Algebraic Toolkit for Step 2</span>
+                <p>When simplifying the ratio $\displaystyle \left| \frac{a_{n+1}}{a_n} \right|$, explicitly use these cancellation rules:</p>
+                
+                <p><strong>1. Exponents:</strong> Peel off the extra term.</p>
+                $$ \displaystyle b^{n+1} = b^n \cdot b^1 \quad \implies \quad \frac{b^{n+1}}{b^n} = \frac{b^n \cdot b}{b^n} = b $$
+                
+                <p><strong>2. Factorials:</strong> Expand the larger factorial to match the smaller one.</p>
+                $$ \displaystyle (n+1)! = (n+1) \cdot n! \quad \implies \quad \frac{(n+1)!}{n!} = \frac{(n+1)n!}{n!} = n+1 $$
+            </div>
+
+            <div class="box">
+                <span class="box-title">Step 3: Evaluate Endpoints</span>
+                <p>The potential interval is $(a-R, a+R)$. We must plug in the endpoints $x = a-R$ and $x = a+R$ into the original function.</p>
+                <ul>
+                    <li>At $x = a+R$, the series becomes a numerical series $\sum b_n$.</li>
+                    <li>At $x = a-R$, the series becomes a numerical series $\sum c_n$.</li>
+                </ul>
+                <p>We then write out the first few terms of these numerical series to investigate their behavior.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 2: EXAMPLES -->
+        <section>
+            <h2>2. Worked Examples</h2>
+            
+            <!-- EXAMPLE 1 -->
+            <div class="example-box">
+                <span class="box-title">Example 1</span>
+                <p>Find the endpoints of the interval of convergence for the function defined below. Then, write out the first <strong>4 terms</strong> of the series at each endpoint.</p>
+                $$ \displaystyle f(x) = \sum_{n=1}^{\infty} \frac{n-1}{n+1} x^n $$
+
+                <p><strong>1. Identify Parts:</strong><br>
+                The power term is $x^n$, so the center is <strong>$a=0$</strong>.<br>
+                The coefficient is <strong>$\displaystyle a_n = \frac{n-1}{n+1}$</strong>.</p>
+                
+                <p><strong>2. Calculate L (Ratio Test on $a_n$):</strong>
+                $$ \displaystyle L = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = \lim_{n \to \infty} \left| \frac{(n+1)-1}{(n+1)+1} \cdot \frac{n+1}{n-1} \right| $$
+                Simplify the fractions:
+                $$ \displaystyle L = \lim_{n \to \infty} \left| \frac{n}{n+2} \cdot \frac{n+1}{n-1} \right| = \lim_{n \to \infty} \left| \frac{n^2+n}{n^2+n-2} \right| $$
+                <p>This limit produces the indeterminate form $\frac{\infty}{\infty}$. We apply <strong>L'Hôpital's Rule</strong> (differentiating numerator and denominator with respect to $n$):</p>
+                $$ \displaystyle L = \lim_{n \to \infty} \frac{\frac{d}{dn}(n^2+n)}{\frac{d}{dn}(n^2+n-2)} = \lim_{n \to \infty} \frac{2n+1}{2n+1} = 1 $$
+                
+                <p>Since $L=1$, the Radius is $R = 1/1 = 1$. The endpoints are $1$ and $-1$.</p>
+
+                <p><strong>3. Endpoints:</strong></p>
+                <p>At $x=1$ (Right endpoint), the series becomes $\displaystyle \sum b_n = \sum_{n=1}^{\infty} \frac{n-1}{n+1}(1)^n$.</p>
+                <span class="handwritten">Computing the terms:</span><br>
+                <ul>
+                    <li>$n=1$: $\displaystyle \frac{1-1}{1+1} = \frac{0}{2} = 0$</li>
+                    <li>$n=2$: $\displaystyle \frac{2-1}{2+1} = \frac{1}{3}$</li>
+                    <li>$n=3$: $\displaystyle \frac{3-1}{3+1} = \frac{2}{4} = \frac{1}{2}$</li>
+                    <li>$n=4$: $\displaystyle \frac{4-1}{4+1} = \frac{3}{5}$</li>
+                </ul>
+                <p><strong>Sequence of partial sums:</strong> $\displaystyle 0 + \frac{1}{3} + \frac{1}{2} + \frac{3}{5} + \dots$</p>
+
+                <p>At $x=-1$ (Left endpoint), the series becomes $\displaystyle \sum c_n = \sum_{n=1}^{\infty} \frac{n-1}{n+1}(-1)^n$.</p>
+                <span class="handwritten">Computing the terms:</span><br>
+                <ul>
+                    <li>$n=1$: $\displaystyle \frac{0}{2}(-1)^1 = 0$</li>
+                    <li>$n=2$: $\displaystyle \frac{1}{3}(-1)^2 = \frac{1}{3}(1) = \frac{1}{3}$</li>
+                    <li>$n=3$: $\displaystyle \frac{2}{4}(-1)^3 = \frac{1}{2}(-1) = -\frac{1}{2}$</li>
+                    <li>$n=4$: $\displaystyle \frac{3}{5}(-1)^4 = \frac{3}{5}(1) = \frac{3}{5}$</li>
+                </ul>
+                <p><strong>Sequence of partial sums:</strong> $\displaystyle 0 + \frac{1}{3} - \frac{1}{2} + \frac{3}{5} - \dots$</p>
+            </div>
+
+            <!-- EXAMPLE 2 -->
+            <div class="example-box">
+                <span class="box-title">Example 2</span>
+                <p>Find the endpoints of the interval of convergence for the function defined below. Then, write out the first <strong>5 terms</strong> of the series at each endpoint.</p>
+                $$ \displaystyle g(x) = \sum_{n=1}^{\infty} \frac{(x-2)^n}{n \cdot 3^n} $$
+
+                <p><strong>1. Identify Parts:</strong><br>
+                The power term is $(x-2)^n$, so the center is <strong>$a=2$</strong>.<br>
+                The coefficient is <strong>$\displaystyle a_n = \frac{1}{n 3^n}$</strong>.</p>
+                
+                <p><strong>2. Calculate L (Ratio Test on $a_n$):</strong>
+                $$ \displaystyle L = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = \lim_{n \to \infty} \left| \frac{1}{(n+1)3^{n+1}} \cdot \frac{n 3^n}{1} \right| $$
+                Group the terms by type (powers of 3 and terms of n):
+                $$ \displaystyle L = \lim_{n \to \infty} \left| \frac{n}{n+1} \cdot \frac{3^n}{3^{n+1}} \right| $$
+                Apply exponent rules $3^{n+1} = 3^n \cdot 3$:
+                $$ \displaystyle L = \lim_{n \to \infty} \left| \frac{n}{n+1} \cdot \frac{3^n}{3^n \cdot 3} \right| = \frac{1}{3} \lim_{n \to \infty} \frac{n}{n+1} $$
+                The limit $\frac{n}{n+1}$ is $\frac{\infty}{\infty}$. Using <strong>L'Hôpital's Rule</strong>:
+                $$ \displaystyle \lim_{n \to \infty} \frac{\frac{d}{dn}(n)}{\frac{d}{dn}(n+1)} = \lim_{n \to \infty} \frac{1}{1} = 1 $$
+                So, $L = \frac{1}{3}(1) = \frac{1}{3}$.
+                <br>Since $L = 1/3$, then $R = \frac{1}{1/3} = 3$.
+                <br>Endpoints: $2+3 = \mathbf{5}$ and $2-3 = \mathbf{-1}$.</p>
+
+                <p><strong>3. Endpoints:</strong></p>
+                <p>At $x=5$: 
+                $$ \displaystyle \sum b_n = \sum_{n=1}^{\infty} \frac{(5-2)^n}{n 3^n} = \sum_{n=1}^{\infty} \frac{3^n}{n 3^n} = \sum_{n=1}^{\infty} \frac{1}{n} $$
+                <span class="handwritten">Computing the terms:</span><br>
+                <ul>
+                    <li>$n=1: \displaystyle \frac{1}{1} = 1$</li>
+                    <li>$n=2: \displaystyle \frac{1}{2}$</li>
+                    <li>$n=3: \displaystyle \frac{1}{3}$</li>
+                    <li>$n=4: \displaystyle \frac{1}{4}$</li>
+                    <li>$n=5: \displaystyle \frac{1}{5}$</li>
+                </ul>
+                <p><strong>Sequence of partial sums:</strong> $\displaystyle 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5} + \dots$</p>
+
+                <p>At $x=-1$: 
+                $$ \displaystyle \sum c_n = \sum_{n=1}^{\infty} \frac{(-1-2)^n}{n 3^n} = \sum_{n=1}^{\infty} \frac{(-3)^n}{n 3^n} = \sum_{n=1}^{\infty} \frac{(-1)^n 3^n}{n 3^n} = \sum_{n=1}^{\infty} \frac{(-1)^n}{n} $$
+                <span class="handwritten">Computing the terms:</span><br>
+                <ul>
+                    <li>$n=1: \displaystyle \frac{(-1)^1}{1} = -1$</li>
+                    <li>$n=2: \displaystyle \frac{(-1)^2}{2} = \frac{1}{2}$</li>
+                    <li>$n=3: \displaystyle \frac{(-1)^3}{3} = -\frac{1}{3}$</li>
+                    <li>$n=4: \displaystyle \frac{(-1)^4}{4} = \frac{1}{4}$</li>
+                    <li>$n=5: \displaystyle \frac{(-1)^5}{5} = -\frac{1}{5}$</li>
+                </ul>
+                <p><strong>Sequence of partial sums:</strong> $\displaystyle -1 + \frac{1}{2} - \frac{1}{3} + \frac{1}{4} - \frac{1}{5} + \dots$</p>
+            </div>
+
+             <!-- EXAMPLE 3 -->
+             <div class="example-box">
+                <span class="box-title">Example 3</span>
+                <p>Find the endpoints of the interval of convergence for the function defined below. Then, write out the first <strong>4 terms</strong> of the series at each endpoint.</p>
+                $$ \displaystyle h(x) = \sum_{n=1}^{\infty} \frac{2^n}{n} (x+3)^n $$
+                
+                <p><strong>1. Identify Parts:</strong><br>
+                Rewrite the term as $(x - (-3))^n$, so the center is <strong>$a = -3$</strong>.<br>
+                The coefficient is <strong>$\displaystyle a_n = \frac{2^n}{n}$</strong>.</p>
+                
+                <p><strong>2. Calculate L (Ratio Test on $a_n$):</strong><br>
+                $$ \displaystyle L = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = \lim_{n \to \infty} \left| \frac{2^{n+1}}{n+1} \cdot \frac{n}{2^n} \right| $$
+                Using exponent rules $\frac{2^{n+1}}{2^n} = 2$:
+                $$ \displaystyle L = \lim_{n \to \infty} \left| 2 \cdot \frac{n}{n+1} \right| = 2 \lim_{n \to \infty} \frac{n}{n+1} $$
+                Using <strong>L'Hôpital's Rule</strong> on the limit part:
+                $$ \displaystyle \lim_{n \to \infty} \frac{1}{1} = 1 \quad \implies \quad L = 2(1) = 2 $$
+                Since $L = 2$, the Radius is $R = \frac{1}{2}$.<br>
+                Endpoints: $-3 + \frac{1}{2} = \mathbf{-\frac{5}{2}}$ (or -2.5) and $-3 - \frac{1}{2} = \mathbf{-\frac{7}{2}}$ (or -3.5).</p>
+
+                <p><strong>3. Endpoints:</strong></p>
+                <p>At $x = -2.5$:
+                $$ \displaystyle \sum b_n = \sum_{n=1}^{\infty} \frac{2^n}{n} (-2.5 + 3)^n = \sum_{n=1}^{\infty} \frac{2^n}{n} (0.5)^n $$
+                Simplify terms: $2^n (0.5)^n = (2 \cdot 0.5)^n = 1^n = 1$.
+                $$ \displaystyle \sum b_n = \sum_{n=1}^{\infty} \frac{1}{n} $$
+                <span class="handwritten">Computing terms ($n=1,2,3,4$):</span>
+                $$ \displaystyle 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dots $$</p>
+
+                <p>At $x = -3.5$:
+                $$ \displaystyle \sum c_n = \sum_{n=1}^{\infty} \frac{2^n}{n} (-3.5 + 3)^n = \sum_{n=1}^{\infty} \frac{2^n}{n} (-0.5)^n $$
+                Simplify terms: $2^n (-0.5)^n = (2 \cdot -0.5)^n = (-1)^n$.
+                $$ \displaystyle \sum c_n = \sum_{n=1}^{\infty} \frac{(-1)^n}{n} $$
+                <span class="handwritten">Computing terms:</span>
+                <ul>
+                    <li>$n=1: \frac{-1}{1} = -1$</li>
+                    <li>$n=2: \frac{1}{2}$</li>
+                    <li>$n=3: \frac{-1}{3}$</li>
+                    <li>$n=4: \frac{1}{4}$</li>
+                </ul>
+                <p><strong>Sequence of partial sums:</strong> $\displaystyle -1 + \frac{1}{2} - \frac{1}{3} + \frac{1}{4} - \dots$</p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

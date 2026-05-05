@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 - Radius & Interval of Convergence</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX CONFIGURATION -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-paper: #F9F5EB;
+            --text-main: #111827;
+            --primary: #2563eb;
+            --secondary: #059669; /* Green for Objectives */
+            --highlight: #eff6ff;
+            --font-serif: 'Crimson Pro', serif;
+            --font-sans: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+        }
+
+        /* Simulating an A4/Letter page on screen */
+        .page-container {
+            max-width: 800px; /* Approx 8.5in */
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            min-height: 1100px;
+        }
+
+        /* HEADINGS */
+        h1, h2, h3 { font-family: var(--font-sans); margin-top: 0; }
+        h1 { font-size: 2.2rem; border-bottom: 4px solid var(--text-main); padding-bottom: 10px; margin-bottom: 5px; }
+        h2 { font-size: 1.4rem; color: var(--primary); border-bottom: 1px solid #e2e8f0; margin-top: 30px; padding-bottom: 5px; }
+        .header-meta { font-family: var(--font-sans); color: #64748b; font-size: 0.9rem; margin-bottom: 20px; display: flex; justify-content: space-between; }
+
+        /* OBJECTIVES BOX */
+        .objectives-container {
+            border: 2px solid var(--secondary);
+            background-color: #ecfdf5;
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        .objectives-title {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .objectives-list {
+            margin: 0;
+            padding-left: 20px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+        }
+        .objectives-list li { margin-bottom: 5px; }
+
+        /* CONTENT BOXES */
+        .box {
+            border: 2px solid var(--text-main);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            page-break-inside: avoid;
+        }
+        .example-box {
+            background-color: var(--highlight);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .box-title {
+            display: block;
+            font-family: var(--font-sans);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* SIDEBAR / NOTE */
+        .sidebar {
+            float: right;
+            width: 220px;
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            padding: 15px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+        }
+
+        /* NUMBER LINE DIAGRAM */
+        .number-line {
+            text-align: center;
+            font-family: monospace;
+            margin: 30px 0;
+            font-size: 1.1rem;
+            color: #4b5563;
+        }
+        
+        /* HANDWRITTEN STYLE NOTE */
+        .handwritten {
+            font-family: 'Crimson Pro', serif;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* TABLES */
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        td, th { border-bottom: 1px solid #e2e8f0; padding: 10px; text-align: left; }
+        th { font-family: var(--font-sans); color: var(--primary); font-size: 0.9rem; }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: white; padding: 0; }
+            .page-container { box-shadow: none; padding: 0; margin: 0; max-width: 100%; }
+            .objectives-container { background-color: white !important; border: 1px solid var(--secondary); }
+            .box { background-color: white !important; border: 1px solid #000; }
+            h2 { color: black !important; border-bottom: 1px solid #000; }
+            .box-title { color: black !important; }
+            .sidebar { border: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>Radius of Convergence</h1>
+            <div class="header-meta">
+                <span>Calculus 2</span>
+                <span>Theory & Intervals</span>
+                <span>Instructor Notes</span>
+            </div>
+        </header>
+
+        <!-- LEARNING OBJECTIVES -->
+        <section class="objectives-container">
+            <span class="objectives-title">Learning Objectives</span>
+            <ul class="objectives-list">
+                <li><strong>Find</strong> the Center and Radius of Convergence of a power series.</li>
+                <li><strong>Find</strong> the Interval of Convergence (checking endpoints).</li>
+                   </ul>
+        </section>
+
+        <!-- SECTION 1 -->
+        <section>
+            <h2>1. The Process</h2>
+            <p>For a power series defined as $f(x) = \sum_{n=0}^{\infty} a_n(x-a)^n$, there is a two-step process:</p>
+            <ol>
+                <li>Find the <strong>Center</strong> ($a$) and <strong>Radius</strong> ($R$) of convergence.</li>
+                <li>Find the <strong>Interval</strong> of convergence (testing endpoints).</li>
+            </ol>
+
+            <div class="box">
+                <span class="box-title">Finding R</span>
+                <p>Calculate one of the following limits based on the coefficients $a_n$:</p>
+                $$ \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = L \quad \text{OR} \quad \lim_{n \to \infty} \sqrt[n]{|a_n|} = L $$
+                
+                <p><strong>The Three Cases:</strong></p>
+                <ul>
+                    <li><strong>I:</strong> If $L = \infty$, then $R = 0$. (Converges only at center).</li>
+                    <li><strong>II:</strong> If $L = 0$, then $R = \infty$. (Converges everywhere).</li>
+                    <li><strong>III:</strong> If $0 < L < \infty$, then $R = 1/L$.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section>
+            <h2>2. Why does it work? (Geometric Intuition)</h2>
+            <p>We justify these tests by comparing the "tail" of our power series to a <strong>Geometric Series</strong>.</p>
+            
+            <p>Consider the ratio of <strong>entire consecutive terms</strong> (not just coefficients):</p>
+            $$ \left| \frac{\text{Term}_{n+1}}{\text{Term}_n} \right| = \left| \frac{a_{n+1}(x-a)^{n+1}}{a_n(x-a)^n} \right| = \underbrace{\left| \frac{a_{n+1}}{a_n} \right|}_{\text{approaches } L} \cdot |x-a| $$
+
+            <p>As $n \to \infty$, the ratio of coefficients settles down to the number $L$. Therefore, for very large $n$, the ratio of the entire series approximates:</p>
+            $$ \text{Ratio} \approx L \cdot |x-a| $$
+
+            <p>This means that eventually, the series behaves exactly like a <strong>Geometric Series</strong> with common ratio $L(x-a)$.</p>
+            
+            <div class="box">
+                <span class="box-title">The Connection</span>
+                <p>A Geometric Series converges if the common ratio is less than one. Since our series resembles one, it also converges if:</p>
+                $$ |L(x-a)| < 1 $$
+                
+                <p>Solving for $|x-a|$ gives the radius:</p>
+                $$ |x-a| < \frac{1}{L} \implies R = \frac{1}{L} $$
+            </div>
+
+            
+
+        <!-- SECTION 3 -->
+        <section>
+            <h2>3. Visualizing Convergence</h2>
+            <p>From the inequality $|x-a| < 1/L$, we get an interval centered at $a$.</p>
+
+            <div class="number-line">
+                <span style="color:red">Diverges</span> &nbsp;
+                <span style="color:var(--secondary)">Converges</span> &nbsp;
+                <span style="color:red">Diverges</span><br>
+                &lt;---(xxxxx|xxxxx)---><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;a-R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a+R
+            </div>
+            
+            <p><strong>Key Concept:</strong>
+            <ul>
+                <li>Inside the interval, the geometric ratio is "small" ($<1$). The series sums to a finite value.</li>
+                <li>Outside the interval, the geometric ratio is "large" ($>1$). The terms explode to infinity.</li>
+            </ul>
+            </p>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section>
+            <h2>4. The Domain (Interval of Convergence)</h2>
+            <p><strong>Q:</strong> What is the domain of a power series?</p>
+            <p><strong>A:</strong> An interval of the following six possible forms:</p>
+
+            <div class="box">
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        <span class="box-title">If R is finite ($0 < R < \infty$)</span>
+                        <ul>
+                            <li>$(a-R, a+R)$</li>
+                            <li>$[a-R, a+R)$</li>
+                            <li>$(a-R, a+R]$</li>
+                            <li>$[a-R, a+R]$</li>
+                        </ul>
+                    </div>
+                    <div style="margin-right: 50px;">
+                        <span class="box-title">Special Cases</span>
+                        <p><strong>If $R = \infty$:</strong> $(-\infty, \infty)$</p>
+                        <p><strong>If $R = 0$:</strong> $[a, a]$ (Just the point)</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="sidebar"><strong>Important:</strong> The Ratio and Root tests are <strong>inconclusive</strong> at the endpoints because the geometric ratio becomes exactly $r=1$. You must check them separately.</p>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section>
+            <h2>5. Testing Endpoints</h2>
+            
+            <p><strong>Notation:</strong> When evaluating at an endpoint $x=b$, we plug $b$ into the series. Let $b_n = a_n(b-a)^n$. Thus, $f(b) = \sum_{n=0}^{\infty} b_n$.</p>
+            
+            <ul>
+                <li>If $x=b$ is in the domain, we say $\sum b_n$ <strong>converges</strong>.</li>
+                <li>If $x=b$ is NOT in the domain, we say $\sum b_n$ <strong>diverges</strong>.</li>
+            </ul>
+
+            <div class="box">
+                <span class="box-title">Tools for Endpoint Testing</span>
+                <p>When checking endpoints, we get a numerical series. We check convergence using our previous tests:</p>
+                <ol>
+                    <li>Divergence Test</li>
+                    <li>Alternating Series Test (Very common at endpoints)</li>
+                    <li>Comparison Tests / Limit Comparison</li>
+                    <li>Integral Tests / p-series</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section>
+            <h2>6. Review: Geometric Series Behavior</h2>
+            <p>Since the Power Series tests rely on Geometric Series intuition, recall:</p>
+            
+            <table>
+                <tr>
+                    <th>Series Example</th>
+                    <th>Reasoning</th>
+                    <th>Conclusion</th>
+                </tr>
+                <tr>
+                    <td>$\displaystyle \sum_{n=0}^{\infty} 5^n$</td>
+                    <td>Common ratio $|x| = 5 \ge 1$</td>
+                    <td><strong>Diverges</strong></td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle \sum_{n=0}^{\infty} \left(\frac{1}{10}\right)^n$</td>
+                    <td>Common ratio $|x| = 0.1 < 1$</td>
+                    <td><strong>Converges</strong></td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle \sum_{n=0}^{\infty} (-1)^n$</td>
+                    <td>Common ratio $|x| = 1$</td>
+                    <td><strong>Diverges</strong> (Oscillates)</td>
+                </tr>
+            </table>
+
+            <div class="box">
+                <span class="box-title">Final Remark</span>
+                Term-by-term integration and differentiation preserve the <strong>center</strong> and <strong>radius</strong>, but the <strong>convergence at endpoints</strong> can change.
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

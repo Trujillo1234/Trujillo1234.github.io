@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculus 2 - Homework 6</title>
+
+<!-- FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<!-- MathJax -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+:root {
+    --bg-paper: #F9F5EB;
+    --text-main: #111827;
+    --primary: #2563eb;
+    --secondary: #059669;
+    --border-color: #cbd5e1;
+    --font-serif: 'Crimson Pro', serif;
+    --font-sans: 'Space Grotesk', sans-serif;
+}
+
+body {
+    background-color: var(--bg-paper);
+    color: var(--text-main);
+    font-family: var(--font-serif);
+    line-height: 1.65;
+    margin: 0;
+    padding: 40px;
+}
+
+.page-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 60px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+header {
+    border-bottom: 2px solid var(--text-main);
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+}
+
+h1 {
+    font-family: var(--font-sans);
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.sub-header {
+    font-family: var(--font-sans);
+    color: #64748b;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+h2 {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    color: var(--primary);
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.section-desc {
+    margin-bottom: 20px;
+    color: #374151;
+}
+
+ol {
+    padding-left: 22px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+<div class="page-container">
+
+<header>
+    <h1>Homework 6</h1>
+    <div class="sub-header">
+        Calculus 2 &bull; Power Series, Absolute & Conditional Convergence, & Taylor Series
+    </div>
+</header>
+
+<!-- ===================================== -->
+<h2>1. Interval of Convergence</h2>
+
+<p class="section-desc">
+Find the interval of convergence of each power series.
+</p>
+
+<ol>
+<li>$$ \sum_{n=1}^{\infty} \frac{(x-3)^n}{n} $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{n!(x-2)^n}{n+1} $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{n^2(x-5)^n}{n!} $$</li>
+<li>$$ \sum_{n=0}^{\infty} \frac{n(x+2)^n}{3^n} $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{4^n x^n}{\sqrt{n+1}} $$</li>
+<li>$$ \sum_{n=1}^{\infty} 2^n n^2 x^n $$</li>
+<li>$$ \sum_{n=1}^{\infty} n^n x^n $$</li>
+<li>$$ \sum_{n=0}^{\infty} \frac{(x-2)^n}{n^2+1} $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{n}{2^n(n^2+1)} x^n $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{(x-4)^n}{n^3} $$</li>
+</ol>
+
+<!-- ===================================== -->
+<h2>2. Power Series Expansion</h2>
+
+<p class="section-desc">
+Write out the first five terms of each power series from Part (1).
+</p>
+
+<!-- ===================================== -->
+<h2>3. Absolute and Conditional Convergence</h2>
+
+<p class="section-desc">
+Determine if each series converges absolutely, converges conditionally, or diverges.
+</p>
+
+<ol>
+<li>$$ \sum_{n=1}^{\infty} \frac{(-1)^n}{n} $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n^2} $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{(-1)^n}{\sqrt{n}} $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2+1} $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{1}{n^{1.6}} $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{(-1)^n}{2^n+1} $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{(-1)^n}{\sqrt{n+2}} $$</li>
+<li>$$ \sum_{n=1}^{\infty} \frac{n^3}{n^3+1} $$</li>
+</ol>
+
+<!-- ===================================== -->
+<h2>4. Taylor Series</h2>
+
+<p class="section-desc">
+Find the Taylor series centered at $x=0$ (Maclaurin series) for each function.
+</p>
+
+<ol>
+<li>$$ \cos(x^2) $$</li>
+<li>$$ \cos(x^3) $$</li>
+<li>$$ e^{x^2} $$</li>
+<li>$$ e^{2x} $$</li>
+<li>$$ \sin(5x) $$</li>
+<li>$$ \sin(x^2) $$</li>
+<li>$$ \frac{1}{1+2x} $$</li>
+<li>$$ \frac{1}{1-5x} $$</li>
+<li>$$ \frac{1}{1+x^2} $$</li>
+<li>$$ \frac{1}{1-x^2} $$</li>
+<li>$$ \frac{8}{1-x^2} $$</li>
+</ol>
+
+<!-- ===================================== -->
+<h2>5. Operations on Power Series</h2>
+
+<p class="section-desc">
+Find the derivative and integral of each power series from Part (4).
+</p>
+
+</div>
+</body>
+</html>

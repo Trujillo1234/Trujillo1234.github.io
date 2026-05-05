@@ -1,11 +1,12 @@
 :root {
-  --blue: #333366;
-  --green: #99cc66;
-  --light-blue: #ccffff;
-  --red: darkred;
-  --ink: #111111;
-  --muted: #555555;
-  --line: #d8d8d8;
+  --blue: #223d4d;
+  --green: #88aa8f;
+  --light-blue: #eef8f5;
+  --red: #a54d35;
+  --ink: #16232a;
+  --muted: #5b6669;
+  --line: #d6d8cf;
+  --paper: #fffdf6;
 }
 
 * {
@@ -19,7 +20,7 @@ html {
 
 body {
   margin: 0;
-  background: #ffffff;
+  background: var(--paper);
   color: var(--ink);
   font-family: "Lucida Grande", Calibri, Candara, Verdana, sans-serif;
   line-height: 1.45;
@@ -113,7 +114,7 @@ a:hover {
 }
 
 .nav a:hover {
-  background: var(--light-blue);
+  background: #f8efe3;
   color: var(--blue);
   text-decoration: none;
 }
@@ -132,8 +133,13 @@ a:hover {
   padding: 5.9em 1.25em 2.5em;
 }
 
+.home-layout {
+  grid-template-columns: minmax(230px, 35%) minmax(150px, 18%) minmax(0, 47%);
+}
+
 .sidebar,
-.content {
+.content,
+.portrait {
   padding-left: 1.5625em;
   padding-right: 1.5625em;
 }
@@ -163,6 +169,27 @@ a:hover {
 
 .content h2:not(:first-child) {
   margin-top: 1.65em;
+}
+
+.portrait {
+  margin: 0;
+  padding-top: 1.875em;
+}
+
+.portrait img {
+  display: block;
+  width: 12.5em;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  padding: 0.18em;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  transition: border-color 0.2s ease;
+}
+
+.portrait:hover img {
+  border-color: var(--red);
 }
 
 .content h3,
@@ -245,6 +272,22 @@ dd {
   font-weight: 700;
 }
 
+.appointment-entry {
+  grid-template-columns: 7.4em 8.5em minmax(0, 1fr);
+  gap: 1.1em;
+  align-items: start;
+  padding-bottom: 1.35em;
+}
+
+.institution-logo {
+  display: block;
+  width: 7em;
+  height: 7em;
+  object-fit: contain;
+  margin-top: -0.75em;
+  background: transparent;
+}
+
 .cv .cv-entry p,
 .cv .cv-entry ul {
   margin-bottom: 0;
@@ -252,6 +295,32 @@ dd {
 
 .cv ol:not(.timeline) {
   padding-left: 1.35em;
+}
+
+.document-link {
+  margin: 0.4em 0 0;
+}
+
+.document-link a,
+.project-links a {
+  font-weight: 700;
+}
+
+.document-link a {
+  display: inline-block;
+  padding: 0.35em 0.55em;
+  border-left: 0.32em solid var(--red);
+  background: var(--light-blue);
+  color: var(--blue);
+}
+
+.document-link a:hover {
+  background: #f8efe3;
+  color: var(--red);
+}
+
+.project-links {
+  margin-top: -0.25em;
 }
 
 .footer {
@@ -316,9 +385,29 @@ dd {
     margin-top: 1.8em;
   }
 
+  .portrait {
+    margin: 1.25em 0 0;
+    padding-top: 0;
+  }
+
   .cv-entry {
     grid-template-columns: 1fr;
     gap: 0.1em;
+  }
+
+  .appointment-entry {
+    grid-template-columns: 5.25em minmax(0, 1fr);
+    gap: 0.35em 0.85em;
+  }
+
+  .appointment-entry > div:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .institution-logo {
+    width: 5em;
+    height: 5em;
+    margin-top: -0.35em;
   }
 
   .footer {

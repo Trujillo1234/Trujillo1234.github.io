@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculus 2 - Trigonometric Integrals</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'],['\\(', '\\)']],
+        displayMath: [['$$', '$$'],['\\[', '\\]']],
+        packages: {'[+]': ['cancel']}
+      },
+      loader: {load: ['[tex]/cancel']},
+      svg: { fontCache: 'global' }
+    };
+  </script>
+
+  <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg-paper: #F9F5EB;
+      --text-main: #111827;
+      --primary: #2563eb;
+      --secondary: #059669;
+      --font-serif: 'Crimson Pro', serif;
+      --font-sans: 'Space Grotesk', sans-serif;
+      --sol-bg: #eff6ff;
+      --muted: #64748b;
+      --card-bg: #f8fbff;
+      --card-border: #dbeafe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-paper);
+      color: var(--text-main);
+      font-family: var(--font-serif);
+      line-height: 1.65;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .page-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 60px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      min-height: 1100px;
+    }
+
+    header {
+      border-bottom: 2px solid var(--text-main);
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-sans);
+      font-size: 2.5rem;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .sub-header {
+      font-family: var(--font-sans);
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    h2 {
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      color: var(--primary);
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+      margin-top: 40px;
+    }
+
+    h3 { font-family: var(--font-sans); }
+
+    .objectives-box {
+      border: 3px solid var(--primary);
+      background-color: #eff6ff;
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+    }
+
+    .objectives-title {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .box-def {
+      border: 2px solid var(--text-main);
+      padding: 20px 30px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      background-color: #fff;
+    }
+
+    .box-title {
+      font-family: var(--font-sans);
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.25rem;
+      color: var(--text-main);
+    }
+
+    .solution-box {
+      background-color: var(--sol-bg);
+      border-left: 4px solid var(--primary);
+      padding: 20px 30px;
+      margin-top: 15px;
+      margin-bottom: 30px;
+      border-radius: 0 6px 6px 0;
+      font-size: 1.1rem;
+      color: #1e293b;
+      overflow-x: auto;
+    }
+
+    .problem-text {
+      font-size: 1.15rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: #111;
+      text-decoration: underline;
+    }
+
+    .example-block {
+      margin-bottom: 40px;
+    }
+    
+    .side-work-box {
+      border: 1px solid var(--text-main);
+      padding: 15px 25px;
+      border-radius: 6px;
+      background-color: #fff;
+      display: inline-block;
+      margin: 10px 0;
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+    }
+
+    .circled-result-box {
+      border: 2px solid var(--text-main);
+      border-radius: 50px;
+      padding: 15px 40px;
+      display: inline-block;
+      margin: 15px 0;
+      background-color: transparent;
+      font-size: 1.15rem;
+    }
+
+    .integral-steps {
+      margin-left: 20px;
+      line-height: 2.2;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+      }
+      .page-container {
+        box-shadow: none;
+        max-width: 100%;
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-container">
+
+  <header>
+    <h1>Trigonometric Integrals</h1>
+    <div class="sub-header">
+      Calculus 2 &bull; Monday Notes
+    </div>
+  </header>
+
+  <!-- Emphasized Learning Objectives -->
+  <div class="objectives-box">
+    <div class="objectives-title">Key Learning Objective</div>
+    <p style="font-size: 1.15rem; font-weight: 600; margin: 10px 0 0 0;">
+      Evaluate integrals of the form:
+      <span style="display: block; text-align: center; margin: 15px 0; font-size: 1.4rem;">
+        $$ \int \sin^n(x) \cos^m(x) \, dx $$
+      </span>
+      where $n$ and $m$ are non-negative integers.
+    </p>
+  </div>
+
+  <section>
+    <h2>1. Foundations</h2>
+
+    <div class="box-def" style="max-width: 500px; margin: 0 auto 40px;">
+      <h3 class="box-title" style="text-decoration: underline;">Recall</h3>
+      <div style="font-size: 1.25rem; line-height: 2.2; margin-left: 10px;">
+        $$ \int \cos(x) \, dx = \sin(x) + C $$
+        $$ \int \sin(x) \, dx = -\cos(x) + C $$
+        $$ (\sin(x))' = \cos(x) $$
+        $$ (\cos(x))' = -\sin(x) $$
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Introductory U-Substitution Examples</h2>
+
+    <div class="example-block">
+      <div class="problem-text">Example ($n=1, m=1$)</div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start;">
+        <div class="integral-steps" style="flex: 1; min-width: 300px;">
+          $$ \int \sin(x)\cos(x) \, dx $$
+          <div style="margin: 20px 0;">
+            <div class="side-work-box">
+              $u = \sin(x)$<br>
+              $du = \cos(x) \, dx$
+            </div>
+          </div>
+        </div>
+        <div class="integral-steps" style="flex: 1; min-width: 300px;">
+          $$ = \int u \, du $$
+          $$ = \frac{u^2}{2} + C $$
+          <div class="circled-result-box" style="margin-top: 20px;">
+            $$ = \frac{\sin^2(x)}{2} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Example ($n=2, m=1$)</div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start;">
+        <div class="integral-steps" style="flex: 1; min-width: 300px;">
+          $$ \int \sin^2(x)\cos(x) \, dx $$
+          <div style="margin: 20px 0;">
+            <div class="side-work-box">
+              $u = \sin(x)$<br>
+              $du = \cos(x) \, dx$
+            </div>
+          </div>
+        </div>
+        <div class="integral-steps" style="flex: 1; min-width: 300px;">
+          $$ = \int u^2 \, du $$
+          $$ = \frac{u^3}{3} + C $$
+          <div class="circled-result-box" style="margin-top: 20px;">
+            $$ = \frac{\sin^3(x)}{3} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Example ($n=99, m=1$)</div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start;">
+        <div class="integral-steps" style="flex: 1; min-width: 300px;">
+          $$ \int 100\sin^{99}(x)\cos(x) \, dx $$
+          <div style="margin: 20px 0;">
+            <div class="side-work-box">
+              $u = \sin(x)$<br>
+              $du = \cos(x) \, dx$
+            </div>
+          </div>
+        </div>
+        <div class="integral-steps" style="flex: 1; min-width: 300px;">
+          $$ = \int 100u^{99} \, du $$
+          $$ = \frac{100u^{100}}{100} + C $$
+          $$ = u^{100} + C $$
+          <div class="circled-result-box" style="margin-top: 20px; padding: 15px 50px;">
+            $$ = \sin^{100}(x) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Separating Powers</h2>
+
+    <div class="example-block">
+      <div class="problem-text">Example ($n=2, m=3$)</div>
+      
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ \int \sin^2(x)\cos^3(x) \, dx $$
+          $$ = \int \sin^2(x)\cos^2(x)\cos(x) \, dx $$
+          $$ = \int \sin^2(x)(1 - \sin^2(x))\cos(x) \, dx $$
+        </div>
+
+        <div style="margin: 20px 20px;">
+          <div class="side-work-box">
+            $u = \sin(x)$<br>
+            $du = \cos(x) \, dx$
+          </div>
+        </div>
+
+        <div class="integral-steps">
+          $$ = \int u^2(1 - u^2) \, du $$
+          $$ = \int (u^2 - u^4) \, du $$
+          $$ = \frac{u^3}{3} - \frac{u^5}{5} + C $$
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+          <div class="circled-result-box">
+            $$ = \frac{\sin^3(x)}{3} - \frac{\sin^5(x)}{5} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-def" style="margin-top: 40px; background-color: #fafafa;">
+      <h3 class="box-title" style="text-decoration: underline;">Case 1 ($m$ is odd)</h3>
+      <ol style="font-size: 1.15rem; line-height: 1.8; margin-left: 10px;">
+        <li style="margin-bottom: 15px;">
+          Move one $\cos(x)$ next to $dx$:
+          $$ \int \sin^n(x)\cos^{m-1}(x)\cos(x) \, dx $$
+        </li>
+        <li style="margin-bottom: 15px;">
+          Rewrite $\cos^{m-1}(x)$ in terms of $\sin(x)$ using:
+          $$ \cos^2(x) = 1 - \sin^2(x) $$
+        </li>
+        <li>
+          Apply the $u$-sub &nbsp; $\mathbf{u = \sin(x)}$ &nbsp; to find the antiderivative.
+        </li>
+      </ol>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Example ($n=3, m=5$)</div>
+      
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ \int \sin^3(x)\cos^5(x) \, dx = \int \sin^3(x)\cos^4(x)\cos(x) \, dx $$
+          $$ = \int \sin^3(x)(1 - \sin^2(x))(1 - \sin^2(x))\cos(x) \, dx $$
+        </div>
+
+        <div style="margin: 20px 20px;">
+          <div class="side-work-box">
+            $u = \sin(x)$<br>
+            $du = \cos(x) \, dx$
+          </div>
+        </div>
+
+        <div class="integral-steps">
+          $$ = \int u^3(1 - u^2)(1 - u^2) \, du $$
+          $$ = \int u^3(1 - 2u^2 + u^4) \, du $$
+          $$ = \int (u^3 - 2u^5 + u^7) \, du $$
+          $$ = \frac{u^4}{4} - \frac{2u^6}{6} + \frac{u^8}{8} + C $$
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+          <div class="circled-result-box" style="padding: 20px 40px; border-radius: 60px;">
+            $$ = \frac{\sin^4(x)}{4} - \frac{\sin^6(x)}{3} + \frac{\sin^8(x)}{8} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>4. When Sine is Odd</h2>
+
+    <div class="box-def" style="background-color: #fafafa;">
+      <h3 class="box-title" style="text-decoration: underline;">Case 2 ($n$ is odd)</h3>
+      <ol style="font-size: 1.15rem; line-height: 1.8; margin-left: 10px;">
+        <li style="margin-bottom: 15px;">
+          Move one $\sin(x)$ next to $dx$:
+          $$ \int \sin^{n-1}(x)\cos^m(x)\sin(x) \, dx $$
+        </li>
+        <li style="margin-bottom: 15px;">
+          Rewrite $\sin^{n-1}(x)$ in terms of $\cos(x)$ using:
+          $$ \sin^2(x) = 1 - \cos^2(x) $$
+        </li>
+        <li>
+          Make the $u$-sub &nbsp; $\mathbf{u = \cos(x)}$ &nbsp; to find the antiderivative.
+        </li>
+      </ol>
+    </div>
+
+    <div class="example-block">
+      <div class="problem-text">Example ($n=3, m=2$)</div>
+      
+      <div class="solution-box" style="background-color: transparent; border: none; padding: 0;">
+        <div class="integral-steps">
+          $$ \int \sin^3(x)\cos^2(x) \, dx = \int \sin^2(x)\cos^2(x)\sin(x) \, dx $$
+          $$ = \int (1 - \cos^2(x))\cos^2(x)\sin(x) \, dx $$
+        </div>
+
+        <div style="margin: 20px 20px;">
+          <div class="side-work-box">
+            $u = \cos(x)$<br>
+            $du = -\sin(x) \, dx$
+          </div>
+        </div>
+
+        <div class="integral-steps">
+          $$ = -\int (1 - u^2)u^2 \, du $$
+          $$ = -\int (u^2 - u^4) \, du $$
+          $$ = -\left( \frac{u^3}{3} - \frac{u^5}{5} \right) + C $$
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+          <div class="circled-result-box" style="padding: 20px 40px; border-radius: 60px;">
+            $$ = -\left( \frac{\cos^3(x)}{3} - \frac{\cos^5(x)}{5} \right) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

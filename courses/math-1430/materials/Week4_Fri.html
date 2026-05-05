@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 - P-Series Test</title>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX CONFIGURATION -->
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-paper: #F9F5EB;
+            --text-main: #111827;
+            --primary: #16a085;     /* teal */
+            --secondary: #059669;   /* green */
+            --highlight: #f0fdfa;
+            --font-serif: 'Crimson Pro', serif;
+            --font-sans: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .page-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            min-height: 1100px;
+        }
+
+        h1, h2, h3 { font-family: var(--font-sans); margin-top: 0; }
+        h1 { font-size: 2.2rem; border-bottom: 4px solid var(--text-main); padding-bottom: 10px; margin-bottom: 5px; }
+        h2 { font-size: 1.4rem; color: var(--primary); border-bottom: 1px solid #e2e8f0; margin-top: 30px; padding-bottom: 5px; }
+        h3 { font-size: 1.1rem; color: #0f172a; margin-top: 22px; }
+
+        .header-meta {
+            font-family: var(--font-sans);
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .objectives-container {
+            border: 2px solid var(--secondary);
+            background-color: #ecfdf5;
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .objectives-title {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .objectives-list { margin: 0; padding-left: 20px; font-family: var(--font-sans); font-size: 1rem; }
+        .objectives-list li { margin-bottom: 5px; }
+
+        .box {
+            border: 2px solid var(--text-main);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            page-break-inside: avoid;
+        }
+        .example-box {
+            background-color: var(--highlight);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        .box-title {
+            display: block;
+            font-family: var(--font-sans);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .test-steps {
+            font-family: var(--font-sans);
+            background: #f1f5f9;
+            border-left: 4px solid #0f172a;
+            padding: 15px 18px;
+            margin: 0 0 35px 0;
+            border-radius: 8px;
+        }
+        .test-steps ul { margin: 8px 0 0 18px; }
+        .test-steps li { margin-bottom: 6px; }
+
+        .diagram-container { margin: 18px 0; }
+
+        /* DESMOS EMBED WINDOW (NO CUT-OFF) */
+        .iframe-slot{
+            width: 100%;
+            height: min(420px, 55vh);  /* adjust if you want taller/shorter */
+            border: 2px dashed #94a3b8;
+            border-radius: 10px;
+            background: #ffffff;
+
+            padding: 0;                /* important */
+            overflow: hidden;          /* important */
+            display: block;            /* important */
+            box-sizing: border-box;
+        }
+        .iframe-slot iframe{
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;            /* important */
+        }
+
+        .diagram-caption {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: #555;
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        .handwritten { font-family: var(--font-serif); font-style: italic; color: #555; font-size: 0.95rem; }
+
+        .big-note {
+            border: 2px dashed #0f172a;
+            background: #fff;
+            padding: 16px 18px;
+            border-radius: 10px;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .page-container { box-shadow: none; padding: 0; margin: 0; max-width: 100%; }
+            .box { background-color: white !important; border: 1px solid #000; }
+            .iframe-slot { border: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-container">
+
+    <!-- HEADER -->
+    <header>
+        <h1>P-Series Test</h1>
+        <div class="header-meta">
+            <span>Calculus 2</span>
+            <span>Thursday, Feb 5</span>
+            <span>Instructor Notes</span>
+        </div>
+    </header>
+
+    <!-- LEARNING OBJECTIVES -->
+    <section class="objectives-container">
+        <span class="objectives-title">Learning Objectives</span>
+        <ul class="objectives-list">
+            <li><strong>Apply</strong> the p-series test, or <strong>state</strong> that it cannot be applied to the series.</li>
+        </ul>
+    </section>
+
+    <!-- MOTIVATION -->
+    <section class="box">
+        <span class="box-title">Motivation</span>
+        <p><strong>We want fast recognition tests for common benchmark series.</strong></p>
+        <p>
+            Many series can be identified quickly by matching a familiar pattern.
+            One of the most important families is
+            $$\sum_{n=1}^{\infty}\frac{1}{n^p}.$$
+            Once the series is in this exact form, the question “converges or diverges?” is decided immediately by the value of $p$.
+        </p>
+    </section>
+
+    <!-- HOW TO APPLY A TEST -->
+    <section class="test-steps">
+        <div style="font-weight:700;">How to apply a test (you are making an argument)</div>
+        <ul>
+            <li><strong>State the test</strong> you are using.</li>
+            <li><strong>Verify the test applies</strong> (here: confirm the series is actually a p-series).</li>
+            <li><strong>Conclude</strong> clearly by citing the relevant condition on $p$.</li>
+        </ul>
+    </section>
+
+    <!-- HARMONIC SERIES -->
+    <section class="box">
+        <span class="box-title">Definition: The Harmonic Series</span>
+        $$\sum_{n=1}^{\infty}\frac{1}{n} = 1+\frac12+\frac13+\frac14+\frac15+\cdots$$
+        <p class="handwritten">This is the p-series with $p=1$.</p>
+    </section>
+
+    <!-- VISUAL IDEA + DESMOS SLOT -->
+    <section class="box">
+        <span class="box-title">Why the Harmonic Series Diverges (Visual Idea)</span>
+
+        <p>
+            Let $f(x)=\dfrac{1}{x}$. Since $f$ is positive and decreasing on $[1,\infty)$,
+            the left-endpoint rectangles of width $1$ lie <strong>above</strong> the curve.
+            This produces the key inequality:
+        </p>
+        $$\int_{1}^{n+1}\frac{1}{x}\,dx \le 1+\frac12+\frac13+\cdots+\frac{1}{n}.$$
+
+        <div class="diagram-container">
+            <!-- DESMOS IFRAME #1 (paste your Desmos link into src) -->
+            <div class="iframe-slot">
+                <iframe
+                    src="https://www.desmos.com/calculator/8cexifxcok?embed"
+                    frameborder="0"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="diagram-caption">
+                The rectangles represent $1+\frac12+\cdots+\frac1n$, and the curve area represents $\int_{1}^{n+1}\frac1x\,dx$.
+                The rectangles are larger, so the series partial sums are larger than the integral.
+            </div>
+        </div>
+
+        <p>
+            Compute the integral:
+            $$\int_{1}^{n+1}\frac{1}{x}\,dx=\ln|x|\Big|_{1}^{n+1}=\ln(n+1).$$
+            Taking limits,
+            $$\lim_{n\to\infty}\ln(n+1)=\infty.$$
+            Since $\ln(n+1)\le 1+\frac12+\cdots+\frac1n$ and the left side grows without bound, the harmonic series diverges.
+        </p>
+
+        <div class="big-note">
+            <p style="margin-top:0;"><strong>The harmonic series diverges very slowly!!</strong></p>
+            <p style="margin-bottom:10px;">
+                A useful estimate is
+                $$1+\frac12+\cdots+\frac1n \;\approx\; 1+\ln(n).$$
+                For example, if you add one term <em>per second</em> since the beginning of the universe
+                (about $4\times 10^{17}$ seconds), then
+                $$1+\frac12+\cdots+\frac{1}{4\times 10^{17}} \;\approx\; 1+\ln(4\times 10^{17}) \;\approx\; 41.5.$$
+            </p>
+            <p style="margin-bottom:0;">
+                Even with absurd speed—say a top supercomputer effectively summing on the order of $10^{18}$ terms per second for the entire age of the universe—
+                you would reach only about
+                $$1+\ln(4\times 10^{35})\approx 83,$$
+                which is still “small” compared to what divergence might suggest.
+            </p>
+        </div>
+    </section>
+
+    <!-- THEOREM: P-SERIES TEST -->
+    <section class="box">
+        <span class="box-title">Theorem: P-Series Test</span>
+        <p>A <strong>p-series</strong> is a series of the form</p>
+        $$\sum_{n=1}^{\infty}\frac{1}{n^p}\quad\text{where $p$ is a real number.}$$
+        <p>The p-series</p>
+        <ul>
+            <li><strong>converges</strong> when $p>1$</li>
+            <li><strong>diverges</strong> when $p\le 1$</li>
+        </ul>
+    </section>
+
+    <!-- PROOF SKETCH + DESMOS SLOT -->
+    <section class="box">
+        <span class="box-title">Proof Sketch (Integral Comparison Idea)</span>
+
+        <p>
+            Let $f(x)=\dfrac{1}{x^p}=x^{-p}$, which is positive and decreasing for $x\ge 1$ when $p>0$.
+            The same rectangle-vs-curve idea compares
+            $$\sum_{k=1}^{n}\frac{1}{k^p}$$
+            with
+            $$\int_{1}^{n}x^{-p}\,dx.$$
+        </p>
+
+        <div class="diagram-container">
+            <!-- DESMOS IFRAME #2 (paste your Desmos link into src) -->
+            <div class="iframe-slot">
+                <iframe
+                    src="https://www.desmos.com/calculator/q1cya95yym?embed"
+                    frameborder="0"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <p>
+            When $p\ne 1$:
+            $$\int_{1}^{n}x^{-p}\,dx=\frac{x^{-p+1}}{-p+1}\Big|_{1}^{n}
+            =\frac{n^{-p+1}-1}{-p+1}.$$
+        </p>
+
+        <ul>
+            <li>If $p>1$, then $-p+1<0$ so $n^{-p+1}\to 0$ and the integral approaches a finite value. This forces the p-series to converge.</li>
+            <li>If $p<1$, then $-p+1>0$ so $n^{-p+1}\to\infty$ and the integral diverges. This forces the p-series to diverge.</li>
+            <li>If $p=1$, the antiderivative is $\ln|x|$, which is exactly the harmonic-series case.</li>
+        </ul>
+    </section>
+
+    <!-- WORKED EXAMPLES -->
+    <section>
+        <h2>Worked Examples</h2>
+
+        <div class="example-box">
+            <span class="box-title">Example 1</span>
+            <p><strong>Question:</strong> Determine whether $\displaystyle \sum_{n=1}^{\infty}\frac{1}{n^2}$ converges or diverges.</p>
+            <p><strong>Test Used:</strong> P-Series Test.</p>
+            <p><strong>Verify the form:</strong> This is $\sum \frac{1}{n^p}$ with $p=2$.</p>
+            <p><strong>Conclusion:</strong> Since $2>1$, the series <strong>converges</strong>.</p>
+        </div>
+
+        <div class="example-box">
+            <span class="box-title">Example 2</span>
+            <p><strong>Question:</strong> Determine whether $\displaystyle \sum_{n=1}^{\infty}\frac{1}{n^{3/2}}$ converges or diverges.</p>
+            <p><strong>Test Used:</strong> P-Series Test.</p>
+            <p><strong>Verify the form:</strong> This is $\sum \frac{1}{n^p}$ with $p=\dfrac{3}{2}$.</p>
+            <p><strong>Conclusion:</strong> Since $\dfrac{3}{2}>1$, the series <strong>converges</strong>.</p>
+        </div>
+
+        <div class="example-box">
+            <span class="box-title">Example 3</span>
+            <p><strong>Question:</strong> Determine whether $\displaystyle \sum_{n=1}^{\infty}\frac{1}{\sqrt{n}}$ converges or diverges.</p>
+            <p><strong>Test Used:</strong> P-Series Test.</p>
+            <p><strong>Rewrite:</strong> $\displaystyle \frac{1}{\sqrt{n}}=\frac{1}{n^{1/2}}$, so $p=\dfrac12$.</p>
+            <p><strong>Conclusion:</strong> Since $\dfrac12\le 1$, the series <strong>diverges</strong>.</p>
+        </div>
+
+        <div class="example-box">
+            <span class="box-title">Example 4</span>
+            <p><strong>Question:</strong> Determine whether $\displaystyle \sum_{n=1}^{\infty}n^{-3}$ converges or diverges.</p>
+            <p><strong>Test Used:</strong> P-Series Test.</p>
+            <p><strong>Verify the form:</strong> This is $\sum \frac{1}{n^p}$ with $p=3$.</p>
+            <p><strong>Conclusion:</strong> Since $3>1$, the series <strong>converges</strong>.</p>
+        </div>
+
+        <div class="example-box">
+            <span class="box-title">Example 5 (test cannot be applied)</span>
+            <p><strong>Question:</strong> Can we use the p-series test on $\displaystyle \sum_{n=1}^{\infty}\frac{1}{n^2+1}$?</p>
+            <p><strong>Check the form:</strong> A p-series must be exactly $\displaystyle \sum \frac{1}{n^p}$.</p>
+            <p><strong>Conclusion:</strong> This is <strong>not</strong> in p-series form, so the p-series test <strong>cannot</strong> be applied.</p>
+        </div>
+
+    </section>
+
+</div>
+</body>
+</html>

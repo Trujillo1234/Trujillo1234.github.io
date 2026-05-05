@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 - Homework 4 Solutions</title>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX CONFIGURATION -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-paper: #F9F5EB;
+            --text-main: #111827;
+            --primary: #2563eb;
+            --secondary: #059669;
+            --border-color: #cbd5e1;
+            --font-serif: 'Crimson Pro', serif;
+            --font-sans: 'Space Grotesk', sans-serif;
+            --sol-bg: #eff6ff;
+            --danger: #be123c;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            line-height: 1.65;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .page-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            min-height: 1100px;
+        }
+
+        header {
+            border-bottom: 2px solid var(--text-main);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-family: var(--font-sans);
+            font-size: 2.5rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .sub-header {
+            font-family: var(--font-sans);
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .problem-section {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+
+        h2 {
+            font-family: var(--font-sans);
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        ol.problem-list {
+            list-style-type: none;
+            counter-reset: problem-counter;
+            padding: 0;
+        }
+
+        ol.problem-list > li {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 40px;
+        }
+
+        ol.problem-list > li::before {
+            counter-increment: problem-counter;
+            content: counter(problem-counter, lower-alpha) ")";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-family: var(--font-sans);
+            color: #444;
+            top: 0;
+            font-size: 1.1rem;
+        }
+
+        .problem-text {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .solution-box {
+            background-color: var(--sol-bg);
+            border-left: 4px solid var(--primary);
+            padding: 20px 30px;
+            margin-top: 15px;
+            border-radius: 0 6px 6px 0;
+            font-size: 1.05rem;
+            color: #1e293b;
+            page-break-inside: avoid;
+        }
+
+        .solution-step {
+            margin-bottom: 20px;
+        }
+        
+        .step-label {
+            display: block;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .instruction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            display: block;
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .lh-rule {
+            color: var(--danger);
+            font-weight: 700;
+            font-family: var(--font-sans);
+            font-size: 0.9em;
+        }
+
+        .divergence-note {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #dbeafe;
+            font-size: 0.95em;
+            color: var(--danger);
+            font-style: italic;
+        }
+
+        .review-header {
+            font-family: var(--font-sans);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #111;
+            margin: 60px 0 30px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .page-container { box-shadow: none; padding: 0; margin: 0; max-width: 100%; }
+            h2 { color: black !important; border-bottom: 1px solid #000; }
+        }
+    </style>
+</head>
+
+<body>
+<div class="page-container">
+
+    <header>
+        <h1>Homework 4 Solutions</h1>
+        <div class="sub-header">
+            Calculus 2 &bull; Divergence, Alternating Series & $p$-Series
+        </div>
+    </header>
+
+    <!-- SECTION 1 -->
+    <section class="problem-section">
+        <h2>1. Divergence Test</h2>
+        <span class="instruction">
+            Test: Compute $\lim_{n\to\infty} a_n$. If the limit $\neq 0$, the series Diverges. If the limit $= 0$, the test is Inconclusive.
+        </span>
+
+        <ol class="problem-list">
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{n+1}{2n+1} $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=1}^{\infty} \frac{n+1}{2n+1}$. We compute the limit of the terms as $n \to \infty$. This results in the form $\frac{\infty}{\infty}$, so we apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                    $$ \lim_{n\to\infty} \frac{n+1}{2n+1} \xrightarrow{L'H} \lim_{n\to\infty} \frac{1}{2} = \frac{1}{2} $$
+                    Since the limit $\frac{1}{2} \neq 0$, the series $\sum_{n=1}^{\infty} \frac{n+1}{2n+1}$ diverges by the Divergence Test.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{25}{n^2+1} $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=1}^{\infty} \frac{25}{n^2+1}$. The numerator is constant while the denominator grows towards infinity:
+                    $$ \lim_{n\to\infty} \frac{25}{n^2+1} = 0 $$
+                    Since the limit is 0, the Divergence Test is inconclusive for the series $\sum_{n=1}^{\infty} \frac{25}{n^2+1}$.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{n^2+1}{n+1} $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=1}^{\infty} \frac{n^2+1}{n+1}$. Substituting infinity yields $\frac{\infty}{\infty}$, so we apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                    $$ \lim_{n\to\infty} \frac{n^2+1}{n+1} \xrightarrow{L'H} \lim_{n\to\infty} \frac{2n}{1} = \infty $$
+                    Since $\infty \neq 0$, the series $\sum_{n=1}^{\infty} \frac{n^2+1}{n+1}$ diverges by the Divergence Test.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{\ln(n)}{n} $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=1}^{\infty} \frac{\ln(n)}{n}$. Substituting infinity yields $\frac{\infty}{\infty}$, so we apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                    $$ \lim_{n\to\infty} \frac{\ln(n)}{n} \xrightarrow{L'H} \lim_{n\to\infty} \frac{1/n}{1} = 0 $$
+                    Since the limit is 0, the Divergence Test is inconclusive for the series $\sum_{n=1}^{\infty} \frac{\ln(n)}{n}$.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{n+1}{n} $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=1}^{\infty} \frac{n+1}{n}$. Substituting infinity yields $\frac{\infty}{\infty}$, so we apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                    $$ \lim_{n\to\infty} \frac{n+1}{n} \xrightarrow{L'H} \lim_{n\to\infty} \frac{1}{1} = 1 $$
+                    Since $1 \neq 0$, the series $\sum_{n=1}^{\infty} \frac{n+1}{n}$ diverges by the Divergence Test.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2} $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=1}^{\infty} \frac{(-1)^n}{n^2}$. The numerator is bounded (oscillating between -1 and 1) while the denominator grows towards infinity. Thus:
+                    $$ \lim_{n\to\infty} \frac{(-1)^n}{n^2} = 0 $$
+                    Since the limit is 0, the Divergence Test is inconclusive for the series $\sum_{n=1}^{\infty} \frac{(-1)^n}{n^2}$.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{2}{n^2+n} $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=1}^{\infty} \frac{2}{n^2+n}$. The numerator is constant and the denominator grows towards infinity:
+                    $$ \lim_{n\to\infty} \frac{2}{n^2+n} = 0 $$
+                    Since the limit is 0, the Divergence Test is inconclusive for the series $\sum_{n=1}^{\infty} \frac{2}{n^2+n}$.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=0}^{\infty} 2^{n/3} $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=0}^{\infty} 2^{n/3}$. As $n \to \infty$, the exponent grows, so the term grows without bound:
+                    $$ \lim_{n\to\infty} 2^{n/3} = \infty $$
+                    Since $\infty \neq 0$, the series $\sum_{n=0}^{\infty} 2^{n/3}$ diverges by the Divergence Test.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=0}^{\infty} \left(\frac{1}{2}\right)^n $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=0}^{\infty} \left(\frac{1}{2}\right)^n$. This is an exponential term with a base strictly between -1 and 1:
+                    $$ \lim_{n\to\infty} \left(\frac{1}{2}\right)^n = 0 $$
+                    Since the limit is 0, the Divergence Test is inconclusive for the series $\sum_{n=0}^{\infty} \left(\frac{1}{2}\right)^n$.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} n $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=1}^{\infty} n$.
+                    $$ \lim_{n\to\infty} n = \infty $$
+                    Since $\infty \neq 0$, the series $\sum_{n=1}^{\infty} n$ diverges by the Divergence Test.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{1}{n^5} $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=1}^{\infty} \frac{1}{n^5}$. The denominator grows towards infinity while the numerator is constant:
+                    $$ \lim_{n\to\infty} \frac{1}{n^5} = 0 $$
+                    Since the limit is 0, the Divergence Test is inconclusive for the series $\sum_{n=1}^{\infty} \frac{1}{n^5}$.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{5n^2+1}{n^2+n} $$</div>
+                <div class="solution-box">
+                    We apply the Divergence Test to the series $\sum_{n=1}^{\infty} \frac{5n^2+1}{n^2+n}$. Substituting infinity yields $\frac{\infty}{\infty}$, so we apply <span class="lh-rule">L'Hôpital's Rule</span>:
+                    $$ \lim_{n\to\infty} \frac{5n^2+1}{n^2+n} \xrightarrow{L'H} \lim_{n\to\infty} \frac{10n}{2n+1} $$
+                    This is still $\frac{\infty}{\infty}$. We apply <span class="lh-rule">L'Hôpital's Rule</span> again:
+                    $$ \lim_{n\to\infty} \frac{10n}{2n+1} \xrightarrow{L'H} \lim_{n\to\infty} \frac{10}{2} = 5 $$
+                    Since $5 \neq 0$, the series $\sum_{n=1}^{\infty} \frac{5n^2+1}{n^2+n}$ diverges by the Divergence Test.
+                </div>
+            </li>
+
+        </ol>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section class="problem-section">
+        <h2>2. Alternating Series Test</h2>
+        <span class="instruction">
+            Verify: 1) $b_n$ is positive, 2) $b_n$ is decreasing ($b_{n+1} \le b_n$), 3) $\lim_{n \to \infty} b_n = 0$.
+        </span>
+
+        <ol class="problem-list">
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(-1)^n}{n} $$</div>
+                <div class="solution-box">
+                    We apply the Alternating Series Test to the series $\sum_{n=1}^{\infty} \frac{(-1)^n}{n}$. Let $b_n = \frac{1}{n}$. First, for $n \ge 1$, the term $b_n = \frac{1}{n}$ is positive. Second, we verify that the sequence is decreasing. Since $n+1 > n$, we have $\frac{1}{n+1} < \frac{1}{n}$, so $b_{n+1} \le b_n$. Third, we check the limit: $\lim_{n\to\infty} \frac{1}{n} = 0$. Since all three conditions are satisfied, the series $\sum_{n=1}^{\infty} \frac{(-1)^n}{n}$ converges by the Alternating Series Test.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} $$</div>
+                <div class="solution-box">
+                    We apply the Alternating Series Test to the series $\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$. Let $b_n = \frac{1}{n}$. First, $b_n$ is positive for $n \ge 1$. Second, since $n+1 > n$, it follows that $\frac{1}{n+1} < \frac{1}{n}$, meaning $b_{n+1} \le b_n$. Third, the limit is $\lim_{n\to\infty} \frac{1}{n} = 0$. Since all three conditions are satisfied, the series $\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}$ converges by the Alternating Series Test.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2+n} $$</div>
+                <div class="solution-box">
+                    We apply the Alternating Series Test to the series $\sum_{n=1}^{\infty} \frac{(-1)^n}{n^2+n}$. Let $b_n = \frac{1}{n^2+n}$. First, since $n \ge 1$, $n^2+n$ is positive, so $b_n$ is positive. Second, since $(n+1)^2+(n+1) > n^2+n$, it implies that $\frac{1}{(n+1)^2+(n+1)} < \frac{1}{n^2+n}$, so $b_{n+1} \le b_n$. Third, the limit is $\lim_{n\to\infty} \frac{1}{n^2+n} = 0$. Since all three conditions are satisfied, the series $\sum_{n=1}^{\infty} \frac{(-1)^n}{n^2+n}$ converges by the Alternating Series Test.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{1}{n} $$</div>
+                <div class="solution-box">
+                    We consider the series $\sum_{n=1}^{\infty} \frac{1}{n}$. This series consists entirely of positive terms and does not have alternating signs. Therefore, the Alternating Series Test cannot be used to determine the convergence of the series $\sum_{n=1}^{\infty} \frac{1}{n}$.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(-1)^n}{\ln(n)} $$</div>
+                <div class="solution-box">
+                    We apply the Alternating Series Test to the series $\sum_{n=1}^{\infty} \frac{(-1)^n}{\ln(n)}$. Let $b_n = \frac{1}{\ln(n)}$. First, for $n \ge 2$, $\ln(n) > 0$, so $b_n$ is positive. Second, since $\ln(x)$ is an increasing function, $\ln(n+1) > \ln(n)$, which implies $\frac{1}{\ln(n+1)} < \frac{1}{\ln(n)}$. Thus $b_{n+1} \le b_n$. Third, the limit is $\lim_{n\to\infty} \frac{1}{\ln(n)} = 0$. Since all three conditions are satisfied, the series $\sum_{n=1}^{\infty} \frac{(-1)^n}{\ln(n)}$ converges by the Alternating Series Test.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(-1)^n \, n^2}{n^2+1} $$</div>
+                <div class="solution-box">
+                    We attempt to apply the Alternating Series Test to the series $\sum_{n=1}^{\infty} \frac{(-1)^n n^2}{n^2+1}$ with $b_n = \frac{n^2}{n^2+1}$. We verify the limit condition using L'Hôpital's Rule:
+                    $$ \lim_{n\to\infty} \frac{n^2}{n^2+1} \xrightarrow{L'H} \lim_{n\to\infty} \frac{2n}{2n} = 1 $$
+                    Since the limit is $1$ and not $0$, the Alternating Series Test cannot be used.
+                    <div class="divergence-note">
+                        Note: Since $\lim_{n\to\infty} a_n \neq 0$, the series $\sum_{n=1}^{\infty} \frac{(-1)^n n^2}{n^2+1}$ diverges by the Divergence Test.
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(-1)^n (n+1)^2}{3n^2+1} $$</div>
+                <div class="solution-box">
+                    We attempt to apply the Alternating Series Test to the series $\sum_{n=1}^{\infty} \frac{(-1)^n (n+1)^2}{3n^2+1}$ with $b_n = \frac{(n+1)^2}{3n^2+1}$. We verify the limit condition:
+                    $$ \lim_{n\to\infty} \frac{n^2+2n+1}{3n^2+1} \xrightarrow{L'H} \lim_{n\to\infty} \frac{2n+2}{6n} \xrightarrow{L'H} \frac{2}{6} = \frac{1}{3} $$
+                    Since the limit is $\frac{1}{3}$ and not $0$, the Alternating Series Test cannot be used.
+                    <div class="divergence-note">
+                        Note: Since $\lim_{n\to\infty} a_n \neq 0$, the series $\sum_{n=1}^{\infty} \frac{(-1)^n (n+1)^2}{3n^2+1}$ diverges by the Divergence Test.
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{5n}{n+2} $$</div>
+                <div class="solution-box">
+                    We consider the series $\sum_{n=1}^{\infty} \frac{5n}{n+2}$. The terms of the series are all positive and do not alternate. Therefore, the Alternating Series Test cannot be used to determine the convergence of the series $\sum_{n=1}^{\infty} \frac{5n}{n+2}$.
+                </div>
+            </li>
+
+        </ol>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="problem-section">
+        <h2>3. $p$-Series Test</h2>
+        <span class="instruction">
+            Form: $\displaystyle \sum_{n=1}^{\infty} \frac{1}{n^p}$. Converges if $p > 1$. Diverges if $p \le 1$.
+        </span>
+
+        <ol class="problem-list">
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{1}{n^2} $$</div>
+                <div class="solution-box">
+                    We apply the $p$-Series Test to the series $\sum_{n=1}^{\infty} \frac{1}{n^2}$. This is a $p$-series with $p=2$. Since $p=2 > 1$, the series $\sum_{n=1}^{\infty} \frac{1}{n^2}$ converges.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{1}{\sqrt{n}} $$</div>
+                <div class="solution-box">
+                    We apply the $p$-Series Test to the series $\sum_{n=1}^{\infty} \frac{1}{\sqrt{n}}$. Rewriting the term as $\frac{1}{n^{1/2}}$, we identify $p=0.5$. Since $p=0.5 \le 1$, the series $\sum_{n=1}^{\infty} \frac{1}{\sqrt{n}}$ diverges.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{1}{n\sqrt{n}} $$</div>
+                <div class="solution-box">
+                    We apply the $p$-Series Test to the series $\sum_{n=1}^{\infty} \frac{1}{n\sqrt{n}}$. Combining the powers in the denominator gives $n^1 \cdot n^{1/2} = n^{1.5}$. This is a $p$-series with $p=1.5$. Since $p=1.5 > 1$, the series $\sum_{n=1}^{\infty} \frac{1}{n\sqrt{n}}$ converges.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} n^3 $$</div>
+                <div class="solution-box">
+                    We apply the $p$-Series Test to the series $\sum_{n=1}^{\infty} n^3$. Rewriting the term as $\frac{1}{n^{-3}}$, we identify $p=-3$. Since $p=-3 \le 1$, the series $\sum_{n=1}^{\infty} n^3$ diverges.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{1}{n} $$</div>
+                <div class="solution-box">
+                    We apply the $p$-Series Test to the series $\sum_{n=1}^{\infty} \frac{1}{n}$. This is the harmonic series with $p=1$. Since $p = 1 \le 1$, the series $\sum_{n=1}^{\infty} \frac{1}{n}$ diverges.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{1}{n^{2.5}} $$</div>
+                <div class="solution-box">
+                    We apply the $p$-Series Test to the series $\sum_{n=1}^{\infty} \frac{1}{n^{2.5}}$. We identify $p=2.5$. Since $p=2.5 > 1$, the series $\sum_{n=1}^{\infty} \frac{1}{n^{2.5}}$ converges.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{1}{n^2+n} $$</div>
+                <div class="solution-box">
+                    The $p$-Series Test requires the series to be in the exact form $\sum \frac{1}{n^p}$. Because of the $+n$ term in the denominator, the $p$-Series Test does not apply to the series $\sum_{n=1}^{\infty} \frac{1}{n^2+n}$.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{n^2+n}{n^3+1} $$</div>
+                <div class="solution-box">
+                    The general term is a complex rational function and does not match the form $\frac{1}{n^p}$. Therefore, the $p$-Series Test does not apply to the series $\sum_{n=1}^{\infty} \frac{n^2+n}{n^3+1}$.
+                </div>
+            </li>
+
+        </ol>
+    </section>
+
+    <div class="review-header">Review: Power Series & Taylor</div>
+
+    <!-- SECTION 4 -->
+    <section class="problem-section">
+        <h2>4. Center and Radius of Convergence</h2>
+        <span class="instruction">
+            Step 1: Identify Center $a$.<br>
+            Step 2: Use Ratio/Root Test on the coefficient $a_n$ to find $L = \lim_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|$.<br>
+            Step 3: Radius $R = \frac{1}{L}$.
+        </span>
+
+        <ol class="problem-list">
+            <li>
+                <div class="problem-text">$$ \sum_{n=0}^{\infty} \frac{n^2 x^n}{2^n} $$</div>
+                <div class="solution-box">
+                    <strong>Center:</strong> The power term is $x^n = (x-0)^n$, so the center is $a=0$.<br><br>
+                    <strong>Radius:</strong> We use the Ratio Test on the coefficient $a_n = \frac{n^2}{2^n}$.
+                    $$ L = \lim_{n\to\infty} \left| \frac{(n+1)^2}{2^{n+1}} \cdot \frac{2^n}{n^2} \right| $$
+                    Group the terms:
+                    $$ L = \lim_{n\to\infty} \frac{(n+1)^2}{n^2} \cdot \left| \frac{2^n}{2^{n+1}} \right| $$
+                    Evaluate limits using L'Hôpital's Rule on the $n$ terms and simplify powers of 2 ($2^{n+1} = 2^n \cdot 2$):
+                    $$ L = \lim_{n\to\infty} \frac{n^2+2n+1}{n^2} \cdot \frac{1}{2} \xrightarrow{L'H} \lim_{n\to\infty} \frac{2n+2}{2n} \cdot \frac{1}{2} \xrightarrow{L'H} 1 \cdot \frac{1}{2} = \frac{1}{2} $$
+                    The radius is $R = \frac{1}{L} = \frac{1}{1/2} = 2$.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(-1)^n x^n}{\sqrt{n}} $$</div>
+                <div class="solution-box">
+                    <strong>Center:</strong> The power term is $x^n$, so the center is $a=0$.<br><br>
+                    <strong>Radius:</strong> We use the Ratio Test on the coefficient $a_n = \frac{(-1)^n}{\sqrt{n}}$.
+                    $$ L = \lim_{n\to\infty} \left| \frac{(-1)^{n+1}}{\sqrt{n+1}} \cdot \frac{\sqrt{n}}{(-1)^n} \right| $$
+                    The absolute value removes the negatives. Group $n$ terms:
+                    $$ L = \lim_{n\to\infty} \sqrt{\frac{n}{n+1}} $$
+                    We apply L'Hôpital's Rule inside the square root:
+                    $$ \lim_{n\to\infty} \frac{n}{n+1} \xrightarrow{L'H} \frac{1}{1} = 1 \implies L = \sqrt{1} = 1 $$
+                    The radius is $R = \frac{1}{L} = \frac{1}{1} = 1$.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{10^n (x-1)^n}{n!} $$</div>
+                <div class="solution-box">
+                    <strong>Center:</strong> The power term is $(x-1)^n$, so the center is $a=1$.<br><br>
+                    <strong>Radius:</strong> We use the Ratio Test on the coefficient $a_n = \frac{10^n}{n!}$.
+                    $$ L = \lim_{n\to\infty} \left| \frac{10^{n+1}}{(n+1)!} \cdot \frac{n!}{10^n} \right| $$
+                    Simplify powers ($10^{n+1}/10^n = 10$) and factorials ($(n+1)! = (n+1)n!$):
+                    $$ L = \lim_{n\to\infty} \frac{10}{n+1} = 0 $$
+                    Since $L=0$, the radius is $R = \infty$.
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(x-5)^n}{n^n} $$</div>
+                <div class="solution-box">
+                    <strong>Center:</strong> The power term is $(x-5)^n$, so the center is $a=5$.<br><br>
+                    <strong>Radius:</strong> The coefficient is $a_n = \frac{1}{n^n}$. Since $n$ is in the exponent, we use the Root Test:
+                    $$ L = \lim_{n\to\infty} \sqrt[n]{|a_n|} = \lim_{n\to\infty} \sqrt[n]{\frac{1}{n^n}} = \lim_{n\to\infty} \frac{1}{n} = 0 $$
+                    Since $L=0$, the radius is $R = \infty$.
+                </div>
+            </li>
+        </ol>
+    </section>
+    
+    <!-- SECTION 5 -->
+    <section class="problem-section">
+        <h2>5. Derivatives and Integrals of Power Series</h2>
+        <span class="instruction">
+            1. Find the Radius $R$ of the original series (show full steps).<br>
+            2. Write the term-by-term derivative and integral (Radius remains the same).
+        </span>
+
+        <ol class="problem-list">
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} n x^n $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Original Radius</span>
+                        Coefficient $a_n = n$. Center $a=0$.
+                        $$ \begin{aligned} 
+                        L &= \lim_{n\to\infty} \left| \frac{a_{n+1}}{a_n} \right| = \lim_{n\to\infty} \left| \frac{n+1}{n} \right| \\ 
+                          &= \lim_{n\to\infty} \frac{n+1}{n} \quad \left( \text{Indeterminate Form } \frac{\infty}{\infty} \right) \\ 
+                          &\xrightarrow{L'H} \lim_{n\to\infty} \frac{1}{1} = 1 
+                        \end{aligned} $$
+                        $$ R = \frac{1}{L} = \frac{1}{1} = 1 $$
+                    </div>
+                    <div class="solution-step">
+                        <span class="step-label">Derivative</span>
+                        Power Rule $\frac{d}{dx}(n x^n) = n(nx^{n-1})$:
+                        $$ \sum_{n=1}^{\infty} n^2 x^{n-1} \quad (\text{Radius } R=1) $$
+                    </div>
+                    <div class="solution-step">
+                        <span class="step-label">Integral</span>
+                        Power Rule $\int n x^n dx = n \frac{x^{n+1}}{n+1}$:
+                        $$ C + \sum_{n=1}^{\infty} \frac{n x^{n+1}}{n+1} \quad (\text{Radius } R=1) $$
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=0}^{\infty} 2^n x^n $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Original Radius</span>
+                        Coefficient $a_n = 2^n$. Center $a=0$.
+                        $$ \begin{aligned}
+                        L &= \lim_{n\to\infty} \left| \frac{2^{n+1}}{2^n} \right| \\
+                          &= \lim_{n\to\infty} \left| \frac{2^n \cdot 2^1}{2^n} \right| \quad (\text{Cancel common terms}) \\
+                          &= \lim_{n\to\infty} 2 = 2
+                        \end{aligned} $$
+                        $$ R = \frac{1}{L} = \frac{1}{2} $$
+                    </div>
+                    <div class="solution-step">
+                        <span class="step-label">Derivative</span>
+                        $$ \sum_{n=1}^{\infty} 2^n (n x^{n-1}) \quad (\text{Radius } R=1/2) $$
+                    </div>
+                    <div class="solution-step">
+                        <span class="step-label">Integral</span>
+                        $$ C + \sum_{n=0}^{\infty} 2^n \frac{x^{n+1}}{n+1} \quad (\text{Radius } R=1/2) $$
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{x^n}{(2n)!} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Original Radius</span>
+                        Coefficient $a_n = \frac{1}{(2n)!}$. Center $a=0$.
+                        $$ \begin{aligned}
+                        L &= \lim_{n\to\infty} \left| \frac{a_{n+1}}{a_n} \right| = \lim_{n\to\infty} \left| \frac{1}{(2(n+1))!} \cdot \frac{(2n)!}{1} \right| \\
+                          &= \lim_{n\to\infty} \frac{(2n)!}{(2n+2)!} \quad (\text{Note: } (2n+2)! = (2n+2)(2n+1)(2n)!) \\
+                          &= \lim_{n\to\infty} \frac{(2n)!}{(2n+2)(2n+1)(2n)!} \quad (\text{Cancel factorials}) \\
+                          &= \lim_{n\to\infty} \frac{1}{(2n+2)(2n+1)} = 0
+                        \end{aligned} $$
+                        Since $L=0$, $R = \infty$.
+                    </div>
+                    <div class="solution-step">
+                        <span class="step-label">Derivative</span>
+                        $$ \sum_{n=1}^{\infty} \frac{n x^{n-1}}{(2n)!} \quad (\text{Radius } R=\infty) $$
+                    </div>
+                    <div class="solution-step">
+                        <span class="step-label">Integral</span>
+                        $$ C + \sum_{n=1}^{\infty} \frac{x^{n+1}}{(n+1)(2n)!} \quad (\text{Radius } R=\infty) $$
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$$ \sum_{n=1}^{\infty} \frac{(-1)^n (x-1)^n}{n} $$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        <span class="step-label">Original Radius</span>
+                        Coefficient $a_n = \frac{(-1)^n}{n}$. Center $a=1$.
+                        $$ \begin{aligned}
+                        L &= \lim_{n\to\infty} \left| \frac{(-1)^{n+1}}{n+1} \cdot \frac{n}{(-1)^n} \right| \\
+                          &= \lim_{n\to\infty} \left| \frac{(-1)^{n+1}}{(-1)^n} \cdot \frac{n}{n+1} \right| = \lim_{n\to\infty} \left| (-1) \frac{n}{n+1} \right| \\
+                          &= \lim_{n\to\infty} \frac{n}{n+1} \quad \left( \text{Indeterminate Form } \frac{\infty}{\infty} \right) \\
+                          &\xrightarrow{L'H} \lim_{n\to\infty} \frac{1}{1} = 1
+                        \end{aligned} $$
+                        $$ R = \frac{1}{L} = 1 $$
+                    </div>
+                    <div class="solution-step">
+                        <span class="step-label">Derivative</span>
+                        $$ \sum_{n=1}^{\infty} \frac{(-1)^n n(x-1)^{n-1}}{n} = \sum_{n=1}^{\infty} (-1)^n (x-1)^{n-1} \quad (\text{Radius } R=1) $$
+                    </div>
+                    <div class="solution-step">
+                        <span class="step-label">Integral</span>
+                        $$ C + \sum_{n=1}^{\infty} \frac{(-1)^n (x-1)^{n+1}}{n(n+1)} \quad (\text{Radius } R=1) $$
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+   <!-- SECTION 6 -->
+    <section class="problem-section">
+        <h2>6. Taylor Polynomials</h2>
+        <span class="instruction">
+            Compute the derivatives $f^{(k)}(a)$ explicitly and plug into the formula:
+            $$ P_n(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \dots $$
+        </span>
+
+        <ol class="problem-list">
+            <li>
+                <div class="problem-text">$f(x)=\ln(x^2+1), \quad a=0$</div>
+                <div class="solution-box">
+                    <strong>Derivatives at $a=0$:</strong>
+                    <div class="solution-step">
+                        $k=0$: $f(x) = \ln(x^2+1)$
+                        $$ f(0) = \ln(0^2+1) = \ln(1) = 0 $$
+                    </div>
+                    <div class="solution-step">
+                        $k=1$: Chain Rule $u=x^2+1$, $u'=2x$.
+                        $$ f'(x) = \frac{1}{x^2+1} \cdot 2x = \frac{2x}{x^2+1} $$
+                        $$ f'(0) = \frac{2(0)}{0^2+1} = \frac{0}{1} = 0 $$
+                    </div>
+                    <div class="solution-step">
+                        $k=2$: Quotient Rule on $\frac{2x}{x^2+1}$.
+                        $$ f''(x) = \frac{(2)(x^2+1) - (2x)(2x)}{(x^2+1)^2} = \frac{2+2x^2-4x^2}{(x^2+1)^2} = \frac{2-2x^2}{(x^2+1)^2} $$
+                        $$ f''(0) = \frac{2-2(0)^2}{(0^2+1)^2} = \frac{2}{1} = 2 $$
+                    </div>
+                    <div class="solution-step">
+                        $k=3$: Quotient Rule on $\frac{2-2x^2}{(x^2+1)^2}$.
+                        $$ f'''(x) = \frac{(-4x)(x^2+1)^2 - (2-2x^2) \cdot 2(x^2+1)(2x)}{(x^2+1)^4} $$
+                        Plug in $x=0$ immediately:
+                        $$ f'''(0) = \frac{(-4(0))(1)^2 - (2-0)(2(1)(0))}{(1)^4} = \frac{0 - 0}{1} = 0 $$
+                        <em>Simplifying for the next derivative:</em> Factor out $(x^2+1)$.
+                        $$ f'''(x) = \frac{(x^2+1)[-4x(x^2+1) - 4x(2-2x^2)]}{(x^2+1)^4} = \frac{-4x^3-4x - 8x + 8x^3}{(x^2+1)^3} = \frac{4x^3-12x}{(x^2+1)^3} $$
+                    </div>
+                    <div class="solution-step">
+                        $k=4$: Quotient Rule on $\frac{4x^3-12x}{(x^2+1)^3}$.
+                        $$ f^{(4)}(x) = \frac{(12x^2-12)(x^2+1)^3 - (4x^3-12x) \cdot 3(x^2+1)^2(2x)}{(x^2+1)^6} $$
+                        Plug in $x=0$:
+                        $$ f^{(4)}(0) = \frac{(0-12)(1)^3 - (0)(0)}{(1)^6} = -12 $$
+                    </div>
+
+                    <strong>Polynomials:</strong>
+                    $$ P_2(x) = 0 + 0(x) + \frac{2}{2!}x^2 = x^2 $$
+                    $$ P_4(x) = x^2 + \frac{0}{3!}x^3 + \frac{-12}{4!}x^4 = x^2 - \frac{12}{24}x^4 = x^2 - \frac{1}{2}x^4 $$
+                </div>
+            </li>
+
+            <li>
+                
+    <div class="problem-text">$f(x)=\frac{1}{x^3+1} = (x^3+1)^{-1}, \quad a=0$</div>
+    <div class="solution-box">
+        <strong>Derivatives at $a=0$:</strong>
+        <div class="solution-step">
+            $k=0$:
+            $$ f(x) = (x^3+1)^{-1} $$
+            $$ f(0) = (0^3+1)^{-1} = (1)^{-1} = 1 $$
+        </div>
+        <div class="solution-step">
+            $k=1$:
+            $$ f'(x) = -1(x^3+1)^{-2} \cdot (3x^2) = -3x^2(x^3+1)^{-2} $$
+            $$ f'(0) = -3(0)^2(0^3+1)^{-2} = 0 $$
+        </div>
+        <div class="solution-step">
+            $k=2$:
+            $$ f''(x) = \frac{d}{dx}[-3x^2](x^3+1)^{-2} + (-3x^2)\frac{d}{dx}[(x^3+1)^{-2}] $$
+            $$ f''(x) = (-6x)(x^3+1)^{-2} + (-3x^2) \left[ -2(x^3+1)^{-3}(3x^2) \right] $$
+            $$ f''(x) = -6x(x^3+1)^{-2} + 18x^4(x^3+1)^{-3} $$
+            $$ f''(0) = -6(0)(1)^{-2} + 18(0)^4(1)^{-3} = 0 + 0 = 0 $$
+        </div>
+        <div class="solution-step">
+            $k=3$:
+            $$ f'''(x) = \frac{d}{dx}[-6x(x^3+1)^{-2}] + \frac{d}{dx}[18x^4(x^3+1)^{-3}] $$
+            $$ \frac{d}{dx}[-6x(x^3+1)^{-2}] = (-6)(x^3+1)^{-2} + (-6x)[-2(x^3+1)^{-3}(3x^2)] $$
+            $$ = -6(x^3+1)^{-2} + 36x^3(x^3+1)^{-3} $$
+            $$ \frac{d}{dx}[18x^4(x^3+1)^{-3}] = (72x^3)(x^3+1)^{-3} + (18x^4)[-3(x^3+1)^{-4}(3x^2)] $$
+            $$ = 72x^3(x^3+1)^{-3} - 162x^6(x^3+1)^{-4} $$
+            $$ f'''(x) = -6(x^3+1)^{-2} + 108x^3(x^3+1)^{-3} - 162x^6(x^3+1)^{-4} $$
+            $$ f'''(0) = -6(1)^{-2} + 108(0)(1)^{-3} - 162(0)(1)^{-4} = -6 $$
+        </div>
+        <div class="solution-step">
+            $k=4$:
+            $$ f^{(4)}(x) = \frac{d}{dx}[-6(x^3+1)^{-2}] + \frac{d}{dx}[108x^3(x^3+1)^{-3}] - \frac{d}{dx}[162x^6(x^3+1)^{-4}] $$
+            $$ \text{Term 1: } -6[-2(x^3+1)^{-3}(3x^2)] = 36x^2(x^3+1)^{-3} $$
+            $$ \text{Term 2: } 324x^2(x^3+1)^{-3} + 108x^3[-3(x^3+1)^{-4}(3x^2)] = 324x^2(x^3+1)^{-3} - 972x^5(x^3+1)^{-4} $$
+            $$ \text{Term 3: } - [972x^5(x^3+1)^{-4} + 162x^6(-4)(x^3+1)^{-5}(3x^2)] = -972x^5(x^3+1)^{-4} + 1944x^8(x^3+1)^{-5} $$
+            $$ f^{(4)}(x) = 360x^2(x^3+1)^{-3} - 1944x^5(x^3+1)^{-4} + 1944x^8(x^3+1)^{-5} $$
+            $$ f^{(4)}(0) = 360(0)^2(1) - 1944(0)^5(1) + 1944(0)^8(1) = 0 $$
+        </div>
+
+        <strong>Polynomials:</strong>
+        $$ P_2(x) = 1 + 0(x) + \frac{0}{2!}x^2 = 1 $$
+        $$ P_4(x) = 1 + 0x + 0x^2 + \frac{-6}{3!}x^3 + \frac{0}{4!}x^4 = 1 - \frac{6}{6}x^3 = 1 - x^3 $$
+    </div>
+</li>
+            </li>
+
+            <li>
+                <div class="problem-text">$f(x)=e^{3x}, \quad a=0$</div>
+                <div class="solution-box">
+                    <strong>Derivatives at $a=0$:</strong>
+                    <div class="solution-step">
+                        $k=0$: $f(0) = e^{3(0)} = 1$.
+                    </div>
+                    <div class="solution-step">
+                        $k=1$: Chain rule $\frac{d}{dx}e^{u} = e^u u'$.
+                        $$ f'(x) = e^{3x} \cdot 3 = 3e^{3x} $$
+                        $$ f'(0) = 3e^0 = 3 $$
+                    </div>
+                    <div class="solution-step">
+                        $k=2$:
+                        $$ f''(x) = 3 \cdot (3e^{3x}) = 9e^{3x} $$
+                        $$ f''(0) = 9e^0 = 9 $$
+                    </div>
+                    <div class="solution-step">
+                        $k=3$:
+                        $$ f'''(x) = 9 \cdot (3e^{3x}) = 27e^{3x} $$
+                        $$ f'''(0) = 27e^0 = 27 $$
+                    </div>
+                    <div class="solution-step">
+                        $k=4$:
+                        $$ f^{(4)}(x) = 27 \cdot (3e^{3x}) = 81e^{3x} $$
+                        $$ f^{(4)}(0) = 81e^0 = 81 $$
+                    </div>
+
+                    <strong>Polynomials:</strong>
+                    $$ P_2(x) = 1 + 3x + \frac{9}{2!}x^2 = 1 + 3x + \frac{9}{2}x^2 $$
+                    $$ P_4(x) = 1 + 3x + \frac{9}{2}x^2 + \frac{27}{3!}x^3 + \frac{81}{4!}x^4 = 1 + 3x + \frac{9}{2}x^2 + \frac{9}{2}x^3 + \frac{27}{8}x^4 $$
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$f(x)=(x+1)^2, \quad a=1$</div>
+                <div class="solution-box">
+                    <strong>Derivatives at $a=1$:</strong>
+                    <div class="solution-step">
+                        $k=0$:
+                        $$ f(1) = (1+1)^2 = 2^2 = 4 $$
+                    </div>
+                    <div class="solution-step">
+                        $k=1$: Power Rule.
+                        $$ f'(x) = 2(x+1)^1 \cdot 1 = 2(x+1) $$
+                        $$ f'(1) = 2(1+1) = 4 $$
+                    </div>
+                    <div class="solution-step">
+                        $k=2$:
+                        $$ f''(x) = 2(1) = 2 $$
+                        $$ f''(1) = 2 $$
+                    </div>
+                    <div class="solution-step">
+                        $k=3$:
+                        $$ f'''(x) = 0 \implies f'''(1) = 0 $$
+                    </div>
+
+                    <strong>Polynomials:</strong>
+                    $$ P_2(x) = 4 + 4(x-1) + \frac{2}{2!}(x-1)^2 = 4 + 4(x-1) + (x-1)^2 $$
+                    $$ P_4(x) = 4 + 4(x-1) + (x-1)^2 \quad (\text{Since } f^{(3)} \text{ and } f^{(4)} \text{ are 0}) $$
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section class="problem-section">
+        <h2>7. Full Taylor Series</h2>
+        <span class="instruction">
+            Use substitution into standard Taylor series templates.
+        </span>
+
+        <ol class="problem-list">
+            <li>
+                <div class="problem-text">$\sin(x^5)$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        Standard series for $\sin(u)$ centered at 0:
+                        $$ \sin(u) = \sum_{n=0}^{\infty} \frac{(-1)^n u^{2n+1}}{(2n+1)!} $$
+                    </div>
+                    <div class="solution-step">
+                        Substitute $u = x^5$:
+                        $$ \sin(x^5) = \sum_{n=0}^{\infty} \frac{(-1)^n (x^5)^{2n+1}}{(2n+1)!} $$
+                    </div>
+                    <div class="solution-step">
+                        Simplify exponents using power rule $(a^b)^c = a^{bc}$:
+                        $$ \sum_{n=0}^{\infty} \frac{(-1)^n x^{5(2n+1)}}{(2n+1)!} = \sum_{n=0}^{\infty} \frac{(-1)^n x^{10n+5}}{(2n+1)!} $$
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="problem-text">$x\sin(x^5)$</div>
+                <div class="solution-box">
+                    <div class="solution-step">
+                        Multiply the result from part (a) by $x$:
+                        $$ x \cdot \sin(x^5) = x^1 \cdot \sum_{n=0}^{\infty} \frac{(-1)^n x^{10n+5}}{(2n+1)!} $$
+                    </div>
+                    <div class="solution-step">
+                        Bring $x$ inside the summation:
+                        $$ \sum_{n=0}^{\infty} \frac{(-1)^n x^1 \cdot x^{10n+5}}{(2n+1)!} $$
+                    </div>
+                    <div class="solution-step">
+                        Combine exponents ($x^a \cdot x^b = x^{a+b}$):
+                        $$ \sum_{n=0}^{\infty} \frac{(-1)^n x^{10n+6}}{(2n+1)!} $$
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+</div>
+</body>
+</html>

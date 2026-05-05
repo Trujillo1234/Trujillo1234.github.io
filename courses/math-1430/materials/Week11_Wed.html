@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculus 2 - Integration by Parts (Continued)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'],['\\(', '\\)']],
+        displayMath: [['$$', '$$'],['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+
+  <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg-paper: #F9F5EB;
+      --text-main: #111827;
+      --primary: #2563eb;
+      --secondary: #059669;
+      --font-serif: 'Crimson Pro', serif;
+      --font-sans: 'Space Grotesk', sans-serif;
+      --sol-bg: #eff6ff;
+      --muted: #64748b;
+      --card-bg: #f8fbff;
+      --card-border: #dbeafe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-paper);
+      color: var(--text-main);
+      font-family: var(--font-serif);
+      line-height: 1.65;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .page-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 60px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      min-height: 1100px;
+    }
+
+    header {
+      border-bottom: 2px solid var(--text-main);
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-sans);
+      font-size: 2.5rem;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .sub-header {
+      font-family: var(--font-sans);
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    h2 {
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      color: var(--primary);
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+      margin-top: 40px;
+    }
+
+    h3 { font-family: var(--font-sans); }
+
+    .objectives-box {
+      border: 2px solid var(--secondary);
+      background-color: #f0fdf4;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
+
+    .objectives-title {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      color: var(--secondary);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .box-def {
+      border: 2px solid var(--text-main);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      background-color: #fff;
+    }
+
+    .box-title {
+      font-family: var(--font-sans);
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: var(--text-main);
+      text-decoration: underline;
+    }
+
+    .solution-box {
+      background-color: var(--sol-bg);
+      border-left: 4px solid var(--primary);
+      padding: 20px 30px;
+      margin-top: 15px;
+      margin-bottom: 30px;
+      border-radius: 0 6px 6px 0;
+      font-size: 1.05rem;
+      color: #1e293b;
+      overflow-x: auto;
+    }
+
+    .problem-text {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .formula-block {
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    .example-block {
+      margin-bottom: 30px;
+    }
+
+    .side-work-box {
+      border: 1px solid var(--text-main);
+      padding: 15px 25px;
+      border-radius: 6px;
+      background-color: #fff;
+      display: inline-block;
+      margin: 10px 0;
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+    }
+    
+    .side-work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .circled-result-box {
+      border: 2px solid var(--text-main);
+      border-radius: 50px;
+      padding: 10px 30px;
+      display: inline-block;
+      margin: 15px 0;
+      background-color: transparent;
+    }
+
+    .tabular-table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      font-size: 1.15rem;
+    }
+    
+    .tabular-table th, .tabular-table td {
+      padding: 10px 20px;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+      }
+      .page-container {
+        box-shadow: none;
+        max-width: 100%;
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-container">
+
+  <header>
+    <h1>Integration by Parts</h1>
+    <div class="sub-header">
+      Calculus 2 &bull; Wednesday Notes
+    </div>
+  </header>
+
+  <section>
+    <h2>1. Integration by Parts Strategy</h2>
+    <p>Use integration by parts to find antiderivatives.</p>
+    
+    <div class="formula-block" style="border: 2px solid var(--text-main); padding: 15px; border-radius: 6px; background: #fff; max-width: 400px; margin: 0 auto 30px; font-size: 1.2rem;">
+      $$ \int u \, dv = uv - \int v \, du $$
+    </div>
+
+    <div class="box-def" style="max-width: 400px; margin: 0 auto; text-align: center;">
+      <h3 class="box-title" style="text-decoration: underline;">Strategy for Picking $u$</h3>
+      
+      <div style="display: flex; align-items: center; justify-content: center; gap: 20px; font-size: 1.2rem; font-family: var(--font-sans); margin-top: 20px;">
+        <div style="text-align: right; line-height: 1.3; font-size: 1rem;">
+          Better<br>choice<br>of $u$
+        </div>
+        <div>
+          <svg width="20" height="130" viewBox="0 0 20 130">
+            <path d="M10 130 L10 10 M5 15 L10 5 L15 15" stroke="var(--text-main)" stroke-width="2" fill="none" />
+          </svg>
+        </div>
+        <div style="line-height: 1.8; text-align: left;">
+          <div><strong>L</strong> <span style="font-weight: normal; font-size: 1rem;">ogs</span></div>
+          <div><strong>I</strong> <span style="font-weight: normal; font-size: 1rem;">nv. Trig.</span></div>
+          <div><strong>A</strong> <span style="font-weight: normal; font-size: 1rem;">lgebra</span></div>
+          <div><strong>T</strong> <span style="font-weight: normal; font-size: 1rem;">rig.</span></div>
+          <div><strong>E</strong> <span style="font-weight: normal; font-size: 1rem;">xp.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Examples with Logarithms</h2>
+
+    <div class="example-block">
+      <div class="problem-text">Ex: $\int \ln(x) \, dx =$</div>
+      
+      <div class="side-work-box">
+        <div class="side-work-grid">
+          <div>$u = \ln(x)$<br>$du = \frac{1}{x} \, dx$</div>
+          <div>$dv = dx$<br>$v = x$</div>
+        </div>
+      </div>
+
+      <div class="solution-box" style="background-color: transparent; border: none; padding-left: 0;">
+        $$ x\ln(x) - \int x \cdot \frac{1}{x} \, dx $$
+        $$ = x\ln(x) - \int dx $$
+        <div style="text-align: center;">
+          <div class="circled-result-box">
+            $$ = x\ln(x) - x + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-block" style="margin-top: 40px;">
+      <div class="problem-text">Ex: $\int \frac{\ln(x)}{x^3} \, dx =$</div>
+
+      <div class="side-work-box">
+        <div class="side-work-grid">
+          <div>$u = \ln(x)$<br>$du = \frac{1}{x} \, dx$</div>
+          <div>$dv = x^{-3} \, dx$<br>$v = \frac{x^{-2}}{-2} = \frac{-1}{2x^2}$</div>
+        </div>
+      </div>
+
+      <div class="solution-box" style="background-color: transparent; border: none; padding-left: 0;">
+        $$ -\frac{1}{2x^2}\ln(x) + \int \frac{1}{2x^2} \cdot \frac{1}{x} \, dx $$
+        $$ = -\frac{1}{2x^2}\ln(x) + \frac{1}{2} \int x^{-3} \, dx $$
+        $$ = -\frac{1}{2x^2}\ln(x) + \frac{1}{2} \frac{x^{-2}}{-2} + C $$
+        <div style="text-align: center;">
+          <div class="circled-result-box" style="padding: 15px 40px;">
+            $$ = -\frac{1}{2x^2}\ln(x) - \frac{1}{4x^2} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Recursive Integration & Alternatives</h2>
+
+    <div class="example-block">
+      <div class="problem-text">Ex: $I = \int \frac{\ln|x|}{x} \, dx =$</div>
+      
+      <div class="side-work-box">
+        <div class="side-work-grid">
+          <div>$u = \ln|x|$<br>$du = \frac{1}{x} \, dx$</div>
+          <div>$dv = \frac{1}{x} \, dx$<br>$v = \ln|x|$</div>
+        </div>
+      </div>
+
+      <div class="solution-box" style="background-color: transparent; border: none; padding-left: 0;">
+        $$ = (\ln|x|)^2 - \int \ln|x| \cdot \frac{1}{x} \, dx $$
+        
+        <p style="text-align: center; font-family: var(--font-sans); font-size: 1.15rem; margin-top: 20px;">
+          $$ I = (\ln|x|)^2 - I $$
+          $$ 2I = (\ln|x|)^2 $$
+          $$ I = \frac{(\ln|x|)^2}{2} $$
+        </p>
+
+        <div style="text-align: center;">
+          <span style="font-family: var(--font-sans); font-size: 1.1rem;">Thus,</span>
+          <div class="circled-result-box" style="margin-left: 10px;">
+            $$ \int \frac{\ln|x|}{x} \, dx = \frac{(\ln|x|)^2}{2} + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-def">
+      <h3 class="box-title">Alternate Method: ($u$-sub)</h3>
+      <div class="solution-box" style="background-color: transparent; border: none; padding-left: 0;">
+        $$ \int \frac{\ln|x|}{x} \, dx = \int \ln|x| \cdot \frac{1}{x} \, dx $$
+        
+        <div style="display: flex; gap: 40px; align-items: flex-start; margin: 20px 0;">
+          <div style="font-family: var(--font-sans); font-size: 1.1rem; line-height: 1.8;">
+            $u = \ln|x|$ <br>
+            $du = \frac{1}{x} \, dx$
+          </div>
+          <div>
+            $$ = \int u \cdot du = \frac{u^2}{2} + C $$
+            <div class="circled-result-box" style="margin-top: 10px;">
+              $$ = \frac{(\ln|x|)^2}{2} + C $$
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Inverse Trigonometric Functions</h2>
+
+    <div class="example-block">
+      <div class="problem-text">Ex: $\int 5\tan^{-1}(2x) \, dx =$</div>
+
+      <div class="side-work-box">
+        <div class="side-work-grid">
+          <div>$u = \tan^{-1}(2x)$<br>$du = \frac{2}{1+(2x)^2} \, dx$</div>
+          <div>$dv = 5 \, dx$<br>$v = 5x$</div>
+        </div>
+      </div>
+
+      <div class="solution-box" style="background-color: transparent; border: none; padding-left: 0;">
+        $$ = 5x\tan^{-1}(2x) - \int \frac{10x}{1+4x^2} \, dx $$
+
+        <div style="margin: 20px 0; font-family: var(--font-sans); font-size: 1.1rem; line-height: 1.8;">
+          $u = 1+4x^2$ <br>
+          $du = 8x \, dx$ <br>
+          $\frac{1}{8}du = x \, dx$
+        </div>
+
+        $$ = 5x\tan^{-1}(2x) - 10 \int \frac{1}{1+4x^2} \cdot x \, dx $$
+        $$ = 5x\tan^{-1}(2x) - 10 \int \frac{1}{u} \cdot \frac{1}{8} \, du $$
+        $$ = 5x\tan^{-1}(2x) - \frac{10}{8}\ln|u| + C $$
+        
+        <div style="text-align: center;">
+          <div class="circled-result-box" style="padding: 15px 40px; border-radius: 60px;">
+            $$ = 5x\tan^{-1}(2x) - \frac{5}{4}\ln|1+4x^2| + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-def">
+      <h3 class="box-title">Reminder for homework</h3>
+      <div style="display: grid; grid-template-columns: 1fr; gap: 20px; font-size: 1.2rem; text-align: center; margin-top: 20px;">
+        $$ (\tan^{-1}(f(x)))' = \frac{f'(x)}{1 + (f(x))^2} $$
+        $$ (\cot^{-1}(f(x)))' = -\frac{f'(x)}{1 + (f(x))^2} $$
+        $$ (\sin^{-1}(f(x)))' = \frac{f'(x)}{\sqrt{1 - (f(x))^2}} $$
+        $$ (\cos^{-1}(f(x)))' = -\frac{f'(x)}{\sqrt{1 - (f(x))^2}} $$
+        $$ (\sec^{-1}(f(x)))' = \frac{f'(x)}{f(x)\sqrt{(f(x))^2 - 1}} $$
+        $$ (\csc^{-1}(f(x)))' = -\frac{f'(x)}{f(x)\sqrt{(f(x))^2 - 1}} $$
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>5. Linear Composition Integrals</h2>
+
+    <div class="box-def" style="text-align: center; margin-bottom: 40px;">
+      <h3 class="box-title">Recall</h3>
+      <div style="font-size: 1.2rem; margin: 15px 0;">
+        If $\quad \int f(x) \, dx = F(x) + C$,<br><br>
+        then $\quad \int f(mx+b) \, dx = \frac{1}{m} F(mx+b) + C$
+      </div>
+    </div>
+
+    <div class="solution-box" style="background-color: transparent; border: none; padding-left: 20px; font-size: 1.2rem;">
+      $$ \int e^{2x} \, dx = \frac{e^{2x}}{2} + C $$
+      $$ \int e^{x/2} \, dx = \frac{e^{x/2}}{1/2} + C = 2e^{x/2} + C $$
+      $$ \int \sin(3x+1) \, dx = -\frac{\cos(3x+1)}{3} + C $$
+      $$ \int \cos(5x) \, dx = \frac{\sin(5x)}{5} + C $$
+    </div>
+  </section>
+
+  <section>
+    <h2>6. Tabular Method Practice</h2>
+    
+    <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 20px; text-decoration: underline;">The Tabular Method</p>
+    <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 30px; text-align: center;">($u$ is a polynomial)</p>
+
+    <div class="example-block">
+      <div class="problem-text">Ex: $\int (x^2 + 3x - 5)\cos(2x) \, dx$</div>
+
+      <table class="tabular-table">
+        <tr>
+          <th></th>
+          <th style="border-bottom: 2px solid var(--text-main); border-right: 2px solid var(--text-main); width: 150px; text-align: center;">$u$</th>
+          <th style="border-bottom: 2px solid var(--text-main); width: 160px; text-align: center;">$dv$</th>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; text-align: right;">$+$</td>
+          <td style="border-right: 2px solid var(--text-main); text-align: center;">$x^2 + 3x - 5$</td>
+          <td style="text-align: center;">$\cos(2x)$</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; text-align: right;">$-$</td>
+          <td style="border-right: 2px solid var(--text-main); text-align: center; position: relative;">
+            $2x + 3$
+            <span style="position: absolute; right: -15px; top: -22px; color: var(--text-main);">$\searrow$</span>
+          </td>
+          <td style="text-align: center;">$\sin(2x)/2$</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; text-align: right;">$+$</td>
+          <td style="border-right: 2px solid var(--text-main); text-align: center; position: relative;">
+            $2$
+            <span style="position: absolute; right: -15px; top: -22px; color: var(--text-main);">$\searrow$</span>
+          </td>
+          <td style="text-align: center;">$-\cos(2x)/4$</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; text-align: right;">$-$</td>
+          <td style="border-right: 2px solid var(--text-main); text-align: center; position: relative;">
+            $0$
+            <span style="position: absolute; right: -15px; top: -22px; color: var(--text-main);">$\searrow$</span>
+          </td>
+          <td style="text-align: center;">$-\sin(2x)/8$</td>
+        </tr>
+      </table>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <div class="circled-result-box" style="padding: 20px 40px; border-radius: 60px;">
+          $$ = (x^2 + 3x - 5)\frac{\sin(2x)}{2} + (2x + 3)\frac{\cos(2x)}{4} - 2\frac{\sin(2x)}{8} + C $$
+        </div>
+      </div>
+    </div>
+
+    <div class="example-block" style="margin-top: 50px;">
+      <div class="problem-text">Ex: $\int x^3 \cdot 2^x \, dx$</div>
+
+      <div style="float: right; border: 2px solid var(--text-main); padding: 15px; background: #fff; margin-left: 20px; text-align: center;">
+        <p style="margin: 0 0 10px 0; font-family: var(--font-sans); font-weight: bold;">add to list</p>
+        <p style="margin: 0; text-decoration: underline;">Remark ($a>0$)</p>
+        $$ \int a^x \, dx = \frac{a^x}{\ln(a)} + C $$
+      </div>
+
+      <table class="tabular-table" style="margin-left: 0;">
+        <tr>
+          <th></th>
+          <th style="border-bottom: 2px solid var(--text-main); border-right: 2px solid var(--text-main); width: 80px; text-align: center;">$u$</th>
+          <th style="border-bottom: 2px solid var(--text-main); width: 140px; text-align: center;">$dv$</th>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; text-align: right;">$+$</td>
+          <td style="border-right: 2px solid var(--text-main); text-align: center;">$x^3$</td>
+          <td style="text-align: center;">$2^x$</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; text-align: right;">$-$</td>
+          <td style="border-right: 2px solid var(--text-main); text-align: center; position: relative;">
+            $3x^2$
+            <span style="position: absolute; right: -15px; top: -22px; color: var(--text-main);">$\searrow$</span>
+          </td>
+          <td style="text-align: center;">$2^x / \ln(2)$</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; text-align: right;">$+$</td>
+          <td style="border-right: 2px solid var(--text-main); text-align: center; position: relative;">
+            $6x$
+            <span style="position: absolute; right: -15px; top: -22px; color: var(--text-main);">$\searrow$</span>
+          </td>
+          <td style="text-align: center;">$2^x / (\ln(2))^2$</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; text-align: right;">$-$</td>
+          <td style="border-right: 2px solid var(--text-main); text-align: center; position: relative;">
+            $6$
+            <span style="position: absolute; right: -15px; top: -22px; color: var(--text-main);">$\searrow$</span>
+          </td>
+          <td style="text-align: center;">$2^x / (\ln(2))^3$</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; text-align: right;">$+$</td>
+          <td style="border-right: 2px solid var(--text-main); text-align: center; position: relative;">
+            $0$
+            <span style="position: absolute; right: -15px; top: -22px; color: var(--text-main);">$\searrow$</span>
+          </td>
+          <td style="text-align: center;">$2^x / (\ln(2))^4$</td>
+        </tr>
+      </table>
+      <div style="clear: both;"></div>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <div class="circled-result-box" style="padding: 20px 40px; border-radius: 60px;">
+          $$ = \frac{x^3 \cdot 2^x}{\ln(2)} - \frac{3x^2 \cdot 2^x}{(\ln(2))^2} + \frac{6x \cdot 2^x}{(\ln(2))^3} - \frac{6 \cdot 2^x}{(\ln(2))^4} + C $$
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>7. Exponential &times; Trig Integrals (Looping)</h2>
+
+    <div class="example-block">
+      <div class="problem-text">Ex: $I = \int e^x \sin(x) \, dx =$</div>
+      
+      <div class="side-work-box">
+        <div class="side-work-grid">
+          <div>$u = \sin(x)$<br>$du = \cos(x) \, dx$</div>
+          <div>$dv = e^x \, dx$<br>$v = e^x$</div>
+        </div>
+      </div>
+
+      <div class="solution-box" style="background-color: transparent; border: none; padding-left: 0; padding-bottom: 0;">
+        $$ e^x\sin(x) - \int e^x\cos(x) \, dx $$
+      </div>
+
+      <div class="side-work-box" style="margin-top: 0;">
+        <div class="side-work-grid">
+          <div>$u = \cos(x)$<br>$du = -\sin(x) \, dx$</div>
+          <div>$dv = e^x \, dx$<br>$v = e^x$</div>
+        </div>
+      </div>
+
+      <div class="solution-box" style="background-color: transparent; border: none; padding-left: 0;">
+        <div style="margin-left: 50px; font-size: 1.15rem;">
+          $$ I = e^x\sin(x) - \left( e^x\cos(x) + \int e^x\sin(x) \, dx \right) $$
+          $$ I = e^x\sin(x) - e^x\cos(x) - I $$
+          $$ 2I = e^x\sin(x) - e^x\cos(x) $$
+        </div>
+        <div style="text-align: center; margin-top: 15px;">
+          <div class="circled-result-box" style="padding: 15px 40px; border-radius: 60px;">
+            $$ I = \frac{e^x}{2}\sin(x) - \frac{e^x}{2}\cos(x) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-block" style="margin-top: 50px;">
+      <div class="problem-text">Ex: $I = \int e^{2x} \cos(x) \, dx =$</div>
+      
+      <div class="side-work-box">
+        <div class="side-work-grid">
+          <div>$u = \cos(x)$<br>$du = -\sin(x) \, dx$</div>
+          <div>$dv = e^{2x} \, dx$<br>$v = e^{2x}/2$</div>
+        </div>
+      </div>
+
+      <div class="solution-box" style="background-color: transparent; border: none; padding-left: 0; padding-bottom: 0;">
+        $$ \frac{e^{2x}}{2}\cos(x) + \frac{1}{2}\int e^{2x}\sin(x) \, dx $$
+      </div>
+
+      <div class="side-work-box" style="margin-top: 0;">
+        <div class="side-work-grid">
+          <div>$u = \sin(x)$<br>$du = \cos(x) \, dx$</div>
+          <div>$dv = e^{2x} \, dx$<br>$v = e^{2x}/2$</div>
+        </div>
+      </div>
+
+      <div class="solution-box" style="background-color: transparent; border: none; padding-left: 0;">
+        <div style="margin-left: 50px; font-size: 1.15rem;">
+          $$ I = \frac{e^{2x}}{2}\cos(x) + \frac{1}{2} \left( \frac{e^{2x}}{2}\sin(x) - \frac{1}{2} \int e^{2x}\cos(x) \, dx \right) $$
+          $$ I = \frac{e^{2x}}{2}\cos(x) + \frac{e^{2x}}{4}\sin(x) - \frac{1}{4}I $$
+          $$ \frac{5I}{4} = \frac{e^{2x}}{2}\cos(x) + \frac{e^{2x}}{4}\sin(x) $$
+        </div>
+        <div style="text-align: center; margin-top: 15px;">
+          <div class="circled-result-box" style="padding: 15px 40px; border-radius: 60px;">
+            $$ I = \frac{4}{5} \left( \frac{e^{2x}}{2}\cos(x) + \frac{e^{2x}}{4}\sin(x) \right) + C $$
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

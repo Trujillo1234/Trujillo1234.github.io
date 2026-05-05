@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 - Alternating Series Test</title>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- MATHJAX CONFIGURATION -->
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-paper: #F9F5EB;
+            --text-main: #111827;
+            --primary: #2563eb;
+            --secondary: #059669;
+            --highlight: #eff6ff;
+            --font-serif: 'Crimson Pro', serif;
+            --font-sans: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .page-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            min-height: 1100px;
+        }
+
+        h1, h2, h3 { font-family: var(--font-sans); margin-top: 0; }
+        h1 { font-size: 2.2rem; border-bottom: 4px solid var(--text-main); padding-bottom: 10px; margin-bottom: 5px; }
+        h2 { font-size: 1.4rem; color: var(--primary); border-bottom: 1px solid #e2e8f0; margin-top: 30px; padding-bottom: 5px; }
+        .header-meta { font-family: var(--font-sans); color: #64748b; font-size: 0.9rem; margin-bottom: 20px; display: flex; justify-content: space-between; }
+
+        .objectives-container {
+            border: 2px solid var(--secondary);
+            background-color: #ecfdf5;
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .objectives-title {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .objectives-list { margin: 0; padding-left: 20px; font-family: var(--font-sans); font-size: 1rem; }
+        .objectives-list li { margin-bottom: 5px; }
+
+        .box {
+            border: 2px solid var(--text-main);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            page-break-inside: avoid;
+        }
+        .example-box {
+            background-color: var(--highlight);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        .box-title {
+            display: block;
+            font-family: var(--font-sans);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .test-steps {
+            font-family: var(--font-sans);
+            background: #f1f5f9;
+            border-left: 4px solid #0f172a;
+            padding: 15px 18px;
+            margin: 0 0 35px 0;
+            border-radius: 8px;
+        }
+        .test-steps ul { margin: 8px 0 0 18px; }
+        .test-steps li { margin-bottom: 6px; }
+
+        .diagram-container { text-align: center; margin: 25px 0; }
+        .diagram-caption { font-family: var(--font-serif); font-style: italic; color: #555; font-size: 0.95rem; margin-top: 10px; }
+        .diagram-title { font-family: var(--font-sans); font-weight: 700; font-size: 0.95rem; color: #334155; margin-bottom: 10px; }
+
+        .handwritten { font-family: 'Crimson Pro', serif; font-style: italic; color: #555; font-size: 0.95rem; }
+
+        .inline-math-list {
+            font-family: var(--font-sans);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin: 12px 0 18px 0;
+        }
+        .inline-math-list div { margin: 6px 0; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .page-container { box-shadow: none; padding: 0; margin: 0; max-width: 100%; }
+            .box { background-color: white !important; border: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-container">
+
+    <!-- HEADER -->
+    <header>
+        <h1>Alternating Series Test</h1>
+        <div class="header-meta">
+            <span>Calculus 2</span>
+            <span>Wednesday, Feb 4</span>
+            <span>Instructor Notes</span>
+        </div>
+    </header>
+
+    <!-- LEARNING OBJECTIVES -->
+    <section class="objectives-container">
+        <span class="objectives-title">Learning Objectives</span>
+        <ul class="objectives-list">
+            <li><strong>Apply</strong> the Alternating Series Test to show that an alternating series converges.</li>
+        </ul>
+    </section>
+
+    <!-- MOTIVATION -->
+    <section class="box">
+        <span class="box-title">Motivation</span>
+        <p><strong>What can we do when the Divergence Test is inconclusive?</strong></p>
+        <p>
+            If $\lim_{n\to\infty} b_n = 0$, then the Divergence Test cannot decide whether $\sum b_n$ converges or diverges.
+            But for an <em>alternating</em> series, if the terms shrink to $0$ in a controlled way, then we <em>can</em> conclude convergence.
+            Also, for convergent alternating series, we get a simple error bound after $N$ terms.
+        </p>
+    </section>
+
+    <!-- HOW TO APPLY A TEST -->
+    <section class="test-steps">
+        <div style="font-weight:700;">How to apply a test (you are making an argument)</div>
+        <ul>
+            <li><strong>State the test</strong> you are using.</li>
+            <li><strong>Verify each hypothesis</strong> with clear mathematical justification.</li>
+            <li><strong>Conclude about a specific series</strong> by writing the series explicitly.</li>
+        </ul>
+    </section>
+
+    <!-- THE TEST (MATCHING NOTES STYLE) -->
+    <section class="box">
+        <span class="box-title">The Alternating Series Test</span>
+
+        <p>An alternating series is often written in either of these equivalent forms:</p>
+        <ul>
+            <li>$\displaystyle \sum_{n=0}^{\infty}(-1)^n b_n = b_0 - b_1 + b_2 - b_3 + \cdots$</li>
+            <li>$\displaystyle \sum_{n=0}^{\infty}(-1)^{n+1} b_n = -b_0 + b_1 - b_2 + b_3 - \cdots$</li>
+        </ul>
+
+        <p>This series <strong>converges</strong> if the following conditions are all true:</p>
+        <ol type="a">
+            <li>$b_n$ is <strong>positive</strong> for all $n$.</li>
+            <li>$b_0 \ge b_1 \ge b_2 \ge b_3 \ge \cdots$ (the terms are <strong>non-increasing</strong>).</li>
+            <li>$\displaystyle \lim_{n\to\infty} b_n = 0$.</li>
+        </ol>
+    </section>
+
+    <!-- PROOF SKETCH (SAME IDEA, BUT WITH PARTIAL SUMS WRITTEN OUT LIKE NOTES) -->
+    <section class="box">
+        <span class="box-title">Proof Sketch (Visual Idea)</span>
+
+        <p>
+            Let $S_n$ be the $n$th partial sum of $\displaystyle \sum_{n=0}^{\infty}(-1)^n b_n$:
+            $$S_n = b_0 - b_1 + b_2 - b_3 + \cdots + (-1)^n b_n.$$
+        </p>
+
+        <!-- NEW: Explicit partial sums S1..S6 (and S0, since your diagrams include it) -->
+        <div class="inline-math-list">
+            <div>$S_0 = b_0$</div>
+            <div>$S_1 = b_0 - b_1$</div>
+            <div>$S_2 = b_0 - b_1 + b_2$</div>
+            <div>$S_3 = b_0 - b_1 + b_2 - b_3$</div>
+            <div>$S_4 = b_0 - b_1 + b_2 - b_3 + b_4$</div>
+            <div>$S_5 = b_0 - b_1 + b_2 - b_3 + b_4 - b_5$</div>
+            <div>$S_6 = b_0 - b_1 + b_2 - b_3 + b_4 - b_5 + b_6$</div>
+            <div style="margin-top:10px; font-family: var(--font-serif); font-style: italic; color:#555;">
+                The series converges exactly when $\lim_{n\to\infty} S_n$ exists.
+            </div>
+        </div>
+
+        <p>Because the signs alternate, the partial sums “bounce” back and forth:</p>
+        <ul>
+            <li>The <strong>even</strong> partial sums $S_0, S_2, S_4, S_6,\dots$ move in one direction (one monotone sequence).</li>
+            <li>The <strong>odd</strong> partial sums $S_1, S_3, S_5,\dots$ move in the opposite direction (another monotone sequence).</li>
+            <li>Because the sizes $b_n$ decrease, the overshoots shrink, so the two sequences trap a single number $L$ between them.</li>
+        </ul>
+        <p>That trapped number $L$ is the limit, so the alternating series converges.</p>
+
+        <!-- Diagram 0 -->
+        <div class="diagram-container">
+            <div class="diagram-title">Diagram 0: From $0$ to $S_2$</div>
+            <svg width="600" height="160" viewBox="0 0 600 160">
+                <line x1="20" y1="95" x2="580" y2="95" stroke="#333" stroke-width="2" />
+                <line x1="50" y1="90" x2="50" y2="100" stroke="#333" stroke-width="2" />
+                <text x="50" y="125" text-anchor="middle" font-family="Space Grotesk" font-size="14">0</text>
+
+                <path d="M 50 95 Q 275 15 500 95" fill="none" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow0)" />
+                <line x1="500" y1="90" x2="500" y2="100" stroke="#c0392b" stroke-width="2" />
+                <text x="500" y="125" text-anchor="middle" fill="#c0392b" font-weight="bold" font-family="Space Grotesk" font-size="14">S₀</text>
+
+                <path d="M 500 95 Q 350 45 200 95" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow0)" />
+                <line x1="200" y1="90" x2="200" y2="100" stroke="#2563eb" stroke-width="2" />
+                <text x="200" y="125" text-anchor="middle" fill="#2563eb" font-weight="bold" font-family="Space Grotesk" font-size="14">S₁</text>
+
+                <path d="M 200 95 Q 300 55 400 95" fill="none" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow0)" />
+                <line x1="400" y1="90" x2="400" y2="100" stroke="#c0392b" stroke-width="2" />
+                <text x="400" y="125" text-anchor="middle" fill="#c0392b" font-weight="bold" font-family="Space Grotesk" font-size="14">S₂</text>
+
+                <defs>
+                    <marker id="arrow0" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                        <path d="M0,0 L0,6 L9,3 z" fill="context-stroke" />
+                    </marker>
+                </defs>
+            </svg>
+            <div class="diagram-caption">First you jump to $S_0$, then back to $S_1$, then forward again to $S_2$.</div>
+        </div>
+
+        <!-- Diagram 1 -->
+        <div class="diagram-container">
+            <div class="diagram-title">Diagram 1: Early partial sums ($S_0$ through $S_3$)</div>
+            <svg width="600" height="160" viewBox="0 0 600 160">
+                <line x1="20" y1="95" x2="580" y2="95" stroke="#333" stroke-width="2" />
+                <line x1="50" y1="90" x2="50" y2="100" stroke="#333" stroke-width="2" />
+                <text x="50" y="125" text-anchor="middle" font-family="Space Grotesk" font-size="14">0</text>
+
+                <path d="M 50 95 Q 275 15 500 95" fill="none" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow1)" />
+                <line x1="500" y1="90" x2="500" y2="100" stroke="#c0392b" stroke-width="2" />
+                <text x="500" y="125" text-anchor="middle" fill="#c0392b" font-weight="bold" font-family="Space Grotesk" font-size="14">S₀</text>
+
+                <path d="M 500 95 Q 350 45 200 95" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow1)" />
+                <line x1="200" y1="90" x2="200" y2="100" stroke="#2563eb" stroke-width="2" />
+                <text x="200" y="125" text-anchor="middle" fill="#2563eb" font-weight="bold" font-family="Space Grotesk" font-size="14">S₁</text>
+
+                <path d="M 200 95 Q 300 55 400 95" fill="none" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow1)" />
+                <line x1="400" y1="90" x2="400" y2="100" stroke="#c0392b" stroke-width="2" />
+                <text x="400" y="125" text-anchor="middle" fill="#c0392b" font-weight="bold" font-family="Space Grotesk" font-size="14">S₂</text>
+
+                <path d="M 400 95 Q 340 65 280 95" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow1)" />
+                <line x1="280" y1="90" x2="280" y2="100" stroke="#2563eb" stroke-width="2" />
+                <text x="280" y="125" text-anchor="middle" fill="#2563eb" font-weight="bold" font-family="Space Grotesk" font-size="14">S₃</text>
+
+                <line x1="330" y1="70" x2="330" y2="120" stroke="#059669" stroke-width="2" stroke-dasharray="4" />
+                <text x="330" y="60" text-anchor="middle" fill="#059669" font-style="italic" font-family="Crimson Pro" font-size="16">Limit L</text>
+
+                <defs>
+                    <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                        <path d="M0,0 L0,6 L9,3 z" fill="context-stroke" />
+                    </marker>
+                </defs>
+            </svg>
+            <div class="diagram-caption">The partial sums jump forward/backward, and the jumps get smaller.</div>
+        </div>
+
+        <!-- Diagram 2 -->
+        <div class="diagram-container">
+            <div class="diagram-title">Diagram 2: Later partial sums ($S_0$ through $S_5$)</div>
+            <svg width="600" height="180" viewBox="0 0 600 180">
+                <line x1="20" y1="105" x2="580" y2="105" stroke="#333" stroke-width="2" />
+                <line x1="50" y1="100" x2="50" y2="110" stroke="#333" stroke-width="2" />
+                <text x="50" y="140" text-anchor="middle" font-family="Space Grotesk" font-size="14">0</text>
+
+                <path d="M 50 105 Q 275 15 500 105" fill="none" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow2)" />
+                <line x1="500" y1="100" x2="500" y2="110" stroke="#c0392b" stroke-width="2" />
+                <text x="500" y="140" text-anchor="middle" fill="#c0392b" font-weight="bold" font-family="Space Grotesk" font-size="14">S₀</text>
+
+                <path d="M 500 105 Q 350 55 200 105" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow2)" />
+                <line x1="200" y1="100" x2="200" y2="110" stroke="#2563eb" stroke-width="2" />
+                <text x="200" y="140" text-anchor="middle" fill="#2563eb" font-weight="bold" font-family="Space Grotesk" font-size="14">S₁</text>
+
+                <path d="M 200 105 Q 300 70 400 105" fill="none" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow2)" />
+                <line x1="400" y1="100" x2="400" y2="110" stroke="#c0392b" stroke-width="2" />
+                <text x="400" y="140" text-anchor="middle" fill="#c0392b" font-weight="bold" font-family="Space Grotesk" font-size="14">S₂</text>
+
+                <path d="M 400 105 Q 345 80 290 105" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow2)" />
+                <line x1="290" y1="100" x2="290" y2="110" stroke="#2563eb" stroke-width="2" />
+                <text x="290" y="140" text-anchor="middle" fill="#2563eb" font-weight="bold" font-family="Space Grotesk" font-size="14">S₃</text>
+
+                <path d="M 290 105 Q 330 85 370 105" fill="none" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow2)" />
+                <line x1="370" y1="100" x2="370" y2="110" stroke="#c0392b" stroke-width="2" />
+                <text x="370" y="140" text-anchor="middle" fill="#c0392b" font-weight="bold" font-family="Space Grotesk" font-size="14">S₄</text>
+
+                <path d="M 370 105 Q 350 92 330 105" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow2)" />
+                <line x1="330" y1="100" x2="330" y2="110" stroke="#2563eb" stroke-width="2" />
+                <text x="330" y="140" text-anchor="middle" fill="#2563eb" font-weight="bold" font-family="Space Grotesk" font-size="14">S₅</text>
+
+                <line x1="340" y1="75" x2="340" y2="135" stroke="#059669" stroke-width="2" stroke-dasharray="4" />
+                <text x="340" y="65" text-anchor="middle" fill="#059669" font-style="italic" font-family="Crimson Pro" font-size="16">Limit L</text>
+
+                <defs>
+                    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                        <path d="M0,0 L0,6 L9,3 z" fill="context-stroke" />
+                    </marker>
+                </defs>
+            </svg>
+            <div class="diagram-caption">By $S_4$ and $S_5$, the “bounce range” is much smaller.</div>
+        </div>
+    </section>
+
+    <!-- ERROR ESTIMATE (MATCHING NOTES STATEMENT) -->
+    <section class="box" style="border-style: dashed;">
+        <span class="box-title">Error Estimate</span>
+        <p>For a convergent alternating series $\displaystyle \sum_{n=0}^{\infty}(-1)^n b_n$ with partial sums $S_n$, the error at stage $n$ satisfies</p>
+        $$\left|\,S_n-\sum_{k=0}^{\infty}(-1)^k b_k\,\right|\le b_{n+1}.$$
+    </section>
+
+    <!-- WORKED EXAMPLES (UPDATED TO MATCH NOTES) -->
+    <section>
+        <h2>Worked Examples</h2>
+
+        <div class="example-box">
+            <span class="box-title">Example 1</span>
+            <p><strong>Question:</strong> Determine if $\displaystyle \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2}$ converges or diverges.</p>
+            <p><strong>Alternating Series Test:</strong> Let $b_n=\dfrac{1}{n^2}$.</p>
+            <ul>
+                <li><strong>(a) Positive:</strong> For all $n>0$, $\dfrac{1}{n^2}>0$.</li>
+                <li><strong>(b) Non-increasing:</strong> For all $n>0$,
+                    $$b_{n+1}=\frac{1}{(n+1)^2}<\frac{1}{n^2}=b_n \quad \text{since } n+1>n.$$
+                </li>
+                <li><strong>(c) Limit:</strong> $\displaystyle \lim_{n\to\infty} b_n=\lim_{n\to\infty}\frac{1}{n^2}=0$.</li>
+            </ul>
+            <p><strong>Conclusion:</strong> Since (a), (b), and (c) are all true, the Alternating Series Test implies that
+                $\displaystyle \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2}$ <strong>converges</strong>.</p>
+        </div>
+
+        <div class="example-box">
+            <span class="box-title">Example 2</span>
+            <p><strong>Question:</strong> Determine if $\displaystyle \sum_{n=1}^{\infty} \frac{(-1)^n}{n}$ converges or diverges.</p>
+            <p><strong>Alternating Series Test:</strong> Let $b_n=\dfrac{1}{n}$.</p>
+            <ul>
+                <li><strong>(a) Positive:</strong> For all $n>0$, $\dfrac{1}{n}>0$.</li>
+                <li><strong>(b) Non-increasing:</strong> For all $n>0$,
+                    $$b_{n+1}=\frac{1}{n+1}<\frac{1}{n}=b_n \quad \text{since } n+1>n.$$
+                </li>
+                <li><strong>(c) Limit:</strong> $\displaystyle \lim_{n\to\infty} b_n=\lim_{n\to\infty}\frac{1}{n}=0$.</li>
+            </ul>
+            <p><strong>Conclusion:</strong> Since (a), (b), and (c) are all true, the Alternating Series Test implies that
+                $\displaystyle \sum_{n=1}^{\infty} \frac{(-1)^n}{n}$ <strong>converges</strong>.</p>
+
+            <p class="handwritten" style="margin-top:10px;">
+                (Extra note.) Using Taylor series and term-by-term integration, one can show
+                $$\sum_{n=1}^{\infty}\frac{(-1)^n}{n}=-\ln(2).$$
+            </p>
+        </div>
+
+        <div class="example-box">
+            <span class="box-title">Example 3</span>
+            <p><strong>Question:</strong> Determine if $\displaystyle \sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1}$ converges or diverges.</p>
+            <p><strong>Alternating Series Test:</strong> Let $b_n=\dfrac{1}{2n+1}$.</p>
+            <ul>
+                <li><strong>(a) Positive:</strong> For all $n\ge 0$, $\dfrac{1}{2n+1}>0$.</li>
+                <li><strong>(b) Non-increasing:</strong> For all $n\ge 0$,
+                    $$b_{n+1}=\frac{1}{2(n+1)+1}=\frac{1}{2n+3}<\frac{1}{2n+1}=b_n.$$
+                </li>
+                <li><strong>(c) Limit:</strong> $\displaystyle \lim_{n\to\infty} b_n=\lim_{n\to\infty}\frac{1}{2n+1}=0$.</li>
+            </ul>
+            <p><strong>Conclusion:</strong> Since (a), (b), and (c) are all true, the Alternating Series Test implies that
+                $\displaystyle \sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1}$ <strong>converges</strong>.</p>
+
+            <p class="handwritten" style="margin-top:10px;">
+                (Extra note.) Using Taylor series and term-by-term integration, one can show
+                $$\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}=\frac{\pi}{4}.$$
+            </p>
+        </div>
+
+    </section>
+
+    <!-- QUICK SECTION MATCHING NOTES: WHEN AST CANNOT BE APPLIED -->
+    <section class="box">
+        <span class="box-title">When the Alternating Series Test cannot be applied</span>
+        <p>Common reasons the hypotheses fail (mirroring the patterns from the notes):</p>
+        <ol>
+            <li><strong>Not actually alternating:</strong> e.g. $\displaystyle \sum_{n=1}^{\infty}\frac{1}{n}$ is not an alternating series.</li>
+            <li><strong>Limit is not zero:</strong> if $b_n=\dfrac{n+1}{n}$ then
+                $$\lim_{n\to\infty} b_n = \lim_{n\to\infty}\left(1+\frac{1}{n}\right)=1\ne 0,$$
+                so condition (c) fails.</li>
+            <li><strong>Not non-increasing:</strong> if $b_n=\dfrac{3^n}{n}$, then early terms already show it does not decrease (so condition (b) fails).</li>
+        </ol>
+    </section>
+
+</div>
+</body>
+</html>

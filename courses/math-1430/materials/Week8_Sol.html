@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculus 2 - Homework 7 Key</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+<script defer src="https://tikzjax.com/v1/tikzjax.js"></script>
+
+<style>
+:root {
+    --bg-paper: #F9F5EB;
+    --text-main: #111827;
+    --primary: #2563eb;
+    --secondary: #059669;
+    --accent: #7c3aed;
+    --border-color: #cbd5e1;
+    --soft: #f8fafc;
+    --font-serif: 'Crimson Pro', serif;
+    --font-sans: 'Space Grotesk', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-paper);
+    color: var(--text-main);
+    font-family: var(--font-serif);
+    line-height: 1.68;
+    margin: 0;
+    padding: 40px;
+}
+
+.page-container {
+    max-width: 940px;
+    margin: 0 auto;
+    background: white;
+    padding: 60px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+header {
+    border-bottom: 2px solid var(--text-main);
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+}
+
+h1 {
+    font-family: var(--font-sans);
+    font-size: 2.55rem;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.sub-header {
+    font-family: var(--font-sans);
+    color: #64748b;
+    font-size: 1.08rem;
+    margin-top: 10px;
+}
+
+.instructions {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border: 1px solid #e5e7eb;
+    background: #fafafa;
+    border-radius: 10px;
+    color: #374151;
+}
+
+h2 {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    color: var(--primary);
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 44px;
+}
+
+.section-desc {
+    margin-bottom: 20px;
+    color: #374151;
+}
+
+ol {
+    padding-left: 24px;
+}
+
+li {
+    margin-bottom: 22px;
+}
+
+.problem {
+    margin-bottom: 10px;
+}
+
+.work {
+    margin-top: 8px;
+    padding: 14px 16px;
+    background: var(--soft);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.work p {
+    margin: 8px 0;
+}
+
+.answer-line {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-left: 4px solid var(--secondary);
+    background: #ecfdf5;
+    border-radius: 8px;
+}
+
+.answer-line strong {
+    font-family: var(--font-sans);
+    color: #065f46;
+}
+
+.subparts {
+    margin-top: 10px;
+    padding-left: 22px;
+}
+
+.subparts li {
+    margin-bottom: 16px;
+}
+
+.small-note {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-top: 6px;
+}
+
+.tikz-figure {
+    display: flex;
+    justify-content: center;
+    margin: 12px 0 8px 0;
+}
+
+.tikz-figure svg {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 700px) {
+    body { padding: 18px; }
+    .page-container { padding: 28px 20px; }
+    h1 { font-size: 2rem; }
+}
+</style>
+</head>
+
+<body>
+<div class="page-container">
+
+<header>
+    <h1>Homework 7 (Key)</h1>
+    <div class="sub-header">
+        Calculus 2 &bull; Indefinite Integrals, U-Substitution, Definite Integrals, &amp; Net Change
+    </div>
+   
+</header>
+
+<h2>1. Antiderivatives &amp; Basic Indefinite Integrals</h2>
+
+<p class="section-desc">
+Evaluate each indefinite integral.
+</p>
+
+<ol>
+    <li>
+        <div class="problem">$$\int \left(4x^3-7x+2\right)\,dx$$</div>
+        <div class="work">
+            <p>Integrate term-by-term using the power rule.</p>
+            $$\int \left(4x^3-7x+2\right)\,dx
+            = \int 4x^3\,dx - \int 7x\,dx + \int 2\,dx$$
+            $$= x^4 - \frac{7}{2}x^2 + 2x + C$$
+            <div class="answer-line"><strong>Answer:</strong> $$x^4-\frac{7}{2}x^2+2x+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \left(6\sqrt{x}-\frac{5}{x}\right)\,dx$$</div>
+        <div class="work">
+            <p>Rewrite $\sqrt{x}$ as $x^{1/2}$ and use the logarithm rule for $\dfrac{1}{x}$.</p>
+            $$\int \left(6x^{1/2}-5x^{-1}\right)\,dx
+            = 6\int x^{1/2}\,dx - 5\int x^{-1}\,dx$$
+            $$= 6\left(\frac{x^{3/2}}{3/2}\right) - 5\ln|x| + C
+            = 4x^{3/2} - 5\ln|x| + C$$
+            <div class="answer-line"><strong>Answer:</strong> $$4x^{3/2}-5\ln|x|+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \left(e^x+3e^{2x}\right)\,dx$$</div>
+        <div class="work">
+            <p>Split the integral into two pieces.</p>
+            $$\int \left(e^x+3e^{2x}\right)\,dx
+            = \int e^x\,dx + 3\int e^{2x}\,dx$$
+
+            <p>The first part is basic:</p>
+            $$\int e^x\,dx=e^x$$
+
+            <p>For the second part, use substitution.</p>
+            <p>Let $u=2x$. Then $du=2\,dx$, so $dx=\dfrac{1}{2}\,du$.</p>
+            $$3\int e^{2x}\,dx
+            = 3\int e^u\left(\frac{1}{2}\right)du
+            = \frac{3}{2}\int e^u\,du$$
+            $$= \frac{3}{2}e^u + C
+            = \frac{3}{2}e^{2x}+C$$
+
+            <p>So the full antiderivative is</p>
+            $$\int \left(e^x+3e^{2x}\right)\,dx
+            = e^x+\frac{3}{2}e^{2x}+C$$
+            <div class="answer-line"><strong>Answer:</strong> $$e^x+\frac{3}{2}e^{2x}+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \left(\sin x-2\cos x\right)\,dx$$</div>
+        <div class="work">
+            <p>Use the basic trig antiderivatives.</p>
+            $$\int \sin x\,dx = -\cos x,\qquad \int (-2\cos x)\,dx = -2\sin x$$
+            $$\int \left(\sin x-2\cos x\right)\,dx = -\cos x - 2\sin x + C$$
+            <div class="answer-line"><strong>Answer:</strong> $$-\cos x-2\sin x+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \sec^2(x)\,dx$$</div>
+        <div class="work">
+            <p>This is one of the basic trig antiderivatives.</p>
+            $$\int \sec^2(x)\,dx = \tan x + C$$
+            <div class="answer-line"><strong>Answer:</strong> $$\tan x + C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \sec(x)\tan(x)\,dx$$</div>
+        <div class="work">
+            <p>This is another basic trig antiderivative.</p>
+            $$\int \sec(x)\tan(x)\,dx = \sec x + C$$
+            <div class="answer-line"><strong>Answer:</strong> $$\sec x + C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \frac{1}{1+x^2}\,dx$$</div>
+        <div class="work">
+            <p>This is the standard arctangent antiderivative.</p>
+            $$\int \frac{1}{1+x^2}\,dx = \arctan(x)+C$$
+            <div class="answer-line"><strong>Answer:</strong> $$\arctan(x)+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">
+            Find $F(x)$ such that $F'(x)=\dfrac{3}{x-5}$.
+            <div class="small-note">(Write your answer as a single logarithm.)</div>
+        </div>
+        <div class="work">
+            <p>We want an antiderivative of $\dfrac{3}{x-5}$.</p>
+            <p>Factor out the $3$ first:</p>
+            $$\int \frac{3}{x-5}\,dx = 3\int \frac{1}{x-5}\,dx$$
+
+            <p>Now use substitution.</p>
+            <p>Let $u=x-5$. Then $du=dx$.</p>
+            $$3\int \frac{1}{x-5}\,dx
+            = 3\int \frac{1}{u}\,du
+            = 3\ln|u|+C$$
+            $$=3\ln|x-5|+C$$
+            <div class="answer-line"><strong>Answer:</strong> $$F(x)=3\ln|x-5|+C$$</div>
+        </div>
+    </li>
+</ol>
+
+<h2>2. Spot the U-Substitution</h2>
+
+<p class="section-desc">
+Evaluate each integral using $u$-substitution. Indicate the choice of $u$ clearly.
+</p>
+
+<ol>
+    <li>
+        <div class="problem">$$\int (2x+7)^6\,dx$$</div>
+        <div class="work">
+            <p>Let $u=2x+7$. Then $du=2\,dx$, so $dx=\dfrac{1}{2}du$.</p>
+            $$\int (2x+7)^6\,dx = \int u^6\left(\frac{1}{2}\right)du
+            = \frac{1}{2}\int u^6\,du$$
+            $$= \frac{1}{2}\cdot \frac{u^7}{7}+C
+            = \frac{(2x+7)^7}{14}+C$$
+            <div class="answer-line"><strong>Answer:</strong> $$\frac{(2x+7)^7}{14}+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \frac{1}{x\ln(x)}\,dx$$</div>
+        <div class="work">
+            <p>Let $u=\ln(x)$. Then $du=\dfrac{1}{x}\,dx$.</p>
+            $$\int \frac{1}{x\ln(x)}\,dx
+            = \int \frac{1}{u}\,du
+            = \ln|u|+C$$
+            $$= \ln|\ln(x)|+C$$
+            <div class="answer-line"><strong>Answer:</strong> $$\ln|\ln(x)|+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \frac{(\ln x)^7}{x}\,dx$$</div>
+        <div class="work">
+            <p>Let $u=\ln x$. Then $du=\dfrac{1}{x}\,dx$.</p>
+            $$\int \frac{(\ln x)^7}{x}\,dx
+            = \int u^7\,du
+            = \frac{u^8}{8}+C$$
+            $$= \frac{(\ln x)^8}{8}+C$$
+            <div class="answer-line"><strong>Answer:</strong> $$\frac{(\ln x)^8}{8}+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int x\sin(x^2)\,dx$$</div>
+        <div class="work">
+            <p>Let $u=x^2$. Then $du=2x\,dx$, so $x\,dx=\dfrac{1}{2}du$.</p>
+            $$\int x\sin(x^2)\,dx
+            = \frac{1}{2}\int \sin(u)\,du
+            = -\frac{1}{2}\cos(u)+C$$
+            $$= -\frac{1}{2}\cos(x^2)+C$$
+            <div class="answer-line"><strong>Answer:</strong> $$-\frac{1}{2}\cos(x^2)+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \cos(5x-1)\,dx$$</div>
+        <div class="work">
+            <p>Let $u=5x-1$. Then $du=5\,dx$, so $dx=\dfrac{1}{5}du$.</p>
+            $$\int \cos(5x-1)\,dx
+            = \frac{1}{5}\int \cos(u)\,du
+            = \frac{1}{5}\sin(u)+C$$
+            $$= \frac{1}{5}\sin(5x-1)+C$$
+            <div class="answer-line"><strong>Answer:</strong> $$\frac{1}{5}\sin(5x-1)+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \frac{2x+1}{x^2+x}\,dx$$</div>
+        <div class="work">
+            <p>Let $u=x^2+x$. Then $du=(2x+1)\,dx$.</p>
+            $$\int \frac{2x+1}{x^2+x}\,dx
+            = \int \frac{1}{u}\,du
+            = \ln|u|+C$$
+            $$= \ln|x^2+x|+C$$
+            <div class="answer-line"><strong>Answer:</strong> $$\ln|x^2+x|+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \tan(x)\,dx$$</div>
+        <div class="work">
+            <p>First rewrite $\tan x$ using sine and cosine.</p>
+            $$\tan x=\frac{\sin x}{\cos x}$$
+
+            <p>Now use substitution.</p>
+            <p>Let $u=\cos x$. Then $du=-\sin x\,dx$, so $\sin x\,dx=-du$.</p>
+            $$\int \tan(x)\,dx
+            = \int \frac{\sin x}{\cos x}\,dx
+            = \int \frac{\sin x}{u}\,dx
+            = \int \frac{-1}{u}\,du$$
+            $$= -\int \frac{1}{u}\,du
+            = -\ln|u|+C$$
+            $$= -\ln|\cos x|+C$$
+            <p>This is equivalent to $\ln|\sec x|+C$.</p>
+            <div class="answer-line"><strong>Answer:</strong> $$-\ln|\cos x|+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int \sqrt{1-4x}\,dx$$</div>
+        <div class="work">
+            <p>Let $u=1-4x$. Then $du=-4\,dx$, so $dx=-\dfrac{1}{4}du$.</p>
+            $$\int \sqrt{1-4x}\,dx
+            = -\frac{1}{4}\int u^{1/2}\,du
+            = -\frac{1}{4}\cdot \frac{u^{3/2}}{3/2}+C$$
+            $$= -\frac{1}{6}u^{3/2}+C
+            = -\frac{1}{6}(1-4x)^{3/2}+C$$
+            <div class="answer-line"><strong>Answer:</strong> $$-\frac{1}{6}(1-4x)^{3/2}+C$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int (3x^2)e^{x^3}\,dx$$</div>
+        <div class="work">
+            <p>Let $u=x^3$. Then $du=3x^2\,dx$.</p>
+            $$\int (3x^2)e^{x^3}\,dx
+            = \int e^u\,du
+            = e^u + C$$
+            $$= e^{x^3}+C$$
+            <div class="answer-line"><strong>Answer:</strong> $$e^{x^3}+C$$</div>
+        </div>
+    </li>
+</ol>
+
+<h2>3. Definite Integrals &amp; Substitution with New Limits</h2>
+
+<p class="section-desc">
+Evaluate each definite integral. If you change variables, change the limits too.
+</p>
+
+<ol>
+    <li>
+        <div class="problem">$$\int_{0}^{2} (4x+1)^5\,dx$$</div>
+        <div class="work">
+            <p>Let $u=4x+1$. Then $du=4\,dx$, so $dx=\dfrac{1}{4}du$.</p>
+            <p>Change the limits:</p>
+            $$x=0 \Rightarrow u=1,\qquad x=2 \Rightarrow u=9$$
+            $$\int_{0}^{2}(4x+1)^5\,dx
+            = \frac{1}{4}\int_{1}^{9}u^5\,du
+            = \frac{1}{4}\left[\frac{u^6}{6}\right]_{1}^{9}$$
+            $$= \frac{1}{24}\left(9^6-1\right)$$
+            <div class="answer-line"><strong>Answer:</strong> $$\frac{9^6-1}{24}$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int_{1}^{e} \frac{1}{x}\,dx$$</div>
+        <div class="work">
+            <p>Use the logarithm antiderivative.</p>
+            $$\int_{1}^{e}\frac{1}{x}\,dx
+            = \left[\ln|x|\right]_{1}^{e}
+            = \ln(e)-\ln(1)$$
+            $$= 1-0 = 1$$
+            <div class="answer-line"><strong>Answer:</strong> $$1$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int_{0}^{\pi/2} \frac{\sin x}{1+\cos x}\,dx$$</div>
+        <div class="work">
+            <p>Let $u=1+\cos x$. Then $du=-\sin x\,dx$.</p>
+            <p>Change the limits:</p>
+            $$x=0 \Rightarrow u=2,\qquad x=\frac{\pi}{2} \Rightarrow u=1$$
+            $$\int_{0}^{\pi/2}\frac{\sin x}{1+\cos x}\,dx
+            = -\int_{2}^{1}\frac{1}{u}\,du
+            = \int_{1}^{2}\frac{1}{u}\,du$$
+            $$= \left[\ln|u|\right]_{1}^{2}
+            = \ln 2 - \ln 1
+            = \ln 2$$
+            <div class="answer-line"><strong>Answer:</strong> $$\ln 2$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int_{1}^{4} \frac{\ln(x)}{x}\,dx$$</div>
+        <div class="work">
+            <p>Let $u=\ln x$. Then $du=\dfrac{1}{x}\,dx$.</p>
+            <p>Change the limits:</p>
+            $$x=1 \Rightarrow u=0,\qquad x=4 \Rightarrow u=\ln 4$$
+            $$\int_{1}^{4}\frac{\ln(x)}{x}\,dx
+            = \int_{0}^{\ln 4}u\,du
+            = \left[\frac{u^2}{2}\right]_{0}^{\ln 4}$$
+            $$= \frac{(\ln 4)^2}{2}$$
+            <div class="answer-line"><strong>Answer:</strong> $$\frac{(\ln 4)^2}{2}$$</div>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">$$\int_{0}^{1} x\sqrt{1+x^2}\,dx$$</div>
+        <div class="work">
+            <p>Let $u=1+x^2$. Then $du=2x\,dx$, so $x\,dx=\dfrac{1}{2}du$.</p>
+            <p>Change the limits:</p>
+            $$x=0 \Rightarrow u=1,\qquad x=1 \Rightarrow u=2$$
+            $$\int_{0}^{1}x\sqrt{1+x^2}\,dx
+            = \frac{1}{2}\int_{1}^{2}u^{1/2}\,du$$
+            $$= \frac{1}{2}\left[\frac{u^{3/2}}{3/2}\right]_{1}^{2}
+            = \frac{1}{3}\left[u^{3/2}\right]_{1}^{2}$$
+            $$= \frac{1}{3}\left(2^{3/2}-1\right)
+            = \frac{2\sqrt{2}-1}{3}$$
+            <div class="answer-line"><strong>Answer:</strong> $$\frac{2\sqrt{2}-1}{3}$$</div>
+        </div>
+    </li>
+</ol>
+
+<h2>4. Net Change Theorem (Rates $\rightarrow$ Total Change)</h2>
+
+<p class="section-desc">
+Use the idea <em>total change = integral of the rate</em>. For total distance, integrate the absolute value of velocity.
+</p>
+
+<ol>
+    <li>
+        <div class="problem">
+            A particle moves on a line with velocity $v(t)=4t-6$ (m/s).
+        </div>
+        <div class="work">
+            <ol type="a" class="subparts">
+                <li>
+                    <p><strong>Net displacement on $[0,3]$.</strong></p>
+                    $$\text{Net displacement} = \int_{0}^{3}(4t-6)\,dt$$
+                    $$= \left[2t^2-6t\right]_{0}^{3}
+                    = (18-18)-0 = 0$$
+                    <div class="answer-line"><strong>Answer:</strong> $$0\text{ meters}$$</div>
+                </li>
+
+                <li>
+                    <p><strong>Total distance traveled on $[0,3]$.</strong></p>
+                    <p>First find where the velocity changes sign:</p>
+                    $$4t-6=0 \Rightarrow t=\frac{3}{2}$$
+                    <p>So we split the interval at $t=\dfrac{3}{2}$.</p>
+                    $$\text{Total distance}
+                    = \int_{0}^{3}|4t-6|\,dt
+                    = -\int_{0}^{3/2}(4t-6)\,dt + \int_{3/2}^{3}(4t-6)\,dt$$
+                    $$= -\left[2t^2-6t\right]_{0}^{3/2}
+                    + \left[2t^2-6t\right]_{3/2}^{3}$$
+                    $$= -\left(\frac{9}{2}-9\right) + \left(0-\left(\frac{9}{2}-9\right)\right)$$
+                    $$= \frac{9}{2}+\frac{9}{2}=9$$
+                    <div class="answer-line"><strong>Answer:</strong> $$9\text{ meters}$$</div>
+                </li>
+            </ol>
+        </div>
+    </li>
+
+    <li>
+        <div class="problem">
+            A tank is being filled at a rate of $r(t)=2+\sqrt{t}$ (gal/min). If the tank starts with $15$ gallons, how much is in the tank after $9$ minutes?
+        </div>
+        <div class="work">
+            <p>The amount added over the first $9$ minutes is</p>
+            $$\int_{0}^{9}(2+\sqrt{t})\,dt
+            = \int_{0}^{9}\left(2+t^{1/2}\right)\,dt$$
+            $$= \left[2t+\frac{2}{3}t^{3/2}\right]_{0}^{9}
+            = 18+\frac{2}{3}(27)$$
+            $$=18+18=36\text{ gallons}$$
+            <p>Since the tank started with $15$ gallons,</p>
+            $$\text{Amount after 9 minutes}=15+36=51$$
+            <div class="answer-line"><strong>Answer:</strong> $$51\text{ gallons}$$</div>
+        </div>
+    </li>
+
+
+<li>
+    <div class="problem">
+        A car’s velocity (mph) is given by the graph below.
+        <div class="tikz-figure">
+<script type="text/tikz">
+\begin{tikzpicture}[x=1.05cm,y=0.75cm]
+  % shaded regions
+  \fill[green!28, opacity=0.65] (0,0) -- (0,2) -- (1.3333,0) -- cycle;
+  \fill[red!30, opacity=0.65] (1.3333,0) -- (2,-1) -- (2.75,0) -- cycle;
+  \fill[blue!25, opacity=0.65] (2.75,0) -- (5,3) -- (7,0) -- cycle;
+
+  % axes
+  \draw[->] (-0.2,0) -- (7.1,0) node[below] {$t$ (hours)};
+  \draw[->] (0,-2.2) -- (0,3.4) node[left] {$v(t)$};
+
+  % ticks
+  \foreach \x/\lab in {1/1,2/2,3/3,4/4,5/5,6/6,7/7} {
+    \draw (\x,0) -- (\x,-0.12) node[below] {\lab};
+  }
+  \foreach \y/\lab in {-2/-2,-1/-1,1/1,2/2,3/3} {
+    \draw (0,\y) -- (-0.12,\y) node[left] {\lab};
+  }
+
+  % graph
+  \draw[thick] (0,2) -- (2,-1) -- (5,3) -- (7,0);
+  \draw[dashed] (-0.2,0) -- (7.0,0);
+
+  % labels
+  \node at (0.45,0.68) {$A_1$};
+  \node at (2.02,-0.32) {$A_2$};
+  \node at (4.75,1.0) {$A_3$};
+
+  \node[below] at (1.3333,0) {\scriptsize $\frac{4}{3}$};
+  \node[below] at (2.75,0) {\scriptsize $\frac{11}{4}$};
+
+  \node[anchor=west] at (5.12,2.68) {$v(t)$};
+\end{tikzpicture}
+</script>
+        </div>
+        <div class="small-note">Use geometry on the graph. There are three triangular regions: two above the $x$-axis and one below the $x$-axis.</div>
+    </div>
+    <div class="work">
+        <ol type="a" class="subparts">
+            <li>
+                <p><strong>Approximate the net displacement on $[0,7]$.</strong></p>
+
+                <p>We first find the equations of the line segments so we can locate the $x$-intercepts exactly.</p>
+
+                <p><strong>First segment:</strong> from $(0,2)$ to $(2,-1)$</p>
+                $$m=\frac{-1-2}{2-0}=-\frac{3}{2}$$
+                $$y=mx+b \quad\Rightarrow\quad y=-\frac{3}{2}x+b$$
+                <p>Use the point $(0,2)$:</p>
+                $$2=-\frac{3}{2}(0)+b \Rightarrow b=2$$
+                <p>So the equation is</p>
+                $$y=-\frac{3}{2}x+2$$
+                <p>Now set $y=0$ to find the intercept:</p>
+                $$0=-\frac{3}{2}x+2$$
+                $$\frac{3}{2}x=2$$
+                $$x=\frac{4}{3}$$
+
+                <p><strong>Second segment:</strong> from $(2,-1)$ to $(5,3)$</p>
+                $$m=\frac{3-(-1)}{5-2}=\frac{4}{3}$$
+                $$y=mx+b \quad\Rightarrow\quad y=\frac{4}{3}x+b$$
+                <p>Use the point $(2,-1)$:</p>
+                $$-1=\frac{4}{3}(2)+b$$
+                $$-1=\frac{8}{3}+b$$
+                $$b=-\frac{11}{3}$$
+                <p>So the equation is</p>
+                $$y=\frac{4}{3}x-\frac{11}{3}$$
+                <p>Now set $y=0$ to find the intercept:</p>
+                $$0=\frac{4}{3}x-\frac{11}{3}$$
+                $$\frac{4}{3}x=\frac{11}{3}$$
+                $$x=\frac{11}{4}$$
+
+                <p><strong>Third segment:</strong> from $(5,3)$ to $(7,0)$</p>
+                $$m=\frac{0-3}{7-5}=-\frac{3}{2}$$
+                $$y=mx+b \quad\Rightarrow\quad y=-\frac{3}{2}x+b$$
+                <p>Use the point $(5,3)$:</p>
+                $$3=-\frac{3}{2}(5)+b$$
+                $$3=-\frac{15}{2}+b$$
+                $$b=\frac{21}{2}$$
+                <p>So the equation is</p>
+                $$y=-\frac{3}{2}x+\frac{21}{2}$$
+                <p>Its $x$-intercept is found by setting $y=0$:</p>
+                $$0=-\frac{3}{2}x+\frac{21}{2}$$
+                $$\frac{3}{2}x=\frac{21}{2}$$
+                $$x=7$$
+
+                <p>So the three triangular regions are:</p>
+                <ul>
+                    <li>$A_1$: above the axis from $x=0$ to $x=\frac{4}{3}$</li>
+                    <li>$A_2$: below the axis from $x=\frac{4}{3}$ to $x=\frac{11}{4}$</li>
+                    <li>$A_3$: above the axis from $x=\frac{11}{4}$ to $x=7$</li>
+                </ul>
+
+                <p>Now find each triangle’s area.</p>
+
+                <p><strong>Triangle $A_1$:</strong></p>
+                <p>base $=\dfrac{4}{3}$ and height $=2$</p>
+                $$A_1=\frac{1}{2}\left(\frac{4}{3}\right)(2)=\frac{4}{3}$$
+
+                <p><strong>Triangle $A_2$:</strong></p>
+                <p>base $=\dfrac{11}{4}-\dfrac{4}{3}=\dfrac{33}{12}-\dfrac{16}{12}=\dfrac{17}{12}$ and height $=1$</p>
+                $$A_2=\frac{1}{2}\left(\frac{17}{12}\right)(1)=\frac{17}{24}$$
+
+                <p><strong>Triangle $A_3$:</strong></p>
+                <p>base $=7-\dfrac{11}{4}=\dfrac{28}{4}-\dfrac{11}{4}=\dfrac{17}{4}$ and height $=3$</p>
+                $$A_3=\frac{1}{2}\left(\frac{17}{4}\right)(3)=\frac{51}{8}$$
+
+                <p>For net displacement, areas above the axis are positive and areas below the axis are negative:</p>
+                $$\text{Net displacement}=A_1-A_2+A_3$$
+                $$=\frac{4}{3}-\frac{17}{24}+\frac{51}{8}$$
+                $$=\frac{32}{24}-\frac{17}{24}+\frac{153}{24}$$
+                $$=\frac{168}{24}=7$$
+
+                <div class="answer-line"><strong>Answer:</strong> $$7\text{ miles}$$</div>
+            </li>
+
+            <li>
+                <p><strong>Approximate the total distance traveled on $[0,7]$.</strong></p>
+
+                <p>For total distance, we add all three triangle areas, even the one below the axis.</p>
+
+                $$\text{Total distance}=A_1+A_2+A_3$$
+                $$=\frac{4}{3}+\frac{17}{24}+\frac{51}{8}$$
+                $$=\frac{32}{24}+\frac{17}{24}+\frac{153}{24}$$
+                $$=\frac{202}{24}=\frac{101}{12}$$
+                $$\approx 8.42$$
+
+                <div class="answer-line"><strong>Answer:</strong> $$\frac{101}{12}\text{ miles} \approx 8.42\text{ miles}$$</div>
+            </li>
+        </ol>
+    </div>
+</li>
+
+
+
+    <li>
+        <div class="problem">
+            A population grows at a rate of $P'(t)=120e^{0.05t}$ (people/year). If $P(0)=5000$, find $P(10)$.
+        </div>
+        <div class="work">
+            <p>By net change,</p>
+            $$P(10)=P(0)+\int_{0}^{10}P'(t)\,dt
+            = 5000+\int_{0}^{10}120e^{0.05t}\,dt$$
+
+            <p>To integrate $e^{0.05t}$, use substitution.</p>
+            <p>Let $u=0.05t$. Then $du=0.05\,dt$, so $dt=\dfrac{1}{0.05}du=20\,du$.</p>
+
+            <p>Change the limits:</p>
+            $$t=0 \Rightarrow u=0,\qquad t=10 \Rightarrow u=0.5$$
+
+            $$5000+\int_{0}^{10}120e^{0.05t}\,dt
+            = 5000+\int_{0}^{0.5}120e^u(20)\,du$$
+            $$=5000+2400\int_{0}^{0.5}e^u\,du
+            =5000+2400\left[e^u\right]_{0}^{0.5}$$
+            $$=5000+2400(e^{0.5}-1)$$
+
+            <div class="answer-line"><strong>Answer:</strong> $$P(10)=5000+2400\left(e^{0.5}-1\right)\approx 6556.10\text{ people}$$</div>
+        </div>
+    </li>
+</ol>
+
+</div>
+</body>
+</html>

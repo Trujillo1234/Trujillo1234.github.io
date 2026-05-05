@@ -1,159 +1,70 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<!doctype html>
+<html lang="en-US">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculus II | Spring 2026</title>
-
-<!-- Fonts: Anton & Space Mono -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
-<style>
-    /* --- THEME VARIABLES --- */
-    :root {
-        --c-shsu-orange: #F78E1E;
-        --c-shsu-blue: #002D62;
-        --transition-speed: 0.3s;
-        --font-display: 'Anton', sans-serif;
-        --font-mono: 'Space Mono', monospace;
-    }
-
-    [data-theme="dark"] {
-        --c-bg: #050505;
-        --c-text: #ffffff;
-        --c-subtle: #888888;
-        --glass-bg: rgba(0, 0, 0, 0.70);
-        --glass-border: rgba(255, 255, 255, 0.15);
-        --glass-blur: 12px;
-        --img-filter: grayscale(100%) contrast(1.2) brightness(0.35);
-        --row-hover: rgba(255,255,255,0.05);
-        --btn-hover: #ffffff;
-        --btn-text-hover: #000000;
-    }
-
-    [data-theme="light"] {
-        --c-bg: #e6e6e6;
-        --c-text: #111111;
-        --c-subtle: #555555;
-        --glass-bg: rgba(255, 255, 255, 0.65);
-        --glass-border: rgba(0, 0, 0, 0.1);
-        --glass-blur: 20px;
-        --img-filter: grayscale(100%) contrast(0.9) brightness(1.2) opacity(0.3);
-        --row-hover: rgba(0,0,0,0.05);
-        --btn-hover: #000000;
-        --btn-text-hover: #ffffff;
-    }
-
-    * { box-sizing: border-box; }
-    body { margin: 0; padding: 0; background-color: var(--c-bg); color: var(--c-text); font-family: var(--font-mono); overflow-x: hidden; transition: 0.3s; }
-
-    /* BACKGROUND */
-    .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background-image: url('https://image-static.collegedunia.com/public/college_data/images/studyabroad/appImage/college_1441_02-11:45_Sam_Houston_State_University.jpeg'); background-size: cover; background-position: center; filter: var(--img-filter); }
-    .noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.08; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
-
-    /* LAYOUT */
-    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
-    nav { padding: 2rem 0; display: flex; justify-content: space-between; align-items: center; }
-    .brand { font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase; color: var(--c-text); text-decoration: none; }
-    .theme-toggle { background: transparent; border: 1px solid var(--c-text); color: var(--c-text); font-family: var(--font-mono); padding: 5px 10px; cursor: pointer; text-transform: uppercase; }
-
-    /* HERO */
-    .course-header { padding: 4rem 0 2rem 0; border-bottom: 1px solid var(--glass-border); margin-bottom: 3rem; }
-    .course-title { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6rem); line-height: 0.9; margin: 0; text-transform: uppercase; color: var(--c-shsu-orange); }
-    .course-meta { font-family: var(--font-mono); color: var(--c-subtle); margin-top: 1rem; font-size: 1.1rem; }
-
-    /* WEEK CARDS */
-    .week-container { display: flex; flex-direction: column; gap: 3rem; padding-bottom: 5rem; }
-    
-    .week-card {
-        background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur));
-        border: 1px solid var(--glass-border); border-radius: 4px; overflow: hidden;
-    }
-    
-    .week-header {
-        padding: 1.5rem; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--glass-border);
-        display: flex; justify-content: space-between; align-items: center;
-    }
-    .week-title { font-family: var(--font-display); font-size: 1.5rem; margin: 0; }
-    .week-date { color: var(--c-subtle); font-size: 0.9rem; font-weight: bold; }
-
-    /* LECTURE ROWS (M/W/F) */
-    .lecture-list { list-style: none; padding: 0; margin: 0; }
-    
-    .lecture-row {
-        display: flex; align-items: center; padding: 1.5rem;
-        border-bottom: 1px solid var(--glass-border);
-        transition: background 0.2s;
-    }
-    .lecture-row:last-child { border-bottom: none; }
-    .lecture-row:hover { background: var(--row-hover); }
-
-    .day-badge {
-        font-family: var(--font-display); font-size: 1.5rem; width: 60px;
-        color: var(--c-subtle); opacity: 0.5;
-    }
-    .lecture-details { flex: 1; padding: 0 1.5rem; }
-    .lecture-topic { display: block; font-weight: bold; font-size: 1.1rem; margin-bottom: 4px; color: var(--c-text); }
-    .lecture-desc { display: block; font-size: 0.85rem; color: var(--c-subtle); }
-
-    /* SLIDE BUTTONS */
-    .btn-slide {
-        padding: 8px 16px; border: 1px solid var(--c-shsu-orange); color: var(--c-shsu-orange);
-        text-decoration: none; text-transform: uppercase; font-weight: bold; font-size: 0.8rem;
-        transition: 0.3s; white-space: nowrap;
-    }
-    .btn-slide:hover { background: var(--c-shsu-orange); color: black; }
-    .btn-slide.disabled { border-color: var(--c-subtle); color: var(--c-subtle); opacity: 0.3; pointer-events: none; }
-    .btn-slide.disabled::after { content: " HIDDEN"; font-size: 0.8em; margin-left: 5px; }
-
-    /* HOMEWORK & SOLUTIONS BUTTONS */
-    .week-footer {
-        padding: 1.5rem 2rem; background: rgba(255,255,255,0.03); border-top: 1px solid var(--glass-border);
-        display: flex; gap: 1rem; flex-wrap: wrap;
-    }
-
-    .btn-action {
-        flex: 1; padding: 1rem; text-align: center; text-decoration: none; text-transform: uppercase;
-        font-weight: bold; border: 1px solid var(--c-text); color: var(--c-text);
-        transition: 0.3s; background: transparent; display: flex; justify-content: center; gap: 10px; align-items: center;
-    }
-    .btn-action:hover { background: var(--btn-hover); color: var(--btn-text-hover); }
-    
-    /* Primary Action (Homework) */
-    .btn-primary { border-color: var(--c-shsu-orange); color: var(--c-shsu-orange); }
-    .btn-primary:hover { background: var(--c-shsu-orange); color: black; }
-
-    /* Disabled State for Action Buttons */
-    .btn-action.disabled { opacity: 0.4; pointer-events: none; border-color: var(--c-subtle); color: var(--c-subtle); filter: grayscale(100%); }
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculus II | Timothy Trujillo</title>
+  <meta name="description" content="MATH 1430 Calculus II weekly course archive with notes, assignments, solutions, and diagrams.">
+  <link rel="stylesheet" href="../../../assets/site.css?v=calc2-1">
 </head>
 <body>
+  <div class="page">
+    <header class="masthead">
+      <div>
+        <p class="term">MATH 1430</p>
+        <h1>Timothy Trujillo</h1>
+        <p class="subtitle">Sam Houston State University</p>
+      </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../../cv.html">CV</a>
+        <a href="../../../teaching/index.html">Teaching</a>
+        <a href="../../../research/index.html">Research</a>
+        <a aria-current="page" href="../../index.html">Past Courses</a>
+      </nav>
+    </header>
 
-    <div class="bg-fixed"></div>
-    <div class="noise-overlay"></div>
+    <main class="layout course-layout">
+      <aside class="sidebar course-sidebar">
+        <h2>MATH 1430</h2>
+        <ul class="plain">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#week-01">Week 01</a></li>
+          <li><a href="#week-02">Week 02</a></li>
+          <li><a href="#week-03">Week 03</a></li>
+          <li><a href="#week-04">Week 04</a></li>
+          <li><a href="#week-05">Week 05</a></li>
+          <li><a href="#week-06">Week 06</a></li>
+          <li><a href="#week-07">Week 07</a></li>
+          <li><a href="#week-08">Week 08</a></li>
+          <li><a href="#week-09">Week 09</a></li>
+          <li><a href="#week-10">Week 10</a></li>
+          <li><a href="#week-11">Week 11</a></li>
+          <li><a href="#week-12">Week 12</a></li>
+          <li><a href="#week-13">Week 13</a></li>
+          <li><a href="#week-14">Week 14</a></li>
+          <li><a href="#week-15">Week 15</a></li>
+        </ul>
+      </aside>
 
-    <div class="container">
-        <nav>
-            <a href="CurrentCourses.html" class="brand">← Back</a>
-            <button class="theme-toggle" onclick="toggleTheme()">Theme</button>
-        </nav>
+      <section class="content course-content calc2-course" id="overview">
+        <p class="course-kicker">MATH 1430.04 | Spring 2026</p>
+        <h2>Calculus II</h2>
+        <p>
+          This page gathers the weekly materials for Calculus II: notes, classwork, homework, solutions, and diagrams. The course moves through power series, Taylor polynomials, convergence, integration techniques, applications of integration, differential equations, parametric and polar curves, and rational-function integration.
+        </p>
+        <p>
+          The schedule is preserved as a working course archive. Each week lists the class meetings, topic notes, and posted assignments or solutions where available.
+        </p>
 
-        <header class="course-header">
-            <h1 class="course-title">Calculus II</h1>
-            <div class="course-meta">MATH 1430.04 // SPRING 2026 // TRUJILLO</div>
-        </header>
-
-        <div class="week-container">
+        <div class="week-container calc2-week-container">
 
             <!-- ============================================ -->
             <!-- WEEK 1: TAYLOR POLYNOMIALS & SERIES          -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-01">
                 <div class="week-header">
-                    <h2 class="week-title">Week 01</h2>
+                    <h3 class="week-title">Week 01</h3>
                     <span class="week-date">JAN 12 - JAN 16</span>
                 </div>
 
@@ -190,24 +101,24 @@
                 </div>
 
                 <div class="week-footer">
-                    <a href="Week1_HW.html" class="btn-action btn-primary">Assignment 01 ↗</a>
-                    <a href="Week1_Sol.html" class="btn-action">Solutions ↗</a>
+                    <a href="Week1_HW.html" class="btn-action btn-primary">Assignment 01 open</a>
+                    <a href="Week1_Sol.html" class="btn-action">Solutions open</a>
                 </div>
             </article>
 
             <!-- ============================================ -->
             <!-- WEEK 2: CONVERGENCE TESTS & CALCULUS         -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-02">
                 <div class="week-header">
-                    <h2 class="week-title">Week 02</h2>
+                    <h3 class="week-title">Week 02</h3>
                     <span class="week-date">JAN 19 - JAN 23</span>
                 </div>
 
                 <div class="lecture-list">
                     <!-- MONDAY: MLK HOLIDAY -->
                     <div class="lecture-row">
-                        <div class="day-badge" style="color: var(--c-shsu-orange);">MON</div>
+                        <div class="day-badge special-day">MON</div>
                         <div class="lecture-details">
                             <span class="lecture-topic">Martin Luther King Jr. Day</span>
                             <span class="lecture-desc">University Holiday - No Class Meeting.</span>
@@ -237,24 +148,24 @@
                 </div>
 
                 <div class="week-footer">
-                    <a href="Week2_HW.html" class="btn-action btn-primary">Assignment 02 ↗</a>
-                    <a href="Week2_Sol.html" class="btn-action">Solutions ↗</a>
+                    <a href="Week2_HW.html" class="btn-action btn-primary">Assignment 02 open</a>
+                    <a href="Week2_Sol.html" class="btn-action">Solutions open</a>
                 </div>
             </article>
 
             <!-- ============================================ -->
             <!-- WEEK 3: PARTIAL SUMS & ENDPOINTS             -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-03">
                 <div class="week-header">
-                    <h2 class="week-title">Week 03</h2>
+                    <h3 class="week-title">Week 03</h3>
                     <span class="week-date">JAN 26 - JAN 30</span>
                 </div>
 
                 <div class="lecture-list">
                     <!-- MONDAY: ICE STORM -->
                     <div class="lecture-row">
-                        <div class="day-badge" style="color: var(--c-shsu-orange);">MON</div>
+                        <div class="day-badge special-day">MON</div>
                         <div class="lecture-details">
                             <span class="lecture-topic">Class Cancelled (Ice Storm)</span>
                             <span class="lecture-desc">Campus closed due to severe weather. Please stay safe.</span>
@@ -284,17 +195,17 @@
                 </div>
 
                 <div class="week-footer">
-                    <a href="Week3_HW.html" class="btn-action btn-primary">Assignment 03 ↗</a>
-                    <a href="Week3_Sol.html" class="btn-action">Solutions ↗</a>
+                    <a href="Week3_HW.html" class="btn-action btn-primary">Assignment 03 open</a>
+                    <a href="Week3_Sol.html" class="btn-action">Solutions open</a>
                 </div>
             </article>
 
             <!-- ============================================ -->
             <!-- WEEK 4: DIVERGENCE, ALTERNATING & P-SERIES   -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-04">
                 <div class="week-header">
-                    <h2 class="week-title">Week 04</h2>
+                    <h3 class="week-title">Week 04</h3>
                     <span class="week-date">FEB 02 - FEB 06</span>
                 </div>
 
@@ -328,17 +239,17 @@
                 </div>
 
                 <div class="week-footer">
-                    <a href="Week4_HW.html" class="btn-action btn-primary">Assignment 04 ↗</a>
-                    <a href="Week4_Sol.html" class="btn-action">Solutions ↗</a>
+                    <a href="Week4_HW.html" class="btn-action btn-primary">Assignment 04 open</a>
+                    <a href="Week4_Sol.html" class="btn-action">Solutions open</a>
                 </div>
             </article>
-            
+
             <!-- ============================================ -->
             <!-- WEEK 5: COMPARISON TESTS & ABSOLUTE CONVERGENCE -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-05">
                 <div class="week-header">
-                    <h2 class="week-title">Week 05</h2>
+                    <h3 class="week-title">Week 05</h3>
                     <span class="week-date">FEB 09 - FEB 13</span>
                 </div>
 
@@ -372,17 +283,17 @@
                 </div>
 
                 <div class="week-footer">
-                    <a href="Week5_HW.html" class="btn-action btn-primary">Assignment 05 ↗</a>
-                    <a href="Week5_Sol.html" class="btn-action">Solutions ↗</a>
+                    <a href="Week5_HW.html" class="btn-action btn-primary">Assignment 05 open</a>
+                    <a href="Week5_Sol.html" class="btn-action">Solutions open</a>
                 </div>
             </article>
 
             <!-- ============================================ -->
             <!-- WEEK 6: POWER SERIES & CONVERGENCE MODES -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-06">
                 <div class="week-header">
-                    <h2 class="week-title">Week 06</h2>
+                    <h3 class="week-title">Week 06</h3>
                     <span class="week-date">FEB 16 - FEB 20</span>
                 </div>
 
@@ -416,17 +327,17 @@
                 </div>
 
                 <div class="week-footer">
-                    <a href="Week6_HW.html" class="btn-action btn-primary">Assignment 06 ↗</a>
-                    <a href="Week6_Sol.html" class="btn-action">Solutions ↗</a>
+                    <a href="Week6_HW.html" class="btn-action btn-primary">Assignment 06 open</a>
+                    <a href="Week6_Sol.html" class="btn-action">Solutions open</a>
                 </div>
             </article>
 
             <!-- ============================================ -->
             <!-- WEEK 7: CALCULUS I INTEGRATION REVIEW -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-07">
                 <div class="week-header">
-                    <h2 class="week-title">Week 07</h2>
+                    <h3 class="week-title">Week 07</h3>
                     <span class="week-date">FEB 23 - FEB 27</span>
                 </div>
 
@@ -464,7 +375,7 @@
                        class="btn-action btn-primary"
                        target="_blank"
                        rel="noopener noreferrer">
-                        OpenStax Ch. 1 Review ↗
+                        OpenStax Ch. 1 Review open
                     </a>
 
                     <a href="#"
@@ -480,16 +391,16 @@
             <!-- ============================================ -->
             <!-- WEEK 8: EXAM 1 + FRIDAY NOTES + HOMEWORK -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-08">
                 <div class="week-header">
-                    <h2 class="week-title">Week 08</h2>
+                    <h3 class="week-title">Week 08</h3>
                     <span class="week-date">MAR 02 - MAR 06</span>
                 </div>
 
                 <div class="lecture-list">
                     <!-- MONDAY: EXAM REVIEW -->
                     <div class="lecture-row">
-                        <div class="day-badge" style="color: var(--c-shsu-orange);">MON</div>
+                        <div class="day-badge special-day">MON</div>
                         <div class="lecture-details">
                             <span class="lecture-topic">Exam 1 Review Day</span>
                             <span class="lecture-desc">Targeted review, practice problems, and logistics. See Blackboard for more information.</span>
@@ -499,7 +410,7 @@
 
                     <!-- WEDNESDAY: EXAM 1 -->
                     <div class="lecture-row">
-                        <div class="day-badge" style="color: var(--c-shsu-orange);">WED</div>
+                        <div class="day-badge special-day">WED</div>
                         <div class="lecture-details">
                             <span class="lecture-topic">Exam 1</span>
                             <span class="lecture-desc">In-class exam. See Blackboard for allowed materials, timing, and any announcements.</span>
@@ -511,7 +422,7 @@
                    <div class="lecture-row">
   <div class="day-badge">FRI</div>
   <div class="lecture-details">
-    <span class="lecture-topic">Area Between Curves • Disk/Washer • Shell Method</span>
+    <span class="lecture-topic">Area Between Curves; Disk/Washer; Shell Method</span>
     <span class="lecture-desc">
       Setting up integrals for area between curves and volumes of revolution; choosing between disk/washer and shell
       based on the region and the axis of rotation, and identifying the correct bounds.
@@ -524,21 +435,21 @@
                 <div class="week-footer">
                     <!-- HW: ACTIVE -->
                     <a href="Week8_HW.html" class="btn-action btn-primary">
-                        Assignment 07 ↗
+                        Assignment 07 open
                     </a>
 
                     <!-- SOLUTIONS: DISABLED (toggle later) -->
                     <a href="Week8_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
-                        Solutions 
+                        Solutions
                     </a>
                 </div>
             </article>
             <!-- ============================================ -->
             <!-- WEEK 9: ARC LENGTH + WORK                    -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-09">
                 <div class="week-header">
-                    <h2 class="week-title">Week 09</h2>
+                    <h3 class="week-title">Week 09</h3>
                     <span class="week-date">MAR 16 - MAR 20</span>
                 </div>
 
@@ -577,24 +488,24 @@
                 <div class="week-footer">
                     <!-- HW: ACTIVE -->
                     <a href="Week9_HW.html" class="btn-action btn-primary">
-                        Assignment 08 ↗
+                        Assignment 08 open
                     </a>
 
                     <!-- SOLUTIONS: ACTIVE -->
-                   
+
                     <!-- SOLUTIONS: DISABLED (toggle later) -->
                     <a href="Week9_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
-                        Solutions 
+                        Solutions
                     </a>
                 </div>
             </article>
-            
+
             <!-- ============================================ -->
             <!-- WEEK 10: WORK + CENTROIDS + INT. BY PARTS    -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-10">
                 <div class="week-header">
-                    <h2 class="week-title">Week 10</h2>
+                    <h3 class="week-title">Week 10</h3>
                     <span class="week-date">MAR 23 - MAR 27</span>
                 </div>
 
@@ -633,22 +544,22 @@
                 <div class="week-footer">
                     <!-- HW: ACTIVE -->
                     <a href="Week10_HW.html" class="btn-action btn-primary">
-                        Assignment 09 ↗
+                        Assignment 09 open
                     </a>
 
                     <!-- SOLUTIONS: DISABLED (toggle later) -->
                     <a href="Week10_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
-                        Solutions 
+                        Solutions
                     </a>
                 </div>
             </article>
-            
+
             <!-- ============================================ -->
             <!-- WEEK 11: INT. BY PARTS + READING DAY         -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-11">
                 <div class="week-header">
-                    <h2 class="week-title">Week 11</h2>
+                    <h3 class="week-title">Week 11</h3>
                     <span class="week-date">MAR 30 - APR 03</span>
                 </div>
 
@@ -686,21 +597,21 @@
                 <div class="week-footer">
                     <!-- HW: ACTIVE -->
                     <a href="Week11_HW.html" class="btn-action btn-primary">
-                        Assignment 10 ↗
+                        Assignment 10 open
                     </a>
 
                     <!-- SOLUTIONS: DISABLED (toggle later) -->
                     <a href="Week11_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
-                        Solutions 
+                        Solutions
                     </a>
                 </div>
             </article>
             <!-- ============================================ -->
             <!-- WEEK 12: TRIG INTEGRALS & TRIG SUBSTITUTION  -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-12">
                 <div class="week-header">
-                    <h2 class="week-title">Week 12</h2>
+                    <h3 class="week-title">Week 12</h3>
                     <span class="week-date">APR 06 - APR 10</span>
                 </div>
 
@@ -743,13 +654,13 @@
                     </span>
                 </div>
             </article>
-            
+
             <!-- ============================================ -->
             <!-- WEEK 13: EXAM REVIEW, EXAM, & RATIONAL FUNC. -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-13">
                 <div class="week-header">
-                    <h2 class="week-title">Week 13</h2>
+                    <h3 class="week-title">Week 13</h3>
                     <span class="week-date">APR 13 - APR 17</span>
                 </div>
 
@@ -786,12 +697,12 @@
                 <div class="week-footer">
                     <!-- HW 11: MOVED FROM WEEK 12 -->
                     <a href="Week12_HW.html" class="btn-action btn-primary">
-                        Assignment 11 ↗
+                        Assignment 11 open
                     </a>
 
                     <!-- SOLUTIONS 11 -->
                     <a href="Week12_Sol.html" class="btn-action">
-                        Solutions 
+                        Solutions
                     </a>
                 </div>
             </article>
@@ -799,9 +710,9 @@
             <!-- ============================================ -->
             <!-- WEEK 14: RATIONAL FUNCTIONS (CONT.)          -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-14">
                 <div class="week-header">
-                    <h2 class="week-title">Week 14</h2>
+                    <h3 class="week-title">Week 14</h3>
                     <span class="week-date">APR 20 - APR 24</span>
                 </div>
 
@@ -837,12 +748,12 @@
                 <div class="week-footer">
                     <!-- HW 12: MOVED FROM WEEK 13 -->
                     <a href="Week13_HW.html" class="btn-action btn-primary">
-                        Assignment 12 ↗
+                        Assignment 12 open
                     </a>
 
                     <!-- SOLUTIONS 12 -->
                     <a href="Week13_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
-                        Solutions 
+                        Solutions
                     </a>
                 </div>
             </article>
@@ -850,9 +761,9 @@
             <!-- ============================================ -->
             <!-- WEEK 15: FINAL EXAM REVIEW & READING DAY     -->
             <!-- ============================================ -->
-            <article class="week-card">
+            <article class="week-card" id="week-15">
                 <div class="week-header">
-                    <h2 class="week-title">Week 15</h2>
+                    <h3 class="week-title">Week 15</h3>
                     <span class="week-date">APR 27 - MAY 01</span>
                 </div>
 
@@ -892,25 +803,19 @@
                     </span>
                 </div>
             </article>
-            
-            
-            
-            
+
+
+
+
+
         </div>
+      </section>
+    </main>
 
-        <footer>&copy; 2026 TIMOTHY TRUJILLO</footer>
-
-        <script>
-            function toggleTheme() {
-                const html = document.documentElement;
-                const current = html.getAttribute('data-theme');
-                const next = current === 'dark' ? 'light' : 'dark';
-                html.setAttribute('data-theme', next);
-                localStorage.setItem('theme', next);
-            }
-            const saved = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', saved);
-        </script>
-    </div>
+    <footer class="footer">
+      <p>Timothy Trujillo</p>
+      <p><a href="mailto:trujillo@shsu.edu">trujillo@shsu.edu</a></p>
+    </footer>
+  </div>
 </body>
 </html>

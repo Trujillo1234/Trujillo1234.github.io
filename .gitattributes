@@ -1,0 +1,2 @@
+# Preserve the research CV PDF byte-for-byte across Windows checkouts.
+assets/docs/timothy-trujillo-research-cv.pdf binary

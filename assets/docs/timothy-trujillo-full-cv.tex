@@ -3,7 +3,7 @@
 \usepackage{fontspec}
 \setmainfont{Georgia}
 \setsansfont{Calibri}
-\usepackage{microtype,enumitem,titlesec,fancyhdr,xcolor}
+\usepackage{microtype,enumitem,titlesec,fancyhdr,xcolor,needspace}
 \definecolor{ink}{HTML}{263F50}
 \definecolor{headingbg}{HTML}{E6EDF2}
 \usepackage[colorlinks=true,urlcolor=ink,linkcolor=ink]{hyperref}
@@ -21,11 +21,12 @@
 \fancyfoot[C]{\sffamily\small\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{14pt}
-\newcommand{\entry}[2]{\par\vspace{5pt}{\sffamily\bfseries #1\hfill #2}\par\nopagebreak}
+\newcommand{\entry}[2]{\par\Needspace{5\baselineskip}\vspace{7pt}{\sffamily\bfseries\fontsize{12}{14}\selectfont\parbox[t]{0.83\linewidth}{#1}\hfill\parbox[t]{0.16\linewidth}{\raggedleft\small #2}}\par\nopagebreak}
+\newcommand{\academictitle}[1]{{\sffamily\bfseries\fontsize{12}{14}\selectfont #1}\par\nopagebreak}
 \begin{document}
 \thispagestyle{empty}
 {\sffamily\bfseries\fontsize{25}{29}\selectfont Timothy O. Trujillo}\par
-{\sffamily Visiting Professor\enspace $\vert$\enspace Sam Houston State University}\par
+{\sffamily\bfseries\fontsize{13}{16}\selectfont Visiting Professor\enspace $\vert$\enspace Sam Houston State University}\par
 Denver, Colorado\enspace $\vert$\enspace\href{mailto:du.timothy.trujillo@gmail.com}{du.timothy.trujillo@gmail.com}\par
 \href{https://profiles.shsu.edu/txt031/}{profiles.shsu.edu/txt031/}\enspace $\vert$\enspace\href{https://trujillo1234.github.io/}{trujillo1234.github.io/}\par
 {\small Updated October 6, 2026}\par
@@ -34,26 +35,33 @@ Denver, Colorado\enspace $\vert$\enspace\href{mailto:du.timothy.trujillo@gmail.c
 I am a mathematician based in Denver, Colorado, and a Visiting Professor at Sam Houston State University, effective September 1, 2026. My research is in logic and set theory. I previously served as a tenured Associate Professor of Mathematics at Sam Houston State University until August 31, 2026. My work combines research in Ramsey theory, ultrafilters, and foundations of mathematics with sustained teaching innovation in undergraduate and graduate mathematics. My teaching is grounded in backward design, constructive alignment, active learning, mastery-oriented assessment, public mathematical writing, and mentorship through independent study and student research.\par
 \section*{Academic Appointments}
 \entry{Sam Houston State University}{2026-present}
-Visiting Professor, effective September 1, 2026. Working on research projects.\par
+\academictitle{Visiting Professor}
+Effective September 1, 2026. Working on research projects.\par
 \entry{Sam Houston State University, Huntsville, Texas}{2023-2026}
-Associate Professor of Mathematics, September 1, 2023-August 31, 2026. Promoted with tenure effective September 1, 2023; the \href{https://docs.gato.txst.edu/647021/Minutes\%2520Regular\%2520May\%25202023.pdf}{May 2023 minutes of the Board of Regents of the Texas State University System} list the action as a promotion with tenure from assistant professor in Mathematics and Statistics.\par
+\academictitle{Associate Professor of Mathematics}
+September 1, 2023-August 31, 2026. Promoted with tenure effective September 1, 2023; the \href{https://docs.gato.txst.edu/647021/Minutes\%2520Regular\%2520May\%25202023.pdf}{May 2023 minutes of the Board of Regents of the Texas State University System} list the action as a promotion with tenure from assistant professor in Mathematics and Statistics.\par
 \entry{Sam Houston State University, Huntsville, Texas}{2017-2023}
-Assistant Professor of Mathematics. Taught across the undergraduate curriculum, graduate logic, and directed studies. Tenure-portfolio course history includes nine sections of precalculus algebra, three sections of college mathematics, three sections of trigonometry, five sections of calculus I, five sections of calculus II, differential equations, introduction to mathematical thought, algebraic structures, and three graduate sections of mathematical logic. Directed independent studies included social choice theory, mathematical logic, and set theory.\par
+\academictitle{Assistant Professor of Mathematics}
+Taught across the undergraduate curriculum, graduate logic, and directed studies. Tenure-portfolio course history includes nine sections of precalculus algebra, three sections of college mathematics, three sections of trigonometry, five sections of calculus I, five sections of calculus II, differential equations, introduction to mathematical thought, algebraic structures, and three graduate sections of mathematical logic. Directed independent studies included social choice theory, mathematical logic, and set theory.\par
 \entry{Colorado School of Mines, Golden, Colorado}{2015-2017}
-Postdoctoral Teaching Scholar in Mathematics. Taught introduction to proofs, calculus I-III, linear algebra, and a large differential equations section. Co-advised the 2015 and 2016 Putnam teams; the 2015 team scored in the top 10 percent nationally. Directed an independent study in combinatorial set theory.\par
+\academictitle{Postdoctoral Teaching Scholar in Mathematics}
+Taught introduction to proofs, calculus I-III, linear algebra, and a large differential equations section. Co-advised the 2015 and 2016 Putnam teams; the 2015 team scored in the top 10 percent nationally. Directed an independent study in combinatorial set theory.\par
 \entry{Texas State University, San Marcos, Texas}{2014-2015}
-Lecturer in Mathematics. Taught three sections of college algebra, two sections of precalculus, and three sections of calculus II.\par
+\academictitle{Lecturer in Mathematics}
+Taught three sections of college algebra, two sections of precalculus, and three sections of calculus II.\par
 \entry{University of Denver, Denver, Colorado}{2008-2014}
-Instructor and Graduate Teaching Assistant in Mathematics. As instructor, taught two sections of calculus I, two sections of calculus II, and a mathematics freshman seminar. Also taught or assisted in business calculus, multivariable calculus, differential equations, history of mathematics, introduction to proofs, abstract algebra, topology, and metric spaces.\par
+\academictitle{Instructor and Graduate Teaching Assistant in Mathematics}
+As instructor, taught two sections of calculus I, two sections of calculus II, and a mathematics freshman seminar. Also taught or assisted in business calculus, multivariable calculus, differential equations, history of mathematics, introduction to proofs, abstract algebra, topology, and metric spaces.\par
 \entry{New Mexico Institute of Mining and Technology, Socorro, New Mexico}{2006-2008}
-Instructor in Mathematics. Taught three sections of algebra, one section of trigonometry, and one section of calculus II.\par
+\academictitle{Instructor in Mathematics}
+Taught three sections of algebra, one section of trigonometry, and one section of calculus II.\par
 \section*{Education}
 \entry{University of Denver}{2014}
-Ph.D. in Mathematics. Dissertation: \emph{Topological Ramsey spaces, associated ultrafilters and their applications to the Tukey theory of ultrafilters and Dedekind cuts of nonstandard arithmetic}. Advisor: Natasha Dobrinen.\par
+\textbf{Ph.D. in Mathematics}. Dissertation: \emph{Topological Ramsey spaces, associated ultrafilters and their applications to the Tukey theory of ultrafilters and Dedekind cuts of nonstandard arithmetic}. Advisor: Natasha Dobrinen.\par
 \entry{New Mexico Institute of Mining and Technology}{2008}
-M.S. in Mathematics, specialization in analysis. Thesis: \emph{Attractors for nonlinear reaction-diffusion equations in unbounded domains}. Advisor: Bixiang Wang.\par
+\textbf{M.S. in Mathematics}, specialization in analysis. Thesis: \emph{Attractors for nonlinear reaction-diffusion equations in unbounded domains}. Advisor: Bixiang Wang.\par
 \entry{New Mexico Institute of Mining and Technology}{2006}
-B.S. in Mathematics, minor in education.\par
+\textbf{B.S. in Mathematics}, minor in education.\par
 \section*{Research Areas}
 Ramsey theory, topological Ramsey spaces, ultrafilters, nonstandard models of arithmetic, mathematical logic, set theory, mathematical pedagogy, and curriculum design.\par
 \section*{Teaching, Curriculum, and Course Design}

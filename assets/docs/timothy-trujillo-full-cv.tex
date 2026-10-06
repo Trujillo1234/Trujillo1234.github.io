@@ -1,32 +1,38 @@
-\documentclass[11pt,letterpaper]{article}
-\usepackage[margin=0.75in]{geometry}
+\documentclass[10pt,letterpaper]{article}
+\usepackage[left=0.78in,right=0.78in,top=0.72in,bottom=0.72in,headsep=16pt]{geometry}
 \usepackage{fontspec}
-\setmainfont{Georgia}
+\setmainfont{Cambria}
 \setsansfont{Calibri}
-\usepackage{microtype,enumitem,titlesec,fancyhdr,xcolor,needspace}
+\usepackage{microtype,enumitem,titlesec,fancyhdr,xcolor,needspace,ragged2e}
 \definecolor{ink}{HTML}{263F50}
 \definecolor{headingbg}{HTML}{E6EDF2}
 \usepackage[colorlinks=true,urlcolor=ink,linkcolor=ink]{hyperref}
 \hypersetup{pdftitle={Timothy O. Trujillo Full Academic Curriculum Vitae},pdfauthor={Timothy O. Trujillo}}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{4pt}
+\setlength{\parskip}{5pt}
 \setlength{\emergencystretch}{2em}
-\setlist{leftmargin=18pt,itemsep=4pt,topsep=4pt,parsep=0pt}
+\setlist{leftmargin=19pt,itemsep=5pt,topsep=5pt,parsep=0pt,before={\interlinepenalty=10000}}
 \newcommand{\sectionhighlight}[1]{\colorbox{headingbg}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\vspace{3pt}\sffamily\bfseries\fontsize{14}{17}\selectfont\color{black}#1\vspace{3pt}}}}
 \titleformat{\section}{\sffamily\bfseries\color{black}}{}{0pt}{\sectionhighlight}
-\titlespacing*{\section}{0pt}{12pt}{5pt}
+\titlespacing*{\section}{0pt}{14pt}{7pt}
 \pagestyle{fancy}\fancyhf{}
-\fancyhead[L]{\sffamily\small Timothy O. Trujillo}
+\fancyhead[L]{\sffamily\small\color{ink}Timothy O. Trujillo}
 \fancyhead[R]{\sffamily\small Curriculum Vitae}
-\fancyfoot[C]{\sffamily\small\thepage}
+\fancyfoot[R]{\sffamily\small\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{14pt}
 \newcommand{\entry}[2]{\par\Needspace{5\baselineskip}\vspace{7pt}{\sffamily\bfseries\fontsize{12}{14}\selectfont\parbox[t]{0.83\linewidth}{#1}\hfill\parbox[t]{0.16\linewidth}{\raggedleft\small #2}}\par\nopagebreak}
-\newcommand{\academictitle}[1]{{\sffamily\bfseries\fontsize{12}{14}\selectfont #1}\par\nopagebreak}
+\newcommand{\academictitle}[1]{{\sffamily\bfseries\fontsize{12}{15}\selectfont\color{ink}#1}\par\nopagebreak}
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\hyphenpenalty=1500
 \begin{document}
+\fontsize{10.7}{13.3}\selectfont
+\RaggedRight
 \thispagestyle{empty}
-{\sffamily\bfseries\fontsize{25}{29}\selectfont Timothy O. Trujillo}\par
-{\sffamily\bfseries\fontsize{13}{16}\selectfont Visiting Professor\enspace $\vert$\enspace Sam Houston State University}\par
+{\sffamily\bfseries\fontsize{29}{33}\selectfont Timothy O. Trujillo}\par
+{\sffamily\bfseries\fontsize{13}{17}\selectfont Visiting Professor\enspace $\vert$\enspace Sam Houston State University}\par
 Denver, Colorado\enspace $\vert$\enspace\href{mailto:du.timothy.trujillo@gmail.com}{du.timothy.trujillo@gmail.com}\par
 \href{https://profiles.shsu.edu/txt031/}{profiles.shsu.edu/txt031/}\enspace $\vert$\enspace\href{https://trujillo1234.github.io/}{trujillo1234.github.io/}\par
 {\small Updated October 6, 2026}\par
@@ -64,6 +70,7 @@ Taught three sections of algebra, one section of trigonometry, and one section o
 \textbf{B.S. in Mathematics}, minor in education.\par
 \section*{Research Areas}
 Ramsey theory, topological Ramsey spaces, ultrafilters, nonstandard models of arithmetic, mathematical logic, set theory, mathematical pedagogy, and curriculum design.\par
+\Needspace{8\baselineskip}
 \section*{Teaching, Curriculum, and Course Design}
 \entry{Curriculum and teaching innovation, Sam Houston State University}{2025-2026}
 \begin{itemize}
@@ -78,6 +85,7 @@ Designed and implemented a first-run mastery-based assessment system for MATH 43
 Used both emporium-style and flipped-course models in precalculus algebra and college algebra settings. As course coordinator for MATH 1314 and MATH 1316, helped maintain common exams, common objectives, common schedules, OER adoption, and shared online learning resources.\par
 \entry{Professional development in teaching}{Ongoing}
 Project NExT fellow, 2017, and Texas Section NeXT fellow, 2017-2018. Regular participant in Texas Section NeXT activities at MAA sectional and TUMC meetings. Additional professional development includes SHSU online faculty training, the Dana Center mathematics pathways workshop, and the Poorvu Center Mobile Summer Institute on Scientific Teaching.\par
+\Needspace{10\baselineskip}
 \section*{Student Mentoring, Supervision, and Presentations}
 \entry{Directed studies, research supervision, and presentation outcomes}{Ongoing}
 Mentored undergraduate and graduate students through directed studies, independent studies, capstone work, and research projects in logic, combinatorics, set theory, combinatorial set theory, social choice theory, generalized trigonometric systems, mathematical modeling, chaos theory, modal graph theory, and philosophy of mathematics. Student projects have led to presentations at the Joint Mathematics Meetings, Texas Undergraduate Mathematics Conference, discrete mathematics seminars, and undergraduate journals.\par
@@ -98,6 +106,7 @@ Mentored undergraduate and graduate students through directed studies, independe
 \item Connor Mattes and Zachary Chaney, \emph{Triangular Ramsey numbers}, Joint Meetings of the Rocky Mountain and Intermountain Sections of the MAA, April 2016; University of Denver Graduate Colloquium, November 2016; project led to a publication in \emph{INTEGERS}.
 \item Directed studies have included set theory, combinatorial set theory, social choice theory, mathematical logic, modal graph theory, fractals, chaos theory, and philosophy-of-mathematics topics such as category theory and hyperobjects.
 \end{itemize}
+\Needspace{8\baselineskip}
 \section*{Publications and Preprints}
 \begin{enumerate}
 \item Timothy Trujillo, \emph{\href{https://www.impan.pl/en/publishing-house/journals-and-series/fundamenta-mathematicae/all/255/2/114223/parametrizing-by-the-ellentuck-space}{Parametrizing by the Ellentuck Space}}. Fundamenta Mathematicae 255, 2021.
@@ -111,6 +120,7 @@ Mentored undergraduate and graduate students through directed studies, independe
 \item John Brandt, Geraint Jones, David McComas, Martin Snow, Timothy Trujillo, and Amanda Burghard, \emph{\href{https://collaborate.princeton.edu/en/publications/observations-of-cometary-plasma-tails-and-the-heliosphere-near-so}{Observations of cometary plasma tails and the heliosphere near solar maximum}}. Proceedings of Asteroids, Comets, Meteors, 2002.
 \item Timothy Trujillo, \emph{Hypernatural numbers in ultra-Ramsey theory}. Under review.
 \end{enumerate}
+\Needspace{8\baselineskip}
 \section*{Selected Invited and Contributed Talks}
 \begin{enumerate}
 \item \emph{Elasticity First: A New Starting Point for Calculus}. 104th Annual Meeting of the Texas Section of the MAA, Prairie View A\&M University, March 2025.
@@ -147,6 +157,7 @@ Mentored undergraduate and graduate students through directed studies, independe
 \item \emph{Selective and Ramsey for R1 ultrafilters and their Dedekind cuts}. Boulder Logic Seminar, University of Denver, April 2013.
 \item Several lectures in the graduate colloquium, algebra and logic seminar, and analysis and dynamics seminar at the University of Denver.
 \end{enumerate}
+\Needspace{8\baselineskip}
 \section*{Grants, Honors, and Awards}
 \begin{itemize}
 \item SHSU Enhanced Research Grant, \emph{Infinite ethics: a non-Archimedean approach}, \$15,000.

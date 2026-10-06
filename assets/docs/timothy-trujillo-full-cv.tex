@@ -5,13 +5,15 @@
 \setsansfont{Calibri}
 \usepackage{microtype,enumitem,titlesec,fancyhdr,xcolor}
 \definecolor{ink}{HTML}{263F50}
+\definecolor{headingbg}{HTML}{E6EDF2}
 \usepackage[colorlinks=true,urlcolor=ink,linkcolor=ink]{hyperref}
 \hypersetup{pdftitle={Timothy O. Trujillo Full Academic Curriculum Vitae},pdfauthor={Timothy O. Trujillo}}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{4pt}
 \setlength{\emergencystretch}{2em}
 \setlist{leftmargin=18pt,itemsep=4pt,topsep=4pt,parsep=0pt}
-\titleformat{\section}{\sffamily\bfseries\large\color{ink}}{}{0pt}{}
+\newcommand{\sectionhighlight}[1]{\colorbox{headingbg}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\vspace{3pt}\sffamily\bfseries\fontsize{14}{17}\selectfont\color{black}#1\vspace{3pt}}}}
+\titleformat{\section}{\sffamily\bfseries\color{black}}{}{0pt}{\sectionhighlight}
 \titlespacing*{\section}{0pt}{12pt}{5pt}
 \pagestyle{fancy}\fancyhf{}
 \fancyhead[L]{\sffamily\small Timothy O. Trujillo}

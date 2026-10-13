@@ -1,0 +1,550 @@
+/* A quiet reading edition of the native PreTeXt HTML. */
+:root, :root:not(.dark-mode), :root.dark-mode {
+  color-scheme: light;
+  --paper: #f7f8fa;
+  --paper-deep: #edf0f4;
+  --ink: #28313b;
+  --ink-soft: #58616b;
+  --copper: #596779;
+  --copper-soft: #d7dfe7;
+  --teal: #3c5c69;
+  --teal-soft: #e0e9ee;
+  --rule: #d5dce3;
+  --surface-glaze: rgba(248, 250, 252, .86);
+  --nav-glaze: rgba(248, 250, 252, .91);
+  --definition-surface: #f0f5f8;
+  --definition-fill: rgba(213, 222, 233, .25);
+  --example-fill: rgba(255, 255, 255, .35);
+  --exercise-fill: rgba(219, 232, 240, .36);
+  --textbook-surface: #f2f6f8;
+  --textbook-rule: #c6d2db;
+  --panel-background: #edf1f5;
+  --body-text-color: var(--ink);
+  --body-background: var(--paper);
+  --document-background: var(--paper);
+  --link-text-color: var(--teal);
+  --link-active-text-color: var(--copper);
+  --link-visited-text-color: var(--teal);
+  --content-width: 48rem;
+  --font-body: Georgia, "Times New Roman", serif;
+  --font-headings: Georgia, "Times New Roman", serif;
+  --page-color: var(--paper);
+  --content-background: var(--paper);
+  --page-border-color: var(--rule);
+  --doc-title-color: var(--ink);
+  --byline-color: var(--copper);
+  --banner-background: var(--paper);
+  --navbar-background: var(--paper);
+  --footer-background: var(--paper);
+  --toc-background: var(--paper);
+  --tocitem-background: var(--paper);
+  --toc-text-color: var(--ink-soft);
+  --toc-border-color: var(--rule);
+  --tocitem-active-background: var(--teal-soft);
+  --tocitem-active-text-color: var(--teal);
+  --tocitem-active-border-color: var(--rule);
+  --tocitem-highlight-background: var(--teal-soft);
+  --tocitem-highlight-text-color: var(--teal);
+  --tocitem-highlight-border-color: var(--rule);
+  --toclevel1-background: var(--paper);
+  --toclevel1-text-color: var(--ink-soft);
+  --toclevel2-background: var(--paper);
+  --toclevel2-text-color: var(--ink-soft);
+  --toclevel3-background: var(--paper);
+  --toclevel3-text-color: var(--ink-soft);
+  --button-background: var(--paper);
+  --button-text-color: var(--ink-soft);
+  --button-border-color: var(--rule);
+  --button-hover-background: var(--teal-soft);
+  --button-hover-text-color: var(--teal);
+  --knowl-background: #edf1f5;
+  --knowl-border-color: var(--rule);
+  --knowl-link-color: var(--teal);
+  --ptx-content-line-height: 1.8;
+  --base-content-width: 680px;
+}
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+:target { animation: reading-target-fade 2s 1; }
+@keyframes reading-target-fade {
+  from { background-color: var(--teal-soft); }
+  to { background-color: transparent; }
+}
+body, body.pretext {
+  background-color: var(--paper);
+  background-image: linear-gradient(var(--surface-glaze), var(--surface-glaze)), url("pearl-cotton-paper-v1.png");
+  background-size: auto, 720px 720px;
+  background-repeat: repeat;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased;
+}
+body.pretext { font-size: 1.12rem; }
+::selection { background: var(--teal-soft); color: var(--ink); }
+button, input, select, textarea { font: inherit; }
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
+a { color: var(--teal); text-underline-offset: .18em; }
+a:hover { color: var(--copper); }
+.ptx-content a.internal[href*="bibliography.html"] { font-weight: 400; }
+.ptx-masthead, #ptx-masthead, .masthead {
+  background: var(--paper);
+  color: var(--ink);
+  border: 0;
+  box-shadow: none;
+  padding-block: 2.7rem 2.2rem;
+}
+.ptx-masthead .title-container, #ptx-masthead .title-container,
+.masthead .title-container { padding-inline: 1.3rem; }
+.ptx-masthead .heading, #ptx-masthead .heading,
+.masthead .heading, .ptx-masthead .title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -.035em;
+  color: var(--ink);
+  line-height: 1.13;
+  font-size: clamp(1.8rem, 3.9vw, 3.1rem);
+}
+.ptx-masthead .subtitle, #ptx-masthead .subtitle {
+  margin-block-start: .7rem;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  font-weight: 400;
+}
+.ptx-masthead .byline, #ptx-masthead .byline {
+  color: var(--copper);
+  font-family: system-ui, sans-serif;
+  font-size: .85rem;
+  letter-spacing: .025em;
+  margin-block-start: .85rem;
+}
+.ptx-navbar, #ptx-navbar, .navbar {
+  background: var(--paper);
+  border-block: 1px solid var(--rule);
+  box-shadow: none;
+  color: var(--ink-soft);
+  font-family: system-ui, sans-serif;
+  font-size: .85rem;
+}
+.ptx-navbar a, #ptx-navbar a, .navbar a,
+.ptx-navbar button, #ptx-navbar button {
+  color: var(--ink-soft);
+  background-color: transparent;
+  border-color: transparent;
+  text-decoration: none;
+}
+.ptx-navbar a:hover, #ptx-navbar a:hover,
+.ptx-navbar button:hover, #ptx-navbar button:hover {
+  color: var(--teal);
+  background-color: var(--teal-soft);
+}
+.ptx-page { background: var(--paper); }
+.ptx-toc, #ptx-toc, .sidebar {
+  background: var(--paper);
+  border-color: var(--rule);
+  font-family: system-ui, sans-serif;
+  font-size: .85rem;
+  line-height: 1.55;
+}
+.ptx-toc a, #ptx-toc a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-color: transparent;
+  padding-block: .55rem;
+}
+.ptx-toc a:hover, #ptx-toc a:hover,
+.ptx-toc .active > a, #ptx-toc .active > a,
+.ptx-toc a.active, #ptx-toc a.active {
+  color: var(--teal);
+  background: var(--teal-soft);
+}
+.ptx-main, #ptx-main, main {
+  background: var(--paper);
+  color: var(--ink);
+}
+.ptx-main, #ptx-main { padding-block: 2.8rem 5rem; }
+.ptx-content {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink);
+  max-width: 48rem;
+}
+.ptx-main > .ptx-content {
+  max-width: 48rem;
+  padding: 1rem 2.7rem 4rem;
+  font-size: var(--ptx-content-font-size, inherit);
+  line-height: var(--ptx-content-line-height, 1.8);
+}
+.ptx-content p, .ptx-content .para { margin-block: 1em 1.1em; }
+.ptx-content > section > .heading,
+.ptx-content > section > header > .heading {
+  margin-block: .1rem 1.6rem;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  font-weight: 400;
+  color: var(--ink);
+}
+.ptx-content h1, .ptx-content h2, .ptx-content h3,
+.ptx-content h4, .ptx-content h5, .ptx-content h6 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+}
+.ptx-content section > .heading { margin-block: 2.8rem 1.25rem; }
+.ptx-content .heading .codenumber { color: var(--copper); }
+.ptx-content .heading .title { font-weight: 400; }
+.ptx-content section.chapter > .heading { font-size: 2.15rem; }
+.ptx-content section.section > .heading { font-size: 1.6rem; }
+.ptx-content section.subsection > .heading { font-size: 1.28rem; }
+/* One textbook frame for statements, examples, concepts, and questions.
+   The label identifies the role; geometry and typography stay consistent. */
+#ptx-content .textbook-box {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.25rem 1.4rem 1.1rem;
+  border: 1px solid var(--textbook-rule);
+  border-inline-start: 3px solid var(--teal);
+  border-radius: 3px;
+  background: var(--textbook-surface);
+  color: var(--ink);
+  box-shadow: none;
+  box-sizing: border-box;
+  min-width: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+#ptx-content .textbook-box::after,
+#ptx-content .textbook-heading::after { content: none; display: none; }
+#ptx-content .textbook-box > .textbook-heading {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .45rem .55rem;
+  margin: 0 0 1rem;
+  padding: 0 0 .8rem;
+  border: 0;
+  border-block-end: 1px solid var(--textbook-rule);
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: start;
+}
+#ptx-content .textbook-heading > .type,
+#ptx-content .textbook-heading > .codenumber {
+  align-self: baseline;
+  font: 500 .76rem/1.5 system-ui, sans-serif;
+  letter-spacing: .055em;
+  color: var(--teal);
+}
+#ptx-content .textbook-heading > .type { text-transform: uppercase; }
+#ptx-content .textbook-heading > .codenumber { font-variant-numeric: tabular-nums; }
+#ptx-content .textbook-heading .heading-divison-mark,
+#ptx-content .textbook-heading > .space { display: none; }
+#ptx-content .textbook-heading > .title {
+  grid-column: 1 / -1;
+  font: 400 1.25rem/1.4 Georgia, "Times New Roman", serif;
+  letter-spacing: -.015em;
+  color: var(--ink);
+  text-shadow: none;
+}
+#ptx-content .textbook-box > .textbook-heading + .para,
+#ptx-content .textbook-box > .para.logical > .para:first-child { display: block; }
+#ptx-content .textbook-box > .para { margin-block: .8rem; }
+#ptx-content .textbook-box > :nth-child(2).para { margin-block-start: 0; }
+#ptx-content .textbook-box > :last-child:not(.autopermalink) { margin-block-end: 0; }
+#ptx-content .textbook-box .emphasis {
+  font-weight: 400;
+  font-style: italic;
+}
+#ptx-content .textbook-box[data-textbook-nested="true"] {
+  margin-block: 1.3rem;
+  padding: 1rem 1.1rem;
+  background: transparent;
+  border-inline-start-width: 1px;
+}
+#ptx-content .textbook-box[data-textbook-nested="true"] > .textbook-heading > .title {
+  font-size: 1.1rem;
+}
+.ptx-content .para.logical > .para { margin-block: .8rem; }
+/* A worked answer stays attached to its exercise, behind one native disclosure. */
+#ptx-content .textbook-box details.solution {
+  margin: 1.2rem 0 0;
+  padding: 0;
+  border: 1px solid var(--textbook-rule);
+  border-radius: 3px;
+  background: transparent;
+  box-shadow: none;
+}
+#ptx-content .textbook-box details.solution > summary {
+  display: list-item;
+  margin: 0;
+  padding: .65rem .85rem;
+  color: var(--teal);
+  font: 500 .82rem/1.5 system-ui, sans-serif;
+  background: transparent;
+  border: 0;
+}
+#ptx-content .textbook-box details.solution[open] > summary {
+  border-block-end: 1px solid var(--textbook-rule);
+}
+#ptx-content .textbook-box details.solution > summary .heading-divison-mark { display: none; }
+#ptx-content .textbook-box details.solution > .knowl__content {
+  padding: .3rem .85rem .6rem;
+  margin: 0;
+  border: 0;
+  background: transparent;
+}
+#ptx-content .textbook-box details.solution::after,
+#ptx-content .textbook-box details.solution > .knowl__content::after { display: none; }
+.ptx-content .proof { margin-block: 1.4rem 2rem; }
+.ptx-content .proof > .heading { color: var(--ink-soft); font-size: 1rem; }
+.ptx-content ol, .ptx-content ul { padding-inline-start: 1.75rem; }
+.ptx-content li { margin-block: .55rem; }
+.ptx-content table { margin-block: 1.6rem; border-color: var(--rule); }
+.ptx-content .tabular-box { width: 100%; max-width: 100%; }
+.ptx-content table th { font-weight: 600; }
+.ptx-content table th, .ptx-content table td { padding: .5rem .8rem; }
+.ptx-content blockquote {
+  border-inline-start: 2px solid var(--copper-soft);
+  color: var(--ink-soft);
+  margin-inline: 0;
+  padding-inline: 1.5rem .3rem;
+}
+.ptx-content .displaymath, .ptx-content .displaymath-container {
+  margin-block: 1.5rem;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.ptx-content details { margin-block: 1.1rem; }
+.ptx-content summary {
+  color: var(--teal);
+  cursor: pointer;
+  font-family: system-ui, sans-serif;
+  font-size: .9rem;
+}
+.ptx-content .knowl-output { background: var(--panel-background); border-color: var(--rule); }
+.ptx-content .knowl-output .knowl-output { background: var(--paper); }
+.ptx-content .autopermalink { color: var(--copper); opacity: 0; }
+.ptx-content .para:hover > .autopermalink,
+.ptx-content .autopermalink:focus-within { opacity: .6; }
+.ptx-content .interactive { margin-block: 2rem; }
+.ptx-content iframe[src*="family-lab.html"] {
+  width: 100% !important;
+  display: block;
+  border: 0;
+  min-height: 48rem;
+  background: transparent;
+}
+.ptx-content .interactive-iframe-container:has(iframe[src*="family-lab.html"]) { overflow: visible; }
+.reader-variants {
+  margin-block: 1.8rem 1.1rem;
+  padding-block-start: 1.2rem;
+  border-block-start: 1px solid var(--rule);
+  font-size: 1rem;
+}
+.reader-variants-label {
+  font-family: system-ui, sans-serif;
+  font-size: .73rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 .65rem !important;
+}
+.reader-variant-buttons { display: flex; gap: .45rem; flex-wrap: wrap; }
+.reader-variant-buttons button {
+  font-family: system-ui, sans-serif;
+  font-size: .8rem;
+  padding: .45rem .72rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  color: var(--ink-soft);
+  background: transparent;
+  cursor: pointer;
+}
+.reader-variant-buttons button[aria-pressed="true"] {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+  color: var(--teal);
+}
+.reader-variant-panel {
+  line-height: 1.75;
+  margin-block-start: 1rem;
+  animation: reading-reveal .2s ease-out;
+}
+.reader-variant-panel p { margin-block: .8rem; }
+.reader-variant-panel .variant-heading {
+  font-family: system-ui, sans-serif;
+  color: var(--teal);
+  font-size: .8rem;
+  font-weight: 600;
+}
+.reader-variant-panel .reader-variant-record { color: var(--ink-soft); font-size: .9rem; }
+.reader-variant-panel .reader-variant-sources { color: var(--ink-soft); font-size: .78rem; line-height: 1.65; }
+.reading-animation { margin: 2.5rem 0; }
+.ptx-content .video-box { margin-block: 2rem; border-radius: 3px; overflow: hidden; background: #222d2d; }
+.ptx-content .video-box .video { border-radius: 3px; }
+.reading-animation video {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  display: block;
+  background: #222d2d;
+}
+.reading-animation figcaption {
+  margin-block-start: .7rem;
+  color: var(--ink-soft);
+  font-size: .88rem;
+  line-height: 1.6;
+}
+.video-narration-controls {
+  display: flex;
+  align-items: center;
+  gap: .75rem 1rem;
+  flex-wrap: wrap;
+  margin: -.7rem 0 1.8rem;
+  padding: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--example-fill);
+  color: var(--ink);
+  font: .85rem/1.6 system-ui, sans-serif;
+}
+.video-narration-controls button {
+  padding: .55rem .85rem;
+  border: 1px solid var(--teal);
+  border-radius: 3px;
+  background: var(--teal-soft);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+.video-narration-controls button:focus-visible,
+.video-narration-controls input:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+}
+.video-narration-toggle { display: inline-flex; align-items: center; gap: .5rem; }
+.video-narration-toggle input { accent-color: var(--teal); }
+.video-narration-status { color: var(--ink-soft); flex: 1 1 14rem; }
+.video-narration-transcript, .video-narration-error { flex-basis: 100%; margin: .2rem 0 0; }
+.video-narration-transcript { font-family: Georgia, "Times New Roman", serif; font-size: 1rem; }
+.video-narration-controls details { flex-basis: 100%; }
+.video-narration-controls summary { cursor: pointer; color: var(--teal); }
+.video-narration-controls details p { margin: .75rem 0; }
+.video-narration-error { color: var(--ink); }
+[hidden] { display: none !important; }
+/* One continuous material underneath the book's live, selectable text. */
+.ptx-page, .ptx-main, #ptx-main, main, .ptx-content,
+.ptx-masthead, #ptx-masthead, .masthead,
+.ptx-banner, .ptx-toc, #ptx-toc, .sidebar, .ptx-sidebar, #ptx-sidebar {
+  background: transparent;
+}
+/* Sticky navigation keeps a quiet backing as the page scrolls underneath. */
+.ptx-navbar, #ptx-navbar, .navbar {
+  background-color: var(--paper);
+  background-image: linear-gradient(var(--nav-glaze), var(--nav-glaze)), url("pearl-cotton-paper-v1.png");
+  background-size: auto, 720px 720px;
+}
+.ptx-masthead .heading, #ptx-masthead .heading,
+.ptx-content section > .heading > .title {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .96), 0 -.65px .35px rgba(30, 45, 60, .3);
+}
+#ptx-masthead .heading a { color: inherit; }
+mjx-container, mjx-container * { text-shadow: none !important; }
+/* Original manuscript diagrams retain a light plate in either theme. */
+.ptx-content img[src*="diagrams/diagram-"] {
+  background: #fafcff;
+  border: 1px solid var(--rule);
+  border-radius: .65rem;
+  padding: .65rem;
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+/* Native PreTeXt gives external companions a fixed inline width. Let their
+   own responsive layouts use the actual reading-column width instead. */
+.ptx-content .interactive-iframe-container > iframe[src*="family-lab.html"],
+.ptx-content .interactive-iframe-container > iframe[src*="observation-lab.html"],
+.ptx-content .interactive-iframe-container > iframe[src*="practice.html"],
+.ptx-content .interactive-iframe-container > iframe[src*="election-law-lab.html"] {
+  width: 100% !important;
+  max-width: 100%;
+  min-width: 0;
+}
+.ptx-dialog { background: var(--paper); color: var(--ink); border: 1px solid var(--rule); }
+/* Answer panels share the textbook box, with quiet controls beneath it. */
+#ptx-content article[id^="ww-"] .webwork-button {
+  font: 500 .85rem/1.4 system-ui, sans-serif; color: var(--ink);
+  background: var(--panel-background); border: 1px solid var(--textbook-rule);
+  border-radius: .2rem; padding: .5rem .8rem;
+}
+#ptx-content article[id^="ww-"] .webwork-button:hover { border-color: var(--teal); }
+#ptx-content article[id^="ww-"] .webwork-button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+#ptx-content article[id^="ww-"] .problem-buttons { display: flex; flex-wrap: wrap; gap: .5rem; margin-block: .8rem; }
+#ptx-content article[id^="ww-"] .problem-buttons.hidden { display: none; }
+#ptx-content article[id^="ww-"] iframe.problem-iframe { border: 0; max-width: 100%; }
+#ptx-content article[id^="ww-"] [hidden] { display: none !important; }
+.reading-theme-toggle .theme-glyph { font-size: 1.05rem; line-height: 1; }
+:root.dark-mode {
+  color-scheme: dark;
+  --paper: #1b222b;
+  --paper-deep: #151b23;
+  --ink: #dce3ec;
+  --ink-soft: #aeb9c8;
+  --copper: #a6b8ce;
+  --copper-soft: #3c4b5d;
+  --teal: #a2c6d6;
+  --teal-soft: #2d3c4b;
+  --rule: #3b4959;
+  --surface-glaze: rgba(20, 26, 35, .96);
+  --nav-glaze: rgba(20, 26, 35, .975);
+  --definition-fill: rgba(105, 135, 169, .09);
+  --definition-surface: #222d38;
+  --example-fill: rgba(255, 255, 255, .02);
+  --exercise-fill: rgba(106, 151, 176, .10);
+  --textbook-surface: #222d38;
+  --textbook-rule: #435564;
+  --panel-background: #252f3b;
+  --knowl-background: var(--panel-background);
+}
+.dark-mode .ptx-masthead .heading, .dark-mode #ptx-masthead .heading,
+.dark-mode .ptx-content section > .heading > .title {
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .85), 0 -.65px .35px rgba(255, 255, 255, .13);
+}
+@keyframes reading-reveal { from { opacity: .2; } to { opacity: 1; } }
+@media (min-width: 1000px) {
+  .ptx-content { padding-inline: 1.2rem; }
+}
+@media (max-width: 700px) {
+  .ptx-masthead, #ptx-masthead, .masthead { padding-block: 1.8rem 1.5rem; }
+  .ptx-main, #ptx-main { padding-block: 1.6rem 3rem; }
+  .ptx-content { font-size: 1.04rem; line-height: 1.75; padding-inline: 1rem; }
+  body.pretext { font-size: 1.04rem; }
+  .ptx-main > .ptx-content { padding: .75rem 1rem 3rem; }
+  .ptx-content section.chapter > .heading { font-size: 1.85rem; }
+  #ptx-content .textbook-box { padding: 1rem; margin-inline: 0; }
+  #ptx-content .textbook-heading > .title { font-size: 1.15rem; }
+  #ptx-content .textbook-box[data-textbook-nested="true"] { padding: .85rem; }
+  .ptx-content table { font-size: .88em; }
+  .ptx-content table th, .ptx-content table td { padding: .35rem .45rem; }
+  .reader-variant-buttons { gap: .35rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reader-variant-panel { animation: none; }
+}
+@media print {
+  :root, :root:not(.dark-mode), :root.dark-mode {
+    color-scheme: light; --ink: black; --ink-soft: #333; --paper: white;
+    --teal: #234653; --copper: #444; --teal-soft: #edf2f5;
+    --panel-background: white; --knowl-background: white;
+    --definition-fill: #f3f5f7; --example-fill: white; --exercise-fill: #f2f6f8;
+    --definition-surface: #f3f5f7;
+    --textbook-surface: white; --textbook-rule: #aaa;
+  }
+  body, .ptx-page, .ptx-main, #ptx-main, .ptx-content,
+  .ptx-masthead, #ptx-masthead, .ptx-navbar, #ptx-navbar,
+  .ptx-toc, #ptx-toc { background: white !important; background-image: none !important; color: black; }
+  *, *::before, *::after { text-shadow: none !important; }
+  .reader-variants, .reading-theme-toggle, .video-narration-controls, .ptx-content iframe { display: none; }
+  #finite-original-explanation { display: block !important; }
+  #finite-original-explanation > .para[hidden] { display: block !important; }
+}

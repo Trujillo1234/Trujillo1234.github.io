@@ -1,0 +1,21 @@
+/* Layout additions for the manuscript's paper diagrams and instruction sheets. */
+.ptx-content pre { max-width: 100%; overflow-x: auto; line-height: 1.5; font-size: .84em; padding: 1rem; border: 1px solid var(--rule); border-radius: 3px; }
+.ptx-content .tabular-box { max-width: 100%; overflow-x: auto; }
+.ptx-content img { height: auto; }
+img[src*="latex-image/"] { background: transparent; }
+.dark-mode img[src*="latex-image/"] { filter: invert(.9) brightness(1.6) hue-rotate(180deg); }
+/* One TeX body em equals one surrounding text em. Preserve \small and
+   script sizes inside the source; never stretch a diagram to fill a page. */
+.ptx-content .image-box.latex-native {
+  font-size: inherit; width: fit-content !important; max-width: 100%;
+  margin-inline: auto !important; overflow-x: auto;
+}
+.ptx-content .latex-native > img {
+  width: var(--latex-natural-width); max-width: none; height: auto;
+}
+.ptx-content figure img { border-radius: 3px; }
+.ptx-content .displaymath { max-width: 100%; overflow-x: auto; overflow-y: hidden; padding-block: .3rem; }
+@media (max-width: 600px) {
+  .ptx-content pre { font-size: .75em; padding: .75rem; }
+  .ptx-content table { font-size: .85em; }
+}

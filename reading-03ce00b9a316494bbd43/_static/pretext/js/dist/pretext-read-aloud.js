@@ -1590,12 +1590,7 @@
       this.content.addEventListener("click", (e) => {
         if (!this.isOpen) return;
         if (e.target.closest(INTERACTIVE_SELECTOR)) return;
-        let blockIndex = -1;
-        this.blocks.forEach((b, i) => {
-          if (b.el && b.el.contains(e.target)) blockIndex = i;
-        });
-        if (blockIndex < 0) return;
-        const planIndex = this._planIndexForClick(blockIndex, e.target);
+        const planIndex = this._planIndexForClick(-1, e.target, e);
         if (planIndex >= 0) {
           this.highlighter.resetScrollSuppression();
           this.queue.playFrom(planIndex);
@@ -1610,31 +1605,66 @@
      * the plan's range map (segmenter.js keeps ranges pointing at the
      * original DOM text nodes precisely so this is possible).
      */
-    _planIndexForClick(blockIndex, target) {
-      const block = this.blocks[blockIndex];
-      const fallback = this.queue.indexForBlock(blockIndex);
-      if (!block || !target) return fallback;
-      const clicked = /* @__PURE__ */ new Set();
-      const walk = (el) => {
-        for (const child of el.childNodes) {
-          if (child.nodeType === Node.TEXT_NODE) clicked.add(child);
-          else if (child.nodeType === Node.ELEMENT_NODE) walk(child);
-        }
-      };
-      if (target.nodeType === Node.ELEMENT_NODE) walk(target);
-      for (let i = 0; i < this.queue.plan.length; i++) {
-        const item = this.queue.plan[i];
-        if (item.blockIndex !== blockIndex) continue;
-        for (const range of item.ranges) {
-          const token = block.tokens[range.tokenIndex];
-          if (!token) continue;
-          if (token.node && clicked.has(token.node)) return i;
-          if (token.el && (token.el === target || token.el.contains(target))) {
-            return i;
-          }
+    _planIndexForClick(blockIndex, target, event = null) {
+      // long-division-native-click-position-v1
+      // A section-owned image block can contain every paragraph on the page.
+      // Resolve the spoken token first; DOM containment alone is ambiguous.
+      const plan = this.queue.plan;
+      if (!target) return -1;
+      const tokenFor = (item, range) => this.blocks[item.blockIndex]?.tokens[range.tokenIndex];
+      for (let i = 0; i < plan.length; i++) {
+        for (const range of plan[i].ranges) {
+          const token = tokenFor(plan[i], range);
+          if (token?.el && (token.el === target || token.el.contains(target))) return i;
         }
       }
-      return fallback;
+      // The element click target does not identify a sentence when several
+      // sentences share one text node. Preserve the browser's text offset.
+      let position = null;
+      const doc = target.ownerDocument || document;
+      if (event && Number.isFinite(event.clientX) && Number.isFinite(event.clientY)) {
+        if (typeof doc.caretPositionFromPoint === "function") {
+          const caret = doc.caretPositionFromPoint(event.clientX, event.clientY);
+          if (caret) position = { node: caret.offsetNode, offset: caret.offset };
+        } else if (typeof doc.caretRangeFromPoint === "function") {
+          const caret = doc.caretRangeFromPoint(event.clientX, event.clientY);
+          if (caret) position = { node: caret.startContainer, offset: caret.startOffset };
+        }
+      }
+      if (position && (position.node === target || target.contains(position.node))) {
+        let closest = -1;
+        let distance = Infinity;
+        for (let i = 0; i < plan.length; i++) {
+          for (const range of plan[i].ranges) {
+            const token = tokenFor(plan[i], range);
+            if (!token?.node || token.node !== position.node) continue;
+            if (position.offset >= range.start && position.offset < range.end) return i;
+            const gap = Math.min(Math.abs(position.offset - range.start), Math.abs(position.offset - range.end));
+            if (gap <= distance) { closest = i; distance = gap; }
+          }
+        }
+        if (closest >= 0) return closest;
+      }
+      // Without a caret API, use the nearest containing block and only its
+      // own tokens. A later ancestor must never override a clicked paragraph.
+      let nearest = null;
+      for (const block of this.blocks) {
+        const el = block.el;
+        if (el && el.contains(target) && (!nearest || nearest !== el && nearest.contains(el))) nearest = el;
+      }
+      for (let i = 0; i < plan.length; i++) {
+        const block = this.blocks[plan[i].blockIndex];
+        if (!block || block.el !== nearest) continue;
+        for (const range of plan[i].ranges) {
+          const token = tokenFor(plan[i], range);
+          if (token?.node && target.contains(token.node) || token?.el && target.contains(token.el)) return i;
+        }
+      }
+      if (nearest) {
+        const index = plan.findIndex((item) => this.blocks[item.blockIndex]?.el === nearest);
+        if (index >= 0) return index;
+      }
+      return blockIndex >= 0 ? this.queue.indexForBlock(blockIndex) : -1;
     }
     _wireMediaSession() {
       if (!("mediaSession" in navigator)) return;

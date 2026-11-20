@@ -636,3 +636,51 @@ span.btn-action {
     margin: 0.25em 0 0.55em;
   }
 }
+
+/* Reading layout for research, courses, teaching and the CV. */
+.masthead { position: static; background: var(--paper); color: var(--blue); text-align: left; }
+.masthead > div, .nav { width: min(70rem, 100%); margin: auto; padding-inline: 1.5rem; }
+.masthead h1 { color: var(--blue); text-transform: none; font-family: inherit; }
+.masthead .subtitle { color: #47635b; font-size: 1rem; text-transform: none; margin-inline-start: .7rem; }
+.nav { flex-wrap: wrap; background: transparent; border-block: 1px solid var(--line); }
+.layout { padding-top: 2rem; }
+.content h2 { font-family: inherit; }
+.content a, .sidebar a { text-decoration: underline; text-underline-offset: .17em; }
+dt, .cv-date, .course-kicker, .day-badge { color: #456357; }
+.content, dd, .sidebar { overflow-wrap: break-word; }
+:focus-visible { outline: 3px solid #986319; outline-offset: 3px; }
+@media(max-width:760px) {
+  .masthead .subtitle { margin: .25rem 0; }
+  .nav { padding-inline: .5rem; }
+  .layout { padding-top: 1rem; }
+}
+@media print {
+  .masthead .nav, .footer { display: none; }
+  .layout { display: block; padding: 0; }
+  .cv-entry, .content h2 { break-inside: avoid; }
+}
+
+/* Keep the research index within reach above the introduction on small screens. */
+@media (max-width: 760px) {
+  .layout:has(#program) > .sidebar {
+    margin-bottom: 1.2rem;
+    padding-bottom: .8rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .layout:has(#program) > .sidebar h2 { margin: .25rem 0; font-size: 1rem; }
+  .layout:has(#program) > .sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 .9rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 .55rem;
+  }
+  .layout:has(#program) > .sidebar li { margin: 0; }
+  .layout:has(#program) > .sidebar a {
+    display: inline-block;
+    padding-block: .15rem;
+    font-size: .9rem;
+  }
+}

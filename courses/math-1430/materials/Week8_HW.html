@@ -20,11 +20,9 @@ window.MathJax = {
   svg: { fontCache: 'global' }
 };
 </script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script defer src="../../../assets/vendor/mathjax-3.2.2/tex-mml-svg.js"></script>
 
 <!-- TikZJax (TikZ -> SVG) -->
-<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
-<script defer src="https://tikzjax.com/v1/tikzjax.js"></script>
 
 <style>
 :root {
@@ -122,10 +120,17 @@ li {
     margin-top: 6px;
 }
 </style>
+<link rel="stylesheet" href="../../../assets/course-reader.css">
+  <link rel="stylesheet" href="../../../assets/site-shell.css">
 </head>
 
-<body>
-<div class="page-container">
+<body data-reader="worksheet">
+  <a class="tt-skip" href="#tt-content">Skip to content</a>
+  <header class="tt-header">
+    <a class="tt-name" href="../../../index.html">Timothy Trujillo</a>
+    <nav class="tt-nav" aria-label="Main navigation"><a href="../../../research/index.html">Research</a><a href="../../../teaching/index.html">Teaching</a><a aria-current="location" href="../../index.html">Courses</a><a href="../../../cv.html">CV</a></nav>
+  </header>
+<div class="page-container" id="tt-content" tabindex="-1"><nav class="reader-trail" aria-label="Course navigation"><a href="index.html">Calculus II</a> <a href="index.html#week-08">Week 8</a></nav>
 
 <header>
     <h1>Homework 7 (Background Skills)</h1>
@@ -215,6 +220,7 @@ Use the Net Change idea: “total change = integral of the rate.” Show your se
     <li>
         A car’s velocity (mph) is given by the graph below.
         <div class="tikz-figure">
+<img class="course-diagram" src="figures/figure-eafd12d497.svg" width="351" height="181" alt="Piecewise linear velocity plotted against time in hours.">
 <script type="text/tikz">
 \begin{tikzpicture}[x=1.05cm,y=0.75cm]
   \draw[->] (-0.2,0) -- (7.1,0) node[below] {$t$ (hours)};

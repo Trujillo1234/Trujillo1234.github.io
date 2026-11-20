@@ -22,12 +22,9 @@
         }
       };
     </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="../../../assets/vendor/mathjax-3.2.2/tex-mml-svg.js"></script>
 
     <!-- TIKZJAX -->
-    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
-    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
 
     <style>
         :root {
@@ -128,10 +125,17 @@
             .box-title { color: black !important; }
         }
     </style>
+<link rel="stylesheet" href="../../../assets/course-reader.css">
+  <link rel="stylesheet" href="../../../assets/site-shell.css">
 </head>
-<body>
+<body data-reader="worksheet">
+  <a class="tt-skip" href="#tt-content">Skip to content</a>
+  <header class="tt-header">
+    <a class="tt-name" href="../../../index.html">Timothy Trujillo</a>
+    <nav class="tt-nav" aria-label="Main navigation"><a href="../../../research/index.html">Research</a><a href="../../../teaching/index.html">Teaching</a><a aria-current="location" href="../../index.html">Courses</a><a href="../../../cv.html">CV</a></nav>
+  </header>
 
-    <div class="page-container">
+    <div class="page-container" id="tt-content" tabindex="-1"><nav class="reader-trail" aria-label="Course navigation"><a href="index.html">Calculus II</a> <a href="index.html#week-01">Week 1</a></nav>
         
         <!-- HEADER -->
         <header>
@@ -164,7 +168,8 @@
             </p>
 
             <div class="center-diagram">
-                <script type="text/tikz">
+                <img class="course-diagram" src="figures/figure-5a76b564e5.svg" width="264" height="162" alt="A function and its tangent line at a point with x-coordinate a.">
+<script type="text/tikz">
                     \begin{tikzpicture}[scale=1.2, thick]
                         \draw[->] (-0.5,0) -- (4,0) node[right] {$x$};
                         \draw[->] (0,-0.5) -- (0,2.5) node[above] {$y$};
@@ -289,7 +294,8 @@
             </div>
 
             <div class="center-diagram">
-                <script type="text/tikz">
+                <img class="course-diagram" src="figures/figure-395f70100f.svg" width="236" height="86" alt="The interval between the Taylor center a and the evaluation point x used to bound the error.">
+<script type="text/tikz">
                     \begin{tikzpicture}[scale=1.5]
                         \draw[thick] (0,0) -- (4,0);
                         \filldraw (1,0) circle (1.5pt) node[below] {$a$};

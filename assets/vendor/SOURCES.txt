@@ -1,0 +1,7 @@
+MathJax 3.2.2 · Apache License 2.0
+Source: https://registry.npmjs.org/mathjax/-/mathjax-3.2.2.tgz
+
+These unmodified MathJax distribution files render TeX, MathML and, when requested by the original reader, AsciiMath. The SVG renderer embeds its glyph paths and requires no font download. The course archive uses the amscd, extpfeil, cancel and enclose extensions. Core math and newcommand support are built into the combined runtime.
+
+PreTeXt extension source: https://pretextbook.org/js/lib/mathjaxknowl3.js
+PreTeXt licensing notice: https://github.com/PreTeXtBook/pretext/blob/master/COPYING

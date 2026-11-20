@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -129,16 +129,23 @@
     .btn-action.disabled { opacity: 0.4; pointer-events: none; border-color: var(--c-subtle); color: var(--c-subtle); filter: grayscale(100%); }
 
 </style>
+<link rel="stylesheet" href="../../../assets/course-reader.css">
+  <link rel="stylesheet" href="../../../assets/site-shell.css">
 </head>
-<body>
+<body data-reader="calendar">
+  <a class="tt-skip" href="#tt-content">Skip to content</a>
+  <header class="tt-header">
+    <a class="tt-name" href="../../../index.html">Timothy Trujillo</a>
+    <nav class="tt-nav" aria-label="Main navigation"><a href="../../../research/index.html">Research</a><a href="../../../teaching/index.html">Teaching</a><a aria-current="location" href="../../index.html">Courses</a><a href="../../../cv.html">CV</a></nav>
+  </header>
 
     <div class="bg-fixed"></div>
     <div class="noise-overlay"></div>
 
-    <div class="container">
+    <div class="container" id="tt-content" tabindex="-1">
         <nav>
-            <a href="CurrentCourses.html" class="brand">← Back</a>
-            <button class="theme-toggle" onclick="toggleTheme()">Theme</button>
+            <a href="index.html" class="brand">Calculus II materials</a>
+            <button class="theme-toggle" onclick="toggleTheme()">Switch light / dark</button>
         </nav>
 
         <header class="course-header">
@@ -528,7 +535,7 @@
                     </a>
 
                     <!-- SOLUTIONS: DISABLED (toggle later) -->
-                    <a href="Week8_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
+                    <a href="Week8_Sol.html" class="btn-action" >
                         Solutions 
                     </a>
                 </div>
@@ -583,7 +590,7 @@
                     <!-- SOLUTIONS: ACTIVE -->
                    
                     <!-- SOLUTIONS: DISABLED (toggle later) -->
-                    <a href="Week9_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
+                    <a href="Week9_Sol.html" class="btn-action" >
                         Solutions 
                     </a>
                 </div>
@@ -637,7 +644,7 @@
                     </a>
 
                     <!-- SOLUTIONS: DISABLED (toggle later) -->
-                    <a href="Week10_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
+                    <a href="Week10_Sol.html" class="btn-action" >
                         Solutions 
                     </a>
                 </div>
@@ -690,7 +697,7 @@
                     </a>
 
                     <!-- SOLUTIONS: DISABLED (toggle later) -->
-                    <a href="Week11_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
+                    <a href="Week11_Sol.html" class="btn-action" >
                         Solutions 
                     </a>
                 </div>
@@ -841,7 +848,7 @@
                     </a>
 
                     <!-- SOLUTIONS 12 -->
-                    <a href="Week13_Sol.html" class="btn-action" aria-disabled="true" title="Not posted yet">
+                    <a href="Week13_Sol.html" class="btn-action" >
                         Solutions 
                     </a>
                 </div>
@@ -908,7 +915,7 @@
                 html.setAttribute('data-theme', next);
                 localStorage.setItem('theme', next);
             }
-            const saved = localStorage.getItem('theme') || 'dark';
+            const saved = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', saved);
         </script>
     </div>

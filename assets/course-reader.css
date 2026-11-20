@@ -1,0 +1,113 @@
+:root {
+  --cr-paper: #fffdf6;
+  --cr-ink: #16232a;
+  --cr-blue: #223d4d;
+  --cr-rust: #98472f;
+  --cr-rule: #d6d8cf;
+  --cr-green: #eaf1e8;
+  --cr-sans: "Lucida Grande", Calibri, Candara, Verdana, sans-serif;
+}
+body[data-reader] { display: block; width: auto; max-width: none; margin: 0; padding: 0; background: var(--cr-paper); color: var(--cr-ink); }
+body[data-reader] :focus-visible { outline: 3px solid var(--cr-rust); outline-offset: 3px; }
+.reader-trail { display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; margin: 0 0 1.35rem; padding: 0; font: 1rem/1.45 var(--cr-sans); }
+.reader-trail a, .reader-external a, .pretext-content a.external { color: var(--cr-rust); text-decoration: underline; text-underline-offset: .2em; }
+
+@media screen {
+  [data-reader="worksheet"] { --bg-paper: var(--cr-paper); --text-main: var(--cr-ink); --primary: var(--cr-blue); --secondary: #456050; --border-color: var(--cr-rule); --font-serif: Georgia, "Times New Roman", serif; --font-sans: var(--cr-sans); }
+  [data-reader="worksheet"] .page-container {
+    box-sizing: border-box; max-width: 62rem; width: 100%; margin: auto; padding: clamp(1.3rem,4.4vw,3.5rem);
+    background: transparent; color: var(--cr-ink); box-shadow: none; min-height: auto; font-size: 1.075rem; line-height: 1.58;
+  }
+  [data-reader="worksheet"] .page-container :is(h1,h2,h3,h4,.header-meta,.sub-header,.objectives-title,.box-title,.solution-title) { font-family: var(--cr-sans); }
+  [data-reader="worksheet"] .page-container h1 { font-size: clamp(1.95rem,4.3vw,3.35rem); line-height: 1.08; color: var(--cr-blue); letter-spacing: -.034em; }
+  [data-reader="worksheet"] .page-container h2 { color: var(--cr-blue); line-height: 1.17; }
+  [data-reader="worksheet"] .page-container :is(header,h1,h2) { border-color: var(--cr-rule); }
+  [data-reader="worksheet"] .page-container header { margin: 0 0 1.5rem; padding: 0 0 1.1rem; }
+  [data-reader="worksheet"] :is(.objectives-container,.objectives-box,.box-def) { background: var(--cr-green); color: var(--cr-ink); border-color: #9aad98; border-radius: 0; }
+  [data-reader="worksheet"] :is(.objectives-title,.box-def .box-title) { color: #355247; }
+  [data-reader="worksheet"] :is(.solution-box,.example-block,.example-box) { background-color: #f4f6f1; border-color: #abbcaf; border-radius: 0; }
+  [data-reader="worksheet"] .page-container img, [data-reader="worksheet"] .page-container iframe { max-width: 100%; }
+  [data-reader="worksheet"] .page-container img { height: auto; }
+  [data-reader="worksheet"] .page-container :is(mjx-container[display="true"],.integral-steps,.formula-block) { max-width: 100%; overflow-x: auto; }
+}
+body[data-reader="video"], body[data-reader="chapter"] { font: 1.075rem/1.52 var(--cr-sans); }
+:is([data-reader="video"],[data-reader="chapter"]) .main { box-sizing: border-box; display: block; float: none; max-width: 62rem; margin: auto; padding: clamp(1.2rem,4vw,3rem); }
+:is([data-reader="video"],[data-reader="chapter"]) .pretext-content { width: auto; max-width: 100% !important; margin: 0; padding: 0; color: var(--cr-ink); background: transparent; }
+:is([data-reader="video"],[data-reader="chapter"]) .pretext-content :is(h1,h2,h3,h4) { color: var(--cr-blue); font-family: var(--cr-sans); }
+:is([data-reader="video"],[data-reader="chapter"]) .video-box { position: relative; height: 0; }
+:is([data-reader="video"],[data-reader="chapter"]) .video-box > :is(iframe,video) { position:absolute; inset:0; width:100%; height:100%; border:0; }
+[data-reader="chapter"] .pretext-content img { max-width: 100%; height: auto; }
+[data-reader="chapter"] .subsection { border-top: 1px solid var(--cr-rule); padding-top: .8rem; margin-top: 2rem; }
+[data-reader="chapter"] .subsection h3 { margin: .4rem 0 .7rem; }
+[data-reader="chapter"] .hide-type > .type { display:none; }
+.reader-external { font-family: var(--cr-sans); margin-top: .9rem; }
+[data-reader="video"] a.assistive:not(:focus) { position: absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+.module-contents summary { color: var(--cr-blue); cursor: pointer; font: 600 1rem/1.4 var(--cr-sans); }
+.module-contents .plain { margin: .7rem 0; }
+[data-reader="module"] .module-nav { border-block: 1px solid var(--cr-rule); padding-block: .65rem; }
+[data-reader="module"] .module-nav a { text-decoration: underline; text-underline-offset: .18em; }
+[data-reader="module"] .course-content { min-width: 0; }
+[data-reader="course"] .video-card { border-top: 1px solid var(--cr-rule); padding-top: 1rem; }
+[data-reader="book"] { --bg-void:var(--cr-paper); --bg-card:var(--cr-paper); --text-primary:var(--cr-ink); --text-body:var(--cr-ink); --accent-cyan:var(--cr-rust); --accent-gold:var(--cr-rust); --accent-orange:var(--cr-rust); --accent-line:var(--cr-rule); font-family:var(--cr-sans); }
+[data-reader="book"] main { max-width: 70rem; padding: 2rem clamp(1.2rem,4vw,3rem); gap: 1.75rem; }
+[data-reader="book"] main :is(h1,h2,h3,.tree-node,.tree-header,.card-meta,.archival-badge), [data-reader="book"] .section-list a { font-family:var(--cr-sans); }
+[data-reader="book"] .course-header { margin:0; }
+[data-reader="book"] .course-header h1 { color:var(--cr-blue); text-transform:none; line-height:1.08; font-size:clamp(2.2rem,4vw,3.1rem); }
+[data-reader="book"] .archival-badge { border:0; padding:0; text-transform:none; }
+[data-reader="book"] .archival-text { color:var(--cr-ink); font-size:1rem; }
+[data-reader="book"] .tree-nav { position:static; }
+[data-reader="book"] .tree-node:is(:hover,.active),[data-reader="book"] .card-title { color:var(--cr-blue); }
+[data-reader="book"] .spotlight-bg { display:none; }
+[data-reader="book"] .module-card { background:transparent; border:0; border-left:2px solid var(--cr-rule); padding:0 clamp(1rem,3vw,2rem); border-radius:0; box-shadow:none; backdrop-filter:none; }
+[data-reader="book"] .section-list a { color:var(--cr-rust); text-decoration:underline; text-underline-offset:.2em; }
+[data-reader="calendar"] { --font-display:var(--cr-sans); --font-mono:var(--cr-sans); font-family:var(--cr-sans); }
+[data-theme="light"] [data-reader="calendar"] { --c-bg:var(--cr-paper); --c-text:var(--cr-ink); --c-subtle:#525e62; --c-shsu-orange:var(--cr-rust); --glass-border:var(--cr-rule); --glass-bg:var(--cr-paper); }
+[data-theme="dark"] [data-reader="calendar"] { background:var(--c-bg); color:var(--c-text); }
+[data-reader="calendar"] .bg-fixed, [data-reader="calendar"] .noise-overlay { display:none; }
+[data-reader="calendar"] .course-header { padding:1.5rem 0; }
+[data-reader="calendar"] .course-title { font-size:clamp(2rem,6vw,3.75rem); text-transform:none; line-height:1.05; }
+[data-reader="calendar"] .week-header { background:transparent; }
+[data-reader="calendar"] .week-card { border-radius:0; backdrop-filter:none; }
+[data-reader="calendar"] .week-container { gap:1.5rem; }
+@media (max-width:48rem) {
+  [data-reader="worksheet"] .page-container :is(.two-col,.three-col,.diagram-grid,.side-work-grid,.compare-grid,.setup-grid) { display:grid; grid-template-columns:minmax(0,1fr); }
+  [data-reader="worksheet"] .page-container table { display:block; max-width:100%; overflow-x:auto; }
+  [data-reader="worksheet"] .page-container li { overflow-wrap:break-word; }
+  [data-reader="calendar"] .container { padding-inline:1.15rem; }
+  [data-reader="calendar"] .lecture-row { align-items:start; flex-wrap:wrap; gap:.5rem; padding:1rem; }
+  [data-reader="calendar"] .lecture-details {min-width:9rem;padding:0; }
+  [data-reader="book"] .tree-nav { display:flex; flex-wrap:wrap; gap:.25rem .9rem; padding:0; border:0; }
+  [data-reader="book"] .tree-node { width:auto; padding:.25rem; font-size:1rem; transform:none; }
+  [data-reader="book"] .tree-header, [data-reader="book"] .tree-node::before { display:none; }
+}
+@media print {
+  .reader-trail,.reader-external,.module-contents,.tt-header { display:none !important; }
+}
+@media screen and (max-width:48rem) {
+  [data-reader="chapter"] .pretext-content .external code { white-space:normal; overflow-wrap:anywhere; }
+  [data-reader="chapter"] .pretext-content aside:empty { display:none; }
+  [data-reader="worksheet"] .page-container mjx-container { max-width:100%; overflow-x:auto; overflow-y:hidden; vertical-align:middle; padding-block:.15em; }
+  [data-reader="worksheet"] .page-container :is(li,p,section,.box,.problem-block,.solution-box,.example-block) { min-width:0; }
+}
+@media screen and (max-width:48rem) {
+  [data-reader="worksheet"] .page-container mjx-container:not([display="true"]) { display:inline-block; }
+}
+@media screen and (max-width:48rem) {
+  [data-reader="worksheet"] .page-container { overflow-wrap:anywhere; }
+  [data-reader="worksheet"] .page-container :is(.diagram-grid,.compare-grid,.alpha-grid,[style*="grid-template-columns"]) { grid-template-columns:minmax(0,1fr) !important; gap:1rem !important; }
+  [data-reader="worksheet"] .page-container :is([style*="display: flex"],[style*="display:flex"],.sub-header,.header-meta) { flex-wrap:wrap; gap:.5rem !important; }
+  [data-reader="worksheet"] .page-container :is(.setup-col,.mini-card,.diagram-card,.circled-result-box,.page-container > div) { min-width:0; max-width:100%; box-sizing:border-box; }
+  [data-reader="worksheet"] .page-container pre { white-space:pre-wrap; overflow-wrap:anywhere; }
+}
+@media screen {
+  [data-reader="worksheet"] { --font-serif:var(--cr-sans); }
+  [data-reader="worksheet"] .page-container { font-family:var(--cr-sans); }
+}
+@media screen and (max-width:48rem) {
+  [data-reader="worksheet"] .page-container [style*="min-width"] { min-width:0 !important; max-width:100%; box-sizing:border-box; }
+  [data-reader="worksheet"] .page-container svg[viewBox]:not(mjx-container svg) { max-width:100%; height:auto; }
+  [data-reader="worksheet"] .page-container .figure-img { width:auto; max-width:100% !important; }
+}
+@media screen and (max-width:48rem) {
+  [data-reader="worksheet"] .figure-img[style*="transform"] { transform:none !important; }
+}

@@ -1,0 +1,58 @@
+.research-reading h1, .research-reading h2, .research-reading h3 {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+.research-reading .research-records {
+  padding: 0;
+  margin: .65rem 0 1.6rem;
+  list-style: none;
+}
+.research-reading .research-records > li {
+  display: grid;
+  grid-template-columns: minmax(4.6rem, 7.4rem) minmax(0, 1fr);
+  gap: .3rem 1rem;
+  border-top: 1px solid var(--rule, #d6d8cf);
+  margin: 0;
+  padding: .85rem 0;
+}
+.research-reading .research-records h3 {
+  font: 600 1.18rem/1.35 var(--sans, Calibri, sans-serif);
+  margin: 0 0 .22rem;
+}
+.research-reading .research-records p {
+  margin: .18rem 0 0;
+  line-height: 1.45;
+}
+.research-reading .research-records p + p,
+.research-reading .record-date, .research-reading .record-byline, .research-reading .research-meta {
+  color: var(--muted, #515d60);
+  font-family: var(--sans, Calibri, sans-serif);
+}
+.research-reading .record-date {
+  line-height: 1.55;
+  font-size: .95rem;
+  font-variant-numeric: tabular-nums;
+}
+.research-reading .research-manuscript {
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--rule, #d6d8cf);
+}
+.research-reading .research-manuscript > :first-child { margin-top: 0; }
+.research-reading .research-manuscript > :last-child { margin-bottom: 0; }
+.research-reading .research-manuscript .record-byline { margin: .1rem 0 .45rem; }
+.research-reading .research-manuscript h2, .research-reading .research-manuscript h3 { margin-bottom: .35rem; }
+.research-reading .research-manuscript h2 { border: 0; padding: 0; margin-top: .5rem; }
+.research-reading .publication-records { --research-year-width: 4.6rem; }
+.research-reading .publication-records > li { grid-template-columns: var(--research-year-width) minmax(0, 1fr); }
+@media(max-width: 620px) {
+  .research-reading .research-records > li,
+  .research-reading .publication-records > li { grid-template-columns: 1fr; }
+}
+.research-jump { display: none; }
+@media (max-width: 760px) {
+  .tt-document .layout:has(.research-reading) > .sidebar { display: none; }
+  .tt-document .layout > .research-reading { margin-top: 0; }
+  .research-jump { display: block; margin: .65rem 0 1rem; }
+  .research-jump summary { cursor: pointer; color: var(--link, #874326); }
+  .research-jump nav { display: grid; justify-items: start; gap: .45rem; padding: .55rem 1rem; }
+}

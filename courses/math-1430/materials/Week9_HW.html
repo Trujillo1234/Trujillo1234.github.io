@@ -20,11 +20,9 @@ window.MathJax = {
   svg: { fontCache: 'global' }
 };
 </script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script defer src="../../../assets/vendor/mathjax-3.2.2/tex-mml-svg.js"></script>
 
 <!-- TikZJax (TikZ -> SVG) -->
-<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
-<script defer src="https://tikzjax.com/v1/tikzjax.js"></script>
 
 <style>
 :root {
@@ -107,10 +105,17 @@ li {
     height: auto;
 }
 </style>
+<link rel="stylesheet" href="../../../assets/course-reader.css">
+  <link rel="stylesheet" href="../../../assets/site-shell.css">
 </head>
 
-<body>
-<div class="page-container">
+<body data-reader="worksheet">
+  <a class="tt-skip" href="#tt-content">Skip to content</a>
+  <header class="tt-header">
+    <a class="tt-name" href="../../../index.html">Timothy Trujillo</a>
+    <nav class="tt-nav" aria-label="Main navigation"><a href="../../../research/index.html">Research</a><a href="../../../teaching/index.html">Teaching</a><a aria-current="location" href="../../index.html">Courses</a><a href="../../../cv.html">CV</a></nav>
+  </header>
+<div class="page-container" id="tt-content" tabindex="-1"><nav class="reader-trail" aria-label="Course navigation"><a href="index.html">Calculus II</a> <a href="index.html#week-09">Week 9</a></nav>
 
 <header>
     <h1>Homework 8</h1>
@@ -129,6 +134,7 @@ Find the area of each shaded region.
 <ol>
     <li>
         <div class="tikz-figure">
+<img class="course-diagram" src="figures/figure-135a501928.svg" width="269" height="122" alt="Region between sine of x and the horizontal line y = one half.">
 <script type="text/tikz">
 \begin{tikzpicture}[x=1.25cm,y=2.0cm]
   \draw[->] (-0.2,0) -- (3.6,0);
@@ -156,6 +162,7 @@ Find the area of each shaded region.
 
     <li>
         <div class="tikz-figure">
+<img class="course-diagram" src="figures/figure-9e5eaab279.svg" width="281" height="169" alt="Region between the parabola y = −x² + 4x and the line y = 3.">
 <script type="text/tikz">
 \begin{tikzpicture}[x=1.0cm,y=0.75cm]
   \draw[->] (-0.4,0) -- (5.3,0);
@@ -185,6 +192,7 @@ Find the area of each shaded region.
 
     <li>
         <div class="tikz-figure">
+<img class="course-diagram" src="figures/figure-495d1be216.svg" width="251" height="147" alt="Shaded region under y = sin(x) + 1.">
 <script type="text/tikz">
 \begin{tikzpicture}[x=0.85cm,y=1.25cm]
   \draw[->] (-0.25,0) -- (7.0,0);
@@ -223,6 +231,7 @@ Find the volume of the solid obtained by rotating each shaded region about the $
 <ol>
     <li>
         <div class="tikz-figure">
+<img class="course-diagram" src="figures/figure-412a8dcb3d.svg" width="221" height="129" alt="Region bounded by the x-axis and the graph of the square root of ln(x) divided by x.">
 <script type="text/tikz">
 \begin{tikzpicture}[x=1.0cm,y=2.4cm]
   \draw[->] (0.6,0) -- (4.7,0);
@@ -250,6 +259,7 @@ Find the volume of the solid obtained by rotating each shaded region about the $
 
     <li>
         <div class="tikz-figure">
+<img class="course-diagram" src="figures/figure-adeabe276d.svg" width="207" height="168" alt="Region between y = x² + 1 and y = x.">
 <script type="text/tikz">
 \begin{tikzpicture}[x=3.0cm,y=1.35cm]
   \draw[->] (-0.1,0) -- (1.2,0);
@@ -280,6 +290,7 @@ Find the volume of the solid obtained by rotating each shaded region about the $
 
     <li>
         <div class="tikz-figure">
+<img class="course-diagram" src="figures/figure-ea722c3377.svg" width="205" height="131" alt="Shaded region bounded by y = square root of x.">
 <script type="text/tikz">
 \begin{tikzpicture}[x=1.0cm,y=1.0cm]
   \draw[->] (-0.2,0) -- (4.7,0);
@@ -316,6 +327,7 @@ Find the volume of the solid obtained by rotating each shaded region about the $
 <ol>
     <li>
         <div class="tikz-figure">
+<img class="course-diagram" src="figures/figure-ba0a9cc82f.svg" width="198" height="161" alt="Shaded region bounded by the line y = −x + 3.">
 <script type="text/tikz">
 \begin{tikzpicture}[x=1.0cm,y=1.0cm]
   \draw[->] (-0.2,0) -- (3.8,0);
@@ -342,6 +354,7 @@ Find the volume of the solid obtained by rotating each shaded region about the $
 
     <li>
         <div class="tikz-figure">
+<img class="course-diagram" src="figures/figure-6985b7fbc8.svg" width="163" height="138" alt="Shaded region bounded by a circular arc and the horizontal line y = 1.">
 <script type="text/tikz">
 \begin{tikzpicture}[x=1.2cm,y=1.2cm]
   \draw[->] (-0.2,0) -- (2.6,0);
@@ -373,6 +386,7 @@ Find the volume of the solid obtained by rotating each shaded region about the $
 
     <li>
         <div class="tikz-figure">
+<img class="course-diagram" src="figures/figure-35d2db5bc3.svg" width="183" height="127" alt="Shaded region beside the curve y = 1/x.">
 <script type="text/tikz">
 \begin{tikzpicture}[x=1.2cm,y=2.0cm]
   \draw[->] (0.4,0) -- (3.6,0);

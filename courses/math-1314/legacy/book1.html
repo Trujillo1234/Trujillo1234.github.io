@@ -15,10 +15,10 @@
   window.MathJax = {
     tex: { inlineMath: [['\\(','\\)']], tags: "none" },
     options: { ignoreHtmlClass: "tex2jax_ignore", processHtmlClass: "has_am" },
-    chtml: { scale: 0.88, mtextInheritFont: true }
+    svg: { scale: 0.88, mtextInheritFont: true }
   };
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script src="../../../assets/vendor/mathjax-3.2.2/tex-mml-svg.js"></script>
 
   <style>
     :root {
@@ -343,30 +343,27 @@
       h1 { font-size: 2.5rem; }
     }
   </style>
+<link rel="stylesheet" href="../../../assets/course-reader.css">
+  <link rel="stylesheet" href="../../../assets/site-shell.css">
 </head>
 
-<body>
+<body data-reader="book">
+  <a class="tt-skip" href="#tt-content">Skip to content</a>
+  <header class="tt-header">
+    <a class="tt-name" href="../../../index.html">Timothy Trujillo</a>
+    <nav class="tt-nav" aria-label="Main navigation"><a href="../../../research/index.html">Research</a><a href="../../../teaching/index.html">Teaching</a><a aria-current="location" href="../../index.html">Courses</a><a href="../../../cv.html">CV</a></nav>
+  </header>
 
-  <nav>
-    <a href="index.html" class="brand">
-      <img src="logo.png" alt="SHSU" style="height:24px; filter:grayscale(100%) invert(1);">
-      <span class="mono">Trujillo</span>
-    </a>
-    <div class="nav-links mono">
-      <a href="index.html">Profile</a>
-      <a href="book1.html" class="active">Math 1314</a>
-      <a href="mailto:trujillo@shsu.edu">Contact</a>
-    </div>
-  </nav>
+  
 
-  <main>
+  <main id="tt-content">
     
     <!-- HEADER -->
     <header class="course-header">
-      <span class="archival-badge">Course Artifact // 2020-2023</span>
+      <span class="archival-badge">MATH 1314 · Course archive</span>
       <h1>Precalculus Algebra</h1>
       <div class="archival-text">
-        This archive serves as a digital record of the Pandemic Era pedagogy. 
+        Materials from the Precalculus Algebra course. 
         Video lectures were recorded synchronously during <strong>Fall 2020</strong>.
       </div>
     </header>
@@ -376,42 +373,42 @@
       <div class="tree-header mono">Directory</div>
       
       <button class="tree-node active" onclick="showSection(0)">
-        <span>00 // ADMIN</span>
+        
         Frontmatter
       </button>
       
       <button class="tree-node" onclick="showSection(1)">
-        <span>01 // START</span>
+        
         Introduction
       </button>
       
       <button class="tree-node" onclick="showSection(2)">
-        <span>02 // ALGEBRA</span>
+        
         Equations
       </button>
 
       <button class="tree-node" onclick="showSection(3)">
-        <span>03 // CORE</span>
+        
         Functions
       </button>
 
       <button class="tree-node" onclick="showSection(4)">
-        <span>04 // MODELING</span>
+        
         Linear Models
       </button>
 
       <button class="tree-node" onclick="showSection(5)">
-        <span>05 // GRAPHS</span>
+        
         Polynomials
       </button>
 
       <button class="tree-node" onclick="showSection(6)">
-        <span>06 // TRANSCENDENTAL</span>
+        
         Exp & Logs
       </button>
 
       <button class="tree-node" onclick="showSection(7)">
-        <span>07 // METRICS</span>
+        
         Assessments
       </button>
     </aside>
@@ -425,9 +422,9 @@
         <span class="card-meta">Module 00</span>
         <h2 class="card-title">Frontmatter</h2>
         <ul class="section-list">
-            <li><a href="frontmatter.html">Syllabus & Course Description</a></li>
-            <li><a href="frontmatter.html#grading">Grading Policy</a></li>
-            <li><a href="frontmatter.html#schedule">Academic Schedule</a></li>
+            <li><a href="frontmatter.html">Course description and video archive</a></li>
+            <li><a href="exams.html#subsection-39">Exam learning objectives</a></li>
+            <li><a href="frontmatter.html#course-structure">Course outline</a></li>
         </ul>
       </article>
 
@@ -529,7 +526,7 @@
 
   <footer>
     &copy; 2025 Timothy Trujillo | Sam Houston State University<br>
-    <a href="index.html" style="color:var(--accent-cyan); text-decoration:none;">RETURN TO PROFILE</a>
+    <a href="index.html" style="color:var(--accent-cyan); text-decoration:none;">Return to course archive</a>
   </footer>
 
   <script>

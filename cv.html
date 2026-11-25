@@ -4,6 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CV | Timothy Trujillo</title>
+  <script>
+    // The university profile opens this file as its initial frame.
+    if (window.parent !== window && document.referrer &&
+        new URL(document.referrer).origin === "https://profiles.shsu.edu") {
+      window.location.replace("./");
+    }
+  </script>
   <meta name="description" content="Academic appointments, publications, student research, teaching, and presentations of Timothy O. Trujillo.">
   <link rel="stylesheet" href="assets/site.css?v=logos1">
   <link rel="stylesheet" href="assets/document-pages.css">
